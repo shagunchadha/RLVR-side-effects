@@ -1,0 +1,7 @@
+# Local Claude Code / marimo-pair skill install (reinstall from skills-lock.json)
+.agents/
+.claude/skills/
+
+# Python
+__pycache__/
+*.pyc
