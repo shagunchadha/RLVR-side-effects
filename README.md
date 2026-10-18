@@ -35,9 +35,12 @@ The instrumental-convergence question (do RL-trained reasoning models show more 
 │   ├── rlvr_baseline_v1.{json,csv}   first sweep (20 rows), kept raw
 │   ├── rlvr_baseline_v2.{json,csv}   re-run of the 10 truncated items (10 rows)
 │   └── rlvr_baseline_v3.{json,csv}   LOCKED RLVR baseline (36 rows)
+│   ├── dpo_pilot_v3.{json,csv}       DPO pipeline check, 36 rows (exploratory pipeline check, not a finding)
+│   └── dpo_pilot_v3_env.txt          exact package versions used for the DPO pilot
 └── scripts/                     archived run scripts (need a live marimo session, see below)
     ├── rerun_truncated_v2.py
     ├── run_baseline_v3.py
+    ├── dpo_pilot_v3.py
     └── rerun_truncated_v3.py
 ```
 
@@ -71,6 +74,12 @@ This work was done by pairing Claude Code with a live [marimo](https://marimo.io
    - seeds `torch.manual_seed(0/1/2)` for samples 1-3 of the 8 self-report items, seed 0 for the other 12 items (36 generations);
    - an answer is valid only if the `<think>` block closed and an `ANSWER: X` line follows `</think>`; otherwise the row is flagged `forced`.
 4. `scripts/run_baseline_v3.py` implements this exactly. **The scripts are not standalone**: they run inside the notebook kernel through `marimo._code_mode` and read the probe definitions from the live notebook cells, so they fail under plain `python`. They are archived unmodified (plus a header) for reproducibility. The next run should import from `probes/` instead; copy or clone `probes/` into the sandbox's working directory to do so.
+
+## DPO pilot (exploratory pipeline check, not a finding)
+
+`results/dpo_pilot_v3.{json,csv}` is a pipeline check of the v3 protocol on `allenai/Olmo-3-7B-Think-DPO`, pinned at commit `7b18bf927b430ff06376fdfa5610eb3b1b6a5c38`. It uses the same 36 items and seeds, the same prompt template and cap sentence, `temperature=0.7`, `top_p=0.9`, and a uniform `max_new_tokens=4000` (v3 used 2000). It was run in an isolated venv (transformers 5.14.1, huggingface-hub 1.33.0, torch 2.11.0+cu130; see `results/dpo_pilot_v3_env.txt`), not the versions used for v3, which were never recorded. It is not compared to RLVR and supports no claim about the DPO stage. Script: [`scripts/dpo_pilot_v3.py`](scripts/dpo_pilot_v3.py) (standalone, no marimo; its header lists the inputs it expects).
+
+**Output schema note: `early_stop` vs truncation.** A row can be forced for two different reasons, and they should not be pooled. *Truncation*: generation used the whole budget (`n_generated_tokens >= max_new_tokens`, flagged as `hit_token_cap`). *Early stop* (`early_stop`): generation ended on an EOS token before the cap without a closed think block, i.e. `not think_closed and n_generated_tokens < max_new_tokens`. `early_stop` is defined here but is not a column in the existing DPO pilot files; it is derivable from `think_closed`, `n_generated_tokens` and `max_new_tokens`. The pilot has one such row (`trait_confidence_selfreport` sample 3: sampled `<|endoftext|>` after 53 tokens, mid-sentence; it reproduces exactly under the same seed).
 
 ## Known, deferred cleanup
 
