@@ -1,0 +1,37 @@
+# batch-test environment check, repo=allenai/Olmo-3-7B-Think sha=d97e442d7cc678210054dbcc9b440894d62c89a4
+python        : 3.13.11  exe=/tmp/batch_venv/bin/python
+PYTHONPATH    : ''
+GPU           : NVIDIA RTX PRO 6000 Blackwell Server Edition
+driver        : 595.71.05
+torch.cuda    : 13.0 available=True
+torch           : 2.11.0+cu130  (pinned 2.11.0+cu130)  OK
+transformers    : 5.14.1  (pinned 5.14.1)  OK
+huggingface-hub : 1.33.0  (pinned 1.33.0)  OK
+accelerate      : 1.15.0  (pinned 1.15.0)  OK
+datasets      : 5.0.0 (system site, as in the pilots; not in the freeze)
+RESULT: ALL PINNED VERSIONS MATCH
+
+# batch-test environment check, repo=allenai/Olmo-3-7B-Think sha=d97e442d7cc678210054dbcc9b440894d62c89a4
+python        : 3.13.11  exe=/tmp/batch_venv/bin/python
+PYTHONPATH    : ''
+GPU           : NVIDIA RTX PRO 6000 Blackwell Server Edition
+driver        : 595.71.05
+torch.cuda    : 13.0 available=True
+torch           : 2.11.0+cu130  (pinned 2.11.0+cu130)  OK
+transformers    : 5.14.1  (pinned 5.14.1)  OK
+huggingface-hub : 1.33.0  (pinned 1.33.0)  OK
+accelerate      : 1.15.0  (pinned 1.15.0)  OK
+datasets      : 5.0.0 (system site, as in the pilots; not in the freeze)
+RESULT: ALL PINNED VERSIONS MATCH
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:17<00:34, 17.22s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:25<00:11, 11.91s/it]Fetching 3 files: 100%|██████████| 3/3 [00:30<00:00,  8.64s/it]Fetching 3 files: 100%|██████████| 3/3 [00:30<00:00, 10.05s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   0%|          | 1/355 [00:00<01:26,  4.10it/s]Loading weights:   7%|▋         | 25/355 [00:00<00:03, 90.76it/s]Loading weights:  13%|█▎        | 46/355 [00:00<00:02, 126.31it/s]Loading weights:  19%|█▉        | 69/355 [00:00<00:01, 154.95it/s]Loading weights:  26%|██▌       | 91/355 [00:00<00:01, 169.89it/s]Loading weights:  32%|███▏      | 113/355 [00:00<00:01, 183.87it/s]Loading weights:  38%|███▊      | 135/355 [00:00<00:01, 186.27it/s]Loading weights:  45%|████▍     | 158/355 [00:00<00:00, 197.78it/s]Loading weights:  51%|█████     | 180/355 [00:01<00:00, 201.69it/s]Loading weights:  57%|█████▋    | 201/355 [00:01<00:00, 203.66it/s]Loading weights:  63%|██████▎   | 224/355 [00:01<00:00, 209.73it/s]Loading weights:  69%|██████▉   | 246/355 [00:01<00:00, 212.28it/s]Loading weights:  75%|███████▌  | 268/355 [00:01<00:00, 211.48it/s]Loading weights:  82%|████████▏ | 290/355 [00:01<00:00, 210.45it/s]Loading weights:  88%|████████▊ | 312/355 [00:01<00:00, 209.81it/s]Loading weights:  94%|█████████▍| 334/355 [00:01<00:00, 205.48it/s]Loading weights: 100%|██████████| 355/355 [00:01<00:00, 186.72it/s]
+[   0.7 min] attn: sdpa pad: <|pad|> 100277 eos: [100257, 100265] temp/top_p: 0.7 0.9 batch size: 8 seed: 0
+Generating train split:   0%|          | 0/7500 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7500/7500 [00:00<00:00, 216399.05 examples/s]
+[   0.8 min] selected RLVR-MATH indices (seed 0): [6917, 3155, 6209, 7292, 3445, 331, 2121, 4188, 3980, 3317]
+[   0.8 min] prompt lengths (tokens): {331: 633, 3980: 634, 6917: 649, 3445: 660, 2121: 680, 6209: 682, 7292: 719, 4188: 860, 3317: 872, 3155: 1020}
+[   0.8 min] === MATH pilot: cap 16000, batch size 8 ===
+[  13.3 min] cap 16000 batch of 8: steps=10719 wall=755s tokens=43733
+[  23.4 min] cap 16000 batch of 2: steps=16000 wall=602s tokens=29072
+[  23.4 min] cap 16000 DONE tokens=72805 wall=1356s tok/s=53.7 hit_cap=1 parse=9 gt=8 peak=40.4GB
+DONE

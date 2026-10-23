@@ -1,0 +1,26 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  rows 100000 (0.8 min)
+  rows 200000 (1.9 min)
+  rows 300000 (3.1 min)
+  rows 400000 (4.6 min)
+  rows 500000 (6.4 min)
+  rows 600000 (8.2 min)
+  rows 700000 (9.9 min)
+  rows 800000 (11.6 min)
+  rows 900000 (12.7 min)
+  rows 1000000 (14.3 min)
+  rows 1100000 (15.0 min)
+  rows 1200000 (15.2 min)
+  rows 1300000 (15.5 min)
+  rows 1400000 (15.9 min)
+  rows 1500000 (16.3 min)
+  rows 1600000 (16.8 min)
+  rows 1700000 (17.2 min)
+  rows 1800000 (18.7 min)
+  rows 1900000 (19.2 min)
+  rows 2000000 (19.6 min)
+  rows 2100000 (20.1 min)
+  rows 2200000 (20.6 min)
+DATASET allenai/Dolci-Think-SFT-7B: scanned 2268178 rows in 20.9 min
+  math500 {'targets': 500, 'targets_with_8_tokens': 487, 'exact_match': 3, 'ge50': 25, 'ge80': 10}
+  rlvr_math {'targets': 7500, 'targets_with_8_tokens': 7267, 'exact_match': 4390, 'ge50': 5050, 'ge80': 4773}

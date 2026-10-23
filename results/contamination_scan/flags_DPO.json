@@ -1,0 +1,22 @@
+{
+  "dataset": "allenai/Dolci-Think-DPO-7B",
+  "stage": "DPO",
+  "rows_scanned": 150000,
+  "ngram": 8,
+  "threshold": 0.5,
+  "math500": {
+    "targets": 500,
+    "targets_with_8_tokens": 487,
+    "exact_match": 0,
+    "ge50": 0,
+    "ge80": 0
+  },
+  "math500_flagged": [],
+  "rlvr_math": {
+    "targets": 7500,
+    "targets_with_8_tokens": 7267,
+    "exact_match": 0,
+    "ge50": 82,
+    "ge80": 77
+  }
+}

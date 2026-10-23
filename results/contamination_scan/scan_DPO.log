@@ -1,0 +1,6 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating test split:   0%|          | 0/500 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 500/500 [00:00<00:00, 65468.49 examples/s]
+  rows 100000 (0.6 min)
+DATASET allenai/Dolci-Think-DPO-7B: scanned 150000 rows in 0.8 min
+  math500 {'targets': 500, 'targets_with_8_tokens': 487, 'exact_match': 0, 'ge50': 0, 'ge80': 0}
+  rlvr_math {'targets': 7500, 'targets_with_8_tokens': 7267, 'exact_match': 0, 'ge50': 82, 'ge80': 77}

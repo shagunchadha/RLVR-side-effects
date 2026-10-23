@@ -1,0 +1,56 @@
+{
+ "tokens_per_s_used": 107.30008374223752,
+ "best_bs": 8,
+ "model_load_hours_per_checkpoint": 0.007388888888888889,
+ "assumptions": "gens split taken as given; 6 wordings = 144 self-report gens replaces the 96; MATH = 100 extra problems at 2500 tokens for every checkpoint (conservative for DPO/SFT); model load time per checkpoint = measured load_seconds of the cached RLVR model (first load incl. download is longer)",
+ "scenarios": {
+  "planned_566": {
+   "gens": 566,
+   "extra_math_gens": 0,
+   "gpu_hours_per_checkpoint": {
+    "RLVR": 1.3261203853145536,
+    "DPO": 0.813280358926795,
+    "SFT": 0.813280358926795
+   },
+   "gpu_hours_total": 2.9526811031681435,
+   "fits_12h": true,
+   "frac_of_12h": 0.2460567585973453
+  },
+  "option_6_wordings": {
+   "gens": 614,
+   "extra_math_gens": 0,
+   "gpu_hours_per_checkpoint": {
+    "RLVR": 1.4379562719372245,
+    "DPO": 0.8816245118628718,
+    "SFT": 0.8816245118628718
+   },
+   "gpu_hours_total": 3.201205295662968,
+   "fits_12h": true,
+   "frac_of_12h": 0.266767107971914
+  },
+  "option_math_100": {
+   "gens": 566,
+   "extra_math_gens": 100,
+   "gpu_hours_per_checkpoint": {
+    "RLVR": 1.9733188032698266,
+    "DPO": 1.4604787768820682,
+    "SFT": 1.4604787768820682
+   },
+   "gpu_hours_total": 4.894276357033963,
+   "fits_12h": true,
+   "frac_of_12h": 0.4078563630861636
+  },
+  "both_options": {
+   "gens": 614,
+   "extra_math_gens": 100,
+   "gpu_hours_per_checkpoint": {
+    "RLVR": 2.0851546898924975,
+    "DPO": 1.528822929818145,
+    "SFT": 1.528822929818145
+   },
+   "gpu_hours_total": 5.142800549528788,
+   "fits_12h": true,
+   "frac_of_12h": 0.42856671246073236
+  }
+ }
+}

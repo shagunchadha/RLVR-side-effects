@@ -1,0 +1,6 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating train split:   0%|          | 0/7500 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 7500/7500 [00:00<00:00, 206717.79 examples/s]
+  rows 100000 (1.0 min)
+DATASET allenai/Dolci-Think-RL-7B: scanned 102014 rows in 1.0 min
+  math500 {'targets': 500, 'targets_with_8_tokens': 487, 'exact_match': 0, 'ge50': 2, 'ge80': 0}
+  rlvr_math {'targets': 7500, 'targets_with_8_tokens': 7267, 'exact_match': 0, 'ge50': 763, 'ge80': 629}

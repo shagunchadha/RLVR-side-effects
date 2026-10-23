@@ -1,0 +1,254 @@
+{
+ "method": "8-gram overlap of the problem text against training prompts, flagged at >= 50% of the problem's 8-grams in one prompt (Tulu 3 decontamination style) or exact normalised match; no model outputs used",
+ "threshold": 0.5,
+ "ngram": 8,
+ "stages": {
+  "RL": {
+   "dataset": "allenai/Dolci-Think-RL-7B",
+   "rows_scanned": 102014,
+   "math500": {
+    "targets": 500,
+    "targets_with_8_tokens": 487,
+    "exact_match": 0,
+    "ge50": 2,
+    "ge80": 0
+   },
+   "rlvr_math": {
+    "targets": 7500,
+    "targets_with_8_tokens": 7267,
+    "exact_match": 0,
+    "ge50": 763,
+    "ge80": 629
+   }
+  },
+  "DPO": {
+   "dataset": "allenai/Dolci-Think-DPO-7B",
+   "rows_scanned": 150000,
+   "math500": {
+    "targets": 500,
+    "targets_with_8_tokens": 487,
+    "exact_match": 0,
+    "ge50": 0,
+    "ge80": 0
+   },
+   "rlvr_math": {
+    "targets": 7500,
+    "targets_with_8_tokens": 7267,
+    "exact_match": 0,
+    "ge50": 82,
+    "ge80": 77
+   }
+  },
+  "SFT": {
+   "dataset": "allenai/Dolci-Think-SFT-7B",
+   "rows_scanned": 2268178,
+   "math500": {
+    "targets": 500,
+    "targets_with_8_tokens": 487,
+    "exact_match": 3,
+    "ge50": 25,
+    "ge80": 10
+   },
+   "rlvr_math": {
+    "targets": 7500,
+    "targets_with_8_tokens": 7267,
+    "exact_match": 4390,
+    "ge50": 5050,
+    "ge80": 4773
+   }
+  }
+ },
+ "n_flagged_unique_problems": 26,
+ "flagged_unique_ids": [
+  "test/algebra/2430.json",
+  "test/algebra/346.json",
+  "test/algebra/621.json",
+  "test/algebra/907.json",
+  "test/counting_and_probability/1003.json",
+  "test/counting_and_probability/1060.json",
+  "test/counting_and_probability/339.json",
+  "test/counting_and_probability/71.json",
+  "test/geometry/283.json",
+  "test/geometry/702.json",
+  "test/intermediate_algebra/1063.json",
+  "test/intermediate_algebra/1166.json",
+  "test/intermediate_algebra/1365.json",
+  "test/intermediate_algebra/1791.json",
+  "test/intermediate_algebra/2146.json",
+  "test/intermediate_algebra/232.json",
+  "test/intermediate_algebra/279.json",
+  "test/intermediate_algebra/860.json",
+  "test/intermediate_algebra/90.json",
+  "test/number_theory/483.json",
+  "test/number_theory/634.json",
+  "test/prealgebra/1297.json",
+  "test/prealgebra/2086.json",
+  "test/precalculus/1199.json",
+  "test/precalculus/452.json",
+  "test/precalculus/807.json"
+ ],
+ "flags": [
+  {
+   "unique_id": "test/algebra/2430.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.8261,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/algebra/346.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.6667,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/algebra/621.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.52,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/algebra/907.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.5,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/counting_and_probability/1003.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.6311,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/counting_and_probability/1060.json",
+   "stage": "RL",
+   "overlap_fraction": 0.6667,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/counting_and_probability/1060.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.8333,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/counting_and_probability/339.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.5625,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/counting_and_probability/71.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.5625,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/geometry/283.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.9174,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/geometry/702.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.7385,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/1063.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.9062,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/1166.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.5263,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/1365.json",
+   "stage": "SFT",
+   "overlap_fraction": 1.0,
+   "exact_matches": 3
+  },
+  {
+   "unique_id": "test/intermediate_algebra/1791.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.7292,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/2146.json",
+   "stage": "SFT",
+   "overlap_fraction": 1.0,
+   "exact_matches": 2
+  },
+  {
+   "unique_id": "test/intermediate_algebra/232.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.6667,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/279.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.6585,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/860.json",
+   "stage": "RL",
+   "overlap_fraction": 0.5909,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/intermediate_algebra/90.json",
+   "stage": "SFT",
+   "overlap_fraction": 1.0,
+   "exact_matches": 2
+  },
+  {
+   "unique_id": "test/number_theory/483.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.697,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/number_theory/634.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.625,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/prealgebra/1297.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.6207,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/prealgebra/2086.json",
+   "stage": "SFT",
+   "overlap_fraction": 1.0,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/precalculus/1199.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.8539,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/precalculus/452.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.5217,
+   "exact_matches": 0
+  },
+  {
+   "unique_id": "test/precalculus/807.json",
+   "stage": "SFT",
+   "overlap_fraction": 0.8095,
+   "exact_matches": 0
+  }
+ ]
+}

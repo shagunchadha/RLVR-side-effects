@@ -1,0 +1,1162 @@
+{
+  "n_reviewed": 350,
+  "n_dropped": 175,
+  "n_survivors": 175,
+  "n_kept": 150,
+  "last_kept_draw_index": 304,
+  "rows_after_last_kept": 45,
+  "drops": [
+    {
+      "draw_index": 2,
+      "id": "acb3147d946db3b06a596d48e0be56cf",
+      "question": "What could you use to get to some airplanes?",
+      "reason": "taxi and car both right"
+    },
+    {
+      "draw_index": 3,
+      "id": "e5ad2184e37ae88b2bf46bf6bc0ed2f4",
+      "question": "Though the thin film seemed fragile, for it's intended purpose it was actually nearly what?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 4,
+      "id": "19dfd55e967dacd6f5700a62c1e14eee",
+      "question": "What type of store would have lots of sports equipment?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 6,
+      "id": "3eb397b96b6c3a245c81ab30205943f1",
+      "question": "Danny is having fun just dancing and singing with his friends. He wasn't concerned with things that weren't fun. For him having fun is the same as what?",
+      "reason": "happy and glee"
+    },
+    {
+      "draw_index": 15,
+      "id": "009a7aabffe0583fc2df46656b29c326",
+      "question": "He came from old money and had a fortune, but he made new money making shrewd trades where?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 16,
+      "id": "f898eb5b789d2dc6804edba269f051f0",
+      "question": "When you get up in the morning before you begin work you should do what?",
+      "reason": "shower and concentrate both defensible"
+    },
+    {
+      "draw_index": 19,
+      "id": "75b8195e23c6bada574f1e41471b8f23",
+      "question": "What can happen when you contemplate alone for a long time?",
+      "reason": "daydream, get ideas, sleep, become distracted"
+    },
+    {
+      "draw_index": 20,
+      "id": "e2a9f0041d17a9944377a91bef5e0d0d",
+      "question": "Why do most people take a quick rest during the day?",
+      "reason": "need to, feel more energetic, weak, regenerate all possible"
+    },
+    {
+      "draw_index": 21,
+      "id": "9310c39a0752f28640c3a05cba1d5ca7",
+      "question": "What do they call the trash in Australia?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 23,
+      "id": "0854478d174c9127064f0d4b58df7e62",
+      "question": "Where is a good place to put a hamburger?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 26,
+      "id": "793672da43fbc609e8c5760630c7e239",
+      "question": "What is the habitat of the fox?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 28,
+      "id": "80697d599280d994d8a584c95824ef1f",
+      "question": "Where might an unused chess set be stored?",
+      "reason": "two defensible: attic and cupboard"
+    },
+    {
+      "draw_index": 32,
+      "id": "33ea932a876ac0361c9eefeff1d24e92",
+      "question": "What does everyone have in relation to other people?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 36,
+      "id": "b231a732a3fdf0621391e7e385f8d651",
+      "question": "The child was getting many gifts for his birthday, his father reminded him to do what after opening each one?",
+      "reason": "two defensible: say thank and show appreciation"
+    },
+    {
+      "draw_index": 40,
+      "id": "0f2377604e628c55ba588366139396b9",
+      "question": "What animal has quills all over it?",
+      "reason": "two defensible: porcupine and hedgehog"
+    },
+    {
+      "draw_index": 44,
+      "id": "900492bd731f8f615ed7c08155737d44",
+      "question": "Before racers start to run they must do what at the starting line?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 45,
+      "id": "056b33c7050c167b0d4348d40d169358",
+      "question": "Where would stones not be arranged in a path?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 46,
+      "id": "715583129369c0c5c9f499c93a1c095e",
+      "question": "The potato might be the official vegetable of what?",
+      "reason": "author decision on disagreement"
+    },
+    {
+      "draw_index": 47,
+      "id": "e71da9e95b321763c86e879a47bbd327",
+      "question": "The criminal insisted he must do the crime to the bank teller, but she tried to convince him there were other ways in life and this was what?",
+      "reason": "two defensible: unnecessary and optional"
+    },
+    {
+      "draw_index": 48,
+      "id": "5649bd90dbb57e223fd843b7a4563a0f",
+      "question": "What do audiences clap for?",
+      "reason": "two defensible: show and theatre"
+    },
+    {
+      "draw_index": 50,
+      "id": "f20d40bc4af588223e880e0bb58b27b8",
+      "question": "What is the primary purpose of cars?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 52,
+      "id": "fb54a118d46b2776e435d411ae3dd9c8",
+      "question": "What happens when you go somewhere and forget something at home?",
+      "reason": "two defensible: go back and turn around"
+    },
+    {
+      "draw_index": 54,
+      "id": "bdcfbe2132295d437e4c5701085f19c0",
+      "question": "If you are prone to postpone work what will you have to do in order to finish on time?",
+      "reason": "two defensible: hasten and advance"
+    },
+    {
+      "draw_index": 55,
+      "id": "526cd34f5b2afefbbb7830434785f298",
+      "question": "Sarah dropped the marble because she wanted to do what?",
+      "reason": "vague; key odd"
+    },
+    {
+      "draw_index": 56,
+      "id": "3fdc0c422c524c994b9911a17f1f1834",
+      "question": "A showroom feature washers and refrigerators, where is this showroom located?",
+      "reason": "two defensible: appliance store and electronics store"
+    },
+    {
+      "draw_index": 57,
+      "id": "8e7941ce31996ca83cc0a68f7313c96d",
+      "question": "After killing people, the murderer went to church after feeling what?",
+      "reason": "two defensible: remorse and anguish"
+    },
+    {
+      "draw_index": 58,
+      "id": "7bb87c6d8eab57d4e983f60025b1f0dc",
+      "question": "What can eating hamburger cause immediately after eating it?",
+      "reason": "two defensible: indigestion and health problems"
+    },
+    {
+      "draw_index": 59,
+      "id": "a8a8ae7792901c7179ff5538c701af1f",
+      "question": "Where would a computer user be using their own computer?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 60,
+      "id": "1be8ec824eb0c7218b6bc160fd191428",
+      "question": "Jenny enjoyed helping people.  It brought her a great deal of what?",
+      "reason": "two defensible: satisfaction and enjoyment"
+    },
+    {
+      "draw_index": 63,
+      "id": "7776b10c7bb96f3fe5e026678673634d",
+      "question": "What do people want to acquire from opening business?",
+      "reason": "two defensible: wealth and get rich"
+    },
+    {
+      "draw_index": 64,
+      "id": "26d7d59ef7b9f2e0c2d47419fa5bca91",
+      "question": "Where might you see a green field while driving?",
+      "reason": "two defensible: farmland and meadow"
+    },
+    {
+      "draw_index": 65,
+      "id": "72baf6ca5c4daa01c2cc7fda22183db8",
+      "question": "Where could there be a battle that involves words?",
+      "reason": "author decision on disagreement"
+    },
+    {
+      "draw_index": 67,
+      "id": "5169f7ae0781b15161551de3a189ebef",
+      "question": "What do you want someone to do when you illustrate point?",
+      "reason": "two defensible: understood and understanding"
+    },
+    {
+      "draw_index": 71,
+      "id": "24ceaf5c10863e73919b5f1b0f2db38e",
+      "question": "I'm having some food at my party, what will I need to serve it?",
+      "reason": "two defensible: bowl and spoon"
+    },
+    {
+      "draw_index": 72,
+      "id": "3338109fcafaaa370c8900a53e1b3ed8",
+      "question": "The flasks was used to distill elements, where was is being used?",
+      "reason": "two defensible: laboratory and chemistry lab"
+    },
+    {
+      "draw_index": 73,
+      "id": "a15d564d0be6996251b5d523ac62db2a",
+      "question": "Why is it hard for a young child to read a long book?",
+      "reason": "two defensible: no pictures and many words"
+    },
+    {
+      "draw_index": 76,
+      "id": "07fd8b0aed06406fedb137d11b07a890",
+      "question": "Joe plays a percussion instrument in something.  What might be play in?",
+      "reason": "two defensible: marching band and orchestra"
+    },
+    {
+      "draw_index": 81,
+      "id": "d725f1c2e150a3221de31612123f3f46",
+      "question": "What do you do when you're going to market?",
+      "reason": "two defensible: buy food and buying vegetables"
+    },
+    {
+      "draw_index": 82,
+      "id": "69425fb4cd2dc034e9ff223d2d5676ec",
+      "question": "If I was watching TV on the couch and the air was stuffy, I might turn the fan on to make the what more comfortable?",
+      "reason": "two defensible: living room and hot room"
+    },
+    {
+      "draw_index": 83,
+      "id": "ab755203f41a2e241f0ee8a53c54f287",
+      "question": "Where would you put a net if you wanted to use it?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 84,
+      "id": "c770870c88f35f9d110217049c5a7334",
+      "question": "She was in an affair, what did that end upon discovery by her husband?",
+      "reason": "two defensible: relationship and marriage"
+    },
+    {
+      "draw_index": 85,
+      "id": "d6bb990e8c409d2b3af37a2da198e01f",
+      "question": "Kramer wrote a self-referential book.  What might that book be about?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 88,
+      "id": "c3890d43b84635d9e61c007ca2521d5b",
+      "question": "What do people do for food?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 90,
+      "id": "bdf92566f14599f1606109677206001f",
+      "question": "Miss Grady took a stick from Bob because he was playing with it during class.  She wanted to make sure that he couldn't get to it so she put it where?",
+      "reason": "author decision on disagreement"
+    },
+    {
+      "draw_index": 91,
+      "id": "b93532cae23e505628dd88568da3337e",
+      "question": "Where can you store your dishes in your dwelling?",
+      "reason": "two defensible: cabinet and shelf"
+    },
+    {
+      "draw_index": 92,
+      "id": "a90f9197a13c64089c9ba95bcba275ad",
+      "question": "All the power tools like the drill used for fixing cars made for a very loud workplace where?",
+      "reason": "two defensible: repair shop and work shop"
+    },
+    {
+      "draw_index": 93,
+      "id": "68c41ec8415eab50620eb9ecf6f35a6a",
+      "question": "Where would you put some ham if you want to cook it?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 96,
+      "id": "047c2d8c65d297b39aa42821c1ca76a9",
+      "question": "Nature can be good and bad for the person who walks, what are some things?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 97,
+      "id": "6a253e076cd2af00e17d9950d70daf47",
+      "question": "Setting up framing, truss and beam are some of the first steps in what?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 98,
+      "id": "7bb279e38a1c9eb47a0c7af979a131a2",
+      "question": "What is a tactic used to interfere with learning about science?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 100,
+      "id": "9dffd2021771e0ecddb19031acf3701b",
+      "question": "Where could a person avoid the rain?",
+      "reason": "two defensible: tunnel and bus stop"
+    },
+    {
+      "draw_index": 103,
+      "id": "b5345f15d5b451562ab9e0851e7f394f",
+      "question": "The smile gave away that the what was one of happiness?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 113,
+      "id": "514310637fb43a252bfadc8cbf79b277",
+      "question": "The man in the white suit was very lazy.  He did nothing useful.  Meanwhile, the ban in the blue had put in effort and was very what?",
+      "reason": "two defensible: productive and active"
+    },
+    {
+      "draw_index": 114,
+      "id": "6c70d98cfb8e97fda8caefcee761a229",
+      "question": "Zane doesn't like answering questions.  He's not good at it because he suffers from what?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 115,
+      "id": "8c8052980e357545398d27d1c3c832d8",
+      "question": "What has a shelf that does not allow you to see what is inside of it?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 116,
+      "id": "d03e09b22927542d6b0d5ebe233e467c",
+      "question": "The old man needed to have rest multiple times a day, he would do what on the couch and catnap?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 117,
+      "id": "e172a93c72d305ee8262a8deb00d9fc3",
+      "question": "What was the man encouraged to do after he expressed his anger violently?",
+      "reason": "two defensible: cool off and release energy"
+    },
+    {
+      "draw_index": 118,
+      "id": "c0c07ce781653b2a2c01871ba2bcba93",
+      "question": "Reading newspaper one of many ways to practice your what?",
+      "reason": "two defensible: literacy and knowing how to read"
+    },
+    {
+      "draw_index": 119,
+      "id": "879239b8a788f3c9e3dfdd0862f3d7c5",
+      "question": "There was more than one bum asking for change or a ticket, it was the cheapest way to travel so it was no surprise sight at the what?",
+      "reason": "two defensible: bus depot and train station"
+    },
+    {
+      "draw_index": 120,
+      "id": "b92f786638796fc028947ac0e9a44fef",
+      "question": "Where is the large area location of the empire state building?",
+      "reason": "two defensible: manhattan and new york city"
+    },
+    {
+      "draw_index": 122,
+      "id": "bee2a6eadfaf7a4fa0a214e341ddbe5b",
+      "question": "If you turn off the music in a room with no other noise that room would be what?",
+      "reason": "two defensible: silent and silence"
+    },
+    {
+      "draw_index": 123,
+      "id": "8494b0b95533dcedbd76ae2916c481d4",
+      "question": "Anybody could be hired in the kitchen, what was needed of them?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 124,
+      "id": "15b090801256085ad465e74af47cbee9",
+      "question": "Why are dogs often known as man's best friend?",
+      "reason": "two defensible: very loyal and friendly"
+    },
+    {
+      "draw_index": 125,
+      "id": "191e3c676f05a11d6b2565d8c27d2001",
+      "question": "Bob's only light source was a small bulb.  There were four walls, if there was a door he couldn't see it.  What was Bob in?",
+      "reason": "author decision on disagreement"
+    },
+    {
+      "draw_index": 126,
+      "id": "b42ef8be1748c19fa5938de5396f8fad",
+      "question": "The man started to learn jogging, what was he hoping to do?",
+      "reason": "two defensible: getting in shape and fitness"
+    },
+    {
+      "draw_index": 127,
+      "id": "506c2dbfe7b00a82bfdf0507a8de88fb",
+      "question": "Who is not famous for a superhighway with no speed limit?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 130,
+      "id": "3b8be90fdd8c67571d8d692eaa6dd87b",
+      "question": "When not in use where on your property would you store you bucket?",
+      "reason": "two defensible: garden shed and garage"
+    },
+    {
+      "draw_index": 131,
+      "id": "21ce6f7c5c3d1ad8cf234988c1ad471f",
+      "question": "If you really wanted a grape, where would you go to get it?",
+      "reason": "two defensible: fruit stand and field"
+    },
+    {
+      "draw_index": 132,
+      "id": "aa7c4c351cf8d59792aa68e3de339db4",
+      "question": "Christians believe you will go to heaven if you're what?",
+      "reason": "two defensible: born again and dead"
+    },
+    {
+      "draw_index": 134,
+      "id": "8c655f3a55bde41aad880f138d7a445d",
+      "question": "When cooking sheep meat a lot of people might want to be well?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 136,
+      "id": "335b51bd3a8ada014bbe6754dcbd425f",
+      "question": "Where are there likely to be a variety of flats to choose from?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 137,
+      "id": "8c3c6b34bdb650a6517bca3786406c99",
+      "question": "The guys had a regular poker game, rather than going to the movies this what their what?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 138,
+      "id": "ec8797b12e3c6666ebe70b2a7680b66f",
+      "question": "Many humans enjoy fishing and enjoy another relaxing activity at the same time, what activity is it?",
+      "reason": "two defensible: drink beer and sit quietly"
+    },
+    {
+      "draw_index": 146,
+      "id": "e5adfec0b5ba691ec752f9b5e0fb8084",
+      "question": "Where does one usually keep literature?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 150,
+      "id": "6dc5b2884737e66543ce65f8dc40c992",
+      "question": "A fencing thrust with a sharp sword towards a person would result in what?",
+      "reason": "two defensible: puncture wound and injury"
+    },
+    {
+      "draw_index": 151,
+      "id": "1729c737ff92cf558efecde2c6cafc5e",
+      "question": "What do you need to wear when hiking?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 152,
+      "id": "2f0931adc3d0d422d9ab6264395e89d8",
+      "question": "Playing baseball is a lot like any other sport, there is always a risk of what?",
+      "reason": "two defensible: injury and sore muscles"
+    },
+    {
+      "draw_index": 153,
+      "id": "dba51270f789c75a2e38a5201b124d99",
+      "question": "The child pretended he was reading newspaper, he couldn't actually do it without what?",
+      "reason": "two defensible: knowing how to read and literacy"
+    },
+    {
+      "draw_index": 156,
+      "id": "5b8af6f26335dbd501b0104c71e26d9e",
+      "question": "What could a driving car do to a pedestrian?",
+      "reason": "garbled"
+    },
+    {
+      "draw_index": 159,
+      "id": "1caf93d6a22dc8190e19c14bbe1fafda",
+      "question": "What do you do when you're in a new place and want to see new things?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 162,
+      "id": "0bed77da54b6c54facd0ee6614aad72e",
+      "question": "Jim decided to lose weight.  He thought that exercise is the best way to lose weight because you can't get rid of what?",
+      "reason": "garbled"
+    },
+    {
+      "draw_index": 163,
+      "id": "42c46e28baf0fc617a07419286178c0a",
+      "question": "You can find a monkey in what West African region on the Gulf of Guinea",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 166,
+      "id": "81cc0d320488c7bacafb285cf7db5fbd",
+      "question": "Where does lettuce arrive by large trucks?",
+      "reason": "two defensible: supermarket and farmer's market"
+    },
+    {
+      "draw_index": 167,
+      "id": "236691d38665d7bcdd0c9b9834252a51",
+      "question": "Where do most people turn to get information on their phones?",
+      "reason": "two defensible: internet and online"
+    },
+    {
+      "draw_index": 168,
+      "id": "4acd496cc78d96c2431279a5fd87de7c",
+      "question": "She was always helping at the senior center, it brought her what?",
+      "reason": "two defensible: satisfaction and happiness"
+    },
+    {
+      "draw_index": 170,
+      "id": "5a1c8a9dbbb60e523cc1ba14a370729c",
+      "question": "What is someone doing when scheduling when to go to party?",
+      "reason": "author blind check 2: ambiguous"
+    },
+    {
+      "draw_index": 171,
+      "id": "bd773d64f4e22db2358c6e00cbdf2d83",
+      "question": "What probably has a lot of dust in the back?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 175,
+      "id": "08d908ed723f813574992195d61386a2",
+      "question": "I am cold, what should I do to stay warm?",
+      "reason": "two defensible: light fire and stay in bed"
+    },
+    {
+      "draw_index": 177,
+      "id": "d64a676e9d22e7edd12e7f4ce267a9f0",
+      "question": "What do you go to see for live entertainment?",
+      "reason": "two defensible: show and theatre"
+    },
+    {
+      "draw_index": 179,
+      "id": "b4f79ca5f3595248ee25292ab60ad105",
+      "question": "At the end of the day as he began to eat he paused and thanked her, it wasn't often she would what?",
+      "reason": "two defensible: cook dinner and make food"
+    },
+    {
+      "draw_index": 182,
+      "id": "07a99d5f2ca7028febeb9f09604b36c8",
+      "question": "Name a location where you would not want to find mice.",
+      "reason": "vague; key odd"
+    },
+    {
+      "draw_index": 184,
+      "id": "129ec46cc2541b73198d774ee632c8d7",
+      "question": "What will happen to someone if his or her spirits cannot elevate?",
+      "reason": "two defensible: depress and sadden"
+    },
+    {
+      "draw_index": 186,
+      "id": "c96a86957a9ab1d8ca0aeeb7f040d87a_1",
+      "question": "There were times where kids wanted to know a definition, so there was a nice big dictionary in the what?",
+      "reason": "two defensible: classroom and library"
+    },
+    {
+      "draw_index": 187,
+      "id": "4499ebd5e8188b0d5fdef6afd893017a",
+      "question": "I took my seat, the curtains drew back and I enjoyed the what?",
+      "reason": "two defensible: show and theatre"
+    },
+    {
+      "draw_index": 188,
+      "id": "5502dc807d4921679ae1abd0dc9570d6",
+      "question": "Why does someone flirt with many people at once?",
+      "reason": "attract attention and were lonely both defensible"
+    },
+    {
+      "draw_index": 191,
+      "id": "e58eb0ec4197c29e961a7bdd4d67de4e",
+      "question": "Competing can lead to great highs, and also great lows when suffering what?",
+      "reason": "garbled"
+    },
+    {
+      "draw_index": 193,
+      "id": "558cb0bc25387ce38d71f64ef6f1fa57",
+      "question": "People are very much like the animals, but one thing has secured or dominance over the planet.  We're better at doing what?",
+      "reason": "two defensible: make tools and talk to each other"
+    },
+    {
+      "draw_index": 194,
+      "id": "1a8b3c2a46efabcbd506f9cf70886ed0",
+      "question": "Which large land mass is home to the most monkeys?",
+      "reason": "amazon basin and african continent both defensible"
+    },
+    {
+      "draw_index": 197,
+      "id": "f996430ce208606452868fd2e739d409",
+      "question": "What will happen if you inject water into yourself?",
+      "reason": "two defensible: dilute and thin blood"
+    },
+    {
+      "draw_index": 199,
+      "id": "27d9b4df2ca50112d282331df4923e96",
+      "question": "If you were lost you might need a map, the best place to find one on the road is at any what?",
+      "reason": "two defensible: gas station and truck stop"
+    },
+    {
+      "draw_index": 201,
+      "id": "d0a42c8180b4e080aa071dd70fce7e03",
+      "question": "Computers have allowed everybody to answer questions they have quickly, but still we seem to be getting duller despite access to this what?",
+      "reason": "garbled"
+    },
+    {
+      "draw_index": 206,
+      "id": "fc1d33a2301a30214523c12573f81aba",
+      "question": "Janet was watching the film because she liked what?",
+      "reason": "two defensible: being entertained and laughter"
+    },
+    {
+      "draw_index": 208,
+      "id": "e313d7967f72c2b880213daaaf4b7181",
+      "question": "What does a child learn to do before school?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 209,
+      "id": "c55c31b5a2aa996f3b75ad88c017a6b9",
+      "question": "how can i store cooked steak?",
+      "reason": "two defensible: tupperware and freezer"
+    },
+    {
+      "draw_index": 212,
+      "id": "cc8324b73ed9625e723ef041dfc77a37",
+      "question": "What might happen if someone is not losing weight?",
+      "reason": "vague; key odd"
+    },
+    {
+      "draw_index": 213,
+      "id": "99789083502af9bf111876a00fae44ac",
+      "question": "If not in a stream but in a market where will you find fish?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 214,
+      "id": "597d2a1c9df7962218d8b807df1f8212",
+      "question": "What blocks sunshine?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 215,
+      "id": "9808782b2e2e1bfbfa27c41e605bfffe",
+      "question": "Where might a lemur frolic in the market?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 216,
+      "id": "463521a93ae71e93bea8b97cdf7a6792",
+      "question": "John wanted to clean all of the dust out of his place before settling down to watch his favorite shows.  What might he hardest do dust?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 217,
+      "id": "a7ab086045575bb497933726e4e6ad28",
+      "question": "What do people aim to do at work?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 220,
+      "id": "f646f3e064f06423fc25b98500796cf0",
+      "question": "What is someone who isn't clever, bright, or competent called?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 222,
+      "id": "78276a4eab6e8d6b9ae3749211816977",
+      "question": "Sean was a wreck.  He  loved to build houses, but in his current state, he couldn't do what?",
+      "reason": "two defensible: build and construct"
+    },
+    {
+      "draw_index": 224,
+      "id": "896b25dc41f84357add1c798d4a96cd8",
+      "question": "Where is seaweed usually found alive?",
+      "reason": "two defensible: ocean and found in ocean"
+    },
+    {
+      "draw_index": 226,
+      "id": "7792b2c6518ecf9775efba6d41253312",
+      "question": "If you are awaking multiple times throughout the night because a lot is on your mind, what is a likely cause?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 228,
+      "id": "9a356ff463c042d04ba45bfd627bac20",
+      "question": "Where is known to be a wealth of information?",
+      "reason": "two defensible: internet and library"
+    },
+    {
+      "draw_index": 230,
+      "id": "3c1800e7dd96d37fdd3c51b9fe502342",
+      "question": "james told his son to settle down and be careful.  There were many frogs mating in the area, and James didn't want his son to do what to them?",
+      "reason": "two defensible: disturb and scare"
+    },
+    {
+      "draw_index": 231,
+      "id": "2ed66cfd206723a006b37599b516ad6e",
+      "question": "He was on trial for obstructing justice, during which he made a questionable comment and was also found guilty of what?",
+      "reason": "author blind check: key mismatch"
+    },
+    {
+      "draw_index": 235,
+      "id": "2509fdd7d94afe9d0c021654ce0ba93f",
+      "question": "To see new films you must?",
+      "reason": "two defensible: go to movies and open eyes"
+    },
+    {
+      "draw_index": 236,
+      "id": "1a86310d7279097205a3403752c3b914",
+      "question": "WHat leads to an early death?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 238,
+      "id": "926298bbdd03ce96acfeb4408b888b61",
+      "question": "What is performing a type of?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 242,
+      "id": "0197ade3bb26d163ab2e284c960c626f",
+      "question": "From where does a snowflake form?",
+      "reason": "two defensible: cloud and air"
+    },
+    {
+      "draw_index": 244,
+      "id": "46bc1a50eeead10509a43a048e01194e",
+      "question": "Where would you find a single shower curtain being used?",
+      "reason": "two defensible: shower stall and bathtub"
+    },
+    {
+      "draw_index": 245,
+      "id": "99098375c7b651d524eebac72e358238",
+      "question": "James thought of criminal justice like a computer program.  It need to work right.   What ideas might James not like?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 246,
+      "id": "636fc69dee35cd357b4191b47e64d0e5",
+      "question": "What should I do with a jumping rope?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 247,
+      "id": "2ffa3808ce26181926990b454e429c85",
+      "question": "Crabs live in what sort of environment?",
+      "reason": "two defensible: saltwater and bodies of water"
+    },
+    {
+      "draw_index": 248,
+      "id": "5f4825137a27f369fe859e85dfe1793f",
+      "question": "If I am suffering from boredom, and I want to see something beautiful, what should I do?",
+      "reason": "two defensible: see art and watch film"
+    },
+    {
+      "draw_index": 249,
+      "id": "a85441d6a0e3f871d81a9f19b31360b7",
+      "question": "Where areas are there likely to be many nightclubs?",
+      "reason": "two defensible: manhattan and downtown area"
+    },
+    {
+      "draw_index": 251,
+      "id": "60e8f1a86d4063895f340cd1e3c55f50",
+      "question": "What is likely to happen to someone who is learning?",
+      "reason": "two defensible: knowing more and growth"
+    },
+    {
+      "draw_index": 253,
+      "id": "4477fb61fde4bb8695c241dfc366b554",
+      "question": "If someone was making breakfast, they'd probably put two slices of bread in the what?",
+      "reason": "author blind check: ambiguous"
+    },
+    {
+      "draw_index": 256,
+      "id": "0b25bbd9e9aa976655e1975e31331709",
+      "question": "James was someone who was caught in his own delusions.  To him, the truth didn't do what what?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 258,
+      "id": "584188da9a429f1bc319abda5e5c7a76",
+      "question": "Where would someone keep their nylon leggings?",
+      "reason": "two defensible: drawer and clothing"
+    },
+    {
+      "draw_index": 259,
+      "id": "33d023a6806390eb8195380331e17404_1",
+      "question": "If somebody is working at a reception desk, they are located at the front entrance of the what?",
+      "reason": "two defensible: building and lobby"
+    },
+    {
+      "draw_index": 262,
+      "id": "a5e76dd088aab4f89e2fe93f6de6e46d",
+      "question": "What does a successful dog grooming session likely to make a owner feel?",
+      "reason": "two defensible: satisfaction and cleanliness"
+    },
+    {
+      "draw_index": 264,
+      "id": "273d0134e8ce53d4ebcf41ca7fde02af",
+      "question": "Where could you find hundreds of thousands of home?",
+      "reason": "two defensible: city or town and neighborhood"
+    },
+    {
+      "draw_index": 265,
+      "id": "5c224410a40c9269b1e542cfcb430d35",
+      "question": "Where do people want to have a lot of coffee?",
+      "reason": "two defensible: office and kitchen"
+    },
+    {
+      "draw_index": 266,
+      "id": "0a006d16d9042e0c170935e5fbf7f9af",
+      "question": "James was below the balloon.  He watched it rise.  What direction did he look in?",
+      "reason": "author blind check 2: key mismatch"
+    },
+    {
+      "draw_index": 267,
+      "id": "3884d82524f2337ce53ce64776293cf7",
+      "question": "James decided that competing was the right choice.   Not competing has a defined outcome, but if he competes then what could happen?",
+      "reason": "two defensible: winners and losers and might win"
+    },
+    {
+      "draw_index": 268,
+      "id": "e3949997bf9d02048cfa5d8dd0f287aa",
+      "question": "Seafood restaurants are used to draw tourists where?",
+      "reason": "two defensible: coastal cities and maine"
+    },
+    {
+      "draw_index": 269,
+      "id": "5d4233146435ab0ca211e8ac9bfce76f",
+      "question": "Where do you buy condoms?",
+      "reason": "two defensible: supermarket and medicine chest"
+    },
+    {
+      "draw_index": 270,
+      "id": "7ed7379fc51fd35a47be022f6c56ce51",
+      "question": "The kitten had nothing to dig it's claws into, so when it tried to stop it slid across what?",
+      "reason": "two defensible: floor and carpet"
+    },
+    {
+      "draw_index": 272,
+      "id": "0f79faf5337706f2e0e39c15bbd2e99a",
+      "question": "Printing on a printer can get expensive because it does what?",
+      "reason": "author blind check: ambiguous"
+    },
+    {
+      "draw_index": 275,
+      "id": "a74753bf249c1cbcff632c5c16b0397b",
+      "question": "Where is a likely place for an ivy plant?",
+      "reason": "two defensible: flower pot and windowsill"
+    },
+    {
+      "draw_index": 276,
+      "id": "11d7db1d8e1cff2f40d4184f15cf7ae7",
+      "question": "John and James are idiots. They bought two tickets to the Falcons vs the Jets even though neither wanted to see the what?",
+      "reason": "two defensible: sporting event and hockey game"
+    },
+    {
+      "draw_index": 280,
+      "id": "b6bbe013995fdb5def3d504319af0791",
+      "question": "The table wasn't level.  some parts were higher and some were lower with no rhyme or reason.   It was very what?",
+      "reason": "two defensible: uneven and unbalanced"
+    },
+    {
+      "draw_index": 281,
+      "id": "c21ec5b367f409a0288d616f626555ae",
+      "question": "If a person is working a lot, what are they likely trying to earn?",
+      "reason": "two defensible: much money and new car"
+    },
+    {
+      "draw_index": 283,
+      "id": "cd639cf3ff82f825ace7dd2b087562bd",
+      "question": "What could go on top of wood?",
+      "reason": "two defensible: carpet and floor"
+    },
+    {
+      "draw_index": 284,
+      "id": "b33047f46db680a9b630c13e8ca115cc",
+      "question": "Dan was ditting quietly on the couch with a book in his hand.  Laurie thought that he was just focused on what he was doing, but he actually did what?",
+      "reason": "two defensible: think and meditate"
+    },
+    {
+      "draw_index": 285,
+      "id": "e1d354cbfcd620e5dacf83c17746c4b3",
+      "question": "Joe found spiders while checking something outside.  What might that be?",
+      "reason": "two defensible: mail box and garage"
+    },
+    {
+      "draw_index": 288,
+      "id": "3938d6e50d38b1f8774b4f00a89bdb39",
+      "question": "Where would you buy a finely crafted writing instrument?",
+      "reason": "two defensible: stationery store and office supply store"
+    },
+    {
+      "draw_index": 289,
+      "id": "651785ed4f7b0bd2e7ca9f70a42acea5",
+      "question": "What is happening while he's playing basketball for such a long time?",
+      "reason": "two defensible: sweating and having fun"
+    },
+    {
+      "draw_index": 292,
+      "id": "4eb3e69c0d42a2287692d2b9d2cb5979",
+      "question": "Who watches a play in an auditorium?",
+      "reason": "two defensible: crowd and group"
+    },
+    {
+      "draw_index": 293,
+      "id": "2a32b1e541b1daae04690d0d3a4b3310",
+      "question": "The pitcher felt stress and tension on the mound, what did he feel like?",
+      "reason": "garbled; key odd"
+    },
+    {
+      "draw_index": 297,
+      "id": "db0cfd52ca6b2bbfcf26d1a898fd929b",
+      "question": "Friday was James's 5th Anniversary.  They planned on going to bed early so that they could spend a long time doing what?",
+      "reason": "two defensible: making love and sleeping in"
+    },
+    {
+      "draw_index": 300,
+      "id": "f7b96f195a7adfe0c74924a165cfd055",
+      "question": "People are what when you're a stranger?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 302,
+      "id": "56d0fc282a144565f2c852415c6fa92c",
+      "question": "What does a person often feel about someone judging them guilty?",
+      "reason": "two defensible: resentment and hurt feelings"
+    },
+    {
+      "draw_index": 305,
+      "id": "a339fe08f1f50463ee180b797e99ebcc",
+      "question": "What do you need energy to do in gym class?",
+      "reason": "two defensible: play sports and work"
+    },
+    {
+      "draw_index": 306,
+      "id": "08d3175de59a639be02f2ebc032d56bd",
+      "question": "Where would you find many varieties of plants including a rosebush?",
+      "reason": "two defensible: kew gardens and beautiful garden"
+    },
+    {
+      "draw_index": 307,
+      "id": "6163a897cd7eac1deddd4c002a1930ae",
+      "question": "Where is the ideal location for a post office?",
+      "reason": "two defensible: center of town and business district"
+    },
+    {
+      "draw_index": 308,
+      "id": "ba9a05bd2086c0d37733e26479d6630f",
+      "question": "If you spend all your time buying and not saving what is is likely to happen?",
+      "reason": "two defensible: go broke and losing money"
+    },
+    {
+      "draw_index": 311,
+      "id": "c611875b43b67b91030b889b267bbcb3",
+      "question": "There was a toll road that meandered from Maine to New Hampshire, where was it?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 313,
+      "id": "d21777d771dc6fd08e769d378651817e",
+      "question": "Sarah gave her brother a guy to her home.  While she was gone, he used it to do what?",
+      "reason": "garbled"
+    },
+    {
+      "draw_index": 314,
+      "id": "dc36293f603cf230f8059fc6f2e5660d",
+      "question": "Where would you put nails if they are already packaged?",
+      "reason": "key wrong"
+    },
+    {
+      "draw_index": 317,
+      "id": "08f3c187908646997b9080c7e9ea7da4",
+      "question": "A crane uses many a steel cable when working a what?",
+      "reason": "two defensible: winch and construction site"
+    },
+    {
+      "draw_index": 323,
+      "id": "c77e1039d78cdff197a370fcda0f2b9f",
+      "question": "Punk rock music is an important part of what action sport?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 325,
+      "id": "1342c6aec9f5179d6ea6fa5fefbe5188",
+      "question": "One of the potential hazards of attending school is what?",
+      "reason": "two defensible: colds and flu and boredom"
+    },
+    {
+      "draw_index": 326,
+      "id": "4336a8c55b7cb17275d1c60206cd2f18",
+      "question": "Where is a good idea but not required to have a fire extinguisher?",
+      "reason": "author decision on disagreement"
+    },
+    {
+      "draw_index": 331,
+      "id": "c74ae684ba6c76e2a913493483678c9d",
+      "question": "What has a surface with many sides?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 338,
+      "id": "6be05d227f4f6fe727218fc8be9df340",
+      "question": "What might you need to do cleaning?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 339,
+      "id": "cebc07bd5080cc72862cb333b10d782d",
+      "question": "Joe is a  squirrel, which is an animal. He probably lives in what sort of place.",
+      "reason": "two defensible: woodland and outside"
+    },
+    {
+      "draw_index": 340,
+      "id": "6c4b2c93a4bdafb6cbf2b2ef2439b06f",
+      "question": "Running errands with screaming kids will likely cause what?",
+      "reason": "two defensible: aggravation and stress"
+    },
+    {
+      "draw_index": 341,
+      "id": "b399f6008d90dbd92bcce5abed4c1fd1",
+      "question": "Where would you go if you want to buy some clothes?",
+      "reason": "identical option text (mechanical)"
+    },
+    {
+      "draw_index": 342,
+      "id": "3526550b02d9594abd4fc43553010fc6",
+      "question": "The dad wanted to protect his house, where did he put his gun?",
+      "reason": "two defensible: drawer and holster"
+    },
+    {
+      "draw_index": 344,
+      "id": "1b3d286458a7e7f069222de0376d06da",
+      "question": "What would someone use a personal key for?",
+      "reason": "two defensible: front door and own home"
+    },
+    {
+      "draw_index": 346,
+      "id": "d07f149d8d953dcc45dda432194c375e",
+      "question": "Stark was just having fun, and he wasn't hurting anyone.  What might have he been doing?",
+      "reason": "vague"
+    },
+    {
+      "draw_index": 349,
+      "id": "05490e6c191fbc3c2fe0033ed0bd8aa0",
+      "question": "What can you use to store a book while traveling?",
+      "reason": "two defensible: backpack and suitcase"
+    }
+  ],
+  "survivors_not_used": [
+    {
+      "draw_index": 309,
+      "id": "63cf1adb5fe302b9867ead8bc8103d0b"
+    },
+    {
+      "draw_index": 310,
+      "id": "43df3a316880d8bab346c06bd43b94dd"
+    },
+    {
+      "draw_index": 312,
+      "id": "33c84708785f88c19737ef5b0e31a64b"
+    },
+    {
+      "draw_index": 315,
+      "id": "8c12e5864463cfcd03f4d0ab67949d01"
+    },
+    {
+      "draw_index": 316,
+      "id": "cfa980561efe82e7ae7080d4f081b463"
+    },
+    {
+      "draw_index": 318,
+      "id": "418913999c665ae9527fd14a6132da39"
+    },
+    {
+      "draw_index": 319,
+      "id": "2b416120e2fbd84b44b5dcd4eb42ed5c"
+    },
+    {
+      "draw_index": 320,
+      "id": "f537f6bb8527724e0b1e1c1051326cd5"
+    },
+    {
+      "draw_index": 321,
+      "id": "94770e75c4e2000e717b4218ddff19e8"
+    },
+    {
+      "draw_index": 322,
+      "id": "adbddc80b10bf25f09c6c2bee4e3c59b"
+    },
+    {
+      "draw_index": 324,
+      "id": "dbdad44029098d4b1d202d6d857d6092"
+    },
+    {
+      "draw_index": 327,
+      "id": "8086f022f2d4a4888ae1f8c7e4541ab9"
+    },
+    {
+      "draw_index": 328,
+      "id": "118a9093a30695622363455e4d911866"
+    },
+    {
+      "draw_index": 329,
+      "id": "bb503ece4eac41dfe608a1dcb654e6bf"
+    },
+    {
+      "draw_index": 330,
+      "id": "6c515b068b4d3aa88a5382224d9b866d"
+    },
+    {
+      "draw_index": 332,
+      "id": "fee5f4e9d8e37f0183e36eb9b8dbcbb9"
+    },
+    {
+      "draw_index": 333,
+      "id": "895aa97bb84d874d71b2aed572cebfdd"
+    },
+    {
+      "draw_index": 334,
+      "id": "c592258c88295756833e9796e881057b"
+    },
+    {
+      "draw_index": 335,
+      "id": "0d66d33a17e41eaa3278ca7b3930c5ea"
+    },
+    {
+      "draw_index": 336,
+      "id": "e0a7d1df3ce14b27888e785e6636d5f0"
+    },
+    {
+      "draw_index": 337,
+      "id": "0b52cc905fff0ca69a45e6353d10e401"
+    },
+    {
+      "draw_index": 343,
+      "id": "275c859994f7d3acd3c8863be591ab2c"
+    },
+    {
+      "draw_index": 345,
+      "id": "1db19a32a3edbff9981976dc9ec800ce"
+    },
+    {
+      "draw_index": 347,
+      "id": "420641003ba20b966887dfac684efb17"
+    },
+    {
+      "draw_index": 348,
+      "id": "adf228312401c9ff421a4da1b46bb70a"
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+draw_index,id,my_pick,key,drop,reason,confidence
+0,246249cd7976358051a9811ff9c30736,D,D,,,clear
+1,7b95825a19d6930d6aed35c7c57a2d82,D,D,,,clear
+2,acb3147d946db3b06a596d48e0be56cf,A,A,x,two defensible: taxi and car,clear
+3,e5ad2184e37ae88b2bf46bf6bc0ed2f4,D,D,x,identical option text (mechanical),clear
+4,19dfd55e967dacd6f5700a62c1e14eee,D,D,,,clear
+5,7f7a6f2b3087bf37dadbe8aa8d358047,C,C,,,clear
+6,3eb397b96b6c3a245c81ab30205943f1,C,C,x,two defensible: being happy and glee,clear
+7,f116ee6620c0f171e5db54bc03a5f2e2,C,C,,,clear
+8,8272f08792b873885f93d4c148e307e5,B,B,,,clear
+9,a00276c6db928900772c0320aeff77c0,B,B,,,clear
+10,001b0f5a841fd81d13fbe67c7c7179d6,E,E,,,clear
+11,1afa02df02c908a558b4036e80242fac,A,A,,,borderline
+12,fb64149cf01c5b496d986f56852273e9,D,D,,,clear
+13,ba6bd1bdef02d0ebfe5370f92365ae18,B,B,,,clear
+14,2c0030cc14a27be2401dcfdaa501f0fc,C,C,,,clear
+15,009a7aabffe0583fc2df46656b29c326,C,C,,,clear
+16,f898eb5b789d2dc6804edba269f051f0,D,D,,,borderline
+17,d31ee38f67d1173275e120b8ad36039c,C,C,,,clear
+18,e050bce7048da1b3743a54153e91694e,A,A,,,clear
+19,75b8195e23c6bada574f1e41471b8f23,C,A,x,two defensible: get ideas and daydream,clear
+20,e2a9f0041d17a9944377a91bef5e0d0d,C,C,x,two defensible: feel more energetic and regenerate,clear
+21,9310c39a0752f28640c3a05cba1d5ca7,E,E,,,clear
+22,9698232e3599157431c9dc8f2fe179cd,B,B,,,borderline
+23,0854478d174c9127064f0d4b58df7e62,none,C,x,vague,clear
+24,c35f7de9e9005fcf654cb0b23f17acd6,C,C,,,clear
+25,e5697a25935c5249d2108f55e245f3e4,C,C,,,clear
+26,793672da43fbc609e8c5760630c7e239,B,E,x,key wrong,borderline
+27,ea6d1a739ea841be282e13789270651e,C,C,,,clear
+28,80697d599280d994d8a584c95824ef1f,D,E,x,two defensible: attic and cupboard,clear
+29,6b9221c1af583ffb43580857d6fde38a,B,B,,,clear
+30,964185aed0e381853332bca1a4d91f46,D,D,,,clear
+31,5d1df1daa886efb78db2103ddc1398eb,A,A,,,clear
+32,33ea932a876ac0361c9eefeff1d24e92,none,A,x,vague,clear
+33,af035b75b6f7a1927b1648963f281c5e,B,B,,,clear
+34,54075de8b8b89ecef2e4eb4eaee2713d,B,B,,,clear
+35,a2e0f6b5651e5271fcff8d6f5c9adfee,A,A,,,clear
+36,b231a732a3fdf0621391e7e385f8d651,D,D,x,two defensible: say thank and show appreciation,clear
+37,c1c73ef0ff662a76cd42c3500240974a,A,A,,,clear
+38,cb5b39878be0e05a3ffe783801adbc3b,B,B,,,borderline
+39,6714593a8d1f8ae39930c1f0316e9ffc,D,D,,,clear
+40,0f2377604e628c55ba588366139396b9,D,E,x,two defensible: porcupine and hedgehog,borderline
+41,9a23a7f04e63bf9f4c7dfe50c58abfd2,C,C,,,borderline
+42,4423c006f2a43f222d4c4e97360c25d3,A,A,,,clear
+43,3d1a67f87b34303f97549ba83e5521c2,A,A,,,clear
+44,900492bd731f8f615ed7c08155737d44,none,E,x,vague,borderline
+45,056b33c7050c167b0d4348d40d169358,A,B,x,key wrong,borderline
+46,715583129369c0c5c9f499c93a1c095e,E,E,,,borderline
+47,e71da9e95b321763c86e879a47bbd327,E,E,x,two defensible: unnecessary and optional,clear
+48,5649bd90dbb57e223fd843b7a4563a0f,D,D,x,two defensible: show and theatre,clear
+49,661474a1a0c29dd7a243b284535ac934,D,D,,,clear
+50,f20d40bc4af588223e880e0bb58b27b8,C,C,,,clear
+51,be2cb9c96069ac355a7ccef262743d14,B,B,,,clear
+52,fb54a118d46b2776e435d411ae3dd9c8,D,D,x,two defensible: go back and turn around,clear
+53,cbb0c9a69ca0922371a48177087ef407,C,C,,,borderline
+54,bdcfbe2132295d437e4c5701085f19c0,B,B,x,two defensible: hasten and advance,clear
+55,526cd34f5b2afefbbb7830434785f298,none,A,x,vague; key odd,clear
+56,3fdc0c422c524c994b9911a17f1f1834,A,A,x,two defensible: appliance store and electronics store,clear
+57,8e7941ce31996ca83cc0a68f7313c96d,B,B,x,two defensible: remorse and anguish,borderline
+58,7bb87c6d8eab57d4e983f60025b1f0dc,D,D,x,two defensible: indigestion and health problems,clear
+59,a8a8ae7792901c7179ff5538c701af1f,E,E,x,vague,clear
+60,1be8ec824eb0c7218b6bc160fd191428,A,A,x,two defensible: satisfaction and enjoyment,clear
+61,225287e06c993feee34e0f06b25f6ba8,B,B,,,clear
+62,c3bc395561113c96ec43afd715da5061,A,A,,,borderline
+63,7776b10c7bb96f3fe5e026678673634d,B,B,x,two defensible: wealth and get rich,clear
+64,26d7d59ef7b9f2e0c2d47419fa5bca91,C,D,x,two defensible: farmland and meadow,clear
+65,72baf6ca5c4daa01c2cc7fda22183db8,A,A,,,borderline
+66,5279a2ea333ba8a5bf3a7637a7279da1,D,D,,,borderline
+67,5169f7ae0781b15161551de3a189ebef,D,E,x,two defensible: understood and understanding,clear
+68,b1d5cdbf8ef7b3954a6a352bd4df5866,A,A,,,borderline
+69,7c95d753943c58757fe6e1ccff8aea14,C,C,,,clear
+70,01f01cc3ad152773ef42b30e926912bf,A,A,,,clear
+71,24ceaf5c10863e73919b5f1b0f2db38e,C,E,x,two defensible: bowl and spoon,clear
+72,3338109fcafaaa370c8900a53e1b3ed8,A,B,x,two defensible: laboratory and chemistry lab,clear
+73,a15d564d0be6996251b5d523ac62db2a,C,E,x,two defensible: no pictures and many words,clear
+74,af836abc58e0daf36df1d8d6830b70c5,B,B,,,clear
+75,3d79c10ddf26a5ed7dc0bb168fb0b3ed,B,B,,,clear
+76,07fd8b0aed06406fedb137d11b07a890,C,D,x,two defensible: marching band and orchestra,clear
+77,3a3b5d4a517ef70d25eb558f1a622937,E,E,,,clear
+78,0df3f58645b4bc306093845fb297a50e,E,E,,,clear
+79,4da33e6f4b789776acb1bc10195baa83,B,B,,,borderline
+80,81eb4b2ee66edd8bc91ee944697c4e9f,D,D,,,clear
+81,d725f1c2e150a3221de31612123f3f46,A,A,x,two defensible: buy food and buying vegetables,clear
+82,69425fb4cd2dc034e9ff223d2d5676ec,B,B,x,two defensible: living room and hot room,clear
+83,ab755203f41a2e241f0ee8a53c54f287,D,D,x,vague,clear
+84,c770870c88f35f9d110217049c5a7334,B,B,x,two defensible: relationship and marriage,clear
+85,d6bb990e8c409d2b3af37a2da198e01f,none,B,x,garbled; key odd,clear
+86,114d310d1198abffaf8b88dab5a55aa7,C,C,,,clear
+87,ce2fd94212243f843b3f357046051f57,A,A,,,clear
+88,c3890d43b84635d9e61c007ca2521d5b,D,D,x,vague,clear
+89,d0c67c7ae6f2361fe237110455127866,C,C,,,clear
+90,bdf92566f14599f1606109677206001f,A,A,,,borderline
+91,b93532cae23e505628dd88568da3337e,E,B,x,two defensible: cabinet and shelf,clear
+92,a90f9197a13c64089c9ba95bcba275ad,D,D,x,two defensible: repair shop and work shop,clear
+93,68c41ec8415eab50620eb9ecf6f35a6a,D,B,x,key wrong,clear
+94,eebddf5f35d85e9fe2ecbd9b56c1db60,A,A,,,clear
+95,a2daf73d33541af0846673afd8e49abe,A,A,,,borderline
+96,047c2d8c65d297b39aa42821c1ca76a9,B,B,x,vague,clear
+97,6a253e076cd2af00e17d9950d70daf47,A,A,,,borderline
+98,7bb279e38a1c9eb47a0c7af979a131a2,D,D,,,clear
+99,72611791cdcb040f2d699827fb9cebc4,C,C,,,clear
+100,9dffd2021771e0ecddb19031acf3701b,B,C,x,two defensible: tunnel and bus stop,clear
+101,5215e26c99b2a9b376fb1c70096a388a,B,B,,,borderline
+102,ff0303db294a823d4138fb81a6ee6438,A,A,,,clear
+103,b5345f15d5b451562ab9e0851e7f394f,none,C,x,garbled; key odd,clear
+104,8b25332de2894ab38784235838d38cec,E,E,,,clear
+105,c5ad166ab5c5f5f067aa02b20f482523,E,E,,,clear
+106,5b8a3081c3235d62bc77e2d15f3ad454,A,A,,,clear
+107,fb35c7aa5694bab2cde4b7257bfae003,C,C,,,clear
+108,094fe91b20b03c647325fa2ee94470b3,B,B,,,borderline
+109,e5ebbe0ea4097bb197ac525b49108362,C,C,,,clear
+110,cce1b59f7c4f540a84a1a7d6d88548c4,B,B,,,clear
+111,9003c4748b08d5a734747e499599ff20,C,C,,,clear
+112,c6f10fd07348bf2cf5488b0d9f38d806,B,B,,,clear
+113,514310637fb43a252bfadc8cbf79b277,D,D,x,two defensible: productive and active,clear
+114,6c70d98cfb8e97fda8caefcee761a229,A,D,x,vague,clear
+115,8c8052980e357545398d27d1c3c832d8,A,A,x,vague,clear
+116,d03e09b22927542d6b0d5ebe233e467c,E,E,x,identical option text (mechanical),clear
+117,e172a93c72d305ee8262a8deb00d9fc3,A,A,x,two defensible: cool off and release energy,borderline
+118,c0c07ce781653b2a2c01871ba2bcba93,A,A,x,two defensible: literacy and knowing how to read,clear
+119,879239b8a788f3c9e3dfdd0862f3d7c5,C,C,x,two defensible: bus depot and train station,borderline
+120,b92f786638796fc028947ac0e9a44fef,A,E,x,two defensible: manhattan and new york city,clear
+121,0542414710025f56b0c26e1bae5c4d06,A,A,,,clear
+122,bee2a6eadfaf7a4fa0a214e341ddbe5b,A,A,x,two defensible: silent and silence,borderline
+123,8494b0b95533dcedbd76ae2916c481d4,D,D,,,clear
+124,15b090801256085ad465e74af47cbee9,C,C,x,two defensible: very loyal and friendly,clear
+125,191e3c676f05a11d6b2565d8c27d2001,A,A,,,borderline
+126,b42ef8be1748c19fa5938de5396f8fad,B,B,x,two defensible: getting in shape and fitness,clear
+127,506c2dbfe7b00a82bfdf0507a8de88fb,E,E,,,borderline
+128,5392af3f1c4665e95ff3354e5115de42,D,D,,,clear
+129,e3426e4f60c142aa3d813479f79d6305,C,C,,,borderline
+130,3b8be90fdd8c67571d8d692eaa6dd87b,D,D,x,two defensible: garden shed and garage,clear
+131,21ce6f7c5c3d1ad8cf234988c1ad471f,B,B,x,two defensible: fruit stand and field,borderline
+132,aa7c4c351cf8d59792aa68e3de339db4,B,B,x,two defensible: born again and dead,borderline
+133,1cd94405124031e8681cd12bd25e2d61,D,D,,,clear
+134,8c655f3a55bde41aad880f138d7a445d,C,C,x,identical option text (mechanical),clear
+135,b9d22425a3d5810be9528a55245c8f09,B,B,,,clear
+136,335b51bd3a8ada014bbe6754dcbd425f,B,C,x,key wrong,clear
+137,8c3c6b34bdb650a6517bca3786406c99,none,E,x,garbled; key odd,clear
+138,ec8797b12e3c6666ebe70b2a7680b66f,D,D,x,two defensible: drink beer and sit quietly,clear
+139,761b0f6c68b1540949b70f76a9e67c78,C,C,,,clear
+140,456f2fb41cac8c028dcfe2f48637e473,A,A,,,clear
+141,52f3eb6c9a6b9671050fc769d465ed03,A,A,,,clear
+142,dd11fea36d89aa09f9a6069545ba4c9c,C,C,,,borderline
+143,60e92cd2f35c345872d1a898e1718d55,B,B,,,clear
+144,ca60a46c9007e4b6213f50bfb5342fdd,B,B,,,clear
+145,fd5a34e94303d7fd343de2a8f36943d5,E,E,,,borderline
+146,e5adfec0b5ba691ec752f9b5e0fb8084,none,D,x,vague,clear
+147,ad0943fc37034cd2b7e485021f8b1b8c,D,D,,,clear
+148,0a5c069836784c3d574828d85a20a074,A,D,x,two defensible: file cabinet and office desk,borderline
+149,8ef78abb86fc282ccb02bbc495f13030,D,D,,,clear
+150,6dc5b2884737e66543ce65f8dc40c992,E,E,x,two defensible: puncture wound and injury,clear
+151,1729c737ff92cf558efecde2c6cafc5e,none,C,x,garbled; key odd,clear
+152,2f0931adc3d0d422d9ab6264395e89d8,D,D,x,two defensible: injury and sore muscles,borderline
+153,dba51270f789c75a2e38a5201b124d99,E,E,x,two defensible: knowing how to read and literacy,clear
+154,f2645d0ee8662b6553954cee7e77979e,B,B,,,clear
+155,70c39372c0d50566554fd72c768b75f6,E,E,,,clear
+156,5b8af6f26335dbd501b0104c71e26d9e,B,B,x,garbled,borderline
+157,3b8e1d236f5169b6c833a994d6d9c39a,D,D,,,borderline
+158,3bf06235a537adc9d85431846595b800,B,B,,,clear
+159,1caf93d6a22dc8190e19c14bbe1fafda,B,B,,,clear
+160,111501a49dd41ceed9c2073eed5d2b72,A,A,,,clear
+161,18ee7a93410a6b4c9cec5d4894775991_1,C,C,,,clear
+162,0bed77da54b6c54facd0ee6614aad72e,A,A,x,garbled,clear
+163,42c46e28baf0fc617a07419286178c0a,E,E,,,clear
+164,e1f90cd664a6b150291e6d8444d85c54,B,B,x,two defensible: rich person and hired help,clear
+165,3957ac6bab96fc9d4f173ada4692d16b,A,A,,,clear
+166,81cc0d320488c7bacafb285cf7db5fbd,B,B,x,two defensible: supermarket and farmer's market,clear
+167,236691d38665d7bcdd0c9b9834252a51,A,D,x,two defensible: internet and online,clear
+168,4acd496cc78d96c2431279a5fd87de7c,A,E,x,two defensible: satisfaction and happiness,clear
+169,0611dfbf5114084723d75f59b4f67412,E,E,,,clear
+170,5a1c8a9dbbb60e523cc1ba14a370729c,E,E,,,clear
+171,bd773d64f4e22db2358c6e00cbdf2d83,A,A,x,vague,clear
+172,4ef3d70648ee3cea028bc5ed0fdfda28,C,C,,,clear
+173,8369adc4b4710d00f917d80a75d844d7,C,C,,,clear
+174,edbb57ac2f476679ae547f75ec2bef3e,B,B,,,clear
+175,08d908ed723f813574992195d61386a2,B,B,x,two defensible: light fire and stay in bed,borderline
+176,a7e3de0719fe30e7048f67426e29fdd1,D,D,,,clear
+177,d64a676e9d22e7edd12e7f4ce267a9f0,B,B,x,two defensible: show and theatre,clear
+178,a2aa95861ef74bf1ecfc55db505e3982,D,D,,,borderline
+179,b4f79ca5f3595248ee25292ab60ad105,A,A,x,two defensible: cook dinner and make food,clear
+180,f48528156632b9c5b18af9ce2095509b,C,C,,,clear
+181,cdd3d074031fbd3efeb4f9408abef04e,C,C,,,borderline
+182,07a99d5f2ca7028febeb9f09604b36c8,none,B,x,vague; key odd,clear
+183,63963c9c15835d451aac2e1e0b116388,B,B,,,borderline
+184,129ec46cc2541b73198d774ee632c8d7,C,C,x,two defensible: depress and sadden,clear
+185,c39131d979c9205c11d0e109e18188e4,E,E,,,clear
+186,c96a86957a9ab1d8ca0aeeb7f040d87a_1,B,B,x,two defensible: classroom and library,clear
+187,4499ebd5e8188b0d5fdef6afd893017a,E,E,x,two defensible: show and theatre,borderline
+188,5502dc807d4921679ae1abd0dc9570d6,D,D,,,clear
+189,22fc45d9e6d0baea4a5b0526504225b8,B,B,,,clear
+190,4c5c74b3287492d6ddb2da4c8c0fd51a,C,C,,,clear
+191,e58eb0ec4197c29e961a7bdd4d67de4e,none,D,x,garbled,clear
+192,c82ed0c2a2e115452b4d596c5faafbcf,D,D,,,clear
+193,558cb0bc25387ce38d71f64ef6f1fa57,B,B,x,two defensible: make tools and talk to each other,clear
+194,1a8b3c2a46efabcbd506f9cf70886ed0,E,E,,,clear
+195,64dbe5cb840ef4f1d25f8b68db8d5fed,E,E,,,clear
+196,e211b1a3f3401d164c8b0bfc10160caa,C,C,,,borderline
+197,f996430ce208606452868fd2e739d409,A,B,x,two defensible: dilute and thin blood,borderline
+198,8bbfe8cd056d612e9d3190f278bef287,C,C,,,clear
+199,27d9b4df2ca50112d282331df4923e96,E,E,x,two defensible: gas station and truck stop,clear
+200,4d67cdb4ba1b0058e383c212303a9f4e,C,C,,,clear
+201,d0a42c8180b4e080aa071dd70fce7e03,B,B,x,garbled,clear
+202,ea82f9e938cbfce85fb498ce46264253,C,C,,,clear
+203,27604394ccee83e089f9ffae1883cf07,A,A,,,borderline
+204,b23edb651e623e5d1e03e8ed3937e8fc,B,B,,,clear
+205,f60641f550d5ee44ac1bedcaf6ad6357,B,B,,,clear
+206,fc1d33a2301a30214523c12573f81aba,C,C,x,two defensible: being entertained and laughter,clear
+207,5b5d2a8b83282f61c68a870116042f64,E,E,,,clear
+208,e313d7967f72c2b880213daaaf4b7181,A,C,x,vague,clear
+209,c55c31b5a2aa996f3b75ad88c017a6b9,D,B,x,two defensible: tupperware and freezer,clear
+210,6e77de03bee86d6c20780e14f00944d0,C,C,,,clear
+211,ffc3461d437a1c6c22d1c4f6439ebd9c,D,D,,,clear
+212,cc8324b73ed9625e723ef041dfc77a37,none,D,x,vague; key odd,clear
+213,99789083502af9bf111876a00fae44ac,E,C,x,key wrong,clear
+214,597d2a1c9df7962218d8b807df1f8212,E,E,x,vague,clear
+215,9808782b2e2e1bfbfa27c41e605bfffe,none,C,x,garbled; key odd,clear
+216,463521a93ae71e93bea8b97cdf7a6792,B,D,x,key wrong,clear
+217,a7ab086045575bb497933726e4e6ad28,A,A,,,borderline
+218,f11a2975898033893d6a38f75d791fdf,E,E,,,borderline
+219,411e50225637b76187cc36b24fe3127c,C,C,,,clear
+220,f646f3e064f06423fc25b98500796cf0,C,E,x,identical option text (mechanical),clear
+221,cc46d936bf69d69a3863b0cb85d75c17,D,D,,,clear
+222,78276a4eab6e8d6b9ae3749211816977,E,C,x,two defensible: build and construct,clear
+223,846bc47ced7119ad2ee19a8780d7fe18,D,D,,,clear
+224,896b25dc41f84357add1c798d4a96cd8,A,C,x,two defensible: ocean and found in ocean,clear
+225,c54ddc0f9d170ba65d9f4f2e0bb41d1c,A,A,,,clear
+226,7792b2c6518ecf9775efba6d41253312,none,B,x,vague,clear
+227,b67971747e95ba425a5b81e0ba8d0b28,D,D,,,clear
+228,9a356ff463c042d04ba45bfd627bac20,B,D,x,two defensible: internet and library,clear
+229,8605fd2affc796d79073d0f3ef0761c9,B,B,,,clear
+230,3c1800e7dd96d37fdd3c51b9fe502342,D,D,x,two defensible: disturb and scare,clear
+231,2ed66cfd206723a006b37599b516ad6e,E,E,,,clear
+232,63b3652d54c8c0e571f6bb50de318bf0,B,B,,,clear
+233,76b2c6d254f9127b4fd66d90e1a330e7,B,B,,,clear
+234,abd30bab9b96f902fead5378d4f4a1e4,C,C,,,clear
+235,2509fdd7d94afe9d0c021654ce0ba93f,B,B,x,two defensible: go to movies and open eyes,clear
+236,1a86310d7279097205a3403752c3b914,none,B,x,vague,clear
+237,9e7805871c8a276300a89fe910a90949,A,A,,,clear
+238,926298bbdd03ce96acfeb4408b888b61,none,B,x,garbled; key odd,clear
+239,a018d65a74b9e77d81014fd8f6d78f77,D,D,,,clear
+240,d107d67d525a686fbd8282314d2ea33c,A,A,,,clear
+241,a38df3e750b1edd30f905e17af803c61,C,C,,,borderline
+242,0197ade3bb26d163ab2e284c960c626f,A,A,x,two defensible: cloud and air,borderline
+243,f0d473701d52125dd055d23042de1b0d,A,A,,,clear
+244,46bc1a50eeead10509a43a048e01194e,D,A,x,two defensible: shower stall and bathtub,borderline
+245,99098375c7b651d524eebac72e358238,none,D,x,garbled; key odd,clear
+246,636fc69dee35cd357b4191b47e64d0e5,E,E,x,vague,clear
+247,2ffa3808ce26181926990b454e429c85,C,C,x,two defensible: saltwater and bodies of water,clear
+248,5f4825137a27f369fe859e85dfe1793f,A,A,x,two defensible: see art and watch film,clear
+249,a85441d6a0e3f871d81a9f19b31360b7,A,D,x,two defensible: manhattan and downtown area,clear
+250,8c607d2e2e897d74048fcc794137b683,D,D,,,clear
+251,60e8f1a86d4063895f340cd1e3c55f50,C,C,x,two defensible: knowing more and growth,clear
+252,cc917ca0e03c91a5141920f5a902a36c,A,A,,,borderline
+253,4477fb61fde4bb8695c241dfc366b554,D,D,,,clear
+254,384b89e789e0f4b4796120394fb6303b,D,D,,,clear
+255,8af63d58cc35061dec38e5448c325988,E,E,,,borderline
+256,0b25bbd9e9aa976655e1975e31331709,B,B,x,vague,clear
+257,0e5c7c0cec5b693e52f74f5f879d84fb,B,B,,,borderline
+258,584188da9a429f1bc319abda5e5c7a76,E,E,x,two defensible: drawer and clothing,clear
+259,33d023a6806390eb8195380331e17404_1,C,C,x,two defensible: building and lobby,borderline
+260,aaf4fa38433c84b3bd0a86551259ce62,D,D,,,clear
+261,caccaa51ee960a92d44e5b949fc35a66,E,E,,,borderline
+262,a5e76dd088aab4f89e2fe93f6de6e46d,D,D,x,two defensible: satisfaction and cleanliness,borderline
+263,a8c284637dabc87745a7eb05d4f7fcbc,D,D,,,clear
+264,273d0134e8ce53d4ebcf41ca7fde02af,D,D,x,two defensible: city or town and neighborhood,clear
+265,5c224410a40c9269b1e542cfcb430d35,B,B,x,two defensible: office and kitchen,clear
+266,0a006d16d9042e0c170935e5fbf7f9af,E,E,x,two defensible: upwards and aloft,borderline
+267,3884d82524f2337ce53ce64776293cf7,D,A,x,two defensible: winners and losers and might win,clear
+268,e3949997bf9d02048cfa5d8dd0f287aa,E,E,x,two defensible: coastal cities and maine,clear
+269,5d4233146435ab0ca211e8ac9bfce76f,A,A,x,two defensible: supermarket and medicine chest,borderline
+270,7ed7379fc51fd35a47be022f6c56ce51,B,B,x,two defensible: floor and carpet,clear
+271,2a58e81a9c4ce095d099e0d785fc2da4,B,E,x,vague,borderline
+272,0f79faf5337706f2e0e39c15bbd2e99a,B,B,,,clear
+273,0df042743128b57e874bd5d79b7aae7a,B,B,,,clear
+274,f7c005244d406b9bde48dc8c22003af1,A,A,,,clear
+275,a74753bf249c1cbcff632c5c16b0397b,A,D,x,two defensible: flower pot and windowsill,clear
+276,11d7db1d8e1cff2f40d4184f15cf7ae7,B,B,x,two defensible: sporting event and hockey game,borderline
+277,d33a81660058e570a18fb2eafa284a78,A,A,,,clear
+278,d6644eacdb543a60545d2eb1ac7e6dbd,A,A,,,clear
+279,4b7d1b70060cd1f1a7321795f62a7325,B,B,,,clear
+280,b6bbe013995fdb5def3d504319af0791,C,C,x,two defensible: uneven and unbalanced,clear
+281,c21ec5b367f409a0288d616f626555ae,A,A,x,two defensible: much money and new car,clear
+282,6416dcdf9b8d7d2787f07e7426f86fe4,E,E,,,clear
+283,cd639cf3ff82f825ace7dd2b087562bd,D,D,x,two defensible: carpet and floor,clear
+284,b33047f46db680a9b630c13e8ca115cc,B,E,x,two defensible: think and meditate,clear
+285,e1d354cbfcd620e5dacf83c17746c4b3,D,D,x,two defensible: mail box and garage,borderline
+286,6a0177586d506cb7b741f4207b428e42,B,B,,,clear
+287,9f9ca9bb06d6afc31b19c365fb29a1c9,C,C,,,borderline
+288,3938d6e50d38b1f8774b4f00a89bdb39,C,C,x,two defensible: stationery store and office supply store,clear
+289,651785ed4f7b0bd2e7ca9f70a42acea5,A,A,x,two defensible: sweating and having fun,clear
+290,684dbde19719e8224113433981d6e01e,A,A,,,borderline
+291,eb0e0c4eaf19c1e9b4df3b4d3a11be3d,C,C,,,borderline
+292,4eb3e69c0d42a2287692d2b9d2cb5979,B,B,x,two defensible: crowd and group,clear
+293,2a32b1e541b1daae04690d0d3a4b3310,none,C,x,garbled; key odd,clear
+294,7c45033e9fd9f1a759923971b14390ed,E,E,,,clear
+295,ba640b9634ad6b4ad98b17b4f152e562,B,B,,,clear
+296,4a4f6408fae400ce0beb5bea0f9913e9,E,E,,,clear
+297,db0cfd52ca6b2bbfcf26d1a898fd929b,C,C,x,two defensible: making love and sleeping in,clear
+298,c7ce02d9365fe9275f88338ad51cbde6,A,A,,,clear
+299,cfc7fccb8449a2a950c9d2a50991420e,B,B,,,borderline
+300,f7b96f195a7adfe0c74924a165cfd055,none,B,x,vague,clear
+301,8fd82cdc253835814153fe7222e9967c,E,E,,,clear
+302,56d0fc282a144565f2c852415c6fa92c,C,C,x,two defensible: resentment and hurt feelings,clear
+303,d6ff2d749494d89e9c7a53f587c519f4,B,B,,,clear
+304,91f2532a832a35cba1b08a3c767be6da,E,E,,,borderline
+305,a339fe08f1f50463ee180b797e99ebcc,D,D,x,two defensible: play sports and work,clear
+306,08d3175de59a639be02f2ebc032d56bd,A,E,x,two defensible: kew gardens and beautiful garden,clear
+307,6163a897cd7eac1deddd4c002a1930ae,E,E,x,two defensible: center of town and business district,clear
+308,ba9a05bd2086c0d37733e26479d6630f,E,E,x,two defensible: go broke and losing money,clear
+309,63cf1adb5fe302b9867ead8bc8103d0b,D,D,,,clear
+310,43df3a316880d8bab346c06bd43b94dd,D,D,,,clear
+311,c611875b43b67b91030b889b267bbcb3,B,B,x,vague,borderline
+312,33c84708785f88c19737ef5b0e31a64b,D,D,,,clear
+313,d21777d771dc6fd08e769d378651817e,E,E,x,garbled,clear
+314,dc36293f603cf230f8059fc6f2e5660d,B,C,x,key wrong,clear
+315,8c12e5864463cfcd03f4d0ab67949d01,B,B,,,clear
+316,cfa980561efe82e7ae7080d4f081b463,D,D,,,clear
+317,08f3c187908646997b9080c7e9ea7da4,C,D,x,two defensible: winch and construction site,borderline
+318,418913999c665ae9527fd14a6132da39,B,B,,,clear
+319,2b416120e2fbd84b44b5dcd4eb42ed5c,D,D,,,clear
+320,f537f6bb8527724e0b1e1c1051326cd5,D,D,,,clear
+321,94770e75c4e2000e717b4218ddff19e8,D,D,,,borderline
+322,adbddc80b10bf25f09c6c2bee4e3c59b,E,E,,,clear
+323,c77e1039d78cdff197a370fcda0f2b9f,A,A,x,identical option text (mechanical),clear
+324,dbdad44029098d4b1d202d6d857d6092,A,A,,,clear
+325,1342c6aec9f5179d6ea6fa5fefbe5188,C,D,x,two defensible: colds and flu and boredom,clear
+326,4336a8c55b7cb17275d1c60206cd2f18,C,C,,,borderline
+327,8086f022f2d4a4888ae1f8c7e4541ab9,C,C,,,clear
+328,118a9093a30695622363455e4d911866,B,B,,,clear
+329,bb503ece4eac41dfe608a1dcb654e6bf,C,C,,,clear
+330,6c515b068b4d3aa88a5382224d9b866d,C,C,,,clear
+331,c74ae684ba6c76e2a913493483678c9d,A,A,x,vague,borderline
+332,fee5f4e9d8e37f0183e36eb9b8dbcbb9,A,A,,,borderline
+333,895aa97bb84d874d71b2aed572cebfdd,E,E,,,clear
+334,c592258c88295756833e9796e881057b,C,C,,,clear
+335,0d66d33a17e41eaa3278ca7b3930c5ea,E,E,,,clear
+336,e0a7d1df3ce14b27888e785e6636d5f0,C,C,,,borderline
+337,0b52cc905fff0ca69a45e6353d10e401,D,D,,,clear
+338,6be05d227f4f6fe727218fc8be9df340,E,E,x,vague,clear
+339,cebc07bd5080cc72862cb333b10d782d,C,C,x,two defensible: woodland and outside,clear
+340,6c4b2c93a4bdafb6cbf2b2ef2439b06f,C,C,x,two defensible: aggravation and stress,clear
+341,b399f6008d90dbd92bcce5abed4c1fd1,D,A,x,identical option text (mechanical),clear
+342,3526550b02d9594abd4fc43553010fc6,D,D,x,two defensible: drawer and holster,borderline
+343,275c859994f7d3acd3c8863be591ab2c,E,E,,,borderline
+344,1b3d286458a7e7f069222de0376d06da,D,C,x,two defensible: front door and own home,clear
+345,1db19a32a3edbff9981976dc9ec800ce,A,A,,,clear
+346,d07f149d8d953dcc45dda432194c375e,E,B,x,vague,clear
+347,420641003ba20b966887dfac684efb17,B,B,,,clear
+348,adf228312401c9ff421a4da1b46bb70a,E,E,,,clear
+349,05490e6c191fbc3c2fe0033ed0bd8aa0,C,D,x,two defensible: backpack and suitcase,clear

@@ -1,0 +1,1614 @@
+{
+ "4": {
+  "batch_size": 4,
+  "status": "ok",
+  "wall": 566.642614364624,
+  "total_tokens": 41972,
+  "tokens_per_s": 74.07137927150639,
+  "peak_gpu_gb": 23.510232064,
+  "n_hit_cap": 1,
+  "n_ended_eos": 35,
+  "generated_positions": 89156,
+  "waste_frac": 0.5292296648571044,
+  "batches": [
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 175,
+    "steps": 2368,
+    "wall": 59.174633264541626
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 177,
+    "steps": 951,
+    "wall": 20.430243492126465
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 177,
+    "steps": 1838,
+    "wall": 40.15117692947388
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 177,
+    "steps": 4000,
+    "wall": 109.25769829750061
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 179,
+    "steps": 3412,
+    "wall": 91.77072787284851
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 179,
+    "steps": 1156,
+    "wall": 23.84968662261963
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 182,
+    "steps": 1675,
+    "wall": 38.494587898254395
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 182,
+    "steps": 2903,
+    "wall": 70.32019829750061
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 187,
+    "steps": 3986,
+    "wall": 113.1936616897583
+   }
+  ],
+  "rows": [
+   {
+    "key": "csqa_9|1",
+    "i": 35,
+    "ptype": "reasoning",
+    "n": 564,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "E"
+   },
+   {
+    "key": "trait_risk_selfreport|1",
+    "i": 6,
+    "ptype": "self_report",
+    "n": 2368,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_risk_selfreport|2",
+    "i": 7,
+    "ptype": "self_report",
+    "n": 490,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_risk_selfreport|3",
+    "i": 8,
+    "ptype": "self_report",
+    "n": 952,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_composure_selfreport|1",
+    "i": 15,
+    "ptype": "self_report",
+    "n": 623,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|2",
+    "i": 16,
+    "ptype": "self_report",
+    "n": 671,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_composure_selfreport|3",
+    "i": 17,
+    "ptype": "self_report",
+    "n": 694,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|1",
+    "i": 9,
+    "ptype": "self_report",
+    "n": 951,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|2",
+    "i": 10,
+    "ptype": "self_report",
+    "n": 1838,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|3",
+    "i": 11,
+    "ptype": "self_report",
+    "n": 837,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|1",
+    "i": 18,
+    "ptype": "self_report",
+    "n": 711,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|2",
+    "i": 19,
+    "ptype": "self_report",
+    "n": 591,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|3",
+    "i": 20,
+    "ptype": "self_report",
+    "n": 652,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_calibration_behavioral|1",
+    "i": 25,
+    "ptype": "behavioral",
+    "n": 4000,
+    "ended_eos": false,
+    "hit_cap": true,
+    "think_closed": false,
+    "answer": null
+   },
+   {
+    "key": "csqa_2|1",
+    "i": 28,
+    "ptype": "reasoning",
+    "n": 325,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_5|1",
+    "i": 31,
+    "ptype": "reasoning",
+    "n": 646,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "C"
+   },
+   {
+    "key": "trait_sycophancy_behavioral|1",
+    "i": 24,
+    "ptype": "behavioral",
+    "n": 3412,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "408"
+   },
+   {
+    "key": "csqa_8|1",
+    "i": 34,
+    "ptype": "reasoning",
+    "n": 483,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_humility_selfreport|1",
+    "i": 3,
+    "ptype": "self_report",
+    "n": 772,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|2",
+    "i": 4,
+    "ptype": "self_report",
+    "n": 592,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|3",
+    "i": 5,
+    "ptype": "self_report",
+    "n": 745,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_approval_selfreport|1",
+    "i": 12,
+    "ptype": "self_report",
+    "n": 441,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|2",
+    "i": 13,
+    "ptype": "self_report",
+    "n": 1156,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|3",
+    "i": 14,
+    "ptype": "self_report",
+    "n": 850,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "csqa_7|1",
+    "i": 33,
+    "ptype": "reasoning",
+    "n": 604,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_3|1",
+    "i": 29,
+    "ptype": "reasoning",
+    "n": 475,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "csqa_1|1",
+    "i": 27,
+    "ptype": "reasoning",
+    "n": 1675,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_confidence_selfreport|1",
+    "i": 0,
+    "ptype": "self_report",
+    "n": 1095,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_confidence_selfreport|2",
+    "i": 1,
+    "ptype": "self_report",
+    "n": 945,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_confidence_selfreport|3",
+    "i": 2,
+    "ptype": "self_report",
+    "n": 595,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_hedging_selfreport|1",
+    "i": 21,
+    "ptype": "self_report",
+    "n": 2903,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_hedging_selfreport|2",
+    "i": 22,
+    "ptype": "self_report",
+    "n": 1111,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_hedging_selfreport|3",
+    "i": 23,
+    "ptype": "self_report",
+    "n": 3986,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "csqa_4|1",
+    "i": 30,
+    "ptype": "reasoning",
+    "n": 2414,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_6|1",
+    "i": 32,
+    "ptype": "reasoning",
+    "n": 402,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_0|1",
+    "i": 26,
+    "ptype": "reasoning",
+    "n": 403,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   }
+  ]
+ },
+ "8": {
+  "batch_size": 8,
+  "status": "ok",
+  "wall": 346.68192887306213,
+  "total_tokens": 37199,
+  "tokens_per_s": 107.30008374223752,
+  "peak_gpu_gb": 27.625923584,
+  "n_hit_cap": 0,
+  "n_ended_eos": 36,
+  "generated_positions": 77416,
+  "waste_frac": 0.5194920946574352,
+  "batches": [
+   {
+    "batch_size": 8,
+    "padded_prompt_len": 177,
+    "steps": 1935,
+    "wall": 58.80543828010559
+   },
+   {
+    "batch_size": 8,
+    "padded_prompt_len": 177,
+    "steps": 1752,
+    "wall": 46.9743127822876
+   },
+   {
+    "batch_size": 8,
+    "padded_prompt_len": 179,
+    "steps": 1171,
+    "wall": 29.920568227767944
+   },
+   {
+    "batch_size": 8,
+    "padded_prompt_len": 182,
+    "steps": 2826,
+    "wall": 97.75605249404907
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 187,
+    "steps": 3986,
+    "wall": 113.22555708885193
+   }
+  ],
+  "rows": [
+   {
+    "key": "csqa_9|1",
+    "i": 35,
+    "ptype": "reasoning",
+    "n": 577,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "E"
+   },
+   {
+    "key": "trait_risk_selfreport|1",
+    "i": 6,
+    "ptype": "self_report",
+    "n": 751,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_risk_selfreport|2",
+    "i": 7,
+    "ptype": "self_report",
+    "n": 1935,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_risk_selfreport|3",
+    "i": 8,
+    "ptype": "self_report",
+    "n": 977,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|1",
+    "i": 15,
+    "ptype": "self_report",
+    "n": 1170,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_composure_selfreport|2",
+    "i": 16,
+    "ptype": "self_report",
+    "n": 791,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|3",
+    "i": 17,
+    "ptype": "self_report",
+    "n": 529,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|1",
+    "i": 9,
+    "ptype": "self_report",
+    "n": 1127,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|2",
+    "i": 10,
+    "ptype": "self_report",
+    "n": 1196,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|3",
+    "i": 11,
+    "ptype": "self_report",
+    "n": 563,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|1",
+    "i": 18,
+    "ptype": "self_report",
+    "n": 985,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|2",
+    "i": 19,
+    "ptype": "self_report",
+    "n": 663,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|3",
+    "i": 20,
+    "ptype": "self_report",
+    "n": 1752,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_calibration_behavioral|1",
+    "i": 25,
+    "ptype": "behavioral",
+    "n": 1277,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "50"
+   },
+   {
+    "key": "csqa_2|1",
+    "i": 28,
+    "ptype": "reasoning",
+    "n": 444,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_5|1",
+    "i": 31,
+    "ptype": "reasoning",
+    "n": 411,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "C"
+   },
+   {
+    "key": "trait_sycophancy_behavioral|1",
+    "i": 24,
+    "ptype": "behavioral",
+    "n": 371,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "408"
+   },
+   {
+    "key": "csqa_8|1",
+    "i": 34,
+    "ptype": "reasoning",
+    "n": 405,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_humility_selfreport|1",
+    "i": 3,
+    "ptype": "self_report",
+    "n": 867,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|2",
+    "i": 4,
+    "ptype": "self_report",
+    "n": 854,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|3",
+    "i": 5,
+    "ptype": "self_report",
+    "n": 930,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_approval_selfreport|1",
+    "i": 12,
+    "ptype": "self_report",
+    "n": 369,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|2",
+    "i": 13,
+    "ptype": "self_report",
+    "n": 1171,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|3",
+    "i": 14,
+    "ptype": "self_report",
+    "n": 499,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "csqa_7|1",
+    "i": 33,
+    "ptype": "reasoning",
+    "n": 444,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_3|1",
+    "i": 29,
+    "ptype": "reasoning",
+    "n": 567,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "csqa_1|1",
+    "i": 27,
+    "ptype": "reasoning",
+    "n": 1367,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_confidence_selfreport|1",
+    "i": 0,
+    "ptype": "self_report",
+    "n": 1446,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_confidence_selfreport|2",
+    "i": 1,
+    "ptype": "self_report",
+    "n": 386,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_confidence_selfreport|3",
+    "i": 2,
+    "ptype": "self_report",
+    "n": 1334,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_hedging_selfreport|1",
+    "i": 21,
+    "ptype": "self_report",
+    "n": 2826,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_hedging_selfreport|2",
+    "i": 22,
+    "ptype": "self_report",
+    "n": 1010,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_hedging_selfreport|3",
+    "i": 23,
+    "ptype": "self_report",
+    "n": 3986,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "csqa_4|1",
+    "i": 30,
+    "ptype": "reasoning",
+    "n": 2414,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_6|1",
+    "i": 32,
+    "ptype": "reasoning",
+    "n": 402,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_0|1",
+    "i": 26,
+    "ptype": "reasoning",
+    "n": 403,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   }
+  ]
+ },
+ "16": {
+  "batch_size": 16,
+  "status": "ok",
+  "wall": 574.1837768554688,
+  "total_tokens": 42755,
+  "tokens_per_s": 74.4622222420647,
+  "peak_gpu_gb": 50.197932544,
+  "n_hit_cap": 0,
+  "n_ended_eos": 36,
+  "generated_positions": 137400,
+  "waste_frac": 0.6888282387190684,
+  "batches": [
+   {
+    "batch_size": 16,
+    "padded_prompt_len": 177,
+    "steps": 3986,
+    "wall": 257.6376705169678
+   },
+   {
+    "batch_size": 16,
+    "padded_prompt_len": 182,
+    "steps": 3605,
+    "wall": 203.58394718170166
+   },
+   {
+    "batch_size": 4,
+    "padded_prompt_len": 187,
+    "steps": 3986,
+    "wall": 112.96215915679932
+   }
+  ],
+  "rows": [
+   {
+    "key": "csqa_9|1",
+    "i": 35,
+    "ptype": "reasoning",
+    "n": 605,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "E"
+   },
+   {
+    "key": "trait_risk_selfreport|1",
+    "i": 6,
+    "ptype": "self_report",
+    "n": 960,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_risk_selfreport|2",
+    "i": 7,
+    "ptype": "self_report",
+    "n": 2708,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_risk_selfreport|3",
+    "i": 8,
+    "ptype": "self_report",
+    "n": 881,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|1",
+    "i": 15,
+    "ptype": "self_report",
+    "n": 584,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|2",
+    "i": 16,
+    "ptype": "self_report",
+    "n": 321,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|3",
+    "i": 17,
+    "ptype": "self_report",
+    "n": 954,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|1",
+    "i": 9,
+    "ptype": "self_report",
+    "n": 1327,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|2",
+    "i": 10,
+    "ptype": "self_report",
+    "n": 1761,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|3",
+    "i": 11,
+    "ptype": "self_report",
+    "n": 1010,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|1",
+    "i": 18,
+    "ptype": "self_report",
+    "n": 353,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|2",
+    "i": 19,
+    "ptype": "self_report",
+    "n": 532,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|3",
+    "i": 20,
+    "ptype": "self_report",
+    "n": 674,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_calibration_behavioral|1",
+    "i": 25,
+    "ptype": "behavioral",
+    "n": 3986,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "60"
+   },
+   {
+    "key": "csqa_2|1",
+    "i": 28,
+    "ptype": "reasoning",
+    "n": 359,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_5|1",
+    "i": 31,
+    "ptype": "reasoning",
+    "n": 304,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "C"
+   },
+   {
+    "key": "trait_sycophancy_behavioral|1",
+    "i": 24,
+    "ptype": "behavioral",
+    "n": 402,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "408"
+   },
+   {
+    "key": "csqa_8|1",
+    "i": 34,
+    "ptype": "reasoning",
+    "n": 713,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_humility_selfreport|1",
+    "i": 3,
+    "ptype": "self_report",
+    "n": 1071,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|2",
+    "i": 4,
+    "ptype": "self_report",
+    "n": 642,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|3",
+    "i": 5,
+    "ptype": "self_report",
+    "n": 637,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_approval_selfreport|1",
+    "i": 12,
+    "ptype": "self_report",
+    "n": 767,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|2",
+    "i": 13,
+    "ptype": "self_report",
+    "n": 932,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|3",
+    "i": 14,
+    "ptype": "self_report",
+    "n": 650,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "csqa_7|1",
+    "i": 33,
+    "ptype": "reasoning",
+    "n": 2215,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_3|1",
+    "i": 29,
+    "ptype": "reasoning",
+    "n": 588,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "csqa_1|1",
+    "i": 27,
+    "ptype": "reasoning",
+    "n": 520,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_confidence_selfreport|1",
+    "i": 0,
+    "ptype": "self_report",
+    "n": 481,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_confidence_selfreport|2",
+    "i": 1,
+    "ptype": "self_report",
+    "n": 3605,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_confidence_selfreport|3",
+    "i": 2,
+    "ptype": "self_report",
+    "n": 775,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_hedging_selfreport|1",
+    "i": 21,
+    "ptype": "self_report",
+    "n": 1053,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_hedging_selfreport|2",
+    "i": 22,
+    "ptype": "self_report",
+    "n": 3180,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_hedging_selfreport|3",
+    "i": 23,
+    "ptype": "self_report",
+    "n": 3986,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "csqa_4|1",
+    "i": 30,
+    "ptype": "reasoning",
+    "n": 2414,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_6|1",
+    "i": 32,
+    "ptype": "reasoning",
+    "n": 402,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_0|1",
+    "i": 26,
+    "ptype": "reasoning",
+    "n": 403,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   }
+  ]
+ },
+ "36": {
+  "batch_size": 36,
+  "status": "ok",
+  "wall": 539.7496619224548,
+  "total_tokens": 37646,
+  "tokens_per_s": 69.74714882805903,
+  "peak_gpu_gb": 94.816229376,
+  "n_hit_cap": 2,
+  "n_ended_eos": 34,
+  "generated_positions": 144000,
+  "waste_frac": 0.7385694444444444,
+  "batches": [
+   {
+    "batch_size": 36,
+    "padded_prompt_len": 187,
+    "steps": 4000,
+    "wall": 539.7496619224548
+   }
+  ],
+  "rows": [
+   {
+    "key": "csqa_9|1",
+    "i": 35,
+    "ptype": "reasoning",
+    "n": 806,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "E"
+   },
+   {
+    "key": "trait_risk_selfreport|1",
+    "i": 6,
+    "ptype": "self_report",
+    "n": 962,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_risk_selfreport|2",
+    "i": 7,
+    "ptype": "self_report",
+    "n": 1330,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_risk_selfreport|3",
+    "i": 8,
+    "ptype": "self_report",
+    "n": 865,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_composure_selfreport|1",
+    "i": 15,
+    "ptype": "self_report",
+    "n": 396,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|2",
+    "i": 16,
+    "ptype": "self_report",
+    "n": 397,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_composure_selfreport|3",
+    "i": 17,
+    "ptype": "self_report",
+    "n": 419,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|1",
+    "i": 9,
+    "ptype": "self_report",
+    "n": 1362,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|2",
+    "i": 10,
+    "ptype": "self_report",
+    "n": 1763,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_assertiveness_selfreport|3",
+    "i": 11,
+    "ptype": "self_report",
+    "n": 1341,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|1",
+    "i": 18,
+    "ptype": "self_report",
+    "n": 538,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|2",
+    "i": 19,
+    "ptype": "self_report",
+    "n": 671,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_competitiveness_selfreport|3",
+    "i": 20,
+    "ptype": "self_report",
+    "n": 798,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "3"
+   },
+   {
+    "key": "trait_calibration_behavioral|1",
+    "i": 25,
+    "ptype": "behavioral",
+    "n": 4000,
+    "ended_eos": false,
+    "hit_cap": true,
+    "think_closed": false,
+    "answer": null
+   },
+   {
+    "key": "csqa_2|1",
+    "i": 28,
+    "ptype": "reasoning",
+    "n": 1058,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_5|1",
+    "i": 31,
+    "ptype": "reasoning",
+    "n": 302,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "C"
+   },
+   {
+    "key": "trait_sycophancy_behavioral|1",
+    "i": 24,
+    "ptype": "behavioral",
+    "n": 377,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "408"
+   },
+   {
+    "key": "csqa_8|1",
+    "i": 34,
+    "ptype": "reasoning",
+    "n": 531,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_humility_selfreport|1",
+    "i": 3,
+    "ptype": "self_report",
+    "n": 523,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|2",
+    "i": 4,
+    "ptype": "self_report",
+    "n": 459,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_humility_selfreport|3",
+    "i": 5,
+    "ptype": "self_report",
+    "n": 748,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_approval_selfreport|1",
+    "i": 12,
+    "ptype": "self_report",
+    "n": 566,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|2",
+    "i": 13,
+    "ptype": "self_report",
+    "n": 775,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_approval_selfreport|3",
+    "i": 14,
+    "ptype": "self_report",
+    "n": 761,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "csqa_7|1",
+    "i": 33,
+    "ptype": "reasoning",
+    "n": 798,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_3|1",
+    "i": 29,
+    "ptype": "reasoning",
+    "n": 517,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "csqa_1|1",
+    "i": 27,
+    "ptype": "reasoning",
+    "n": 508,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "A"
+   },
+   {
+    "key": "trait_confidence_selfreport|1",
+    "i": 0,
+    "ptype": "self_report",
+    "n": 502,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "1"
+   },
+   {
+    "key": "trait_confidence_selfreport|2",
+    "i": 1,
+    "ptype": "self_report",
+    "n": 4000,
+    "ended_eos": false,
+    "hit_cap": true,
+    "think_closed": false,
+    "answer": null
+   },
+   {
+    "key": "trait_confidence_selfreport|3",
+    "i": 2,
+    "ptype": "self_report",
+    "n": 1114,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "2"
+   },
+   {
+    "key": "trait_hedging_selfreport|1",
+    "i": 21,
+    "ptype": "self_report",
+    "n": 2765,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "5"
+   },
+   {
+    "key": "trait_hedging_selfreport|2",
+    "i": 22,
+    "ptype": "self_report",
+    "n": 1657,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "trait_hedging_selfreport|3",
+    "i": 23,
+    "ptype": "self_report",
+    "n": 1345,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "4"
+   },
+   {
+    "key": "csqa_4|1",
+    "i": 30,
+    "ptype": "reasoning",
+    "n": 1851,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   },
+   {
+    "key": "csqa_6|1",
+    "i": 32,
+    "ptype": "reasoning",
+    "n": 467,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "B"
+   },
+   {
+    "key": "csqa_0|1",
+    "i": 26,
+    "ptype": "reasoning",
+    "n": 374,
+    "ended_eos": true,
+    "hit_cap": false,
+    "think_closed": true,
+    "answer": "D"
+   }
+  ]
+ }
+}

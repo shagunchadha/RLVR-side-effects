@@ -1,0 +1,33 @@
+{
+  "dataset": "allenai/Dolci-Think-RL-7B",
+  "stage": "RL",
+  "rows_scanned": 102014,
+  "ngram": 8,
+  "threshold": 0.5,
+  "math500": {
+    "targets": 500,
+    "targets_with_8_tokens": 487,
+    "exact_match": 0,
+    "ge50": 2,
+    "ge80": 0
+  },
+  "math500_flagged": [
+    {
+      "unique_id": "test/counting_and_probability/1060.json",
+      "overlap_fraction": 0.6667,
+      "exact_matches": 0
+    },
+    {
+      "unique_id": "test/intermediate_algebra/860.json",
+      "overlap_fraction": 0.5909,
+      "exact_matches": 0
+    }
+  ],
+  "rlvr_math": {
+    "targets": 7500,
+    "targets_with_8_tokens": 7267,
+    "exact_match": 0,
+    "ge50": 763,
+    "ge80": 629
+  }
+}

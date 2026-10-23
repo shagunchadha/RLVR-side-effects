@@ -1,0 +1,11 @@
+cap,idx,prompt_tokens,n_tokens,hit_cap,think_closed,parses,answer,ground_truth,matches_gt_normalised,batch_wall_s,tokens_per_s_batch_share
+16000,331,633,3023,False,True,True,\dfrac{93}{256},\dfrac{93}{256},True,754.7,4.01
+16000,3980,634,2568,False,True,True,2021,2021_3,False,754.7,3.4
+16000,6917,649,4524,False,True,True,\dfrac{5}{7},\frac{5}{7},True,754.7,5.99
+16000,3445,660,4235,False,True,True,18564,18564,True,754.7,5.61
+16000,2121,680,5146,False,True,True,2,2,True,754.7,6.82
+16000,6209,682,4981,False,True,True,480,480,True,754.7,6.6
+16000,7292,719,8537,False,True,True,3,3,True,754.7,11.31
+16000,4188,860,10719,False,True,True,30.8,30.8,True,754.7,14.2
+16000,3317,872,16000,True,False,False,,12,False,601.6,26.6
+16000,3155,1020,13072,False,True,True,15,15,True,601.6,21.73

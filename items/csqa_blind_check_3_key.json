@@ -1,0 +1,131 @@
+{
+ "seed": 20261025,
+ "n": 25,
+ "map": {
+  "1": {
+   "draw_index": 290,
+   "key": "A",
+   "role": "final"
+  },
+  "2": {
+   "draw_index": 299,
+   "key": "B",
+   "role": "final"
+  },
+  "3": {
+   "draw_index": 298,
+   "key": "A",
+   "role": "final"
+  },
+  "4": {
+   "draw_index": 316,
+   "key": "D",
+   "role": "spare"
+  },
+  "5": {
+   "draw_index": 301,
+   "key": "E",
+   "role": "final"
+  },
+  "6": {
+   "draw_index": 312,
+   "key": "D",
+   "role": "spare"
+  },
+  "7": {
+   "draw_index": 319,
+   "key": "D",
+   "role": "spare"
+  },
+  "8": {
+   "draw_index": 286,
+   "key": "B",
+   "role": "final"
+  },
+  "9": {
+   "draw_index": 321,
+   "key": "D",
+   "role": "spare"
+  },
+  "10": {
+   "draw_index": 322,
+   "key": "E",
+   "role": "spare"
+  },
+  "11": {
+   "draw_index": 294,
+   "key": "E",
+   "role": "final"
+  },
+  "12": {
+   "draw_index": 282,
+   "key": "E",
+   "role": "final"
+  },
+  "13": {
+   "draw_index": 320,
+   "key": "D",
+   "role": "spare"
+  },
+  "14": {
+   "draw_index": 315,
+   "key": "B",
+   "role": "spare"
+  },
+  "15": {
+   "draw_index": 324,
+   "key": "A",
+   "role": "spare"
+  },
+  "16": {
+   "draw_index": 291,
+   "key": "C",
+   "role": "final"
+  },
+  "17": {
+   "draw_index": 303,
+   "key": "B",
+   "role": "final"
+  },
+  "18": {
+   "draw_index": 327,
+   "key": "C",
+   "role": "spare"
+  },
+  "19": {
+   "draw_index": 287,
+   "key": "C",
+   "role": "final"
+  },
+  "20": {
+   "draw_index": 310,
+   "key": "D",
+   "role": "spare"
+  },
+  "21": {
+   "draw_index": 318,
+   "key": "B",
+   "role": "spare"
+  },
+  "22": {
+   "draw_index": 295,
+   "key": "B",
+   "role": "final"
+  },
+  "23": {
+   "draw_index": 296,
+   "key": "E",
+   "role": "final"
+  },
+  "24": {
+   "draw_index": 304,
+   "key": "E",
+   "role": "final"
+  },
+  "25": {
+   "draw_index": 309,
+   "key": "D",
+   "role": "spare"
+  }
+ }
+}

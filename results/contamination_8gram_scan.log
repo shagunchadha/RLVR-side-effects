@@ -1,0 +1,46 @@
+##### allenai/Dolci-Think-RL-7B
+columns: ['ground_truth', 'dataset', 'custom_id', 'original_dataset', 'outputs', 'total_rollouts', 'total_correct_rollouts', 'passrate', 'dataset_source', 'input_ids_prompt', 'input_ids', 'attention_mask', 'labels', 'prompt', 'id', 'key', 'constraint_type', 'constraint', 'conversation_hash', 'model', 'predicted_label']
+  rows 100000 (1.5 min)
+DATASET allenai/Dolci-Think-RL-7B: scanned 102014 rows in 1.5 min
+  math500: 500 targets (487 with >= 8 tokens); exact-match 0; >=50% 8-gram overlap 2; >=80% 0
+  of those, in OUR final E set / length-check set: []
+  math500 matched unique_ids (up to 20): ['test/counting_and_probability/1060.json', 'test/intermediate_algebra/860.json']
+  rlvr_math: 7500 targets (7267 with >= 8 tokens); exact-match 0; >=50% 8-gram overlap 763; >=80% 629
+##### allenai/Dolci-Think-DPO-7B
+columns: ['prompt', 'chosen', 'rejected', 'chosen_model', 'rejected_model', 'dataset_source', 'id', 'preference_type']
+  rows 100000 (0.6 min)
+DATASET allenai/Dolci-Think-DPO-7B: scanned 150000 rows in 0.9 min
+  math500: 500 targets (487 with >= 8 tokens); exact-match 0; >=50% 8-gram overlap 0; >=80% 0
+  of those, in OUR final E set / length-check set: []
+  math500 matched unique_ids (up to 20): []
+  rlvr_math: 7500 targets (7267 with >= 8 tokens); exact-match 0; >=50% 8-gram overlap 82; >=80% 77
+##### allenai/Dolci-Think-SFT-7B
+columns: ['messages', 'dataset_source', 'id']
+  rows 100000 (0.9 min)
+  rows 200000 (2.0 min)
+  rows 300000 (3.2 min)
+  rows 400000 (4.7 min)
+  rows 500000 (6.4 min)
+  rows 600000 (8.1 min)
+  rows 700000 (9.8 min)
+  rows 800000 (11.6 min)
+  rows 900000 (12.7 min)
+  rows 1000000 (14.2 min)
+  rows 1100000 (14.9 min)
+  rows 1200000 (15.2 min)
+  rows 1300000 (15.5 min)
+  rows 1400000 (15.8 min)
+  rows 1500000 (16.2 min)
+  rows 1600000 (16.8 min)
+  rows 1700000 (17.1 min)
+  rows 1800000 (18.5 min)
+  rows 1900000 (18.9 min)
+  rows 2000000 (19.4 min)
+  rows 2100000 (19.9 min)
+  rows 2200000 (20.3 min)
+DATASET allenai/Dolci-Think-SFT-7B: scanned 2268178 rows in 20.6 min
+  math500: 500 targets (487 with >= 8 tokens); exact-match 3; >=50% 8-gram overlap 25; >=80% 10
+  of those, in OUR final E set / length-check set: ['test/algebra/346.json']
+  math500 matched unique_ids (up to 20): ['test/algebra/2430.json', 'test/algebra/346.json', 'test/algebra/621.json', 'test/algebra/907.json', 'test/counting_and_probability/1003.json', 'test/counting_and_probability/1060.json', 'test/counting_and_probability/339.json', 'test/counting_and_probability/71.json', 'test/geometry/283.json', 'test/geometry/702.json', 'test/intermediate_algebra/1063.json', 'test/intermediate_algebra/1166.json', 'test/intermediate_algebra/1365.json', 'test/intermediate_algebra/1791.json', 'test/intermediate_algebra/2146.json', 'test/intermediate_algebra/232.json', 'test/intermediate_algebra/279.json', 'test/intermediate_algebra/90.json', 'test/number_theory/483.json', 'test/number_theory/634.json']
+  rlvr_math: 7500 targets (7267 with >= 8 tokens); exact-match 4390; >=50% 8-gram overlap 5050; >=80% 4773
+ALLDONE
