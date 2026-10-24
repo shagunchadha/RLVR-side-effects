@@ -7,13 +7,15 @@
 
 ## 0. Honesty note (keep in the paper)
 
-The RLVR full run (614 rows) finished before this plan was written. At the time of writing I had seen, for RLVR only: validity counts (13 truncated of 614; no other invalid status), per-component token min/median/max, and elapsed times. I had **not** computed or seen any score, answer distribution, accuracy, trait value, confidence value or caving rate for any checkpoint. The DPO and SFT runs had not been started.
+The RLVR full run (614 rows) finished before this plan was written. At the time of writing (before the analysis-plan tag; see the amendment at the end of this section for what was seen afterwards) I had seen, for RLVR only: validity counts (13 truncated of 614; no other invalid status), per-component token min/median/max, and elapsed times. I had **not** computed or seen any score, answer distribution, accuracy, trait value, confidence value or caving rate for any checkpoint. The DPO and SFT runs had not been started.
 
 The pilot results (v3 RLVR baseline, and the DPO and SFT pilots, 36 generations each) were seen earlier. `docs/predictions.md` was written after the v3 RLVR baseline was seen; it is blind with respect to DPO and SFT.
 
 **Response length is an exception and is treated as a replication, not a prediction.** The pilot comparison documents already report per-checkpoint response lengths for all three checkpoints and already state a direction. Those values were re-read on Oct 24 while writing §3F, deliberately and in isolation (no other pilot outcome was re-read). §3F is therefore framed as a pre-specified replication of a known pilot observation, with its provenance stated.
 
 This plan, and the analysis script built from it, are committed and tagged before the script is run on any full-run output. Anything not specified here is labelled **exploratory** in the paper.
+
+**Amendment, Oct 24, 2026 (disclosure).** Exposure to length data before the analysis was run. The per-checkpoint validity report specified for each full run includes token min/median/max per component, for the operational purpose of confirming the token caps were adequate. The per-component median is also the primary measure for row F. The RLVR and DPO per-component medians were therefore visible before scripts/analyze.py was run. The analysis was committed and tagged (analysis-plan-2026-10-24, commit 02ed3d3) before the DPO run was started, so the metric, statistical test, pairing unit and the H1-H4 hypotheses were fixed before these values existed in any comparison; no analysis decision was made after seeing them. The report format was deliberately left unchanged for the SFT run rather than altered mid-study. No accuracy, trait score, confidence, caving or other outcome has been computed or seen for any checkpoint.
 
 ---
 
@@ -139,7 +141,7 @@ The pilot's own stated conclusion: *"SFT and DPO write about the same on self-re
 
 *Interpretation.* This row measures reasoning length. Instruction non-compliance is one reading; longer exploration before answering, which is what RL on verifiable rewards tends to produce, is another. The design does not distinguish them, and the paper says so. Note in particular that the earlier mapping from the model card's instruction-following gains (IFEval +12.3, IFBench +13.3) to *shorter* reasoning was dropped: those benchmarks test format constraints on the answer, not length constraints on the reasoning block, and the two can move in opposite directions.
 
-*Disclosure.* Pilot length data for all three checkpoints had been seen when this section was written, which is why it is a replication. No full-run length statistic had been seen for DPO or SFT. RLVR's full-run per-component medians had been seen (A 963.5, B 405.5, C 607.5, D 479.5, E 1199.5).
+*Disclosure.* Pilot length data for all three checkpoints had been seen when this section was written, which is why it is a replication. No full-run length statistic had been seen for DPO or SFT when the plan was tagged (the per-component medians of the DPO run were seen afterwards, as the operational validity report; see the amendment in §0 and §12.8). RLVR's full-run per-component medians had been seen (A 963.5, B 405.5, C 607.5, D 479.5, E 1199.5).
 
 **Reported for every component:** invalid rate; median generated tokens.
 
@@ -409,3 +411,11 @@ Dated ruling, made before any DPO or SFT full-run output exists and before the s
 4. **Family 1 (the four behavioural rows)** keeps Holm unchanged. **Family 2's Holm column is reporting-only.**
 5. **Hybrids.** The 8 trait rows are descriptive-inferential hybrids (effect size plus noise floor, multiplicity uncorrected); about 0.4 false positives are expected across 8 rows at p < 0.05 uncorrected (§10).
 6. **Edits to earlier text:** §4 signal bullet for A; §5 multiplicity paragraph; §10 two new bullets and the coverage table. The implementation already gated the trait signal on the interval and the noise floor only, so this ruling changes documentation, the printed note and a test, not a number.
+
+### 12.8 Disclosure amendment: exposure to length data, Oct 24
+
+Dated ruling (a disclosure amendment, not an analysis change), made after the DPO run finished and before `scripts/analyze.py` has been run on any full-run file. It adds an amendment paragraph to §0.
+
+1. **Disclosure.** The text recorded in the §0 amendment: "Exposure to length data before the analysis was run. The per-checkpoint validity report specified for each full run includes token min/median/max per component, for the operational purpose of confirming the token caps were adequate. The per-component median is also the primary measure for row F. The RLVR and DPO per-component medians were therefore visible before scripts/analyze.py was run. The analysis was committed and tagged (analysis-plan-2026-10-24, commit 02ed3d3) before the DPO run was started, so the metric, statistical test, pairing unit and the H1-H4 hypotheses were fixed before these values existed in any comparison; no analysis decision was made after seeing them. The report format was deliberately left unchanged for the SFT run rather than altered mid-study. No accuracy, trait score, confidence, caving or other outcome has been computed or seen for any checkpoint."
+2. **What it changes.** Nothing in the analysis: the metric, test, pairing unit and H1–H4 were fixed at the tag (commit 02ed3d3) before the DPO run was started. It corrects the record of what had been seen: RLVR per-component medians at the time of tagging, and DPO per-component medians afterwards.
+3. **Edits to earlier text:** (a) §0, first paragraph: "At the time of writing" now says "(before the analysis-plan tag; see the amendment at the end of this section ...)", so it no longer reads as the final state of knowledge; (b) §0: the amendment paragraph added after the last paragraph; (c) §3F Disclosure: "No full-run length statistic had been seen for DPO or SFT" now states that this was the position when the plan was tagged and that the DPO medians were seen afterwards.
