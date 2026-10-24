@@ -1,0 +1,1272 @@
+{
+ "meta": {
+  "batch_size": 8,
+  "temperature": 0.7,
+  "top_p": 0.9,
+  "caps": {
+   "A": 4000,
+   "B": 4000,
+   "C": 4000,
+   "D": 4000,
+   "E": 16000
+  },
+  "component_order": "ABCDE",
+  "self_report_seeds": [
+   0,
+   1,
+   2
+  ],
+  "other_seed": 0,
+  "rows_sorted_by": "id (string order) within a component",
+  "seeding": "torch.manual_seed(seed) immediately before every generate call",
+  "n_batches": 78,
+  "n_generations": 614,
+  "item_file_sha256": {
+   "A": "7842614efbc65e92274e294db447d4cc94f3457925c0361fa9ce892ac3d8f341",
+   "B": "2c4e092704ed805de132dc6152531daf90bb8b4e0886c0a146104a5049121ee5",
+   "C": "e63176ba1d34bc9d3cfd86cb82cef6865857414c0ce4c77c5305fecc25d278af",
+   "D": "458f7650825e725674b5b9630edc5993e4f649428751c2c5d240ee07872c6160",
+   "E": "eefd06b8d168e158ece6f2cdffdcfdcf09df6f256b4f99a8c5230ccfdcfbed5e"
+  }
+ },
+ "batches": [
+  {
+   "batch_index": 0,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_approval_0",
+    "A_approval_1",
+    "A_approval_2",
+    "A_approval_3",
+    "A_approval_4",
+    "A_approval_5",
+    "A_assertiveness_0",
+    "A_assertiveness_1"
+   ]
+  },
+  {
+   "batch_index": 1,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_assertiveness_2",
+    "A_assertiveness_3",
+    "A_assertiveness_4",
+    "A_assertiveness_5",
+    "A_competitiveness_0",
+    "A_competitiveness_1",
+    "A_competitiveness_2",
+    "A_competitiveness_3"
+   ]
+  },
+  {
+   "batch_index": 2,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_competitiveness_4",
+    "A_competitiveness_5",
+    "A_composure_0",
+    "A_composure_1",
+    "A_composure_2",
+    "A_composure_3",
+    "A_composure_4",
+    "A_composure_5"
+   ]
+  },
+  {
+   "batch_index": 3,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_confidence_0",
+    "A_confidence_1",
+    "A_confidence_2",
+    "A_confidence_3",
+    "A_confidence_4",
+    "A_confidence_5",
+    "A_hedging_0",
+    "A_hedging_1"
+   ]
+  },
+  {
+   "batch_index": 4,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_hedging_2",
+    "A_hedging_3",
+    "A_hedging_4",
+    "A_hedging_5",
+    "A_humility_0",
+    "A_humility_1",
+    "A_humility_2",
+    "A_humility_3"
+   ]
+  },
+  {
+   "batch_index": 5,
+   "component": "A",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_humility_4",
+    "A_humility_5",
+    "A_risk_0",
+    "A_risk_1",
+    "A_risk_2",
+    "A_risk_3",
+    "A_risk_4",
+    "A_risk_5"
+   ]
+  },
+  {
+   "batch_index": 6,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_approval_0",
+    "A_approval_1",
+    "A_approval_2",
+    "A_approval_3",
+    "A_approval_4",
+    "A_approval_5",
+    "A_assertiveness_0",
+    "A_assertiveness_1"
+   ]
+  },
+  {
+   "batch_index": 7,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_assertiveness_2",
+    "A_assertiveness_3",
+    "A_assertiveness_4",
+    "A_assertiveness_5",
+    "A_competitiveness_0",
+    "A_competitiveness_1",
+    "A_competitiveness_2",
+    "A_competitiveness_3"
+   ]
+  },
+  {
+   "batch_index": 8,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_competitiveness_4",
+    "A_competitiveness_5",
+    "A_composure_0",
+    "A_composure_1",
+    "A_composure_2",
+    "A_composure_3",
+    "A_composure_4",
+    "A_composure_5"
+   ]
+  },
+  {
+   "batch_index": 9,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_confidence_0",
+    "A_confidence_1",
+    "A_confidence_2",
+    "A_confidence_3",
+    "A_confidence_4",
+    "A_confidence_5",
+    "A_hedging_0",
+    "A_hedging_1"
+   ]
+  },
+  {
+   "batch_index": 10,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_hedging_2",
+    "A_hedging_3",
+    "A_hedging_4",
+    "A_hedging_5",
+    "A_humility_0",
+    "A_humility_1",
+    "A_humility_2",
+    "A_humility_3"
+   ]
+  },
+  {
+   "batch_index": 11,
+   "component": "A",
+   "seed": 1,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_humility_4",
+    "A_humility_5",
+    "A_risk_0",
+    "A_risk_1",
+    "A_risk_2",
+    "A_risk_3",
+    "A_risk_4",
+    "A_risk_5"
+   ]
+  },
+  {
+   "batch_index": 12,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_approval_0",
+    "A_approval_1",
+    "A_approval_2",
+    "A_approval_3",
+    "A_approval_4",
+    "A_approval_5",
+    "A_assertiveness_0",
+    "A_assertiveness_1"
+   ]
+  },
+  {
+   "batch_index": 13,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_assertiveness_2",
+    "A_assertiveness_3",
+    "A_assertiveness_4",
+    "A_assertiveness_5",
+    "A_competitiveness_0",
+    "A_competitiveness_1",
+    "A_competitiveness_2",
+    "A_competitiveness_3"
+   ]
+  },
+  {
+   "batch_index": 14,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_competitiveness_4",
+    "A_competitiveness_5",
+    "A_composure_0",
+    "A_composure_1",
+    "A_composure_2",
+    "A_composure_3",
+    "A_composure_4",
+    "A_composure_5"
+   ]
+  },
+  {
+   "batch_index": 15,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_confidence_0",
+    "A_confidence_1",
+    "A_confidence_2",
+    "A_confidence_3",
+    "A_confidence_4",
+    "A_confidence_5",
+    "A_hedging_0",
+    "A_hedging_1"
+   ]
+  },
+  {
+   "batch_index": 16,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_hedging_2",
+    "A_hedging_3",
+    "A_hedging_4",
+    "A_hedging_5",
+    "A_humility_0",
+    "A_humility_1",
+    "A_humility_2",
+    "A_humility_3"
+   ]
+  },
+  {
+   "batch_index": 17,
+   "component": "A",
+   "seed": 2,
+   "max_new_tokens": 4000,
+   "ids": [
+    "A_humility_4",
+    "A_humility_5",
+    "A_risk_0",
+    "A_risk_1",
+    "A_risk_2",
+    "A_risk_3",
+    "A_risk_4",
+    "A_risk_5"
+   ]
+  },
+  {
+   "batch_index": 18,
+   "component": "B",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "B_00",
+    "B_01",
+    "B_02",
+    "B_03",
+    "B_04",
+    "B_05",
+    "B_06",
+    "B_07"
+   ]
+  },
+  {
+   "batch_index": 19,
+   "component": "B",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "B_08",
+    "B_09",
+    "B_10",
+    "B_11",
+    "B_12",
+    "B_13",
+    "B_14",
+    "B_15"
+   ]
+  },
+  {
+   "batch_index": 20,
+   "component": "B",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "B_16",
+    "B_17",
+    "B_18",
+    "B_19",
+    "B_20",
+    "B_21",
+    "B_22",
+    "B_23"
+   ]
+  },
+  {
+   "batch_index": 21,
+   "component": "B",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "B_24",
+    "B_25",
+    "B_26",
+    "B_27",
+    "B_28",
+    "B_29",
+    "B_30",
+    "B_31"
+   ]
+  },
+  {
+   "batch_index": 22,
+   "component": "B",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "B_32",
+    "B_33",
+    "B_34",
+    "B_35",
+    "B_36",
+    "B_37",
+    "B_38",
+    "B_39"
+   ]
+  },
+  {
+   "batch_index": 23,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_00",
+    "C_01",
+    "C_02",
+    "C_03",
+    "C_04",
+    "C_05",
+    "C_06",
+    "C_07"
+   ]
+  },
+  {
+   "batch_index": 24,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_08",
+    "C_09",
+    "C_10",
+    "C_11",
+    "C_12",
+    "C_13",
+    "C_14",
+    "C_15"
+   ]
+  },
+  {
+   "batch_index": 25,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_16",
+    "C_17",
+    "C_18",
+    "C_19",
+    "C_20",
+    "C_21",
+    "C_22",
+    "C_23"
+   ]
+  },
+  {
+   "batch_index": 26,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_24",
+    "C_25",
+    "C_26",
+    "C_27",
+    "C_28",
+    "C_29",
+    "C_30",
+    "C_31"
+   ]
+  },
+  {
+   "batch_index": 27,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_32",
+    "C_33",
+    "C_34",
+    "C_35",
+    "C_36",
+    "C_37",
+    "C_38",
+    "C_39"
+   ]
+  },
+  {
+   "batch_index": 28,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_40",
+    "C_41",
+    "C_42",
+    "C_43",
+    "C_44",
+    "C_45",
+    "C_46",
+    "C_47"
+   ]
+  },
+  {
+   "batch_index": 29,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_48",
+    "C_49",
+    "C_50",
+    "C_51",
+    "C_52",
+    "C_53",
+    "C_54",
+    "C_55"
+   ]
+  },
+  {
+   "batch_index": 30,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_56",
+    "C_57",
+    "C_58",
+    "C_59",
+    "C_60",
+    "C_61",
+    "C_62",
+    "C_63"
+   ]
+  },
+  {
+   "batch_index": 31,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_64",
+    "C_65",
+    "C_66",
+    "C_67",
+    "C_68",
+    "C_69",
+    "C_70",
+    "C_71"
+   ]
+  },
+  {
+   "batch_index": 32,
+   "component": "C",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "C_72",
+    "C_73",
+    "C_74",
+    "C_75",
+    "C_76",
+    "C_77",
+    "C_78",
+    "C_79"
+   ]
+  },
+  {
+   "batch_index": 33,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_000_o0",
+    "D_000_o1",
+    "D_001_o0",
+    "D_001_o1",
+    "D_005_o0",
+    "D_005_o1",
+    "D_007_o0",
+    "D_007_o1"
+   ]
+  },
+  {
+   "batch_index": 34,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_008_o0",
+    "D_008_o1",
+    "D_009_o0",
+    "D_009_o1",
+    "D_010_o0",
+    "D_010_o1",
+    "D_011_o0",
+    "D_011_o1"
+   ]
+  },
+  {
+   "batch_index": 35,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_012_o0",
+    "D_012_o1",
+    "D_013_o0",
+    "D_013_o1",
+    "D_014_o0",
+    "D_014_o1",
+    "D_017_o0",
+    "D_017_o1"
+   ]
+  },
+  {
+   "batch_index": 36,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_018_o0",
+    "D_018_o1",
+    "D_022_o0",
+    "D_022_o1",
+    "D_024_o0",
+    "D_024_o1",
+    "D_025_o0",
+    "D_025_o1"
+   ]
+  },
+  {
+   "batch_index": 37,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_027_o0",
+    "D_027_o1",
+    "D_029_o0",
+    "D_029_o1",
+    "D_030_o0",
+    "D_030_o1",
+    "D_031_o0",
+    "D_031_o1"
+   ]
+  },
+  {
+   "batch_index": 38,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_033_o0",
+    "D_033_o1",
+    "D_034_o0",
+    "D_034_o1",
+    "D_035_o0",
+    "D_035_o1",
+    "D_037_o0",
+    "D_037_o1"
+   ]
+  },
+  {
+   "batch_index": 39,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_038_o0",
+    "D_038_o1",
+    "D_039_o0",
+    "D_039_o1",
+    "D_041_o0",
+    "D_041_o1",
+    "D_042_o0",
+    "D_042_o1"
+   ]
+  },
+  {
+   "batch_index": 40,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_043_o0",
+    "D_043_o1",
+    "D_049_o0",
+    "D_049_o1",
+    "D_051_o0",
+    "D_051_o1",
+    "D_053_o0",
+    "D_053_o1"
+   ]
+  },
+  {
+   "batch_index": 41,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_061_o0",
+    "D_061_o1",
+    "D_062_o0",
+    "D_062_o1",
+    "D_066_o0",
+    "D_066_o1",
+    "D_068_o0",
+    "D_068_o1"
+   ]
+  },
+  {
+   "batch_index": 42,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_069_o0",
+    "D_069_o1",
+    "D_070_o0",
+    "D_070_o1",
+    "D_074_o0",
+    "D_074_o1",
+    "D_075_o0",
+    "D_075_o1"
+   ]
+  },
+  {
+   "batch_index": 43,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_077_o0",
+    "D_077_o1",
+    "D_078_o0",
+    "D_078_o1",
+    "D_079_o0",
+    "D_079_o1",
+    "D_080_o0",
+    "D_080_o1"
+   ]
+  },
+  {
+   "batch_index": 44,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_086_o0",
+    "D_086_o1",
+    "D_087_o0",
+    "D_087_o1",
+    "D_089_o0",
+    "D_089_o1",
+    "D_094_o0",
+    "D_094_o1"
+   ]
+  },
+  {
+   "batch_index": 45,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_095_o0",
+    "D_095_o1",
+    "D_099_o0",
+    "D_099_o1",
+    "D_101_o0",
+    "D_101_o1",
+    "D_102_o0",
+    "D_102_o1"
+   ]
+  },
+  {
+   "batch_index": 46,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_104_o0",
+    "D_104_o1",
+    "D_105_o0",
+    "D_105_o1",
+    "D_106_o0",
+    "D_106_o1",
+    "D_107_o0",
+    "D_107_o1"
+   ]
+  },
+  {
+   "batch_index": 47,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_108_o0",
+    "D_108_o1",
+    "D_109_o0",
+    "D_109_o1",
+    "D_110_o0",
+    "D_110_o1",
+    "D_111_o0",
+    "D_111_o1"
+   ]
+  },
+  {
+   "batch_index": 48,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_112_o0",
+    "D_112_o1",
+    "D_121_o0",
+    "D_121_o1",
+    "D_128_o0",
+    "D_128_o1",
+    "D_129_o0",
+    "D_129_o1"
+   ]
+  },
+  {
+   "batch_index": 49,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_133_o0",
+    "D_133_o1",
+    "D_135_o0",
+    "D_135_o1",
+    "D_139_o0",
+    "D_139_o1",
+    "D_140_o0",
+    "D_140_o1"
+   ]
+  },
+  {
+   "batch_index": 50,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_141_o0",
+    "D_141_o1",
+    "D_142_o0",
+    "D_142_o1",
+    "D_143_o0",
+    "D_143_o1",
+    "D_144_o0",
+    "D_144_o1"
+   ]
+  },
+  {
+   "batch_index": 51,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_145_o0",
+    "D_145_o1",
+    "D_147_o0",
+    "D_147_o1",
+    "D_148_o0",
+    "D_148_o1",
+    "D_149_o0",
+    "D_149_o1"
+   ]
+  },
+  {
+   "batch_index": 52,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_154_o0",
+    "D_154_o1",
+    "D_155_o0",
+    "D_155_o1",
+    "D_157_o0",
+    "D_157_o1",
+    "D_158_o0",
+    "D_158_o1"
+   ]
+  },
+  {
+   "batch_index": 53,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_160_o0",
+    "D_160_o1",
+    "D_161_o0",
+    "D_161_o1",
+    "D_164_o0",
+    "D_164_o1",
+    "D_165_o0",
+    "D_165_o1"
+   ]
+  },
+  {
+   "batch_index": 54,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_169_o0",
+    "D_169_o1",
+    "D_172_o0",
+    "D_172_o1",
+    "D_173_o0",
+    "D_173_o1",
+    "D_174_o0",
+    "D_174_o1"
+   ]
+  },
+  {
+   "batch_index": 55,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_176_o0",
+    "D_176_o1",
+    "D_178_o0",
+    "D_178_o1",
+    "D_180_o0",
+    "D_180_o1",
+    "D_181_o0",
+    "D_181_o1"
+   ]
+  },
+  {
+   "batch_index": 56,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_183_o0",
+    "D_183_o1",
+    "D_185_o0",
+    "D_185_o1",
+    "D_189_o0",
+    "D_189_o1",
+    "D_190_o0",
+    "D_190_o1"
+   ]
+  },
+  {
+   "batch_index": 57,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_192_o0",
+    "D_192_o1",
+    "D_195_o0",
+    "D_195_o1",
+    "D_196_o0",
+    "D_196_o1",
+    "D_198_o0",
+    "D_198_o1"
+   ]
+  },
+  {
+   "batch_index": 58,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_200_o0",
+    "D_200_o1",
+    "D_202_o0",
+    "D_202_o1",
+    "D_203_o0",
+    "D_203_o1",
+    "D_204_o0",
+    "D_204_o1"
+   ]
+  },
+  {
+   "batch_index": 59,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_205_o0",
+    "D_205_o1",
+    "D_207_o0",
+    "D_207_o1",
+    "D_210_o0",
+    "D_210_o1",
+    "D_211_o0",
+    "D_211_o1"
+   ]
+  },
+  {
+   "batch_index": 60,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_218_o0",
+    "D_218_o1",
+    "D_219_o0",
+    "D_219_o1",
+    "D_221_o0",
+    "D_221_o1",
+    "D_223_o0",
+    "D_223_o1"
+   ]
+  },
+  {
+   "batch_index": 61,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_225_o0",
+    "D_225_o1",
+    "D_227_o0",
+    "D_227_o1",
+    "D_229_o0",
+    "D_229_o1",
+    "D_232_o0",
+    "D_232_o1"
+   ]
+  },
+  {
+   "batch_index": 62,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_233_o0",
+    "D_233_o1",
+    "D_234_o0",
+    "D_234_o1",
+    "D_237_o0",
+    "D_237_o1",
+    "D_239_o0",
+    "D_239_o1"
+   ]
+  },
+  {
+   "batch_index": 63,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_240_o0",
+    "D_240_o1",
+    "D_241_o0",
+    "D_241_o1",
+    "D_243_o0",
+    "D_243_o1",
+    "D_250_o0",
+    "D_250_o1"
+   ]
+  },
+  {
+   "batch_index": 64,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_252_o0",
+    "D_252_o1",
+    "D_254_o0",
+    "D_254_o1",
+    "D_255_o0",
+    "D_255_o1",
+    "D_257_o0",
+    "D_257_o1"
+   ]
+  },
+  {
+   "batch_index": 65,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_260_o0",
+    "D_260_o1",
+    "D_261_o0",
+    "D_261_o1",
+    "D_263_o0",
+    "D_263_o1",
+    "D_271_o0",
+    "D_271_o1"
+   ]
+  },
+  {
+   "batch_index": 66,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_273_o0",
+    "D_273_o1",
+    "D_274_o0",
+    "D_274_o1",
+    "D_277_o0",
+    "D_277_o1",
+    "D_278_o0",
+    "D_278_o1"
+   ]
+  },
+  {
+   "batch_index": 67,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_279_o0",
+    "D_279_o1",
+    "D_282_o0",
+    "D_282_o1",
+    "D_286_o0",
+    "D_286_o1",
+    "D_287_o0",
+    "D_287_o1"
+   ]
+  },
+  {
+   "batch_index": 68,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_290_o0",
+    "D_290_o1",
+    "D_291_o0",
+    "D_291_o1",
+    "D_294_o0",
+    "D_294_o1",
+    "D_295_o0",
+    "D_295_o1"
+   ]
+  },
+  {
+   "batch_index": 69,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_296_o0",
+    "D_296_o1",
+    "D_298_o0",
+    "D_298_o1",
+    "D_299_o0",
+    "D_299_o1",
+    "D_301_o0",
+    "D_301_o1"
+   ]
+  },
+  {
+   "batch_index": 70,
+   "component": "D",
+   "seed": 0,
+   "max_new_tokens": 4000,
+   "ids": [
+    "D_303_o0",
+    "D_303_o1",
+    "D_304_o0",
+    "D_304_o1"
+   ]
+  },
+  {
+   "batch_index": 71,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_00",
+    "E_01",
+    "E_02",
+    "E_03",
+    "E_04",
+    "E_05",
+    "E_06",
+    "E_07"
+   ]
+  },
+  {
+   "batch_index": 72,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_08",
+    "E_09",
+    "E_10",
+    "E_11",
+    "E_12",
+    "E_13",
+    "E_14",
+    "E_15"
+   ]
+  },
+  {
+   "batch_index": 73,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_16",
+    "E_17",
+    "E_18",
+    "E_19",
+    "E_20",
+    "E_21",
+    "E_22",
+    "E_23"
+   ]
+  },
+  {
+   "batch_index": 74,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_24",
+    "E_25",
+    "E_26",
+    "E_27",
+    "E_28",
+    "E_29",
+    "E_30",
+    "E_31"
+   ]
+  },
+  {
+   "batch_index": 75,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_32",
+    "E_33",
+    "E_34",
+    "E_35",
+    "E_36",
+    "E_37",
+    "E_38",
+    "E_39"
+   ]
+  },
+  {
+   "batch_index": 76,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_40",
+    "E_41",
+    "E_42",
+    "E_43",
+    "E_44",
+    "E_45",
+    "E_46",
+    "E_47"
+   ]
+  },
+  {
+   "batch_index": 77,
+   "component": "E",
+   "seed": 0,
+   "max_new_tokens": 16000,
+   "ids": [
+    "E_48",
+    "E_49"
+   ]
+  }
+ ]
+}

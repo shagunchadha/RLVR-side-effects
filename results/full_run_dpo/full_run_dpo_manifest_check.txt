@@ -1,0 +1,16 @@
+items/items_A_selfreport.json: OK
+items/items_B_sycophancy.json: OK
+items/items_C_calibration.json: OK
+items/items_D_csqa.json: OK
+items/items_E_math.json: OK
+items/items_E_lengthcheck.json: OK
+items/run_order.json: OK
+items/answer_parser.py: OK
+items/prompts.py: OK
+items/grading.py: OK
+scripts/full_run.py: OK
+requirements_pinned.txt: OK
+items/csqa_review.csv: OK
+items/csqa_review_provenance.json: OK
+items/csqa_review_hashes.json: OK
+items/contamination_flags.json: OK
