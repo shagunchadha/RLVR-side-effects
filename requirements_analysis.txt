@@ -1,0 +1,31 @@
+# ANALYSIS environment (scripts/analyze.py, scripts/metrics.py, scripts/stats.py, tests/test_*.py, tests/coverage_study.py).
+#
+# This is a SEPARATE environment from requirements_pinned.txt. That file governs generation, is part of the frozen
+# manifest (items/MANIFEST.sha256) and must not be touched. Nothing here is used to generate model outputs, and the
+# numpy pinned there (2.5.4) is NOT the numpy listed below: the analysis uses only long-stable numpy functions.
+#
+# Interpreter and platform the 63-test suite and the pilot smoke runs were executed on:
+#   Python 3.13.9 (Anaconda, packaged Oct 21 2025, MSC v.1929 64 bit AMD64), Windows 10 (10.0.19045)
+#
+# Everything the analysis imports, plus the packages those pull in at runtime on that interpreter, pinned exactly.
+# Standard-library imports (argparse, csv, datetime, hashlib, importlib, itertools, json, math, pathlib, subprocess,
+# sys, zlib) are covered by the interpreter version above. scipy is deliberately NOT used: the Wilcoxon signed-rank
+# test, McNemar, the permutation test and Holm are hand-implemented in scripts/stats.py.
+numpy==2.3.5
+matplotlib==3.10.6
+pytest==8.4.2
+# matplotlib dependencies
+contourpy==1.3.3
+cycler==0.11.0
+fonttools==4.60.1
+kiwisolver==1.4.9
+packaging==25.0
+pillow==12.0.0
+pyparsing==3.2.5
+python-dateutil==2.9.0.post0
+six==1.17.0
+# pytest dependencies
+colorama==0.4.6
+iniconfig==2.1.0
+pluggy==1.5.0
+pygments==2.19.2

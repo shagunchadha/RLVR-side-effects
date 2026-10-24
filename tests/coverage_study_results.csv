@@ -1,0 +1,16 @@
+configuration,repeats,bootstrap_resamples,true_effect,coverage,wilson_lo,wilson_hi,verdict (>= 0.92)
+"trait wordings n=6, shared wording effects",3000,2000,1.0000,0.973,0.967,0.978,pass
+"trait wordings n=6, wording x checkpoint interaction sd 0.3",3000,2000,1.0000,0.922,0.912,0.931,pass
+"trait wordings n=6, interaction 0.3 + 15% invalid cells",3000,2000,1.0000,0.919,0.909,0.929,FAIL
+"binary items n=30 (B caving: the 30 wrong-user items), p=.60 vs ~.45",3000,2000,0.1499,0.932,0.922,0.940,pass
+"binary items n=40 (B incl. controls), p=.60 vs ~.45",3000,2000,0.1499,0.928,0.918,0.936,pass
+"binary items n=50 (E MATH), p=.60 vs ~.45",3000,2000,0.1499,0.937,0.927,0.945,pass
+"binary items n=50 (E MATH), ceiling p=.95 vs ~.90",3000,2000,0.0727,0.924,0.914,0.933,pass
+"binary items n=80 (C accuracy), p=.60 vs ~.45",3000,2000,0.1499,0.937,0.927,0.945,pass
+"binary items n=150, p=.60 vs ~.45",3000,2000,0.1499,0.946,0.937,0.954,pass
+"D order-averaged score n=150 ({0,.5,1})",3000,2000,0.0950,0.950,0.942,0.957,pass
+"calibration gap n=80 (continuous, paired)",3000,2000,0.0187,0.945,0.936,0.952,pass
+"length units n=48 (A), median paired diff, x2",3000,2000,476.2426,0.944,0.935,0.951,pass
+"length units n=48 (A), median paired diff, null",3000,2000,-0.1303,0.946,0.937,0.953,pass
+"length units n=150 (D), median paired diff, null",3000,2000,-0.0837,0.952,0.944,0.959,pass
+"length units n=150 (D), median paired diff, +10%",3000,2000,46.2199,0.944,0.936,0.952,pass
