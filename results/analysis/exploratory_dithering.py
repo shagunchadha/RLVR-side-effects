@@ -244,6 +244,9 @@ def per_generation(rows, items):
             g.update(dither(think, ans))
             g.update(repetition(think))
             g.update(two_instruction(think, post))
+            g["n_tokens"] = r["n_tokens"]
+            g["switches_per_1k"] = g["switches"] / r["n_tokens"] * 1000       # addendum (Oct 25): length-normalised
+            g["n_cand_per_1k"] = g["n_cand"] / r["n_tokens"] * 1000
             lst.append(g)
         out[cp] = lst
     return out
@@ -503,6 +506,48 @@ def report(gens, items):
       f"Directions opposite as specified: {dir_ok}; interval requirement met on (a) and (b): {req_ok}.")
     w()
     w("DPO - SFT has no pre-specified expectation; its rows are in the tables above, descriptive only.")
+    w()
+
+    # ---- addendum: length-normalised dithering
+    w("## Addendum (Oct 25, requested after the results above were seen): dithering normalised by length")
+    w()
+    w("Same exploratory status; not in the registered specification, added at the author's request after seeing measure 1. "
+      "Per generation: switches (resp. candidate mentions) divided by the generation's `n_tokens` (all generated tokens), times 1000. "
+      "Same wording-level pairing (n = 48, mean over the wording's valid seeds), same primary statistic (median of paired differences), "
+      "same bootstrap (10,000 resamples, seed 20261024, same per-call generator) and Wilcoxon test as measure 1. "
+      "The question: if RLVR's switches per 1000 tokens is also higher than DPO's, RLVR churns more densely; if it is the same or lower, "
+      "'RLVR switches more' is 'RLVR writes more' restated.")
+    w()
+    w("| quantity | comparison | n wordings | median diff [95% CI] | mean diff [95% CI] | CI excl 0 | Wilcoxon p (branch) |")
+    w("|---|---|---|---|---|---|---|")
+    NR = {}
+    for name, key in [("switches per 1000 generated tokens", "switches_per_1k"), ("candidate mentions per 1000 generated tokens", "n_cand_per_1k")]:
+        wv = wording_values(gens, items, key)
+        for ci, (a_, b_) in enumerate([("rlvr", "dpo"), ("dpo", "sft")]):
+            r_ = compare(wv, a_, b_, key, "median")
+            NR[(key, f"{a_}-{b_}")] = r_
+            w(f"| {name if ci == 0 else ''} | {a_.upper()}-{b_.upper()} | {r_['n']} | {fmt(r_['median'])} [{fmt(r_['median_ci'][0])}, {fmt(r_['median_ci'][1])}] | "
+              f"{fmt(r_['mean'])} [{fmt(r_['mean_ci'][0])}, {fmt(r_['mean_ci'][1])}] | {'yes' if r_['excl0'] else 'no'} | {fmt(r_['p'], 4)} ({r_['branch']}) |")
+    w()
+    w("| quantity (per generation) | SFT median (mean) | DPO median (mean) | RLVR median (mean) |")
+    w("|---|---|---|---|")
+    for name, key in [("generated tokens", "n_tokens"), ("switches per 1000 tokens", "switches_per_1k"), ("candidate mentions per 1000 tokens", "n_cand_per_1k")]:
+        cells = []
+        for cp in CK:
+            v = [g[key] for g in gens[cp]]
+            cells.append(f"{fmt(float(np.median(v)), 2)} ({fmt(float(np.mean(v)), 2)})")
+        w(f"| {name} | " + " | ".join(cells) + " |")
+    w()
+    sw = NR[("switches_per_1k", "rlvr-dpo")]
+    cd = NR[("n_cand_per_1k", "rlvr-dpo")]
+    if sw["pv"] > 0 and sw["excl0"]:
+        verdict = "RLVR's switches per 1000 tokens IS higher than DPO's (interval excludes zero): RLVR churns more densely, so the vacillation is not just 'RLVR writes more'."
+    elif sw["pv"] < 0 and sw["excl0"]:
+        verdict = "RLVR's switches per 1000 tokens is LOWER than DPO's (interval excludes zero): RLVR switches less densely; 'RLVR switches more' is 'RLVR writes more' restated."
+    else:
+        verdict = "RLVR's switches per 1000 tokens is NOT distinguishable from DPO's (interval includes zero): 'RLVR switches more' is 'RLVR writes more' restated."
+    w(f"**Verdict (switches per 1000 tokens, RLVR - DPO: median diff {fmt(sw['pv'])} [{fmt(sw['pci'][0])}, {fmt(sw['pci'][1])}], p {fmt(sw['p'], 4)}): {verdict}** "
+      f"Candidate mentions per 1000 tokens, RLVR - DPO: {fmt(cd['pv'])} [{fmt(cd['pci'][0])}, {fmt(cd['pci'][1])}], p {fmt(cd['p'], 4)}.")
     w()
     REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", REPORT)

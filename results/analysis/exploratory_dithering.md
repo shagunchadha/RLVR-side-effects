@@ -113,3 +113,22 @@ The format check (3c) is a deterministic string rule; no hand error rate is clai
 
 DPO - SFT has no pre-specified expectation; its rows are in the tables above, descriptive only.
 
+## Addendum (Oct 25, requested after the results above were seen): dithering normalised by length
+
+Same exploratory status; not in the registered specification, added at the author's request after seeing measure 1. Per generation: switches (resp. candidate mentions) divided by the generation's `n_tokens` (all generated tokens), times 1000. Same wording-level pairing (n = 48, mean over the wording's valid seeds), same primary statistic (median of paired differences), same bootstrap (10,000 resamples, seed 20261024, same per-call generator) and Wilcoxon test as measure 1. The question: if RLVR's switches per 1000 tokens is also higher than DPO's, RLVR churns more densely; if it is the same or lower, 'RLVR switches more' is 'RLVR writes more' restated.
+
+| quantity | comparison | n wordings | median diff [95% CI] | mean diff [95% CI] | CI excl 0 | Wilcoxon p (branch) |
+|---|---|---|---|---|---|---|
+| switches per 1000 generated tokens | RLVR-DPO | 48 | 2.158 [0.838, 3.822] | 2.796 [1.642, 4.030] | yes | 0.0001 (normal) |
+|  | DPO-SFT | 48 | -3.599 [-4.892, -1.381] | -3.026 [-4.187, -1.862] | yes | 0.0000 (normal) |
+| candidate mentions per 1000 generated tokens | RLVR-DPO | 48 | 5.324 [2.850, 7.202] | 5.631 [4.251, 7.041] | yes | 0.0000 (normal) |
+|  | DPO-SFT | 48 | -7.505 [-8.341, -4.405] | -6.298 [-7.601, -4.983] | yes | 0.0000 (normal) |
+
+| quantity (per generation) | SFT median (mean) | DPO median (mean) | RLVR median (mean) |
+|---|---|---|---|
+| generated tokens | 518.00 (633.77) | 541.00 (582.70) | 951.00 (1255.88) |
+| switches per 1000 tokens | 9.22 (9.85) | 6.58 (6.73) | 9.27 (9.46) |
+| candidate mentions per 1000 tokens | 16.45 (17.70) | 10.87 (11.25) | 16.22 (16.79) |
+
+**Verdict (switches per 1000 tokens, RLVR - DPO: median diff 2.158 [0.838, 3.822], p 0.0001): RLVR's switches per 1000 tokens IS higher than DPO's (interval excludes zero): RLVR churns more densely, so the vacillation is not just 'RLVR writes more'.** Candidate mentions per 1000 tokens, RLVR - DPO: 5.324 [2.850, 7.202], p 0.0000.
+
