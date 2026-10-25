@@ -257,3 +257,52 @@ Limitations: n = 8 traits; 6 wordings and at most 3 seeds per wording, so each f
 
 **Dependence note: the trait nulls and the instability finding are not independent.** The pre-registered trait signal rule uses the larger of the two floors, max(s(t,RLVR), s(t,DPO)). RLVR's floor is strictly the larger on 6 of 8 traits and equal to DPO's (to 3 decimals) on 1, so on 7 of 8 traits RLVR's own seed-to-seed instability set (or co-set) the band against which the RLVR - DPO trait differences were judged (an earlier statement in the chat said 7 of 8 'set by RLVR'; that count includes the tie). The trait nulls were tested against a bar raised by the instability measured here, and the two should not be presented as independent evidence.
 
+## Addendum 5 (Oct 25, requested after the results above were seen): how precisely is each noise floor, and each trait band, estimated?
+
+Same exploratory status. **Nothing is re-scored.** The trait signal rule was pre-registered (plan s4, s12.7); the verdicts in the main analysis stand as they are (humility crossed its band and remains a miss). This addendum is a caveat on the precision of the thresholds, applied to all 8 traits equally, and a limitation of the design found by the analysis: with 6 wordings and at most 3 seeds per wording, the floors that define the bands are themselves imprecise.
+
+Method: the nested bootstrap of addendum 4, with the same draws (wordings resampled within traits with one draw shared by the checkpoints, valid seeds resampled within each drawn wording per checkpoint, 10,000 resamples, seed 20261024; resampled variances bias-corrected by m/(m-1); uncorrected intervals shown for sensitivity). The band for a trait is max(s(t,RLVR), s(t,DPO)), recomputed on each resample.
+
+### Noise floor s(t,k) with its 95% interval, all traits and checkpoints
+
+| trait | SFT floor [95% CI] | DPO floor [95% CI] | RLVR floor [95% CI] |
+|---|---|---|---|
+| approval | 0.726 [0.408, 1.041] | 0.236 [0.000, 0.408] | 0.577 [0.000, 0.957] |
+| assertiveness | 0.577 [0.408, 0.707] | 0.333 [0.000, 0.577] | 0.471 [0.000, 0.816] |
+| competitiveness | 0.850 [0.408, 1.323] | 0.408 [0.000, 0.816] | 0.799 [0.408, 1.118] |
+| composure | 1.080 [0.500, 1.555] | 0.333 [0.000, 0.577] | 0.527 [0.000, 0.913] |
+| confidence | 0.527 [0.289, 0.707] | 0.471 [0.000, 0.645] | 0.471 [0.000, 0.645] |
+| hedging | 0.782 [0.000, 1.291] | 0.408 [0.000, 0.577] | 0.667 [0.289, 1.000] |
+| humility | 0.745 [0.000, 1.118] | 0.624 [0.000, 0.957] | 0.601 [0.000, 1.000] |
+| risk | 0.707 [0.000, 1.225] | 0.816 [0.408, 1.155] | 0.882 [0.408, 1.323] |
+
+Uncorrected (sensitivity) intervals:
+
+| trait | SFT | DPO | RLVR |
+|---|---|---|---|
+| approval | [0.333, 0.833] | [0.000, 0.333] | [0.000, 0.782] |
+| assertiveness | [0.333, 0.577] | [0.000, 0.471] | [0.000, 0.667] |
+| competitiveness | [0.333, 1.080] | [0.000, 0.667] | [0.333, 0.898] |
+| composure | [0.408, 1.269] | [0.000, 0.471] | [0.000, 0.745] |
+| confidence | [0.236, 0.577] | [0.000, 0.527] | [0.000, 0.527] |
+| hedging | [0.000, 1.054] | [0.000, 0.471] | [0.236, 0.816] |
+| humility | [0.000, 0.913] | [0.000, 0.782] | [0.000, 0.782] |
+| risk | [0.000, 0.882] | [0.333, 0.943] | [0.333, 1.080] |
+
+### Pre-registered band (RLVR - DPO) with its interval, next to the observed difference
+
+Observed difference and status are the committed values in `table3_comparison.csv` (unchanged). The rule compares |difference| with the band (and also requires the difference's own interval to exclude zero). 'Position' says where |difference| falls relative to the band's interval; 'share of band resamples below |difference|' is the proportion of bootstrap bands that |difference| would have exceeded. These describe precision only; they are not a re-scoring.
+
+| trait | band = max floor (set by) | band 95% CI | observed RLVR-DPO diff [diff's 95% CI] | abs(diff) | position of abs(diff) vs band CI | share of band resamples below abs(diff) | committed status / score |
+|---|---|---|---|---|---|---|---|
+| approval | 0.577 (RLVR) | [0.000, 0.957] | -0.111 [-0.500, +0.167] | 0.111 | inside the interval | 0.063 | no meaningful change / hit |
+| assertiveness | 0.471 (RLVR) | [0.000, 0.816] | +0.278 [-0.389, +0.833] | 0.278 | inside the interval | 0.162 | inconclusive / hit |
+| competitiveness | 0.799 (RLVR) | [0.408, 1.118] | -0.417 [-0.833, -0.028] | 0.417 | inside the interval | 0.025 | inconclusive / hit |
+| composure | 0.527 (RLVR) | [0.000, 0.913] | +0.222 [-0.222, +0.667] | 0.222 | inside the interval | 0.028 | inconclusive / hit |
+| confidence | 0.471 (tie) | [0.408, 0.645] | -0.167 [-0.556, +0.278] | 0.167 | below the interval | 0.000 | inconclusive / hit |
+| hedging | 0.667 (RLVR) | [0.408, 1.000] | +0.278 [-0.444, +1.167] | 0.278 | below the interval | 0.001 | inconclusive / hit |
+| humility | 0.624 (DPO) | [0.289, 1.041] | +0.639 [+0.194, +1.139] | 0.639 | inside the interval | 0.276 | signal / miss |
+| risk | 0.882 (RLVR) | [0.577, 1.323] | -0.278 [-0.944, +0.333] | 0.278 | below the interval | 0.000 | inconclusive / hit |
+
+Reading: wherever |difference| lies inside the band's interval, the comparison with the threshold is not precisely resolved: a different draw of wordings and seeds could have put the band on the other side of the observed difference. This holds for every trait in that position, in both directions (signal and no-signal), and it is why the verdicts are reported with this caveat rather than changed. Limitation of the design: the bands rest on 6 wordings x at most 3 seeds per trait and checkpoint; more seeds per wording would narrow them.
+

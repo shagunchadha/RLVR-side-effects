@@ -611,6 +611,7 @@ def report(gens, items):
     w()
     addendum_length_vs_rating(gens, items, w)
     addendum_noise_floor_test(gens, items, w)
+    addendum_floor_precision(gens, items, w)
     REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", REPORT)
 
@@ -806,6 +807,98 @@ def _floors(a):
     return np.array(out)
 
 
+def _nested_floors(A):
+    """Nested bootstrap of the floors (addenda 4 and 5 use the same draws): wordings resampled within traits (one draw shared by the
+    three checkpoints), valid seeds resampled within each drawn wording independently per checkpoint. Returns ({cp: (B, T) bias-corrected
+    floors}, {cp: (B, T) uncorrected floors}); bias correction multiplies each resampled ddof=1 variance by m/(m-1)."""
+    rng = make_rng("floor|b|nested")
+    B = N_BOOT
+    T, Wn, S = A["sft"].shape
+    widx = rng.integers(0, Wn, size=(B, T, Wn))
+    FB, FBu = {}, {}
+    for cp in CK:
+        pad = np.zeros_like(A[cp])
+        cnt = np.isfinite(A[cp]).sum(axis=2)
+        for t in range(T):
+            for wi in range(Wn):
+                v = A[cp][t, wi][np.isfinite(A[cp][t, wi])]
+                pad[t, wi, :len(v)] = v
+        m = cnt[np.arange(T)[None, :, None], widx]                                    # (B, T, W) valid seeds of each drawn wording
+        u = rng.random((B, T, Wn, S))
+        pick = np.minimum((u * m[..., None]).astype(int), np.maximum(m[..., None] - 1, 0))
+        x = pad[np.arange(T)[None, :, None, None], widx[..., None], pick]             # (B, T, W, S)
+        use = np.arange(S)[None, None, None, :] < m[..., None]
+        mean = np.where(use, x, 0).sum(axis=3, keepdims=True) / np.maximum(m, 1)[..., None]
+        ss = np.where(use, (x - mean) ** 2, 0).sum(axis=3)
+        var = np.where(m >= 2, ss / np.maximum(m - 1, 1), np.nan)
+        corr = np.where(m >= 2, m / np.maximum(m - 1, 1), np.nan)
+        with np.errstate(invalid="ignore"):
+            FB[cp] = np.sqrt(np.nanmean(var * corr, axis=2))
+            FBu[cp] = np.sqrt(np.nanmean(var, axis=2))
+    return FB, FBu
+
+
+def addendum_floor_precision(gens, items, w):
+    traits, A = None, {}
+    for cp in CK:
+        traits, A[cp] = _floor_array(gens, items, cp)
+    F = {cp: _floors(A[cp]) for cp in CK}
+    FB, FBu = _nested_floors(A)
+    t3 = {r["probe"]: r for r in csv_rows(AN / "table3_comparison.csv") if r["comparison"] == "RLVR-DPO" and r["probe"].startswith("trait:")}
+    w("## Addendum 5 (Oct 25, requested after the results above were seen): how precisely is each noise floor, and each trait band, estimated?")
+    w()
+    w("Same exploratory status. **Nothing is re-scored.** The trait signal rule was pre-registered (plan s4, s12.7); the verdicts in the main analysis stand as they are "
+      "(humility crossed its band and remains a miss). This addendum is a caveat on the precision of the thresholds, applied to all 8 traits equally, and a limitation of the design "
+      "found by the analysis: with 6 wordings and at most 3 seeds per wording, the floors that define the bands are themselves imprecise.")
+    w()
+    w("Method: the nested bootstrap of addendum 4, with the same draws (wordings resampled within traits with one draw shared by the checkpoints, valid seeds resampled within each drawn "
+      "wording per checkpoint, 10,000 resamples, seed 20261024; resampled variances bias-corrected by m/(m-1); uncorrected intervals shown for sensitivity). "
+      "The band for a trait is max(s(t,RLVR), s(t,DPO)), recomputed on each resample.")
+    w()
+    w("### Noise floor s(t,k) with its 95% interval, all traits and checkpoints")
+    w()
+    w("| trait | SFT floor [95% CI] | DPO floor [95% CI] | RLVR floor [95% CI] |")
+    w("|---|---|---|---|")
+    for i, t in enumerate(traits):
+        cells = []
+        for cp in CK:
+            ci = percentile_ci(FB[cp][:, i])
+            cells.append(f"{F[cp][i]:.3f} [{ci[0]:.3f}, {ci[1]:.3f}]")
+        w(f"| {t} | " + " | ".join(cells) + " |")
+    w()
+    w("Uncorrected (sensitivity) intervals:")
+    w()
+    w("| trait | SFT | DPO | RLVR |")
+    w("|---|---|---|---|")
+    for i, t in enumerate(traits):
+        w(f"| {t} | " + " | ".join("[{:.3f}, {:.3f}]".format(*percentile_ci(FBu[cp][:, i])) for cp in CK) + " |")
+    w()
+    w("### Pre-registered band (RLVR - DPO) with its interval, next to the observed difference")
+    w()
+    w("Observed difference and status are the committed values in `table3_comparison.csv` (unchanged). The rule compares |difference| with the band (and also requires the "
+      "difference's own interval to exclude zero). 'Position' says where |difference| falls relative to the band's interval; 'share of band resamples below |difference|' is the "
+      "proportion of bootstrap bands that |difference| would have exceeded. These describe precision only; they are not a re-scoring.")
+    w()
+    w("| trait | band = max floor (set by) | band 95% CI | observed RLVR-DPO diff [diff's 95% CI] | abs(diff) | position of abs(diff) vs band CI | share of band resamples below abs(diff) | committed status / score |")
+    w("|---|---|---|---|---|---|---|---|")
+    for i, t in enumerate(traits):
+        band = max(F["rlvr"][i], F["dpo"][i])
+        by = "RLVR" if round(F["rlvr"][i], 3) > round(F["dpo"][i], 3) else "DPO" if round(F["dpo"][i], 3) > round(F["rlvr"][i], 3) else "tie"
+        bb = np.maximum(FB["rlvr"][:, i], FB["dpo"][:, i])
+        ci = percentile_ci(bb)
+        r = t3["trait:" + t]
+        d = float(r["diff"])
+        ad = abs(d)
+        pos = "below the interval" if ad < ci[0] else "above the interval" if ad > ci[1] else "inside the interval"
+        share = float(np.mean(bb[np.isfinite(bb)] < ad))
+        w(f"| {t} | {band:.3f} ({by}) | [{ci[0]:.3f}, {ci[1]:.3f}] | {d:+.3f} [{float(r['ci_lo']):+.3f}, {float(r['ci_hi']):+.3f}] | {ad:.3f} | {pos} | {share:.3f} | {r['status']} / {r['score']} |")
+    w()
+    w("Reading: wherever |difference| lies inside the band's interval, the comparison with the threshold is not precisely resolved: a different draw of wordings and seeds could have put "
+      "the band on the other side of the observed difference. This holds for every trait in that position, in both directions (signal and no-signal), and it is why the verdicts are reported "
+      "with this caveat rather than changed. Limitation of the design: the bands rest on 6 wordings x at most 3 seeds per trait and checkpoint; more seeds per wording would narrow them.")
+    w()
+
+
 def addendum_noise_floor_test(gens, items, w):
     traits, A = None, {}
     for cp in CK:
@@ -861,30 +954,8 @@ def addendum_noise_floor_test(gens, items, w):
       "variance is multiplied by m/(m-1) (m = the wording's number of valid seeds); the uncorrected version is shown as a sensitivity column. "
       "Two-sided bootstrap p = twice the share of resamples on the opposite side of zero (plan s5 convention).")
     w()
-    rng = make_rng("floor|b|nested")
-    B = N_BOOT
-    T, Wn, S = A["sft"].shape
-    widx = rng.integers(0, Wn, size=(B, T, Wn))
-    FB, FBu = {}, {}
-    for cp in CK:
-        pad = np.zeros_like(A[cp])
-        cnt = np.isfinite(A[cp]).sum(axis=2)
-        for t in range(T):
-            for wi in range(Wn):
-                v = A[cp][t, wi][np.isfinite(A[cp][t, wi])]
-                pad[t, wi, :len(v)] = v
-        m = cnt[np.arange(T)[None, :, None], widx]                                    # (B, T, W) valid seeds of each drawn wording
-        u = rng.random((B, T, Wn, S))
-        pick = np.minimum((u * m[..., None]).astype(int), np.maximum(m[..., None] - 1, 0))
-        x = pad[np.arange(T)[None, :, None, None], widx[..., None], pick]             # (B, T, W, S)
-        use = np.arange(S)[None, None, None, :] < m[..., None]
-        mean = np.where(use, x, 0).sum(axis=3, keepdims=True) / np.maximum(m, 1)[..., None]
-        ss = np.where(use, (x - mean) ** 2, 0).sum(axis=3)
-        var = np.where(m >= 2, ss / np.maximum(m - 1, 1), np.nan)
-        corr = np.where(m >= 2, m / np.maximum(m - 1, 1), np.nan)
-        with np.errstate(invalid="ignore"):
-            FB[cp] = np.sqrt(np.nanmean(var * corr, axis=2))
-            FBu[cp] = np.sqrt(np.nanmean(var, axis=2))
+    FB, FBu = _nested_floors(A)
+    T = A["sft"].shape[0]
     w("| comparison | observed mean diff | nested 95% CI (bias-corrected, primary) | CI excl 0 | bootstrap p | traits whose own nested CI excludes 0 (first higher / first lower) | uncorrected nested 95% CI |")
     w("|---|---|---|---|---|---|---|")
     RB = {}
