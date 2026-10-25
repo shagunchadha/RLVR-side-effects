@@ -609,8 +609,160 @@ def report(gens, items):
         w(f"Candidate mentions, think-block {nm}: RLVR - DPO {fmt(r1['pv'])} [{fmt(r1['pci'][0])}, {fmt(r1['pci'][1])}], p {fmt(r1['p'], 4)}; "
           f"RLVR - SFT {fmt(r2['pv'])} [{fmt(r2['pci'][0])}, {fmt(r2['pci'][1])}], p {fmt(r2['p'], 4)}.")
     w()
+    addendum_length_vs_rating(gens, items, w)
     REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", REPORT)
+
+
+# ======================================================================================== addendum 3: length vs rating within cells
+def _ranks(x):
+    return _average_ranks(np.asarray(x, float))
+
+
+def _pearson(x, y):
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    x, y = x - x.mean(), y - y.mean()
+    d = math.sqrt((x * x).sum() * (y * y).sum())
+    return float((x * y).sum() / d) if d > 0 else float("nan")
+
+
+def _binom_two_sided(k, n, p):
+    """Exact two-sided binomial p (sum of probabilities <= P(k)), no scipy."""
+    pk = [math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(n + 1)]
+    return float(min(1.0, sum(q for q in pk if q <= pk[k] * (1 + 1e-9))))
+
+
+def addendum_length_vs_rating(gens, items, w):
+    key_of = {it["id"]: it["key"] for it in items}
+    w("## Addendum 3 (Oct 25, requested after the results above were seen): does a longer generation give a different rating, within a checkpoint?")
+    w()
+    w("Same exploratory status (specified by the author after the main and exploratory results were seen; not in the registration). "
+      "Cells = (checkpoint, trait, wording) with all 3 seeds valid. Rating = the parsed ANSWER (1-5, as written); 'scored' = reverse-keyed so that higher = more of the trait. "
+      "Length = generated tokens (`n_tokens`).")
+    w()
+    w("Statistics (chosen when this addendum was written, before computing it):")
+    w("- **Naive pooled Spearman** (as requested): length vs rating over all generations in the cells, pooled within a checkpoint. It mixes between-cell differences "
+      "(some wordings are both longer and rated higher), so it is not a within-cell answer.")
+    w("- **Within-cell correlation (primary):** Pearson correlation, pooled over cells, of the within-cell length rank (1, 2, 3, centred) and the within-cell centred rating. "
+      "Only variation inside a cell contributes. p-value: permutation test shuffling the 3 lengths within every cell (10,000 permutations, seed 20261024 with the per-call generator); "
+      "95% interval: bootstrap over cells (10,000 resamples). The same permutation p is also given for the naive Spearman.")
+    w("- **Longest minus shortest:** per cell, rating of the longest seed minus rating of the shortest seed; mean over cells with bootstrap interval, Wilcoxon over cells.")
+    w("- **Odd-one-out:** cells where exactly two seeds agree and the third differs. Is the odd seed the longest, the middle or the shortest generation? "
+      "Under no coupling each is 1/3; exact two-sided binomial tests for 'longest' and for 'shortest' against 1/3. Cells with tied lengths are excluded from this count. "
+      "Cells where all three ratings differ have no odd one out and are counted separately.")
+    w()
+
+    def cells_for(cps):
+        out = []
+        for cp in cps:
+            by = collections.defaultdict(dict)
+            for g in gens[cp]:
+                if g["answer"] is not None:
+                    by[g["id"]][g["seed"]] = g
+            for wid, s in sorted(by.items()):
+                if len(s) == 3:
+                    gg = [s[k] for k in sorted(s)]
+                    out.append({"cp": cp, "id": wid, "len": [g["n_tokens"] for g in gg], "rating": [g["answer"] for g in gg],
+                                "scored": [g["answer"] if key_of[wid] == 1 else 6 - g["answer"] for g in gg]})
+        return out
+
+    def analyse(cells, label, field):
+        L_ = np.array([c["len"] for c in cells], float)
+        R_ = np.array([c[field] for c in cells], float)
+        lr = np.apply_along_axis(_ranks, 1, L_) - 2.0                      # within-cell length rank, centred
+        rc = R_ - R_.mean(axis=1, keepdims=True)                           # within-cell centred rating
+        within = _pearson(lr.ravel(), rc.ravel())
+        naive = _pearson(_ranks(L_.ravel()), _ranks(R_.ravel()))           # Spearman = Pearson of ranks
+        rng = make_rng(f"lenrating|{label}|{field}|perm")
+        n = len(cells)
+        perm_w, perm_n = np.empty(N_BOOT), np.empty(N_BOOT)
+        for b in range(N_BOOT):
+            p = np.argsort(rng.random((n, 3)), axis=1)
+            Lp = np.take_along_axis(L_, p, axis=1)
+            perm_w[b] = _pearson((np.take_along_axis(lr + 2.0, p, axis=1) - 2.0).ravel(), rc.ravel())
+            perm_n[b] = _pearson(_ranks(Lp.ravel()), _ranks(R_.ravel()))
+        p_w = float(np.mean(np.abs(np.nan_to_num(perm_w)) >= abs(within) - 1e-12)) if np.isfinite(within) else float("nan")
+        p_n = float(np.mean(np.abs(np.nan_to_num(perm_n)) >= abs(naive) - 1e-12))
+        idx = make_rng(f"lenrating|{label}|{field}|boot").integers(0, n, size=(N_BOOT, n))
+        bw = np.array([_pearson(lr[i].ravel(), rc[i].ravel()) for i in idx])
+        ci_w = percentile_ci(bw)
+        lo_i, hi_i = np.argmin(L_, axis=1), np.argmax(L_, axis=1)
+        d = R_[np.arange(n), hi_i] - R_[np.arange(n), lo_i]
+        ci_d = percentile_ci(bootstrap_paired_differences(d, lambda x: x.mean(axis=1), f"lenrating|{label}|{field}|lmS"))
+        wd = wilcoxon_detail(d)
+        return {"n_cells": n, "within": within, "ci_w": ci_w, "p_w": p_w, "naive": naive, "p_n": p_n,
+                "d_mean": float(d.mean()), "ci_d": ci_d, "p_d": wd["p"], "n_d_nonzero": int((d != 0).sum()),
+                "constant": int(np.all(R_ == R_[:, :1], axis=1).sum())}
+
+    def odd(cells):
+        res = collections.Counter()
+        for c in cells:
+            r, ln = c["rating"], c["len"]
+            cnt = collections.Counter(r)
+            if len(cnt) == 1:
+                res["all agree"] += 1
+                continue
+            if len(cnt) == 3:
+                res["all differ"] += 1
+                continue
+            if len(set(ln)) < 3:
+                res["tied lengths"] += 1
+                continue
+            o = [i for i in range(3) if cnt[r[i]] == 1][0]
+            rank = sorted(range(3), key=lambda i: ln[i]).index(o)
+            pos = ["shortest", "middle", "longest"][rank]
+            res[pos] += 1
+            pair = [r[i] for i in range(3) if i != o][0]
+            res[f"{pos}:{'higher' if r[o] > pair else 'lower'}"] += 1
+        return res
+
+    groups = [("SFT", ["sft"]), ("DPO", ["dpo"]), ("RLVR", ["rlvr"]), ("all three pooled", CK)]
+    w("### Correlation of length and rating")
+    w()
+    w("| checkpoint | rating | cells (3 valid seeds) | cells with constant rating | within-cell r [95% CI] | permutation p | naive pooled Spearman | permutation p (naive) | longest - shortest rating, mean [95% CI] | Wilcoxon p (non-zero cells) |")
+    w("|---|---|---|---|---|---|---|---|---|---|")
+    RES = {}
+    for name, cps in groups:
+        cells = cells_for(cps)
+        for field in ("rating", "scored"):
+            r_ = analyse(cells, name, field)
+            RES[(name, field)] = r_
+            w(f"| {name} | {field} | {r_['n_cells']} | {r_['constant']} | {fmt(r_['within'])} [{fmt(r_['ci_w'][0])}, {fmt(r_['ci_w'][1])}] | {fmt(r_['p_w'], 4)} | "
+              f"{fmt(r_['naive'])} | {fmt(r_['p_n'], 4)} | {fmt(r_['d_mean'])} [{fmt(r_['ci_d'][0])}, {fmt(r_['ci_d'][1])}] | {fmt(r_['p_d'], 4)} ({r_['n_d_nonzero']}) |")
+    w()
+    w("### Odd-one-out (rating as written)")
+    w()
+    w("| checkpoint | all 3 agree | all 3 differ | tied lengths (excluded) | odd = shortest | odd = middle | odd = longest | n | p (longest = 1/3) | p (shortest = 1/3) | odd longest: higher / lower than the pair | odd shortest: higher / lower |")
+    w("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    ODD = {}
+    for name, cps in groups:
+        o = odd(cells_for(cps))
+        n = o["shortest"] + o["middle"] + o["longest"]
+        pl = _binom_two_sided(o["longest"], n, 1 / 3) if n else float("nan")
+        ps = _binom_two_sided(o["shortest"], n, 1 / 3) if n else float("nan")
+        ODD[name] = (o, n, pl, ps)
+        w(f"| {name} | {o['all agree']} | {o['all differ']} | {o['tied lengths']} | {o['shortest']} | {o['middle']} | {o['longest']} | {n} | {fmt(pl, 4)} | {fmt(ps, 4)} | "
+          f"{o['longest:higher']} / {o['longest:lower']} | {o['shortest:higher']} / {o['shortest:lower']} |")
+    w()
+    coupled = [nm for nm, _ in groups if RES[(nm, "rating")]["p_w"] < 0.05 or RES[(nm, "scored")]["p_w"] < 0.05
+               or ODD[nm][2] < 0.05 or ODD[nm][3] < 0.05]
+    if coupled:
+        w(f"**Verdict: length and rating ARE coupled within checkpoint for: {', '.join(coupled)}** (a within-cell permutation p or an odd-one-out p below 0.05, uncorrected). "
+          "Longer generations give systematically different ratings there; the 'process change without output change' wording needs qualifying.")
+    else:
+        w("**Verdict: no within-checkpoint coupling detected.** In no checkpoint (nor pooled) does the within-cell length rank predict the rating (permutation p >= 0.05 for the rating as written and for the scored rating), "
+          "and the odd-one-out is not systematically the longest or the shortest generation (binomial p >= 0.05). Within the resolution of 3 seeds per cell, a longer generation does not give a different rating.")
+    w()
+    allp = [RES[(nm, f)]["p_w"] for nm, _ in groups for f in ("rating", "scored")] + [ODD[nm][k] for nm, _ in groups for k in (2, 3)]
+    nsig = sum(p < 0.05 for p in allp)
+    w(f"Context (added after seeing the numbers; factual, does not change the rule above): {nsig} of the {len(allp)} p-values in the verdict rule are below 0.05, "
+      f"against about {0.05 * len(allp):.1f} expected if there were no coupling anywhere. For each checkpoint flagged, the direction of the odd seed relative to the pair "
+      "(columns 'higher / lower') and the within-cell correlation are in the tables; a non-directional excess (the longest seed differs, but up and down about equally) "
+      "is coupling of length with rating *variability*, not with rating *level*.")
+    w()
+    w("Limitations: 3 seeds per cell, so within-cell length variation is limited and many cells have a constant rating (they contribute nothing to the within-cell statistics); "
+      "no multiplicity correction (several statistics, four groups); the naive pooled Spearman is confounded by between-cell differences and is shown only because it was requested.")
+    w()
 
 
 def main():

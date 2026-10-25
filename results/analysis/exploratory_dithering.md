@@ -173,3 +173,41 @@ Same exploratory status. Reason (the author's): the all-tokens denominator of ad
 Candidate mentions, think-block proxy tokens: RLVR - DPO 4.736 [1.819, 6.418], p 0.0000; RLVR - SFT -1.731 [-3.261, 0.576], p 0.0664.
 Candidate mentions, think-block characters: RLVR - DPO 1.240 [0.596, 1.752], p 0.0000; RLVR - SFT -0.429 [-0.835, 0.064], p 0.0478.
 
+## Addendum 3 (Oct 25, requested after the results above were seen): does a longer generation give a different rating, within a checkpoint?
+
+Same exploratory status (specified by the author after the main and exploratory results were seen; not in the registration). Cells = (checkpoint, trait, wording) with all 3 seeds valid. Rating = the parsed ANSWER (1-5, as written); 'scored' = reverse-keyed so that higher = more of the trait. Length = generated tokens (`n_tokens`).
+
+Statistics (chosen when this addendum was written, before computing it):
+- **Naive pooled Spearman** (as requested): length vs rating over all generations in the cells, pooled within a checkpoint. It mixes between-cell differences (some wordings are both longer and rated higher), so it is not a within-cell answer.
+- **Within-cell correlation (primary):** Pearson correlation, pooled over cells, of the within-cell length rank (1, 2, 3, centred) and the within-cell centred rating. Only variation inside a cell contributes. p-value: permutation test shuffling the 3 lengths within every cell (10,000 permutations, seed 20261024 with the per-call generator); 95% interval: bootstrap over cells (10,000 resamples). The same permutation p is also given for the naive Spearman.
+- **Longest minus shortest:** per cell, rating of the longest seed minus rating of the shortest seed; mean over cells with bootstrap interval, Wilcoxon over cells.
+- **Odd-one-out:** cells where exactly two seeds agree and the third differs. Is the odd seed the longest, the middle or the shortest generation? Under no coupling each is 1/3; exact two-sided binomial tests for 'longest' and for 'shortest' against 1/3. Cells with tied lengths are excluded from this count. Cells where all three ratings differ have no odd one out and are counted separately.
+
+### Correlation of length and rating
+
+| checkpoint | rating | cells (3 valid seeds) | cells with constant rating | within-cell r [95% CI] | permutation p | naive pooled Spearman | permutation p (naive) | longest - shortest rating, mean [95% CI] | Wilcoxon p (non-zero cells) |
+|---|---|---|---|---|---|---|---|---|---|
+| SFT | rating | 45 | 8 | 0.132 [-0.100, 0.343] | 0.2397 | -0.143 | 0.6093 | 0.200 [-0.133, 0.556] | 0.3014 (32) |
+| SFT | scored | 45 | 8 | 0.015 [-0.205, 0.254] | 0.9434 | -0.020 | 0.9538 | 0.022 [-0.333, 0.356] | 0.8270 (32) |
+| DPO | rating | 47 | 25 | 0.087 [-0.134, 0.283] | 0.4698 | -0.142 | 0.3640 | 0.085 [-0.128, 0.298] | 0.4319 (17) |
+| DPO | scored | 47 | 25 | 0.173 [-0.041, 0.375] | 0.1105 | -0.136 | 0.9747 | 0.170 [-0.022, 0.383] | 0.1219 (17) |
+| RLVR | rating | 43 | 16 | -0.035 [-0.227, 0.161] | 0.7992 | -0.071 | 0.5557 | -0.047 [-0.302, 0.209] | 0.7854 (17) |
+| RLVR | scored | 43 | 16 | -0.176 [-0.377, 0.014] | 0.1212 | -0.075 | 0.2943 | -0.233 [-0.488, 0.023] | 0.0972 (17) |
+| all three pooled | rating | 135 | 49 | 0.063 [-0.060, 0.183] | 0.3221 | -0.115 | 0.5906 | 0.081 [-0.074, 0.244] | 0.3436 (66) |
+| all three pooled | scored | 135 | 49 | -0.006 [-0.127, 0.119] | 0.9654 | -0.061 | 0.9045 | -0.007 [-0.170, 0.148] | 0.9486 (66) |
+
+### Odd-one-out (rating as written)
+
+| checkpoint | all 3 agree | all 3 differ | tied lengths (excluded) | odd = shortest | odd = middle | odd = longest | n | p (longest = 1/3) | p (shortest = 1/3) | odd longest: higher / lower than the pair | odd shortest: higher / lower |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| SFT | 8 | 6 | 0 | 10 | 5 | 16 | 31 | 0.0363 | 1.0000 | 7 / 9 | 3 / 7 |
+| DPO | 25 | 3 | 0 | 5 | 5 | 9 | 19 | 0.2248 | 0.6312 | 6 / 3 | 3 / 2 |
+| RLVR | 16 | 5 | 0 | 7 | 10 | 5 | 22 | 0.3693 | 1.0000 | 0 / 5 | 2 / 5 |
+| all three pooled | 49 | 14 | 0 | 22 | 20 | 30 | 72 | 0.1353 | 0.7080 | 13 / 17 | 8 / 14 |
+
+**Verdict: length and rating ARE coupled within checkpoint for: SFT** (a within-cell permutation p or an odd-one-out p below 0.05, uncorrected). Longer generations give systematically different ratings there; the 'process change without output change' wording needs qualifying.
+
+Context (added after seeing the numbers; factual, does not change the rule above): 1 of the 16 p-values in the verdict rule are below 0.05, against about 0.8 expected if there were no coupling anywhere. For each checkpoint flagged, the direction of the odd seed relative to the pair (columns 'higher / lower') and the within-cell correlation are in the tables; a non-directional excess (the longest seed differs, but up and down about equally) is coupling of length with rating *variability*, not with rating *level*.
+
+Limitations: 3 seeds per cell, so within-cell length variation is limited and many cells have a constant rating (they contribute nothing to the within-cell statistics); no multiplicity correction (several statistics, four groups); the naive pooled Spearman is confounded by between-cell differences and is shown only because it was requested.
+
