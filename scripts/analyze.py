@@ -675,10 +675,10 @@ def write_tables(res, out):
                              "DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity"])
     write_csv(out / "table2_behavioural_per_checkpoint.csv", ["checkpoint", "component", "metric", "value", "basis"], rows)
     # table 3: three-way comparison
-    scores = {(r["probe"], r["form"]): sc for _, _, r, sc in scorecard(res["rows"]) if r["comparison"] == "RLVR-DPO"}
+    scores = {(r["comparison"], r["probe"], r["form"]): sc for _, _, r, sc in scorecard(res["rows"])}
     write_csv(out / "table3_comparison.csv", ROW_HEADER + ["prediction", "score"],
               [row_cells(r, res) + [PREDICTIONS.get(r["probe"], "") if r["comparison"] == "RLVR-DPO" else "",
-                               scores.get((r["probe"], r["form"]), "")] for r in res["rows"]])
+                               scores.get((r["comparison"], r["probe"], r["form"]), "")] for r in res["rows"]])
     # table 4: validity
     write_csv(out / "table4_validity.csv", ["checkpoint", "component", "status", "count", "n_rows", "rate", "wilson_lo",
                                             "wilson_hi"], [[a, b, c_, d, e, fnum(f, 4), fnum(g, 4), fnum(h, 4)]

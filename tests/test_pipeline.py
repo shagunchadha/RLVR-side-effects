@@ -286,6 +286,29 @@ def test_end_to_end_outputs_and_provenance_append(synthetic, tmp_path):
     assert any(out.glob("table1_traits_*.csv")) and any(out.glob("table5_changes_*.csv"))
 
 
+def test_table3_score_column_is_independent_per_comparison(synthetic, tmp_path, result):
+    """Regression: the DPO-SFT rows used to carry the RLVR-DPO verdicts in the CSV score column."""
+    import csv
+    _, files = synthetic
+    out = tmp_path / "analysis"
+    assert AN.main(["--sft", str(files["sft"]), "--dpo", str(files["dpo"]), "--rlvr", str(files["rlvr"]),
+                    "--out-dir", str(out)]) == 0
+    rows = list(csv.DictReader((out / "table3_comparison.csv").open(encoding="utf-8")))
+    score = {(r["comparison"], r["probe"], r["form"]): r["score"] for r in rows}
+    # planted RLVR-DPO approval effect against prediction "none" is a miss; DPO-SFT has no planted effect
+    assert score[("RLVR-DPO", "trait:approval", "cc-only")] == "miss"
+    assert score[("DPO-SFT", "trait:approval", "cc-only")] == "not moved"
+    assert score[("RLVR-DPO", "trait:approval", "cc-only")] != score[("DPO-SFT", "trait:approval", "cc-only")]
+    # DPO-SFT scores only ever hold the moved / not moved verdicts, and only on the three pre-registered rows
+    allowed = {"", "moved", "not moved", "empty"}
+    assert {s for (c, _, _), s in score.items() if c == "DPO-SFT"} <= allowed
+    moved_rows = {(p, f) for (c, p, f), s in score.items() if c == "DPO-SFT" and s}
+    assert {p for p, _ in moved_rows} == {"trait:approval", "trait:hedging", "Sycophancy caving"}
+    # every CSV score equals the scorecard (summary.md) verdict for the same comparison / probe / form
+    for _, _, r, sc in AN.scorecard(result["rows"]):
+        assert score[(r["comparison"], r["probe"], r["form"])] == sc
+
+
 def test_empty_components_do_not_crash(synthetic, tmp_path):
     """Drop B, C and E entirely (the situation of the pilots): the script must still run."""
     _, files = synthetic
