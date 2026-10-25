@@ -247,6 +247,14 @@ def per_generation(rows, items):
             g["n_tokens"] = r["n_tokens"]
             g["switches_per_1k"] = g["switches"] / r["n_tokens"] * 1000       # addendum (Oct 25): length-normalised
             g["n_cand_per_1k"] = g["n_cand"] / r["n_tokens"] * 1000
+            # addendum 2 (think-block-only denominators). No token count exists for the think block alone, so: proxy tokens =
+            # n_tokens * (characters of the think block / characters of the whole raw output); and a pure character denominator.
+            g["think_tok_proxy"] = r["n_tokens"] * len(think) / max(1, len(r["raw_output"]))
+            g["think_chars"] = len(think)
+            g["switches_per_1k_think"] = g["switches"] / g["think_tok_proxy"] * 1000
+            g["n_cand_per_1k_think"] = g["n_cand"] / g["think_tok_proxy"] * 1000
+            g["switches_per_1k_chars"] = g["switches"] / max(1, len(think)) * 1000
+            g["n_cand_per_1k_chars"] = g["n_cand"] / max(1, len(think)) * 1000
             lst.append(g)
         out[cp] = lst
     return out
@@ -548,6 +556,58 @@ def report(gens, items):
         verdict = "RLVR's switches per 1000 tokens is NOT distinguishable from DPO's (interval includes zero): 'RLVR switches more' is 'RLVR writes more' restated."
     w(f"**Verdict (switches per 1000 tokens, RLVR - DPO: median diff {fmt(sw['pv'])} [{fmt(sw['pci'][0])}, {fmt(sw['pci'][1])}], p {fmt(sw['p'], 4)}): {verdict}** "
       f"Candidate mentions per 1000 tokens, RLVR - DPO: {fmt(cd['pv'])} [{fmt(cd['pci'][0])}, {fmt(cd['pci'][1])}], p {fmt(cd['p'], 4)}.")
+    w()
+    # ---- addendum 2: think-block-only denominator
+    w("## Addendum 2 (Oct 25, requested after addendum 1): sensitivity to the denominator, think-block only")
+    w()
+    w("Same exploratory status. Reason (the author's): the all-tokens denominator of addendum 1 includes the justification and answer, which are longer for DPO "
+      "(median 2 justification sentences) than for RLVR (1), so it could deflate DPO's density in the direction of the observed result.")
+    w()
+    w("**There is no token count for the think block alone** (the run stores only the total `n_tokens`; no tokenizer is available here). Two proxies, both labelled as such:")
+    w("- **Proxy tokens:** `n_tokens x (characters of the think block / characters of the whole raw output)`, i.e. the generation's tokens allocated to the think block in proportion to characters. "
+      "This assumes the same tokens-per-character in the think block and in the post-think text.")
+    w("- **Characters:** rate per 1000 characters of the think block (no token information used).")
+    w()
+    w("| quantity | comparison | n wordings | median diff [95% CI] | mean diff [95% CI] | CI excl 0 | Wilcoxon p (branch) |")
+    w("|---|---|---|---|---|---|---|")
+    N2 = {}
+    for name, key in [("switches per 1000 think-block proxy tokens", "switches_per_1k_think"),
+                      ("candidate mentions per 1000 think-block proxy tokens", "n_cand_per_1k_think"),
+                      ("switches per 1000 think-block characters", "switches_per_1k_chars"),
+                      ("candidate mentions per 1000 think-block characters", "n_cand_per_1k_chars")]:
+        wv = wording_values(gens, items, key)
+        for ci, (a_, b_) in enumerate([("rlvr", "dpo"), ("dpo", "sft"), ("rlvr", "sft")]):
+            r_ = compare(wv, a_, b_, key, "median")
+            N2[(key, f"{a_}-{b_}")] = r_
+            w(f"| {name if ci == 0 else ''} | {a_.upper()}-{b_.upper()} | {r_['n']} | {fmt(r_['median'])} [{fmt(r_['median_ci'][0])}, {fmt(r_['median_ci'][1])}] | "
+              f"{fmt(r_['mean'])} [{fmt(r_['mean_ci'][0])}, {fmt(r_['mean_ci'][1])}] | {'yes' if r_['excl0'] else 'no'} | {fmt(r_['p'], 4)} ({r_['branch']}) |")
+    w()
+    w("(The RLVR-SFT rows are added here to answer 'do SFT and RLVR remain level'; they were not part of addendum 1.)")
+    w()
+    w("| quantity (per generation) | SFT median (mean) | DPO median (mean) | RLVR median (mean) |")
+    w("|---|---|---|---|")
+    for name, key in [("think-block proxy tokens", "think_tok_proxy"), ("think-block characters", "think_chars"),
+                      ("switches per 1000 proxy tokens", "switches_per_1k_think"), ("candidate mentions per 1000 proxy tokens", "n_cand_per_1k_think"),
+                      ("switches per 1000 characters", "switches_per_1k_chars"), ("candidate mentions per 1000 characters", "n_cand_per_1k_chars")]:
+        cells = []
+        for cp in CK:
+            v = [g[key] for g in gens[cp]]
+            cells.append(f"{fmt(float(np.median(v)), 2)} ({fmt(float(np.mean(v)), 2)})")
+        w(f"| {name} | " + " | ".join(cells) + " |")
+    w()
+    for nm, key in [("proxy tokens", "switches_per_1k_think"), ("characters", "switches_per_1k_chars")]:
+        r1, r2 = N2[(key, "rlvr-dpo")], N2[(key, "rlvr-sft")]
+        surv = r1["pv"] > 0 and r1["excl0"]
+        level = r2["excl0"]
+        w(f"**Switches, denominator = think-block {nm}:** RLVR - DPO {fmt(r1['pv'])} [{fmt(r1['pci'][0])}, {fmt(r1['pci'][1])}], p {fmt(r1['p'], 4)}: "
+          f"the difference **{'survives' if surv else 'does NOT survive'}** (interval {'excludes' if r1['excl0'] else 'includes'} zero). "
+          f"RLVR - SFT {fmt(r2['pv'])} [{fmt(r2['pci'][0])}, {fmt(r2['pci'][1])}], p {fmt(r2['p'], 4)}: SFT and RLVR are "
+          f"{'NOT level (interval excludes zero)' if level else 'level (interval includes zero)'}.")
+        w()
+    for nm, key in [("proxy tokens", "n_cand_per_1k_think"), ("characters", "n_cand_per_1k_chars")]:
+        r1, r2 = N2[(key, "rlvr-dpo")], N2[(key, "rlvr-sft")]
+        w(f"Candidate mentions, think-block {nm}: RLVR - DPO {fmt(r1['pv'])} [{fmt(r1['pci'][0])}, {fmt(r1['pci'][1])}], p {fmt(r1['p'], 4)}; "
+          f"RLVR - SFT {fmt(r2['pv'])} [{fmt(r2['pci'][0])}, {fmt(r2['pci'][1])}], p {fmt(r2['p'], 4)}.")
     w()
     REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", REPORT)

@@ -132,3 +132,44 @@ Same exploratory status; not in the registered specification, added at the autho
 
 **Verdict (switches per 1000 tokens, RLVR - DPO: median diff 2.158 [0.838, 3.822], p 0.0001): RLVR's switches per 1000 tokens IS higher than DPO's (interval excludes zero): RLVR churns more densely, so the vacillation is not just 'RLVR writes more'.** Candidate mentions per 1000 tokens, RLVR - DPO: 5.324 [2.850, 7.202], p 0.0000.
 
+## Addendum 2 (Oct 25, requested after addendum 1): sensitivity to the denominator, think-block only
+
+Same exploratory status. Reason (the author's): the all-tokens denominator of addendum 1 includes the justification and answer, which are longer for DPO (median 2 justification sentences) than for RLVR (1), so it could deflate DPO's density in the direction of the observed result.
+
+**There is no token count for the think block alone** (the run stores only the total `n_tokens`; no tokenizer is available here). Two proxies, both labelled as such:
+- **Proxy tokens:** `n_tokens x (characters of the think block / characters of the whole raw output)`, i.e. the generation's tokens allocated to the think block in proportion to characters. This assumes the same tokens-per-character in the think block and in the post-think text.
+- **Characters:** rate per 1000 characters of the think block (no token information used).
+
+| quantity | comparison | n wordings | median diff [95% CI] | mean diff [95% CI] | CI excl 0 | Wilcoxon p (branch) |
+|---|---|---|---|---|---|---|
+| switches per 1000 think-block proxy tokens | RLVR-DPO | 48 | 1.687 [0.077, 2.838] | 2.240 [0.999, 3.510] | yes | 0.0037 (normal) |
+|  | DPO-SFT | 48 | -2.951 [-4.698, -0.960] | -2.762 [-4.018, -1.551] | yes | 0.0002 (normal) |
+|  | RLVR-SFT | 48 | -0.398 [-1.885, 1.627] | -0.522 [-1.936, 0.827] | no | 0.5182 (normal) |
+| candidate mentions per 1000 think-block proxy tokens | RLVR-DPO | 48 | 4.736 [1.819, 6.418] | 4.715 [3.237, 6.233] | yes | 0.0000 (normal) |
+|  | DPO-SFT | 48 | -6.513 [-8.273, -4.085] | -5.950 [-7.388, -4.514] | yes | 0.0000 (normal) |
+|  | RLVR-SFT | 48 | -1.731 [-3.261, 0.576] | -1.235 [-2.755, 0.370] | no | 0.0664 (normal) |
+| switches per 1000 think-block characters | RLVR-DPO | 48 | 0.479 [0.159, 0.805] | 0.659 [0.366, 0.970] | yes | 0.0003 (normal) |
+|  | DPO-SFT | 48 | -0.949 [-1.256, -0.432] | -0.842 [-1.134, -0.547] | yes | 0.0000 (normal) |
+|  | RLVR-SFT | 48 | -0.241 [-0.419, 0.320] | -0.183 [-0.506, 0.145] | no | 0.3506 (normal) |
+| candidate mentions per 1000 think-block characters | RLVR-DPO | 48 | 1.240 [0.596, 1.752] | 1.324 [0.968, 1.683] | yes | 0.0000 (normal) |
+|  | DPO-SFT | 48 | -2.003 [-2.291, -1.137] | -1.699 [-2.057, -1.345] | yes | 0.0000 (normal) |
+|  | RLVR-SFT | 48 | -0.429 [-0.835, 0.064] | -0.376 [-0.760, 0.024] | no | 0.0478 (normal) |
+
+(The RLVR-SFT rows are added here to answer 'do SFT and RLVR remain level'; they were not part of addendum 1.)
+
+| quantity (per generation) | SFT median (mean) | DPO median (mean) | RLVR median (mean) |
+|---|---|---|---|
+| think-block proxy tokens | 465.40 (598.24) | 479.42 (515.21) | 907.05 (1217.39) |
+| think-block characters | 2096.00 (2534.11) | 2280.00 (2419.20) | 4045.00 (5266.94) |
+| switches per 1000 proxy tokens | 9.64 (10.51) | 7.35 (7.65) | 9.52 (9.81) |
+| candidate mentions per 1000 proxy tokens | 18.14 (18.95) | 12.40 (12.82) | 16.82 (17.44) |
+| switches per 1000 characters | 2.22 (2.51) | 1.57 (1.64) | 2.20 (2.28) |
+| candidate mentions per 1000 characters | 4.09 (4.49) | 2.67 (2.75) | 3.85 (4.04) |
+
+**Switches, denominator = think-block proxy tokens:** RLVR - DPO 1.687 [0.077, 2.838], p 0.0037: the difference **survives** (interval excludes zero). RLVR - SFT -0.398 [-1.885, 1.627], p 0.5182: SFT and RLVR are level (interval includes zero).
+
+**Switches, denominator = think-block characters:** RLVR - DPO 0.479 [0.159, 0.805], p 0.0003: the difference **survives** (interval excludes zero). RLVR - SFT -0.241 [-0.419, 0.320], p 0.3506: SFT and RLVR are level (interval includes zero).
+
+Candidate mentions, think-block proxy tokens: RLVR - DPO 4.736 [1.819, 6.418], p 0.0000; RLVR - SFT -1.731 [-3.261, 0.576], p 0.0664.
+Candidate mentions, think-block characters: RLVR - DPO 1.240 [0.596, 1.752], p 0.0000; RLVR - SFT -0.429 [-0.835, 0.064], p 0.0478.
+
