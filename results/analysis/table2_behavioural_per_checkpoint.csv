@@ -1,0 +1,208 @@
+checkpoint,component,metric,value,basis
+SFT,B,n,30,this checkpoint's own items
+SFT,B,caves,0,this checkpoint's own items
+SFT,B,holds,30,this checkpoint's own items
+SFT,B,other,0,this checkpoint's own items
+SFT,B,invalid,0,this checkpoint's own items
+SFT,B,controls_n,10,this checkpoint's own items
+SFT,B,controls_update,10,this checkpoint's own items
+SFT,B,controls_invalid,0,this checkpoint's own items
+SFT,C,n,80,this checkpoint's own items
+SFT,C,n_valid,80,this checkpoint's own items
+SFT,C,accuracy_iaf,0.9375,this checkpoint's own items
+SFT,C,accuracy_valid,0.9375,this checkpoint's own items
+SFT,C,mean_conf,0.9512,this checkpoint's own items
+SFT,C,gap,0.0137,this checkpoint's own items
+SFT,C,brier,0.0611,this checkpoint's own items
+SFT,D,n_base,150,this checkpoint's own items
+SFT,D,n_valid_both,147,this checkpoint's own items
+SFT,D,acc_iaf,0.9133,this checkpoint's own items
+SFT,D,acc_cc,0.9286,this checkpoint's own items
+SFT,D,consistency,0.9116,this checkpoint's own items
+SFT,D,order_acc,"{""0"": ""0.9000"", ""1"": ""0.9267""}",this checkpoint's own items
+SFT,E,n,50,this checkpoint's own items
+SFT,E,acc_iaf,0.9200,this checkpoint's own items
+SFT,E,acc_completed,0.9787,this checkpoint's own items
+SFT,E,acc_boxed,0.9800,this checkpoint's own items
+SFT,E,truncated,0,this checkpoint's own items
+SFT,E,by_level,"{""1"": [10, 10], ""5"": [7, 10], ""2"": [10, 10], ""4"": [10, 10], ""3"": [9, 10]}",this checkpoint's own items
+SFT,F:A,n,141,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,median,518.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,mean,633.7730,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,truncated,3,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,invalid_rate,0.0208,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A,rows,144,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,n,40,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,median,253.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,mean,331.6000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,share_under_threshold,0.0250,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,invalid_rate,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:B,rows,40,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,n,80,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,median,400.5000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,mean,468.7500,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,invalid_rate,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:C,rows,80,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,n,296,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,median,343.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,mean,442.7736,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,truncated,4,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,invalid_rate,0.0133,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:D,rows,300,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,n,47,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,median,882.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,mean,1389.7021,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,invalid_rate,0.0600,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:E,rows,50,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,n,557,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,median,372.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,mean,486.8707,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,share_under_threshold,0.0018,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,truncated,7,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,invalid_rate,0.0124,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+SFT,F:A-D,rows,564,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,B,n,30,this checkpoint's own items
+DPO,B,caves,0,this checkpoint's own items
+DPO,B,holds,30,this checkpoint's own items
+DPO,B,other,0,this checkpoint's own items
+DPO,B,invalid,0,this checkpoint's own items
+DPO,B,controls_n,10,this checkpoint's own items
+DPO,B,controls_update,10,this checkpoint's own items
+DPO,B,controls_invalid,0,this checkpoint's own items
+DPO,C,n,80,this checkpoint's own items
+DPO,C,n_valid,78,this checkpoint's own items
+DPO,C,accuracy_iaf,0.8875,this checkpoint's own items
+DPO,C,accuracy_valid,0.9103,this checkpoint's own items
+DPO,C,mean_conf,0.9218,this checkpoint's own items
+DPO,C,gap,0.0115,this checkpoint's own items
+DPO,C,brier,0.0761,this checkpoint's own items
+DPO,D,n_base,150,this checkpoint's own items
+DPO,D,n_valid_both,149,this checkpoint's own items
+DPO,D,acc_iaf,0.9200,this checkpoint's own items
+DPO,D,acc_cc,0.9262,this checkpoint's own items
+DPO,D,consistency,0.9195,this checkpoint's own items
+DPO,D,order_acc,"{""0"": ""0.9200"", ""1"": ""0.9200""}",this checkpoint's own items
+DPO,E,n,50,this checkpoint's own items
+DPO,E,acc_iaf,0.8800,this checkpoint's own items
+DPO,E,acc_completed,0.9778,this checkpoint's own items
+DPO,E,acc_boxed,0.9800,this checkpoint's own items
+DPO,E,truncated,0,this checkpoint's own items
+DPO,E,by_level,"{""1"": [10, 10], ""5"": [6, 10], ""2"": [10, 10], ""4"": [10, 10], ""3"": [8, 10]}",this checkpoint's own items
+DPO,F:A,n,143,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,median,541.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,mean,582.6993,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,invalid_rate,0.0069,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A,rows,144,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,n,40,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,median,457.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,mean,550.5250,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,invalid_rate,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:B,rows,40,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,n,78,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,median,538.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,mean,649.4231,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,truncated,1,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,invalid_rate,0.0250,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:C,rows,80,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,n,298,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,median,447.5000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,mean,542.1510,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,truncated,2,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,invalid_rate,0.0067,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:D,rows,300,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,n,45,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,median,775.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,mean,1653.7778,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,truncated,0,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,invalid_rate,0.1000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:E,rows,50,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,n,559,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,median,487.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,mean,568.0912,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,truncated,3,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,invalid_rate,0.0089,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+DPO,F:A-D,rows,564,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,B,n,30,this checkpoint's own items
+RLVR,B,caves,0,this checkpoint's own items
+RLVR,B,holds,29,this checkpoint's own items
+RLVR,B,other,0,this checkpoint's own items
+RLVR,B,invalid,1,this checkpoint's own items
+RLVR,B,controls_n,10,this checkpoint's own items
+RLVR,B,controls_update,10,this checkpoint's own items
+RLVR,B,controls_invalid,0,this checkpoint's own items
+RLVR,C,n,80,this checkpoint's own items
+RLVR,C,n_valid,77,this checkpoint's own items
+RLVR,C,accuracy_iaf,0.8875,this checkpoint's own items
+RLVR,C,accuracy_valid,0.9221,this checkpoint's own items
+RLVR,C,mean_conf,0.9312,this checkpoint's own items
+RLVR,C,gap,0.0091,this checkpoint's own items
+RLVR,C,brier,0.0649,this checkpoint's own items
+RLVR,D,n_base,150,this checkpoint's own items
+RLVR,D,n_valid_both,147,this checkpoint's own items
+RLVR,D,acc_iaf,0.9333,this checkpoint's own items
+RLVR,D,acc_cc,0.9456,this checkpoint's own items
+RLVR,D,consistency,0.9320,this checkpoint's own items
+RLVR,D,order_acc,"{""0"": ""0.9467"", ""1"": ""0.9200""}",this checkpoint's own items
+RLVR,E,n,50,this checkpoint's own items
+RLVR,E,acc_iaf,0.9800,this checkpoint's own items
+RLVR,E,acc_completed,1.0000,this checkpoint's own items
+RLVR,E,acc_boxed,0.9800,this checkpoint's own items
+RLVR,E,truncated,1,this checkpoint's own items
+RLVR,E,by_level,"{""1"": [10, 10], ""5"": [9, 10], ""2"": [10, 10], ""4"": [10, 10], ""3"": [10, 10]}",this checkpoint's own items
+RLVR,F:A,n,139,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,median,951.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,mean,1255.8777,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,truncated,5,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,invalid_rate,0.0347,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A,rows,144,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,n,39,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,median,402.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,mean,425.7949,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,truncated,1,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,invalid_rate,0.0250,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:B,rows,40,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,n,77,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,median,597.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,mean,734.8182,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,truncated,3,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,invalid_rate,0.0375,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:C,rows,80,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,n,297,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,median,478.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,mean,656.7475,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,truncated,3,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,invalid_rate,0.0100,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:D,rows,300,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,n,49,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,median,1177.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,mean,1851.4082,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,truncated,1,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,invalid_rate,0.0200,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:E,rows,50,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,n,552,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,median,563.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,mean,802.1884,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,share_under_threshold,0.0000,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,truncated,12,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,invalid_rate,0.0213,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
+RLVR,F:A-D,rows,564,DESCRIPTIVE: valid rows (generations); not the inferential paired-unit quantity
