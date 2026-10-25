@@ -1,0 +1,36 @@
+{
+ "m1": [
+  "sft|A_composure_5|0",
+  "dpo|A_hedging_4|2",
+  "sft|A_approval_5|0",
+  "sft|A_assertiveness_2|1",
+  "dpo|A_hedging_5|0",
+  "rlvr|A_approval_3|2",
+  "sft|A_approval_0|2",
+  "rlvr|A_humility_5|0",
+  "dpo|A_hedging_1|2",
+  "sft|A_hedging_1|2",
+  "dpo|A_approval_0|1",
+  "sft|A_composure_5|1",
+  "dpo|A_hedging_3|0",
+  "sft|A_composure_4|1",
+  "dpo|A_risk_5|2",
+  "dpo|A_risk_4|0",
+  "sft|A_humility_4|2",
+  "dpo|A_composure_0|2",
+  "dpo|A_composure_4|2",
+  "dpo|A_competitiveness_2|1"
+ ],
+ "m3": [
+  "dpo|A_humility_1|0",
+  "dpo|A_approval_5|1",
+  "sft|A_hedging_0|1",
+  "rlvr|A_assertiveness_5|1",
+  "rlvr|A_assertiveness_4|2",
+  "sft|A_competitiveness_0|0",
+  "rlvr|A_risk_0|2",
+  "rlvr|A_risk_4|2",
+  "dpo|A_confidence_2|1",
+  "dpo|A_confidence_5|0"
+ ]
+}

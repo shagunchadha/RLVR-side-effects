@@ -128,7 +128,7 @@ def repetition(think):
 
 
 # ======================================================================================== measure 3: sentences, format
-ABBREV = re.compile(r"\b(e\.g|i\.e|etc|vs|Mr|Mrs|Ms|Dr|approx|cf|No)\.", re.I)
+ABBREV = re.compile(r"\b(e\.g|i\.e|etc|vs|Mr|Mrs|Ms|Dr|approx|cf)\.", re.I)   # 'No' removed after validation: it swallowed sentences ending in "no."
 ANSWER_LINE = re.compile(r"^\W*ANSWER\b.*$", re.I | re.M)
 
 
@@ -286,7 +286,7 @@ def validation_sample(gens):
                    f"format_ok {int(g['format_ok'])}")
         out.append("  THINK:")
         for i, s in enumerate(ts, 1):
-            out.append(f"   {i:3d}. {s[:90]}")
+            out.append(f"   {i:3d}. {s[:70]}")
         out.append("  POST-THINK (raw): " + repr(g["post"][:600]))
         out.append("  JUSTIFICATION segments:")
         for i, s in enumerate(js, 1):
@@ -465,6 +465,10 @@ def report(gens, items):
     for x in m3:
         if x.get("note"):
             w(f"- `{x['key']}`: {x['note']}")
+    w()
+    w("**One change made during validation, before any comparison was computed:** the first version of the sentence splitter treated `No.` (case-insensitive) as an abbreviation, "
+      "so a sentence ending in \"no.\" was merged with the next one (seen in `RLVR|A_assertiveness_5|1` and `RLVR|A_assertiveness_4|2`, each one sentence short). `No` was removed from the abbreviation list and the "
+      "sample regenerated (commit message of the fix says so). The hand counts above are against the corrected splitter. The remaining errors are sentences containing an ellipsis (`...`) inside a quotation, split in two.")
     w()
     w("The format check (3c) is a deterministic string rule; no hand error rate is claimed for it beyond the 10 generations above (their post-think text is printed in the validation sample).")
     w()

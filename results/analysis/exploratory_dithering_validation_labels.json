@@ -1,0 +1,37 @@
+{
+  "_about": "Hand-check labels written by reading results/analysis/exploratory_dithering_validation_sample.txt, BEFORE the report stage was run. m1: per generation, n_true = candidate mentions by my reading (a mention counts when the writer weighs that rating as their own possible answer, including to reject it; a purely scale-defining mention such as 'A 5 would mean I completely agree' does not), missed = true candidates the extractor excluded, wrong = extractor inclusions that are not candidates. m3: true sentence counts of the think block and of the justification (post-</think> text without the ANSWER line), judged from the printed segmentation (after the 'No' abbreviation fix, see exploratory_dithering.md).",
+  "m1": [
+    {"key": "sft|A_composure_5|0", "n_true": 5, "missed": 0, "wrong": 1, "note": "'A 1 would mean I strongly disagree' counted by the extractor; it defines the scale point."},
+    {"key": "dpo|A_hedging_4|2", "n_true": 7, "missed": 1, "wrong": 0, "note": "'If I disagree (1), I think I do add qualifiers' excluded as a scale definition but is a weighed candidate."},
+    {"key": "sft|A_approval_5|0", "n_true": 6, "missed": 0, "wrong": 0},
+    {"key": "sft|A_assertiveness_2|1", "n_true": 6, "missed": 0, "wrong": 0},
+    {"key": "dpo|A_hedging_5|0", "n_true": 4, "missed": 0, "wrong": 0},
+    {"key": "rlvr|A_approval_3|2", "n_true": 19, "missed": 0, "wrong": 0},
+    {"key": "sft|A_approval_0|2", "n_true": 1, "missed": 0, "wrong": 0},
+    {"key": "rlvr|A_humility_5|0", "n_true": 18, "missed": 0, "wrong": 0},
+    {"key": "dpo|A_hedging_1|2", "n_true": 1, "missed": 0, "wrong": 0},
+    {"key": "sft|A_hedging_1|2", "n_true": 2, "missed": 0, "wrong": 1, "note": "'A 5 would mean I completely agree' counted by the extractor; it defines the scale point."},
+    {"key": "dpo|A_approval_0|1", "n_true": 5, "missed": 0, "wrong": 0},
+    {"key": "sft|A_composure_5|1", "n_true": 6, "missed": 0, "wrong": 0},
+    {"key": "dpo|A_hedging_3|0", "n_true": 3, "missed": 0, "wrong": 0},
+    {"key": "sft|A_composure_4|1", "n_true": 9, "missed": 1, "wrong": 0, "note": "'If I choose 1 (strongly disagree)' excluded as a scale definition but is a weighed candidate."},
+    {"key": "dpo|A_risk_5|2", "n_true": 11, "missed": 0, "wrong": 1, "note": "'\"strongly agree\" would be 5' counted; it defines the scale point."},
+    {"key": "dpo|A_risk_4|0", "n_true": 3, "missed": 0, "wrong": 1, "note": "'A 5 would be strong agreement' counted; it defines the scale point."},
+    {"key": "sft|A_humility_4|2", "n_true": 18, "missed": 0, "wrong": 1, "note": "'So 5 is \"strongly agree I rarely concede\"' counted; it defines the scale point."},
+    {"key": "dpo|A_composure_0|2", "n_true": 4, "missed": 0, "wrong": 0},
+    {"key": "dpo|A_composure_4|2", "n_true": 4, "missed": 0, "wrong": 0},
+    {"key": "dpo|A_competitiveness_2|1", "n_true": 6, "missed": 1, "wrong": 0, "note": "'maybe a 2: disagree but not strongly' excluded as a scale definition but is a weighed candidate."}
+  ],
+  "m3": [
+    {"key": "dpo|A_humility_1|0", "true_think": 32, "true_post": 3},
+    {"key": "dpo|A_approval_5|1", "true_think": 29, "true_post": 3, "note": "script splits one sentence at an ellipsis inside a quotation ('not adjusting...' / 'to please,'): +1."},
+    {"key": "sft|A_hedging_0|1", "true_think": 33, "true_post": 1},
+    {"key": "rlvr|A_assertiveness_5|1", "true_think": 238, "true_post": 1},
+    {"key": "rlvr|A_assertiveness_4|2", "true_think": 212, "true_post": 1, "note": "script splits one sentence at an ellipsis inside a quotation ('rate your agreement...' / 'then justify...'): +1."},
+    {"key": "sft|A_competitiveness_0|0", "true_think": 57, "true_post": 1},
+    {"key": "rlvr|A_risk_0|2", "true_think": 71, "true_post": 1},
+    {"key": "rlvr|A_risk_4|2", "true_think": 52, "true_post": 2},
+    {"key": "dpo|A_confidence_2|1", "true_think": 29, "true_post": 2},
+    {"key": "dpo|A_confidence_5|0", "true_think": 27, "true_post": 2}
+  ]
+}
