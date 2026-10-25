@@ -211,3 +211,49 @@ Context (added after seeing the numbers; factual, does not change the rule above
 
 Limitations: 3 seeds per cell, so within-cell length variation is limited and many cells have a constant rating (they contribute nothing to the within-cell statistics); no multiplicity correction (several statistics, four groups); the naive pooled Spearman is confounded by between-cell differences and is shown only because it was requested.
 
+## Addendum 4 (Oct 25, requested after the results above were seen): are the noise floors different between checkpoints?
+
+Same exploratory status (post-hoc). The noise floor s(t,k) is pre-registered (plan s4) and was computed by `analyze.py` (table 1); comparing it between checkpoints is not. Recomputed here from the result files with the plan's formula; matches the committed `table1_traits_*.csv` to 3 decimals for all 24 values: **True**.
+
+**n = 8 traits is small.** Version (a) treats each trait's floor as a fixed number; version (b) propagates the uncertainty of the floors themselves and is the **primary** interval.
+
+| trait | SFT | DPO | RLVR | RLVR-DPO | DPO-SFT | RLVR-SFT |
+|---|---|---|---|---|---|---|
+| approval | 0.726 | 0.236 | 0.577 | +0.342 | -0.491 | -0.149 |
+| assertiveness | 0.577 | 0.333 | 0.471 | +0.138 | -0.244 | -0.106 |
+| competitiveness | 0.850 | 0.408 | 0.799 | +0.391 | -0.442 | -0.051 |
+| composure | 1.080 | 0.333 | 0.527 | +0.194 | -0.747 | -0.553 |
+| confidence | 0.527 | 0.471 | 0.471 | +0.000 | -0.056 | -0.056 |
+| hedging | 0.782 | 0.408 | 0.667 | +0.258 | -0.373 | -0.115 |
+| humility | 0.745 | 0.624 | 0.601 | -0.023 | -0.122 | -0.144 |
+| risk | 0.707 | 0.816 | 0.882 | +0.065 | +0.109 | +0.175 |
+| **mean** | 0.749 | 0.454 | 0.625 | +0.171 | -0.296 | -0.125 |
+
+### (a) Simple: traits as the paired units (n = 8), floors treated as fixed
+
+Statistic: mean over traits of the floor difference (median also shown). 95% percentile bootstrap over the 8 traits (10,000 resamples, seed 20261024, per-call generator); Wilcoxon signed-rank on the 8 differences rounded to 3 decimals (zero differences dropped; exact branch when n <= 25 without ties). A tie in the sign pattern = equal to 3 decimals.
+
+| comparison | mean diff [95% CI] | median diff [95% CI] | CI excl 0 (mean) | Wilcoxon p (branch, n) | sign pattern |
+|---|---|---|---|---|---|
+| RLVR-DPO | +0.171 [+0.073, +0.272] | +0.166 [+0.000, +0.342] | yes | 0.0312 (exact, 7) | RLVR lower on 1, DPO lower on 6, tie 1 |
+| DPO-SFT | -0.296 [-0.474, -0.123] | -0.309 [-0.491, -0.056] | yes | 0.0234 (exact, 8) | DPO lower on 7, SFT lower on 1, tie 0 |
+| RLVR-SFT | -0.125 [-0.270, -0.006] | -0.111 [-0.149, -0.051] | yes | 0.1484 (exact, 8) | RLVR lower on 7, SFT lower on 1, tie 0 |
+
+### (b) Propagated: nested bootstrap of the floors (primary)
+
+Each of 10,000 resamples (seed 20261024, per-call generator): within every trait the 6 wordings are resampled with replacement (the same wording draw for all three checkpoints, since they are the same items); within every drawn wording its valid seeds are resampled with replacement, independently per checkpoint. Each checkpoint's 8 floors are recomputed with the plan's formula; the statistic is the mean over the 8 traits of the floor difference (traits are fixed: they are the 8 traits studied). Bias correction: resampling m seeds with replacement shrinks the expected ddof=1 variance by (m-1)/m, which would shrink both floors and pull the difference toward zero, so each resampled variance is multiplied by m/(m-1) (m = the wording's number of valid seeds); the uncorrected version is shown as a sensitivity column. Two-sided bootstrap p = twice the share of resamples on the opposite side of zero (plan s5 convention).
+
+| comparison | observed mean diff | nested 95% CI (bias-corrected, primary) | CI excl 0 | bootstrap p | traits whose own nested CI excludes 0 (first higher / first lower) | uncorrected nested 95% CI |
+|---|---|---|---|---|---|---|
+| RLVR-DPO | +0.171 | [-0.045, +0.362] | no | 0.1282 | 0 / 0 of 8 | [-0.038, +0.293] |
+| DPO-SFT | -0.296 | [-0.512, -0.105] | yes | 0.0026 | 0 / 2 of 8 | [-0.408, -0.083] |
+| RLVR-SFT | -0.125 | [-0.373, +0.082] | no | 0.2158 | 0 / 0 of 8 | [-0.302, +0.067] |
+
+**RLVR - DPO, (a) simple:** mean floor difference +0.171 [+0.073, +0.272], Wilcoxon p 0.0312: the difference **survives** (interval excludes zero).
+
+**RLVR - DPO, (b) propagated (primary):** +0.171 [-0.045, +0.362], bootstrap p 0.1282: the difference **does NOT survive** once the uncertainty in the floor estimates is propagated.
+
+Limitations: n = 8 traits; 6 wordings and at most 3 seeds per wording, so each floor is itself a noisy estimate; post-hoc and uncorrected for multiplicity; the pilot ordered DPO and RLVR the other way (pooled seed SD 0.52 vs 0.46).
+
+**Dependence note: the trait nulls and the instability finding are not independent.** The pre-registered trait signal rule uses the larger of the two floors, max(s(t,RLVR), s(t,DPO)). RLVR's floor is strictly the larger on 6 of 8 traits and equal to DPO's (to 3 decimals) on 1, so on 7 of 8 traits RLVR's own seed-to-seed instability set (or co-set) the band against which the RLVR - DPO trait differences were judged (an earlier statement in the chat said 7 of 8 'set by RLVR'; that count includes the tie). The trait nulls were tested against a bar raised by the instability measured here, and the two should not be presented as independent evidence.
+

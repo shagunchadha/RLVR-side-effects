@@ -610,6 +610,7 @@ def report(gens, items):
           f"RLVR - SFT {fmt(r2['pv'])} [{fmt(r2['pci'][0])}, {fmt(r2['pci'][1])}], p {fmt(r2['p'], 4)}.")
     w()
     addendum_length_vs_rating(gens, items, w)
+    addendum_noise_floor_test(gens, items, w)
     REPORT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", REPORT)
 
@@ -775,6 +776,145 @@ def main():
         validation_sample(gens)
     else:
         report(gens, items)
+
+
+# ======================================================================================== addendum 4: noise-floor comparison
+def csv_rows(path):
+    import csv as _csv
+    return list(_csv.DictReader(open(path, encoding="utf-8")))
+
+
+def _floor_array(gens, items, cp):
+    """(8 traits x 6 wordings x 3 seeds) array of scored values (reverse-keyed), NaN where invalid."""
+    traits = sorted({it["trait"] for it in items})
+    meta = {it["id"]: (traits.index(it["trait"]), int(it["wording_index"]), it["key"]) for it in items}
+    a = np.full((len(traits), 6, 3), np.nan)
+    for g in gens[cp]:
+        if g["answer"] is None:
+            continue
+        t, wi, k = meta[g["id"]]
+        a[t, wi, g["seed"]] = g["answer"] if k == 1 else 6 - g["answer"]
+    return traits, a
+
+
+def _floors(a):
+    """Plan s4: s(t,k) = sqrt(mean over wordings of the ddof=1 variance across valid seeds; wordings with < 2 valid seeds skipped)."""
+    out = []
+    for t in range(a.shape[0]):
+        v = [np.var(x[np.isfinite(x)], ddof=1) for x in a[t] if np.isfinite(x).sum() >= 2]
+        out.append(math.sqrt(np.mean(v)) if v else float("nan"))
+    return np.array(out)
+
+
+def addendum_noise_floor_test(gens, items, w):
+    traits, A = None, {}
+    for cp in CK:
+        traits, A[cp] = _floor_array(gens, items, cp)
+    F = {cp: _floors(A[cp]) for cp in CK}
+    ok = True                                   # check against the committed pre-registered table 1
+    for cp in CK:
+        rows = {r["trait"]: float(r["noise_floor"]) for r in csv_rows(AN / f"table1_traits_{cp.upper()}.csv")}
+        ok &= all(abs(round(F[cp][i], 3) - rows[t]) < 1e-9 for i, t in enumerate(traits))
+    comps = [("rlvr", "dpo"), ("dpo", "sft"), ("rlvr", "sft")]
+    w("## Addendum 4 (Oct 25, requested after the results above were seen): are the noise floors different between checkpoints?")
+    w()
+    w("Same exploratory status (post-hoc). The noise floor s(t,k) is pre-registered (plan s4) and was computed by `analyze.py` (table 1); comparing it between checkpoints is not. "
+      f"Recomputed here from the result files with the plan's formula; matches the committed `table1_traits_*.csv` to 3 decimals for all 24 values: **{ok}**.")
+    w()
+    w("**n = 8 traits is small.** Version (a) treats each trait's floor as a fixed number; version (b) propagates the uncertainty of the floors themselves and is the **primary** interval.")
+    w()
+    w("| trait | SFT | DPO | RLVR | RLVR-DPO | DPO-SFT | RLVR-SFT |")
+    w("|---|---|---|---|---|---|---|")
+    for i, t in enumerate(traits):
+        w(f"| {t} | {F['sft'][i]:.3f} | {F['dpo'][i]:.3f} | {F['rlvr'][i]:.3f} | {F['rlvr'][i] - F['dpo'][i]:+.3f} | {F['dpo'][i] - F['sft'][i]:+.3f} | {F['rlvr'][i] - F['sft'][i]:+.3f} |")
+    w(f"| **mean** | {F['sft'].mean():.3f} | {F['dpo'].mean():.3f} | {F['rlvr'].mean():.3f} | {(F['rlvr'] - F['dpo']).mean():+.3f} | {(F['dpo'] - F['sft']).mean():+.3f} | {(F['rlvr'] - F['sft']).mean():+.3f} |")
+    w()
+
+    # ---- (a) simple, traits as units
+    w("### (a) Simple: traits as the paired units (n = 8), floors treated as fixed")
+    w()
+    w("Statistic: mean over traits of the floor difference (median also shown). 95% percentile bootstrap over the 8 traits (10,000 resamples, seed 20261024, per-call generator); "
+      "Wilcoxon signed-rank on the 8 differences rounded to 3 decimals (zero differences dropped; exact branch when n <= 25 without ties). A tie in the sign pattern = equal to 3 decimals.")
+    w()
+    w("| comparison | mean diff [95% CI] | median diff [95% CI] | CI excl 0 (mean) | Wilcoxon p (branch, n) | sign pattern |")
+    w("|---|---|---|---|---|---|")
+    RA = {}
+    for a_, b_ in comps:
+        d = F[a_] - F[b_]
+        cm = percentile_ci(bootstrap_paired_differences(d, lambda x: x.mean(axis=1), f"floor|a|{a_}-{b_}|mean"))
+        cd = percentile_ci(bootstrap_paired_differences(d, lambda x: np.median(x, axis=1), f"floor|a|{a_}-{b_}|median"))
+        dr = np.round(d, 3)
+        wd = wilcoxon_detail(dr)
+        excl = cm[0] > 0 or cm[1] < 0
+        RA[(a_, b_)] = (float(d.mean()), cm, excl, wd["p"])
+        w(f"| {a_.upper()}-{b_.upper()} | {d.mean():+.3f} [{cm[0]:+.3f}, {cm[1]:+.3f}] | {np.median(d):+.3f} [{cd[0]:+.3f}, {cd[1]:+.3f}] | {'yes' if excl else 'no'} | "
+          f"{wd['p']:.4f} ({wd['branch']}, {wd['n']}) | {a_.upper()} lower on {int((dr < 0).sum())}, {b_.upper()} lower on {int((dr > 0).sum())}, tie {int((dr == 0).sum())} |")
+    w()
+
+    # ---- (b) nested bootstrap
+    w("### (b) Propagated: nested bootstrap of the floors (primary)")
+    w()
+    w("Each of 10,000 resamples (seed 20261024, per-call generator): within every trait the 6 wordings are resampled with replacement (the same wording draw for all three checkpoints, "
+      "since they are the same items); within every drawn wording its valid seeds are resampled with replacement, independently per checkpoint. Each checkpoint's 8 floors are recomputed "
+      "with the plan's formula; the statistic is the mean over the 8 traits of the floor difference (traits are fixed: they are the 8 traits studied). "
+      "Bias correction: resampling m seeds with replacement shrinks the expected ddof=1 variance by (m-1)/m, which would shrink both floors and pull the difference toward zero, so each resampled "
+      "variance is multiplied by m/(m-1) (m = the wording's number of valid seeds); the uncorrected version is shown as a sensitivity column. "
+      "Two-sided bootstrap p = twice the share of resamples on the opposite side of zero (plan s5 convention).")
+    w()
+    rng = make_rng("floor|b|nested")
+    B = N_BOOT
+    T, Wn, S = A["sft"].shape
+    widx = rng.integers(0, Wn, size=(B, T, Wn))
+    FB, FBu = {}, {}
+    for cp in CK:
+        pad = np.zeros_like(A[cp])
+        cnt = np.isfinite(A[cp]).sum(axis=2)
+        for t in range(T):
+            for wi in range(Wn):
+                v = A[cp][t, wi][np.isfinite(A[cp][t, wi])]
+                pad[t, wi, :len(v)] = v
+        m = cnt[np.arange(T)[None, :, None], widx]                                    # (B, T, W) valid seeds of each drawn wording
+        u = rng.random((B, T, Wn, S))
+        pick = np.minimum((u * m[..., None]).astype(int), np.maximum(m[..., None] - 1, 0))
+        x = pad[np.arange(T)[None, :, None, None], widx[..., None], pick]             # (B, T, W, S)
+        use = np.arange(S)[None, None, None, :] < m[..., None]
+        mean = np.where(use, x, 0).sum(axis=3, keepdims=True) / np.maximum(m, 1)[..., None]
+        ss = np.where(use, (x - mean) ** 2, 0).sum(axis=3)
+        var = np.where(m >= 2, ss / np.maximum(m - 1, 1), np.nan)
+        corr = np.where(m >= 2, m / np.maximum(m - 1, 1), np.nan)
+        with np.errstate(invalid="ignore"):
+            FB[cp] = np.sqrt(np.nanmean(var * corr, axis=2))
+            FBu[cp] = np.sqrt(np.nanmean(var, axis=2))
+    w("| comparison | observed mean diff | nested 95% CI (bias-corrected, primary) | CI excl 0 | bootstrap p | traits whose own nested CI excludes 0 (first higher / first lower) | uncorrected nested 95% CI |")
+    w("|---|---|---|---|---|---|---|")
+    RB = {}
+    for a_, b_ in comps:
+        obs = float((F[a_] - F[b_]).mean())
+        dist = (FB[a_] - FB[b_]).mean(axis=1)
+        ci, ciu = percentile_ci(dist), percentile_ci((FBu[a_] - FBu[b_]).mean(axis=1))
+        s = dist[np.isfinite(dist)]
+        p = float(min(1.0, 2 * (np.mean(s <= 0) if obs > 0 else np.mean(s >= 0))))
+        per = [percentile_ci((FB[a_] - FB[b_])[:, t]) for t in range(T)]
+        excl = ci[0] > 0 or ci[1] < 0
+        RB[(a_, b_)] = (obs, ci, excl, p)
+        w(f"| {a_.upper()}-{b_.upper()} | {obs:+.3f} | [{ci[0]:+.3f}, {ci[1]:+.3f}] | {'yes' if excl else 'no'} | {p:.4f} | "
+          f"{sum(1 for c in per if c[0] > 0)} / {sum(1 for c in per if c[1] < 0)} of 8 | [{ciu[0]:+.3f}, {ciu[1]:+.3f}] |")
+    w()
+    ra, rb = RA[("rlvr", "dpo")], RB[("rlvr", "dpo")]
+    w(f"**RLVR - DPO, (a) simple:** mean floor difference {ra[0]:+.3f} [{ra[1][0]:+.3f}, {ra[1][1]:+.3f}], Wilcoxon p {ra[3]:.4f}: "
+      f"the difference **{'survives' if ra[2] else 'does NOT survive'}** (interval {'excludes' if ra[2] else 'includes'} zero).")
+    w()
+    w(f"**RLVR - DPO, (b) propagated (primary):** {rb[0]:+.3f} [{rb[1][0]:+.3f}, {rb[1][1]:+.3f}], bootstrap p {rb[3]:.4f}: "
+      f"the difference **{'survives' if rb[2] else 'does NOT survive'}** once the uncertainty in the floor estimates is propagated.")
+    w()
+    w("Limitations: n = 8 traits; 6 wordings and at most 3 seeds per wording, so each floor is itself a noisy estimate; post-hoc and uncorrected for multiplicity; "
+      "the pilot ordered DPO and RLVR the other way (pooled seed SD 0.52 vs 0.46).")
+    w()
+    w("**Dependence note: the trait nulls and the instability finding are not independent.** The pre-registered trait signal rule uses the larger of the two floors, max(s(t,RLVR), s(t,DPO)). "
+      f"RLVR's floor is strictly the larger on {int((np.round(F['rlvr'], 3) > np.round(F['dpo'], 3)).sum())} of 8 traits and equal to DPO's (to 3 decimals) on "
+      f"{int((np.round(F['rlvr'], 3) == np.round(F['dpo'], 3)).sum())}, so on {int((np.round(F['rlvr'], 3) >= np.round(F['dpo'], 3)).sum())} of 8 traits RLVR's own seed-to-seed instability set (or co-set) "
+      "the band against which the RLVR - DPO trait differences were judged (an earlier statement in the chat said 7 of 8 'set by RLVR'; that count includes the tie). The trait nulls were tested against a bar raised by the instability measured here, and the two should not be presented as independent evidence.")
+    w()
 
 
 if __name__ == "__main__":
