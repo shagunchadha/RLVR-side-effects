@@ -335,7 +335,9 @@ def report(gens, items):
         sys.exit("validation labels missing: do the hand-check first (see the module docstring)")
     lab = json.load(open(LABELS, encoding="utf-8"))
     L = []
-    w = L.append
+
+    def w(s=""):
+        L.append(s)
     w("# Exploratory: dithering, repetition and two-instruction compliance on component A")
     w()
     w("**POST-HOC and EXPLORATORY.** Not in `docs/analysis-plan.md`; changes no pre-registered number; nothing here enters the main scorecard. "
