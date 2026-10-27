@@ -6,6 +6,7 @@
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 export STORE=local RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf HF_XET_CHUNK_CACHE_SIZE_BYTES=0
+export PATH="/tmp/sprint_venv/bin:$PATH"   # vLLM JIT needs ninja from the venv
 PY="env -u PYTHONPATH -u PYTHONSAFEPATH /tmp/sprint_venv/bin/python"
 W="$RESULTS_DIR/M2/_hf"
 mkdir -p "$RESULTS_DIR/M2"

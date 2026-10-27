@@ -5,6 +5,9 @@
 #    exactly frozen batches 0-1: seed 0, ids 0-7 and 8-15); every row must match results/full_run_dpo token for token
 #    (the four seed-1/2 batches it also produces match frozen batches 6, 7, 12, 13 and are checked too);
 # 3. wrapper dry run (prompt tokens = frozen DPO's); 4. the rerun. Any failure stops the script.
+# The frozen env is built from requirements_pinned.txt with the DEFAULT index (PyPI torch==2.11.0, itself a CUDA 13.0
+# build); the download.pytorch.org cu130 index installs it as 2.11.0+cu130 and changes the environment hash.
+#   uv venv /tmp/batch_venv --python 3.13 && uv pip install --python /tmp/batch_venv/bin/python -r requirements_pinned.txt
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 FPY="env -u PYTHONPATH -u PYTHONSAFEPATH -u VIRTUAL_ENV /tmp/batch_venv/bin/python"
