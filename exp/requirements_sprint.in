@@ -1,6 +1,7 @@
 vllm==0.31.0
 torch==2.13.0
 transformers>=5.10.4,<5.18
+accelerate
 huggingface_hub>=1.31
 datasets
 pyarrow
