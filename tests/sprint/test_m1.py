@@ -2,6 +2,7 @@
 import argparse
 import json
 import math
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -124,3 +125,76 @@ def test_principal_cosines_known_subspaces():
     B = I[:, :2].clone(); B[:, 1] = math.cos(th) * I[:, 1] + math.sin(th) * I[:, 5]
     c = M.principal_cosines(I[:, :2], B, 2)
     assert np.allclose(sorted(c), sorted([1.0, math.cos(th)]), atol=1e-6)
+
+
+# ------------------------------------------------------------------ streaming, resume, resource log
+def _streamed(tmp_path, monkeypatch, src):
+    """Checkpoints in Hub mode whose hf_hub_download copies from the local fixture dirs (no network)."""
+    import shutil
+    import huggingface_hub
+    live, peak = {}, {}
+
+    def fake_download(repo, filename, revision=None, local_dir=None, **kw):
+        s = src / repo / filename
+        if not s.exists():
+            raise FileNotFoundError(s)
+        d = Path(local_dir) / filename
+        shutil.copy(s, d)
+        if filename.endswith(".safetensors"):
+            live.setdefault(repo, set()).add(d)
+            peak[repo] = max(peak.get(repo, 0), sum(p.exists() for p in live[repo]))
+        return str(d)
+    monkeypatch.setattr(huggingface_hub, "hf_hub_download", fake_download)
+    ck = {k: M.Checkpoint(repo=k, sha="x", work_dir=tmp_path / "dl", key=k) for k in ("sft", "dpo", "rlvr")}
+    return ck, live, peak
+
+
+def _store(tmp_path, monkeypatch):
+    from exp import store as S
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    return S.Store("M1", "sft-dpo-rlvr", {"test": 1})
+
+
+def test_streaming_deletes_each_file_after_use(ladder, tmp_path, monkeypatch):
+    _, base = ladder
+    ck, live, peak = _streamed(tmp_path, monkeypatch, tmp_path)
+    names = sorted(base)
+    M.run_shard(ck, names, "cpu", _store(tmp_path, monkeypatch), 0, 1, tmp_path / "p.csv")
+    assert all(not p.exists() for ps in live.values() for p in ps), "every streamed safetensors file is deleted"
+    assert max(peak.values()) == 1, f"at most one file per checkpoint on disk at a time, got {peak}"
+    assert all(not c.on_disk() for c in ck.values())
+
+
+def test_resume_after_crash_and_torn_row(ladder, tmp_path, monkeypatch):
+    ck, base = ladder
+    names = sorted(base)
+    prog = tmp_path / "p.csv"
+    store = _store(tmp_path, monkeypatch)
+    real, calls = M.tensor_rows, []
+
+    def crash_on_second(name, tensors, device):
+        calls.append(name)
+        if len(calls) == 2:
+            raise RuntimeError("simulated OOM")
+        return real(name, tensors, device)
+    monkeypatch.setattr(M, "tensor_rows", crash_on_second)
+    with pytest.raises(RuntimeError):
+        M.run_shard(ck, names, "cpu", store, 0, 1, prog)
+    assert len(M.load_progress(prog, store.hash)) == 1
+    with open(prog, "a", encoding="utf-8") as f:            # a write torn by the crash
+        f.write(f'{store.hash},1,{names[1]},"{{}}",ok,1.0,"[{{""tensor')
+    calls.clear()
+    monkeypatch.setattr(M, "tensor_rows", lambda *a: (calls.append(a[0]), real(*a))[1])
+    M.run_shard(ck, names, "cpu", store, 0, 1, prog)
+    first = M.ordered_by_file(ck, names)[0]
+    assert first not in calls and len(calls) == len(names) - 1, "finished tensors are not recomputed"
+    done = M.load_progress(prog, store.hash)
+    assert set(done) == set(names) and store.done(0)
+    with pytest.raises(SystemExit):
+        M.load_progress(prog, "another-config")
+
+
+def test_resources_line():
+    s = M.resources(None, "cpu")
+    assert "ram_avail=" in s and "rss=" in s

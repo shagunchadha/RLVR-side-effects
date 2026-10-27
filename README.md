@@ -131,10 +131,16 @@ $PY -m exp.run --list
 | job | what | launch | GPU / time (estimate) |
 |---|---|---|---|
 | B0 | checkpoint inventory (refs, SHAs, sizes, chat template, injected system prompt) -> `docs/sprint/checkpoint_inventory.md` | `$PY -m exp.run --job B0` | none; ~2 min |
-| M1 | weight-difference spectra RLVR-DPO vs DPO-SFT -> `results/sprint/M1/` | `for i in 0 1 2 3; do $PY -m exp.run --job M1 --shard $i/4; done` | optional (much faster on GPU); downloads 3 x 15 GB |
+| M1 | weight-difference spectra RLVR-DPO vs DPO-SFT -> `results/sprint/M1/` | `$PY -m exp.run --job M1 > /tmp/m1.log 2>&1` (resumable; see below) | GPU recommended; streams one ~5 GB safetensors file per checkpoint at a time (peak ~15 GB on disk) |
 | M2 | teacher-forced scoring of the frozen traces | see `exp/jobs/M2_tracescore.py` header | yes |
 | B1 | Likert x20 seeds + readouts | see `exp/jobs/B1_likert.py` header | yes |
 | B3 | reasoning-cap x format factorial | see `exp/jobs/B3_instructions.py` header | yes |
+
+M1 survives a reclaimed notebook: each finished tensor is appended to `$RESULTS_DIR/M1/M1_progress_shard0of1.csv` and a
+restart skips the tensors already there. The durable copy lives on the local machine, through the pairing connection:
+`MARIMO_TOKEN=... python exp/m1_sync.py --url <notebook url> push` before relaunching on a fresh notebook (if a local copy exists),
+then `... watch` while it runs (copies the CSV every 20 tensors and the log every minute to `results/sprint/M1/partial/`).
+The log has a `START i/355 <tensor>` line before every tensor and a `RES` line (RAM, cgroup, disk, GPU) every 10.
 
 Shards go to `$RESULTS_DIR/runs/<job>/<ckpt>/<config_hash>/shard_XXX.parquet` (or the same layout in the private HF
 dataset `shagunchadha/rlvr-se-runs` with `STORE=hf`). Each shard records the git SHA, model repo + commit, the full
