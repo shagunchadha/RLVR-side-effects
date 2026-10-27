@@ -145,7 +145,7 @@ def test_readout_with_gpt2_style_tokenizer(tiny_tok_gpt2):
     torch.manual_seed(0)
     m = Olmo3ForCausalLM(Olmo3Config(vocab_size=len(tiny_tok_gpt2), hidden_size=32, intermediate_size=64,
                                      num_hidden_layers=2, num_attention_heads=4, num_key_value_heads=4,
-                                     max_position_embeddings=512)).eval()
+                                     max_position_embeddings=8192)).eval()
     assert len(H.text_ids(tiny_tok_gpt2, " 3")) == 1
     ro = H.likert_readout(m, tiny_tok_gpt2, A_MESSAGES, think_text="maybe")
     assert not all(ro["space_in_context"].prefix_consistent)

@@ -63,7 +63,7 @@ def tiny_model(tiny_tok):
     from transformers import Olmo3Config, Olmo3ForCausalLM
     torch.manual_seed(0)
     cfg = Olmo3Config(vocab_size=len(tiny_tok), hidden_size=32, intermediate_size=64, num_hidden_layers=2,
-                      num_attention_heads=4, num_key_value_heads=4, max_position_embeddings=512,
+                      num_attention_heads=4, num_key_value_heads=4, max_position_embeddings=8192,
                       pad_token_id=tiny_tok.pad_token_id, eos_token_id=tiny_tok.eos_token_id)
     m = Olmo3ForCausalLM(cfg).eval()
     return m
@@ -75,7 +75,7 @@ def tiny_model_b(tiny_tok):
     from transformers import Olmo3Config, Olmo3ForCausalLM
     torch.manual_seed(1)
     cfg = Olmo3Config(vocab_size=len(tiny_tok), hidden_size=32, intermediate_size=64, num_hidden_layers=2,
-                      num_attention_heads=4, num_key_value_heads=4, max_position_embeddings=512,
+                      num_attention_heads=4, num_key_value_heads=4, max_position_embeddings=8192,
                       pad_token_id=tiny_tok.pad_token_id, eos_token_id=tiny_tok.eos_token_id)
     return Olmo3ForCausalLM(cfg).eval()
 
