@@ -105,10 +105,12 @@ def resolve_sampling(repo, sha, override=None):
 
 
 def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=0):
+    """vLLM engine with the sprint's resource rules: no CPU offload (vLLM 0.31's V1 engine has no swap space), and
+    max_model_len set by the caller to the longest prompt + the token cap."""
     from vllm import LLM
     return LLM(model=repo, revision=sha, tokenizer=repo, tokenizer_revision=sha, dtype="bfloat16",
                max_model_len=max_model_len, gpu_memory_utilization=gpu_memory_utilization, seed=seed,
-               enable_prefix_caching=True)
+               enable_prefix_caching=True, cpu_offload_gb=0)
 
 
 def generate(llm, prompt_token_ids, seeds, sampling, max_tokens=16000):

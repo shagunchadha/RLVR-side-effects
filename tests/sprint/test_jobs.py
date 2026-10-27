@@ -187,6 +187,34 @@ def test_b1_end_to_end(tmp_path, tiny_tok, tiny_model, monkeypatch):
     assert bad["p_nothink_1"] == ok["p_nothink_1"]          # prior is per wording, shared across seeds
 
 
+def test_b1_phases_resume_after_crash(tmp_path, tiny_tok, tiny_model, monkeypatch):
+    """gen phase crashes after the first chunk; the rerun generates only the rest; the read phase then writes the shard."""
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    fake, calls = _fake_generate(tiny_tok), []
+
+    def crashing(llm, prompt_ids, seeds, sampling, max_tokens=16000):
+        calls.append(len(seeds))
+        if len(calls) == 2:
+            raise RuntimeError("simulated reclaim")
+        return fake(llm, prompt_ids, seeds, sampling, max_tokens)
+    kw = dict(seeds=2, system="own", temperature=None, top_p=None, top_k=None, max_tokens=64, gpu_mem=0.85,
+              limit=None, chunk=1)
+    with pytest.raises(RuntimeError):
+        B1_likert.run(_args(["dpo"], "0/16", phase="gen", **kw), tok=tiny_tok, generate_fn=crashing)
+    calls.clear()
+    assert B1_likert.run(_args(["dpo"], "0/16", phase="gen", **kw), tok=tiny_tok,
+                         generate_fn=lambda *x, **k: (calls.append(1), fake(*x, **k))[1]) == 0
+    assert len(calls) == 2, "the finished wording is not regenerated (3 wordings, 1 done before the crash)"
+    st = S.Store("B1", "dpo__sys-own", B1_likert.job_config("dpo", _args(["dpo"], "0/16", **kw).job_args,
+                                                            {"temperature": 0.6, "top_p": 0.95, "top_k": -1, "source": "test"}))
+    assert not st.done(0), "gen phase alone does not write the shard"
+    assert B1_likert.run(_args(["dpo"], "0/16", phase="read", **kw), model=tiny_model, tok=tiny_tok,
+                         generate_fn=fake) == 0
+    rows = st.read(0).to_pylist()
+    assert len(rows) == 3 * 2 and all(abs(sum(r[f"p_nothink_{j}"] for j in range(1, 6)) - 1) < 1e-9 for r in rows)
+
+
 def test_b3_end_to_end(tmp_path, tiny_tok, monkeypatch):
     monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
     monkeypatch.setenv("STORE", "local")
