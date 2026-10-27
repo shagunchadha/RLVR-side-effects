@@ -124,7 +124,7 @@ Every job is a standalone CLI with no marimo dependency. From a notebook cell on
 cd /tmp && (git clone -b exp/mechanism-sprint https://github.com/shagunchadha/RLVR-side-effects.git rse || git -C rse pull)
 cd /tmp/rse && bash exp/setup_env.sh              # pinned venv at /tmp/sprint_venv + version gate (aborts on mismatch)
 export HF_HOME=/tmp/hf RESULTS_DIR=/tmp/sprint_out STORE=local     # STORE=hf needs HF_TOKEN
-PY="env -u PYTHONPATH /tmp/sprint_venv/bin/python"
+PY="env -u PYTHONPATH -u PYTHONSAFEPATH /tmp/sprint_venv/bin/python"   # molab sets PYTHONSAFEPATH=1
 $PY -m exp.run --list
 ```
 
