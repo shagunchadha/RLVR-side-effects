@@ -110,3 +110,33 @@ Summary of [docs/sprint_plan.md](docs/sprint_plan.md):
 | 5 | Write-up and repo polish | Not started |
 
 We are at the Week 1 to Week 2 boundary: one checkpoint is measured under a locked protocol, and the paraphrase-robustness design and the DPO run are the immediate next items.
+
+
+## Sprint jobs (branch `exp/mechanism-sprint`)
+
+Behavioural and mechanistic follow-ups to the frozen study. Code lives in `exp/`, docs in `docs/sprint/` (start with
+`registration-2026-10-27.md` and `checkpoint_inventory.md`), small summaries in `results/sprint/`. Frozen material
+(`items/`, `results/full_run_*`, `docs/analysis-plan.md`, tags) is never modified.
+
+Every job is a standalone CLI with no marimo dependency. From a notebook cell on the molab GPU box:
+
+```bash
+cd /tmp && (git clone -b exp/mechanism-sprint https://github.com/shagunchadha/RLVR-side-effects.git rse || git -C rse pull)
+cd /tmp/rse && bash exp/setup_env.sh              # pinned venv at /tmp/sprint_venv + version gate (aborts on mismatch)
+export HF_HOME=/tmp/hf RESULTS_DIR=/tmp/sprint_out STORE=local     # STORE=hf needs HF_TOKEN
+PY="env -u PYTHONPATH /tmp/sprint_venv/bin/python"
+$PY -m exp.run --list
+```
+
+| job | what | launch | GPU / time (estimate) |
+|---|---|---|---|
+| B0 | checkpoint inventory (refs, SHAs, sizes, chat template, injected system prompt) -> `docs/sprint/checkpoint_inventory.md` | `$PY -m exp.run --job B0` | none; ~2 min |
+| M1 | weight-difference spectra RLVR-DPO vs DPO-SFT -> `results/sprint/M1/` | `for i in 0 1 2 3; do $PY -m exp.run --job M1 --shard $i/4; done` | optional (much faster on GPU); downloads 3 x 15 GB |
+| M2 | teacher-forced scoring of the frozen traces | see `exp/jobs/M2_tracescore.py` header | yes |
+| B1 | Likert x20 seeds + readouts | see `exp/jobs/B1_likert.py` header | yes |
+| B3 | reasoning-cap x format factorial | see `exp/jobs/B3_instructions.py` header | yes |
+
+Shards go to `$RESULTS_DIR/runs/<job>/<ckpt>/<config_hash>/shard_XXX.parquet` (or the same layout in the private HF
+dataset `shagunchadha/rlvr-se-runs` with `STORE=hf`). Each shard records the git SHA, model repo + commit, the full
+config and package versions. Re-running a job skips shards that exist and never overwrites. Upload local shards later
+with `$PY -m exp.sync --from local --to hf`. CPU tests: `$PY -m pytest tests/sprint -q` (tiny random Olmo3, no downloads).
