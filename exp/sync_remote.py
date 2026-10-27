@@ -173,7 +173,7 @@ def main():
             nloc = sum(1 for p in ldir.rglob("*") if p.is_file()) if ldir.exists() else 0
             print(time.strftime("%H:%M:%S"), f"poll: pulled {n} changed, {nloc} local file(s) in {ldir}; "
                   f"log {lg.stat().st_size if lg and lg.exists() else 'MISSING'} bytes", flush=True)
-            if lg and lg.exists() and "EXIT=" in lg.read_text(errors="replace")[-2000:]:
+            if lg and lg.exists() and re.search(r"(?m)^EXIT=", lg.read_text(errors="replace")[-2000:]):
                 pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb, a.skip)
                 print("job ended (EXIT= in the log)", flush=True)
                 break
