@@ -5,18 +5,25 @@
 
 Conditions: cap in {True, False} x fmt in {strict, bare} (exp/prompts_sprint.py). strict + cap reproduces the frozen
 prompt exactly. One process = one checkpoint; shards split the (item, condition) list round-robin.
+Resource safety: vLLM alone (gpu_memory_utilization 0.85, max_model_len = longest prompt + max_tokens, no CPU offload);
+every finished generation is appended to $RESULTS_DIR/B3/<arm>/gen_shard<i>of<n>.csv and a restart resumes from it;
+the shard parquet is written when all generations exist. Pre-flight and RES lines.
 
 Columns: ckpt, system, id, component, cap, fmt, seed, sampling (json), text, gen_token_ids, lp_chosen, n_tokens,
 finish_reason, closed, status (frozen parser; meaningful for strict), answer_strict, answer_lenient, lenient_rule,
 think_tokens, think_sentences, post_sentences, format_ok, correct (D)
 """
 import json
+import os
 import re
+import time
+from pathlib import Path
 
 from .. import config as C
 from .. import harness as H
 from .. import parsers as P
 from .. import prompts_sprint as PS
+from .. import resources as R
 from .. import store as S
 from ._gen import run_requests
 
@@ -28,6 +35,7 @@ def add_args(p):
     p.add_argument("--seeds", type=int, default=10)
     p.add_argument("--system", default="own", choices=PS.SYSTEM_MODES)
     p.add_argument("--n-d", type=int, default=50)
+    p.add_argument("--chunk", type=int, default=8, help="units per vLLM call (progress granularity)")
     p.add_argument("--temperature", type=float, default=None)
     p.add_argument("--top-p", type=float, default=None)
     p.add_argument("--top-k", type=int, default=None)
@@ -57,7 +65,7 @@ def format_ok(post, component):
 
 def job_config(ck, a, sampling):
     return {"job": "B3", "ckpt": list(C.ckpt(ck)), "system": a.system, "seeds": a.seeds, "sampling": sampling,
-            "max_tokens": a.max_tokens, "n_d": a.n_d, "conditions": CONDITIONS, "bare_A": PS.BARE_A, "version": 1}
+            "max_tokens": a.max_tokens, "n_d": a.n_d, "conditions": CONDITIONS, "bare_A": PS.BARE_A, "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1}
 
 
 def run(args, llm=None, tok=None, generate_fn=None):
@@ -75,11 +83,31 @@ def run(args, llm=None, tok=None, generate_fn=None):
         return 0
     us = S.shard_slice(units(a.n_d), i, n)[: a.limit]
     tok = tok or H.load_tokenizer(repo, sha)
-    if llm is None and generate_fn is None:
-        llm = H.load_vllm(repo, sha, max_model_len=a.max_tokens + 2048, gpu_memory_utilization=a.gpu_mem)
     reqs = [{**u, "ckpt": ck, "system": a.system, "seed": s, "messages": PS.with_system(u["messages"], a.system)}
             for u in us for s in range(a.seeds)]
-    rows = run_requests(llm, tok, reqs, sampling, a.max_tokens, generate_fn)
+    key = lambda r: f"{r['id']}|{r['cap']}|{r['fmt']}|{r['seed']}"  # noqa: E731
+    root = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / "B3" / f"{ck}__sys-{a.system}__{st.hash}"
+    gen = R.Progress(root / f"gen_shard{i}of{n}.csv", st.hash)
+    cache = os.environ.get("HF_HUB_CACHE") or os.environ.get("HF_HOME") or "."
+    res = R.ResLog(180, dirs=[cache])
+    todo = [r for r in reqs if key(r) not in gen.done]
+    R.log(f"B3 {ck} shard {i}/{n}: {len(reqs)} requests, {len(reqs) - len(todo)} done; sampling {sampling}")
+    if todo and llm is None and generate_fn is None:
+        R.preflight(2 * 15, dirs=[cache])
+        mpl = max(len(H.prompt_ids(tok, r["messages"])) for r in reqs) + a.max_tokens
+        llm = H.load_vllm(repo, sha, max_model_len=mpl, gpu_memory_utilization=a.gpu_mem)
+        res.now(f"vLLM loaded (max_model_len {mpl})")
+    chunk = getattr(a, "chunk", 8) * a.seeds
+    for c in range(0, len(todo), chunk):
+        batch = todo[c:c + chunk]
+        t0 = time.time()
+        for row in run_requests(llm, tok, batch, sampling, a.max_tokens, generate_fn):
+            row["lp_chosen"] = [round(x, 5) for x in row["lp_chosen"]]
+            gen.add(key(row), row, (time.time() - t0) / len(batch))
+        R.log(f"B3 gen {len(gen.done)}/{len(reqs)}")
+        res.maybe(f"gen {len(gen.done)}/{len(reqs)}")
+    rows = [gen.done[key(r)] for r in reqs]
+    res.now("done")
     out = []
     for r in rows:
         row = {k: v for k, v in r.items() if k not in ("kind", "think_text", "post_text", "key_letter")}

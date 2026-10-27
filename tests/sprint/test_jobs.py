@@ -232,6 +232,29 @@ def test_b3_end_to_end(tmp_path, tiny_tok, monkeypatch):
     assert r["answer_lenient"] == ("4" if r["component"] == "A" else None)
 
 
+def test_b3_resumes_from_progress_after_crash(tmp_path, tiny_tok, monkeypatch):
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    fake, calls = _fake_generate(tiny_tok), []
+
+    def crashing(llm, prompt_ids, seeds, sampling, max_tokens=16000):
+        calls.append(len(seeds))
+        if len(calls) == 2:
+            raise RuntimeError("simulated reclaim")
+        return fake(llm, prompt_ids, seeds, sampling, max_tokens)
+    kw = dict(seeds=2, system="own", n_d=50, temperature=None, top_p=None, top_k=None, max_tokens=64, gpu_mem=0.85,
+              limit=None, chunk=1)
+    with pytest.raises(RuntimeError):
+        B3_instructions.run(_args(["rlvr"], "0/98", **kw), tok=tiny_tok, generate_fn=crashing)
+    calls.clear()
+    assert B3_instructions.run(_args(["rlvr"], "0/98", **kw), tok=tiny_tok,
+                               generate_fn=lambda *x, **k: (calls.append(1), fake(*x, **k))[1]) == 0
+    assert len(calls) == 3, "4 units, 1 finished before the crash: only 3 are regenerated"
+    st = S.Store("B3", "rlvr__sys-own", B3_instructions.job_config("rlvr", _args(["rlvr"], "0/98", **kw).job_args,
+                                                                  {"temperature": 0.6, "top_p": 0.95, "top_k": -1, "source": "test"}))
+    assert len(st.read(0).to_pylist()) == 4 * 2
+
+
 def test_b3_format_ok():
     assert B3_instructions.format_ok("\nIt fits.\nANSWER: 4", "A")
     assert not B3_instructions.format_ok("\nANSWER: 4", "A")             # no justification line
