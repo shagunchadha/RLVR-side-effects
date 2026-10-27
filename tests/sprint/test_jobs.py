@@ -119,6 +119,7 @@ def test_m2_single_and_pair(tmp_path, tiny_tok, tiny_model, tiny_model_b, monkey
     assert len(t) == 6 and all(r["prompt_tok_match"] and r["gen_tok_match"] for r in t)
     r0 = t[0]
     k = len(r0["sent_next_tok"])
+    assert len(r0["p_close_at_sent"]) == k and all(0 <= x <= 1 for x in r0["p_close_at_sent"])
     assert k > 0 and len(r0["p_think_end_at_sent"]) == len(r0["p_switch_at_sent"]) == len(r0["p_switch_Wait_at_sent"]) == k
     assert all(0 <= x <= 1 for x in r0["p_switch_at_sent"]) and 0 <= r0["mean_p_think_end_think"] <= 1
     assert r0["n_think_pos"] == r0["think_end_tok"] and r0["sum_lp_gen"] < 0

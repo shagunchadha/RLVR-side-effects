@@ -151,3 +151,43 @@ Committed and pushed **before B1, B3 or the rerun below wrote any output**. M1 (
   - A post-freeze sensitivity analysis. **The frozen numbers stay the reported frozen results.** The matched values are reported beside them, never in their place.
   - RLVR − DPO results do not involve SFT and are not re-run.
   - One seed per item (three for A) in a single rerun, as frozen. With the prompt also changing the random stream, a disagreement can be noise, and that is stated with each one.
+
+---
+
+## Amendment 2 (Oct 28, 2026): M1 outcome, M1b (exploratory), M2 operationalisation, B6 dataset
+
+Committed and pushed before M1b or M2 wrote any output (the only M2 attempts so far failed at load time, before scoring a trace).
+
+### M1 outcome (recorded here so it cannot be softened later)
+
+**M1-H1 failed.** Registered as "the RLVR update is smaller than the DPO update". It came out the other way: 0 of 226 2-D tensors have rel_dw(RLVR−DPO) < rel_dw(DPO−SFT), the median ratio is 2.03 and the median log10 ratio is +0.307 (`results/sprint/M1/`). M1-H2 and the M1-H3/H4 descriptives are reported as computed. Caveat, stated before M1b: both updates are about 0.1% of the weight norm, below the bf16 spacing (2^-8 relative). Much of each dW may therefore be rounding-level, which M1b checks. M1b can qualify the reading of M1; it does not overturn the M1-H1 verdict.
+
+### M1b: exploratory follow-up to M1 (`exp/jobs/M1b_bf16.py`), registered before it runs
+
+Per tensor, for RLVR−DPO and DPO−SFT:
+1. **bf16 resolution:** the share of elements that changed (exact bf16 inequality), and the distribution of the changes in bf16 ulps.
+2. **Shuffle null:**
+   - **Null:** the entries of dW are permuted at random 5 times.
+   - **Signal rank:** the number of singular values of dW above the largest top singular value of the shuffles.
+   - **Signal energy:** the share of ||dW||² in those directions; signal_rel = the norm of that part over ||W||.
+   - **Limitation:** a very sparse update cannot beat this null even when it is low-rank, so it is read together with (1).
+3. **cos(dW, W) per tensor,** and rel_dw orthogonal to W. q_proj and k_proj are flagged: with QK-norm, an update parallel to W is largely absorbed by the norm.
+4. **Re-ranking:** does the k_proj concentration among the largest RLVR−DPO updates survive ranking by signal_rel and by rel_dw_orth? The M1-H1 statistic is recomputed on both, as exploratory only.
+
+There are no directional hypotheses; everything is descriptive. Exact float32 SVDs on the GPU.
+
+### M2: two changes before any data (hypotheses M2-H1..H5 unchanged)
+
+1. **P(`</think>`) is not a single-token probability.** The pinned Olmo-3 tokenizer has no `</think>` token: it is `'</'`, `'think'`, `'>…'`. In the frozen traces the close is always `'</'`, `'think'`, `'>\n\n'`, after a sentence-ending `'.\n'` token.
+   - **Primary (M2-H1, M2-H2):** P_close at each think-block sentence end is Σ over v ∈ {`'</'`, `' </'`} of P(v | prefix) · P(`'think'` | prefix, v). It is computed at the first content token after the sentence end by a cached one-token step (`exp/harness.py: close_probs`, tested against brute-force forwards). The second factor is skipped when P(v) < 10⁻⁶, a bound on the error.
+   - **Sensitivity:** the first-token probability P(`'</'`) + P(`' </'`).
+2. **Storage:** per trace, the registered aggregates are kept: think-block means of each feature, its values at every think-block sentence end, and the trace's mean KL. Full per-position lists are dropped (≈2 KB instead of ≈100 KB per trace), so the per-trace progress file can live off the notebook. The computation is unchanged.
+
+### Later jobs and B6
+
+B2, B4, B5, B6, B8 and M3–M6 are not registered in this document. Each gets a dated amendment here before it produces any output. **B6 will use `TIGER-Lab/MMLU-Pro` instead of GPQA**: GPQA is gated and no HF token is available.
+
+### Infrastructure (no effect on any metric)
+
+- The sprint environment adds `accelerate==1.15.0`, the frozen environment's version. `harness.load_hf` uses `device_map`, and the M2 small test failed without it.
+- Jobs now run a pre-flight (RAM ≥ 16 GB, disk ≥ 2× model size) and log RES lines. They resume from per-unit progress files that are mirrored off the notebook (`exp/sync_remote.py`).

@@ -55,8 +55,11 @@ def du(path):
     total = 0
     for root, _, files in os.walk(path):
         for f in files:
+            fp = os.path.join(root, f)
+            if os.path.islink(fp):           # the HF cache links snapshots to blobs; count each file once
+                continue
             try:
-                total += os.path.getsize(os.path.join(root, f))
+                total += os.path.getsize(fp)
             except OSError:
                 pass
     return total

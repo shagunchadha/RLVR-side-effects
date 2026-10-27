@@ -157,6 +157,49 @@ def _logprob_chunks(model, h, chunk):
             yield s, torch.log_softmax(logits, dim=-1)
 
 
+def close_ids(tok, s="</think>"):
+    """(first-token variants, second token or None) for a multi-token closing string: the first tokens of s and of
+    ' ' + s, and the second token of tok(s). For the Olmo-3 tokenizer: ([524 '</', 694 ' </'], 27963 'think')."""
+    first = sorted({text_ids(tok, v)[0] for v in (s, " " + s)})
+    t = text_ids(tok, s)
+    return first, (t[1] if len(t) > 1 else None)
+
+
+def close_probs(model, ids, positions, first, second, min_p=1e-6):
+    """P(the closing string starts at k | ids[:k]) for each absolute position k in `positions`:
+        sum over v in `first` of P(v | ids[:k]) * P(second | ids[:k] + [v])
+    (just P(v | ids[:k]) summed when `second` is None). One cached forward over ids[:max(k)], then, in descending k,
+    the cache is cropped to k and one token v is stepped; the second factor is skipped when P(v) < min_p (its
+    contribution is then < min_p). Returns (p_close list, p_first list), aligned with `positions`."""
+    import torch
+    if not positions:
+        return [], []
+    K = max(positions)
+    with torch.no_grad():
+        out = model.model(input_ids=torch.tensor([ids[:K]], device=model.device), use_cache=True)
+        h = out.last_hidden_state[0]
+        cache = out.past_key_values
+        idx = torch.tensor([k - 1 for k in positions], device=h.device)
+        p1 = torch.softmax(model.lm_head(h[idx]).float(), dim=-1)[:, first]            # (n_pos, n_first)
+        del h, out
+        pc = {}
+        for j in sorted(range(len(positions)), key=lambda j: -positions[j]):
+            k = positions[j]
+            total = 0.0
+            for a, v in enumerate(first):
+                pv = float(p1[j, a])
+                if second is None:
+                    total += pv
+                    continue
+                if pv < min_p:
+                    continue
+                cache.crop(k)
+                o = model(input_ids=torch.tensor([[v]], device=model.device), past_key_values=cache, use_cache=True)
+                total += pv * float(torch.softmax(o.logits[0, -1].float(), dim=-1)[second])
+            pc[j] = total
+    return [pc[j] for j in range(len(positions))], [float(x) for x in p1.sum(-1)]
+
+
 def score(model, ids, gen_start, target_groups=None, pair_model=None, chunk=1024):
     """Teacher forcing on `ids` (prompt + generation). For each generated position t in [gen_start, len(ids)) the
     distribution is the model's prediction made at t-1. Returns dict of lists (length len(ids) - gen_start):

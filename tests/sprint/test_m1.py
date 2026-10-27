@@ -198,3 +198,52 @@ def test_resume_after_crash_and_torn_row(ladder, tmp_path, monkeypatch):
 def test_resources_line():
     s = M.resources(None, "cpu")
     assert "ram_avail=" in s and "rss=" in s
+
+
+# ------------------------------------------------------------------ M1b
+def test_m1b_known_values(ladder, tmp_path, monkeypatch):
+    from exp.jobs import M1b_bf16 as B
+    ck, base = ladder
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    a = argparse.Namespace(job_args=argparse.Namespace(device="cpu", shuffles=5, max_tensors=None, work_dir=None,
+                                                       summary_only=False))
+    out = tmp_path / "M1b"
+    assert B.run(a, ckpts=ck, out_dir=out) == 0
+    import csv
+    rows = {(r["tensor"], r["comparison"]): r for r in csv.DictReader(open(out / "m1b_tensors.csv"))}
+    down = "model.layers.0.mlp.down_proj.weight"
+    r = rows[(down, "DPO-SFT")]
+    # u = v = e_0: the update is ONE element, so every shuffle has the same spectrum and nothing beats the null
+    assert int(r["signal_rank"]) == 0 and math.isclose(float(r["s1"]), float(r["null_s1_max"]), rel_tol=1e-5)
+    assert math.isclose(float(r["share_changed"]), 1 / (24 * 16))
+    q = rows[("model.layers.1.self_attn.q_proj.weight", "RLVR-DPO")]
+    assert float(q["share_changed"]) == 0 and float(q["ulp_0"]) == 1 and q["qk_norm"] == "True"
+    n = rows[("model.layers.0.post_attention_layernorm.weight", "RLVR-DPO")]
+    assert math.isclose(float(n["cos_dw_w"]), 1.0, rel_tol=1e-4)            # dW = 0.1 * ones = parallel to W = ones
+    assert float(n["rel_dw_orth"]) < 1e-3
+    assert (out / "summary.md").read_text().count("## (") == 4
+    # resume: a second run recomputes nothing
+    import exp.jobs.M1b_bf16 as mod
+    monkeypatch.setattr(mod, "compare", lambda *x, **k: (_ for _ in ()).throw(AssertionError("recomputed")))
+    assert B.run(a, ckpts=ck, out_dir=out) == 0
+
+
+def test_m1b_dense_rank1_beats_shuffle_null():
+    from exp.jobs import M1b_bf16 as B
+    g = torch.Generator().manual_seed(1)
+    we = torch.randn(64, 48, generator=g).to(torch.bfloat16)
+    u, v = torch.randn(64, generator=g), torch.randn(48, generator=g)
+    wl = (we.float() + 0.05 * torch.outer(u, v)).to(torch.bfloat16)
+    r = B.compare(wl, we, "model.layers.0.mlp.up_proj.weight", "RLVR-DPO", 5, "cpu")
+    assert r["signal_rank"] >= 1 and r["signal_energy"] > 0.5 and r["s1"] > 2 * r["null_s1_max"]
+    assert r["share_changed"] > 0.5 and not r["qk_norm"]
+
+
+def test_ordered_bits_ulps():
+    from exp.jobs import M1b_bf16 as B
+    x = torch.tensor([1.0, -1.0, 0.0, -0.0], dtype=torch.bfloat16)
+    nxt = torch.nextafter(x.float(), torch.full_like(x.float(), 10)).to(torch.bfloat16)
+    up = torch.tensor([1.0 + 2 ** -7, -1.0 + 2 ** -8, 2 ** -133, 0.0], dtype=torch.bfloat16)
+    d = (B.ordered_bits(up) - B.ordered_bits(x)).tolist()
+    assert d[0] == 1 and d[1] == 1 and d[2] == 1 and d[3] == 0
+    del nxt

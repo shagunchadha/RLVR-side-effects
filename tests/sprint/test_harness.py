@@ -151,3 +151,24 @@ def test_readout_with_gpt2_style_tokenizer(tiny_tok_gpt2):
     assert not all(ro["space_in_context"].prefix_consistent)
     assert ro["space_in_option"].n_option_tokens == [1] * 5 and all(ro["space_in_option"].prefix_consistent)
     assert H.primary_variant(ro) == "space_in_option"
+
+
+def test_close_probs_matches_brute_force(tiny_model):
+    """close_probs (cached, cropped) equals P(v | prefix) * P(second | prefix + v) from independent full forwards."""
+    import torch
+    from exp import harness as H
+    g = torch.Generator().manual_seed(3)
+    ids = torch.randint(10, 500, (40,), generator=g).tolist()
+    first, second = [101, 202], 303
+    pos = [12, 25, 39, 31]
+    pc, pf = H.close_probs(tiny_model, ids, pos, first, second, min_p=0.0)
+
+    def nxt(prefix):
+        with torch.no_grad():
+            return torch.softmax(tiny_model(input_ids=torch.tensor([prefix])).logits[0, -1].float(), -1)
+    for k, got, gotf in zip(pos, pc, pf):
+        p = nxt(ids[:k])
+        want = sum(float(p[v]) * float(nxt(ids[:k] + [v])[second]) for v in first)
+        assert abs(got - want) < 1e-5 and abs(gotf - float(p[first].sum())) < 1e-5
+    pc0, _ = H.close_probs(tiny_model, ids, pos, first, None)
+    assert all(abs(a - b) < 1e-6 for a, b in zip(pc0, pf))

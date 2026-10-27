@@ -22,6 +22,9 @@ notebook; the per-position values are computed exactly as before, only what is k
   mean_<f>_think   mean of feature f over think positions (f = lp_chosen, entropy, p_think_end, p_switch, kl);
   <f>_at_sent      f at each think-block sentence end (the prediction for the first content token after it, i.e. the
                    positions in sent_next_tok) - the unit of M2-H1..H3;
+  p_close_at_sent  P(</think> starts here) at the same positions. '</think>' is not one token for the Olmo-3 tokenizer
+                   (it is '</' 'think' '>...'), so (amendment 2): sum over v in {'</', ' </'} of P(v) * P('think' | v),
+                   by harness.close_probs. p_think_end_* is the first-token proxy P('</') + P(' </'), sensitivity only;
   sum_lp_gen       total log-probability of the generation.
 Columns (single): trace_ckpt, scorer, id, seed, component, status, n_tokens_frozen, n_prompt_tok, prompt_tok_match,
 n_gen_tok, gen_tok_match, think_end_tok, n_think_pos, sent_end_tok, sent_next_tok, mean_*_think, *_at_sent (lp_chosen,
@@ -128,7 +131,7 @@ def summarize(prep, out, pair=False):
 
 
 def target_groups(tok):
-    groups = {"think_end": [H.single_token_id(tok, C.THINK_END)]}
+    groups = {"think_end": H.close_ids(tok, C.THINK_END)[0]}          # first-token proxy (sensitivity only)
     sw = H.first_token_ids(tok, C.SWITCH_WORDS)
     groups["switch"] = sorted({t for v in sw.values() for t in v})
     for w, ids in sw.items():
@@ -139,7 +142,7 @@ def target_groups(tok):
 def job_config(a, scorer_desc):
     return {"job": "M2", "mode": "pair" if a.pair else "single", "scorer": scorer_desc, "traces": sorted(a.traces),
             "components": sorted(a.components), "trace_files": {t: str(C.FULL_RUN[t].relative_to(C.REPO_ROOT)) for t in a.traces},
-            "ladder": {k: list(C.ckpt(k)) for k in LADDER}, "switch_words": list(C.SWITCH_WORDS), "version": 2}
+            "ladder": {k: list(C.ckpt(k)) for k in LADDER}, "switch_words": list(C.SWITCH_WORDS), "close": "sum_v P(v) P(think | v), v in first tokens of </think>, ' </think>'; min_p 1e-6", "version": 3}
 
 
 def check_same_vocab(toks):
@@ -183,6 +186,7 @@ def run(args, models=None, toks=None):
             models[B] = H.load_hf(*C.ckpt(B))
         res.now("models loaded")
     groups = target_groups(toks[A])
+    close = H.close_ids(toks[A], C.THINK_END)
     for t, (tc, r) in enumerate(todo):
         t0 = time.time()
         tok = toks[tc]
@@ -201,6 +205,9 @@ def run(args, models=None, toks=None):
             out = H.score(models[A], ids, gs, target_groups=groups, chunk=a.chunk)
             row = {**base, "scorer": A, "n_prompt_tok": prep["n_prompt_tok"], "prompt_tok_match": prep["prompt_tok_match"],
                    "gen_tok_match": prep["gen_tok_match"], "sent_end_tok": prep["sent_end_tok"], **summarize(prep, out)}
+            pc, _ = H.close_probs(models[A], ids, [gs + k for k in row["sent_next_tok"]], *close)
+            row["p_close_at_sent"] = pc                                   # primary for M2-H1 / H2 (amendment 2)
+            row["mean_p_close_at_sent"] = float(np.mean(pc)) if pc else None
         prog.add(key(tc, r), row, time.time() - t0)
         if (t + 1) % 50 == 0:
             R.log(f"M2 {label} shard {i}/{n}: {len(prog.done)}/{len(traces)}")

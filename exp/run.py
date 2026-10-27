@@ -14,6 +14,7 @@ JOBS = {
     # id: (module, needs_gpu, version_gated, one-line description)
     "B0": ("exp.jobs.B0_inventory", False, False, "checkpoint inventory: refs, SHAs, sizes, chat template (no GPU)"),
     "M1": ("exp.jobs.M1_weightdiff", False, True, "weight-difference spectra RLVR-DPO vs DPO-SFT (GPU optional)"),
+    "M1b": ("exp.jobs.M1b_bf16", False, True, "M1 follow-up: bf16 changed share and ulps, shuffle null, cos(dW, W) (exploratory)"),
     "M2": ("exp.jobs.M2_tracescore", True, True, "teacher-forced scoring of the frozen full-run traces"),
     "B1": ("exp.jobs.B1_likert", True, True, "Likert sampling x20 seeds + think/no-think readouts"),
     "B3": ("exp.jobs.B3_instructions", True, True, "reasoning-cap x answer-format factorial on A + 50 D items"),
