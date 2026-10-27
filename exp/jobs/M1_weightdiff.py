@@ -10,7 +10,7 @@ Memory and disk (rewritten Oct 28 after the first molab run was reclaimed at ~16
     model is ever in CPU RAM.
   - Every finished tensor is appended (flushed, fsynced) as one row to the progress CSV
     ($RESULTS_DIR/M1/M1_progress_shard<i>of<n>.csv, or --progress). A restart skips tensors already in it, so a crash
-    costs at most the tensor in flight. A torn last line is dropped on load. exp/m1_sync.py copies the CSV and the
+    costs at most the tensor in flight. A torn last line is dropped on load. exp/sync_remote.py copies the CSV and the
     log off the notebook while the job runs.
   - Every 10 tensors (and around each download / delete) one RES line logs available RAM, process RSS, cgroup
     memory, work-dir size and free disk, and GPU memory. Each tensor logs a START line before it is loaded, so the

@@ -136,11 +136,12 @@ $PY -m exp.run --list
 | B1 | Likert x20 seeds + readouts | see `exp/jobs/B1_likert.py` header | yes |
 | B3 | reasoning-cap x format factorial | see `exp/jobs/B3_instructions.py` header | yes |
 
-M1 survives a reclaimed notebook: each finished tensor is appended to `$RESULTS_DIR/M1/M1_progress_shard0of1.csv` and a
-restart skips the tensors already there. The durable copy lives on the local machine, through the pairing connection:
-`MARIMO_TOKEN=... python exp/m1_sync.py --url <notebook url> push` before relaunching on a fresh notebook (if a local copy exists),
-then `... watch` while it runs (copies the CSV every 20 tensors and the log every minute to `results/sprint/M1/partial/`).
-The log has a `START i/355 <tensor>` line before every tensor and a `RES` line (RAM, cgroup, disk, GPU) every 10.
+Every job survives a reclaimed notebook: finished units (M1 tensors, M2 traces, ...) are appended to a progress file
+under `$RESULTS_DIR/<job>/` and a restart skips them. The durable copy lives on the local machine, via the pairing
+connection: `MARIMO_TOKEN=... python exp/sync_remote.py --url <notebook> --remote-dir /tmp/sprint_out/<job> --remote-log
+/tmp/<job>.log --local-dir results/sprint/<job>/partial watch` while the job runs (its polls also keep the notebook
+active), and `... push` before relaunching on a fresh notebook. Jobs run a pre-flight (RAM >= 16 GB, disk >= 2 x model
+size) and log a `RES` line (RAM, RSS, cgroup, disk, GPU) every few minutes. Queues for a notebook are in `exp/launch/`.
 
 Shards go to `$RESULTS_DIR/runs/<job>/<ckpt>/<config_hash>/shard_XXX.parquet` (or the same layout in the private HF
 dataset `shagunchadha/rlvr-se-runs` with `STORE=hf`). Each shard records the git SHA, model repo + commit, the full

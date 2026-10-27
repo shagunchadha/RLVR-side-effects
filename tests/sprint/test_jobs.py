@@ -118,14 +118,41 @@ def test_m2_single_and_pair(tmp_path, tiny_tok, tiny_model, tiny_model_b, monkey
     t = st.read(0).to_pylist()
     assert len(t) == 6 and all(r["prompt_tok_match"] and r["gen_tok_match"] for r in t)
     r0 = t[0]
-    n = r0["n_gen_tok"]
-    assert len(r0["lp_chosen"]) == len(r0["p_think_end"]) == len(r0["p_switch"]) == len(r0["p_switch_Wait"]) == n
-    assert all(0 <= x <= 1 for x in r0["p_switch"])
+    k = len(r0["sent_next_tok"])
+    assert k > 0 and len(r0["p_think_end_at_sent"]) == len(r0["p_switch_at_sent"]) == len(r0["p_switch_Wait_at_sent"]) == k
+    assert all(0 <= x <= 1 for x in r0["p_switch_at_sent"]) and 0 <= r0["mean_p_think_end_think"] <= 1
+    assert r0["n_think_pos"] == r0["think_end_tok"] and r0["sum_lp_gen"] < 0
     assert M2_tracescore.run(a, models={"rlvr": tiny_model}, toks=toks) == 0     # resume: skip
     b = _args(None, "0/1", traces=["rlvr"], pair=["rlvr", "dpo"], components=["A"], chunk=16, limit=None)
     assert M2_tracescore.run(b, models={"rlvr": tiny_model, "dpo": tiny_model_b}, toks=toks) == 0
     pt = S.Store("M2", "pair_rlvr_dpo", M2_tracescore.job_config(b.job_args, "pair_rlvr_dpo")).read(0).to_pylist()
-    assert len(pt) == 2 and len(pt[0]["kl_a_b"]) == pt[0]["n_gen_tok"] and min(pt[0]["kl_a_b"]) >= 0
+    assert len(pt) == 2 and pt[0]["mean_kl_think"] >= 0 and pt[0]["mean_kl_gen"] >= 0
+    assert len(pt[0]["kl_at_sent"]) == len(pt[0]["sent_next_tok"])
+
+
+def test_m2_resumes_from_progress_after_crash(tmp_path, tiny_tok, tiny_model, monkeypatch):
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    _fake_runs(tmp_path, tiny_tok, monkeypatch)
+    monkeypatch.setattr(C, "REPO_ROOT", tmp_path)
+    toks = {k: tiny_tok for k in ("sft", "dpo", "rlvr")}
+    a = _args(["rlvr"], "0/1", traces=["sft", "dpo", "rlvr"], pair=None, components=list("ABCDE"), chunk=16, limit=None)
+    real, calls = H.score, []
+
+    def crash_on_third(*x, **k):
+        calls.append(1)
+        if len(calls) == 3:
+            raise RuntimeError("simulated reclaim")
+        return real(*x, **k)
+    monkeypatch.setattr(H, "score", crash_on_third)
+    with pytest.raises(RuntimeError):
+        M2_tracescore.run(a, models={"rlvr": tiny_model}, toks=toks)
+    calls.clear()
+    monkeypatch.setattr(H, "score", lambda *x, **k: (calls.append(1), real(*x, **k))[1])
+    assert M2_tracescore.run(a, models={"rlvr": tiny_model}, toks=toks) == 0
+    assert len(calls) == 4, "the two finished traces are not rescored"
+    st = S.Store("M2", "rlvr", M2_tracescore.job_config(a.job_args, "rlvr"))
+    assert len(st.read(0).to_pylist()) == 6
 
 
 def _fake_generate(tok):
