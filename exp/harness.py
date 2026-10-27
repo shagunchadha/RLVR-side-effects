@@ -172,13 +172,17 @@ def close_probs(model, ids, positions, first, second, min_p=1e-6):
     the cache is cropped to k and one token v is stepped; the second factor is skipped when P(v) < min_p (its
     contribution is then < min_p). Returns (p_close list, p_first list), aligned with `positions`."""
     import torch
+    from transformers import DynamicCache
     if not positions:
         return [], []
     K = max(positions)
     with torch.no_grad():
-        out = model.model(input_ids=torch.tensor([ids[:K]], device=model.device), use_cache=True)
+        # A plain DynamicCache (no config) keeps every layer's full past, so it can be cropped back to any k; the
+        # default cache of a sliding-window model (Olmo-3: 4096) drops old states and cannot be cropped past the
+        # window. The sliding window itself is still applied by the model's attention masks.
+        cache = DynamicCache()
+        out = model.model(input_ids=torch.tensor([ids[:K]], device=model.device), past_key_values=cache, use_cache=True)
         h = out.last_hidden_state[0]
-        cache = out.past_key_values
         idx = torch.tensor([k - 1 for k in positions], device=h.device)
         p1 = torch.softmax(model.lm_head(h[idx]).float(), dim=-1)[:, first]            # (n_pos, n_first)
         del h, out
@@ -193,7 +197,9 @@ def close_probs(model, ids, positions, first, second, min_p=1e-6):
                     continue
                 if pv < min_p:
                     continue
-                cache.crop(k)
+                extra = cache.get_seq_length() - k
+                if extra > 0:
+                    cache.crop(-extra)
                 o = model(input_ids=torch.tensor([[v]], device=model.device), past_key_values=cache, use_cache=True)
                 total += pv * float(torch.softmax(o.logits[0, -1].float(), dim=-1)[second])
             pc[j] = total

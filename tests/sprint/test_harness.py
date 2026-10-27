@@ -173,3 +173,28 @@ def test_close_probs_matches_brute_force(tiny_model):
         assert abs(got - want) < 1e-5 and abs(gotf - float(p[first].sum())) < 1e-5
     pc0, _ = H.close_probs(tiny_model, ids, pos, first, None)
     assert all(abs(a - b) < 1e-6 for a, b in zip(pc0, pf))
+
+
+def test_close_probs_beyond_sliding_window(tiny_tok):
+    """Positions far beyond a (tiny) sliding window: the cropped cache must still match uncached full forwards."""
+    import torch
+    from transformers import Olmo3Config, Olmo3ForCausalLM
+    from exp import harness as H
+    torch.manual_seed(5)
+    cfg = Olmo3Config(vocab_size=len(tiny_tok), hidden_size=32, intermediate_size=64, num_hidden_layers=2,
+                      num_attention_heads=4, num_key_value_heads=4, max_position_embeddings=512, sliding_window=8,
+                      layer_types=["sliding_attention", "full_attention"])
+    m = Olmo3ForCausalLM(cfg).eval()
+    V = cfg.vocab_size
+    ids = torch.randint(1, V, (60,), generator=torch.Generator().manual_seed(6)).tolist()
+    first, second = [V // 5, V // 3], V // 2
+    pos = [50, 9, 33, 59, 20]
+
+    def nxt(prefix):
+        with torch.no_grad():
+            return torch.softmax(m(input_ids=torch.tensor([prefix]), use_cache=False).logits[0, -1].float(), -1)
+    pc, pf = H.close_probs(m, ids, pos, first, second, min_p=0.0)
+    for k, got, gotf in zip(pos, pc, pf):
+        p = nxt(ids[:k])
+        want = sum(float(p[v]) * float(nxt(ids[:k] + [v])[second]) for v in first)
+        assert abs(got - want) < 1e-5 and abs(gotf - float(p[first].sum())) < 1e-5
