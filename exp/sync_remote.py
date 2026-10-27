@@ -114,9 +114,9 @@ def push_file(url, lpath, rpath):
     return True
 
 
-def remote_listing(url, rdir, max_mb):
-    """{relative path: size} of the files under rdir, skipping weight caches and large files."""
-    code = (f"import os,json\nr={rdir!r}\nout={{}}\nskip={SKIP_DIRS!r}\n"
+def remote_listing(url, rdir, max_mb, skip=()):
+    """{relative path: size} of the files under rdir, skipping weight caches, the `skip` dirs and large files."""
+    code = (f"import os,json\nr={rdir!r}\nout={{}}\nskip={tuple(SKIP_DIRS) + tuple(skip)!r}\n"
             "for d,ds,fs in os.walk(r):\n    ds[:]=[x for x in ds if x not in skip]\n"
             "    for f in fs:\n        p=os.path.join(d,f)\n        s=os.path.getsize(p)\n"
             f"        if s<={max_mb}*1e6 and not f.endswith(('.tmp','.part.b64','.lock','.incomplete')): out[os.path.relpath(p,r)]=s\n"
@@ -128,10 +128,10 @@ def remote_listing(url, rdir, max_mb):
     return json.loads(m.group(1))
 
 
-def pull_all(url, rdir, rlog, ldir, max_mb):
+def pull_all(url, rdir, rlog, ldir, max_mb, skip=()):
     ldir = Path(ldir)
     n = 0
-    for rel, size in remote_listing(url, rdir, max_mb).items():
+    for rel, size in remote_listing(url, rdir, max_mb, skip).items():
         lp = ldir / rel
         if not lp.exists() or lp.stat().st_size != size:
             pull_file(url, f"{rdir.rstrip('/')}/{rel}", lp)
@@ -151,6 +151,7 @@ def main():
     ap.add_argument("--max-mb", type=float, default=50)
     ap.add_argument("--every", type=int, default=60)
     ap.add_argument("--max-fail", type=int, default=5)
+    ap.add_argument("--skip", nargs="*", default=[], help="directory names to skip (any depth)")
     a = ap.parse_args()
     for nm, v in (("--remote-dir", a.remote_dir), ("--remote-log", a.remote_log)):
         if v and (":" in v or "\\" in v or not v.startswith("/")):
@@ -161,19 +162,19 @@ def main():
             push_file(a.url, lp, f"{a.remote_dir.rstrip('/')}/{lp.relative_to(ldir).as_posix()}")
         return
     if a.action == "pull":
-        print(f"pulled {pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)} changed file(s) into {ldir}")
+        print(f"pulled {pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb, a.skip)} changed file(s) into {ldir}")
         return
     fails = 0
     while True:
         try:
-            n = pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)
+            n = pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb, a.skip)
             fails = 0
             lg = ldir / Path(a.remote_log).name if a.remote_log else None
             nloc = sum(1 for p in ldir.rglob("*") if p.is_file()) if ldir.exists() else 0
             print(time.strftime("%H:%M:%S"), f"poll: pulled {n} changed, {nloc} local file(s) in {ldir}; "
                   f"log {lg.stat().st_size if lg and lg.exists() else 'MISSING'} bytes", flush=True)
             if lg and lg.exists() and "EXIT=" in lg.read_text(errors="replace")[-2000:]:
-                pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)
+                pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb, a.skip)
                 print("job ended (EXIT= in the log)", flush=True)
                 break
         except (OSError, ValueError) as e:              # local file trouble: report and keep watching
