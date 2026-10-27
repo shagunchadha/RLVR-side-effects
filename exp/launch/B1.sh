@@ -9,6 +9,9 @@ export STORE=local RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf
 export PATH="/tmp/sprint_venv/bin:$PATH"   # vLLM JIT needs ninja from the venv
 # molab sets CUDA_HOME to the image's nvcc 13.3; flashinfer JIT must use the venv's pinned 13.4 toolkit (header mismatch otherwise)
 export CUDA_HOME=/tmp/sprint_venv/lib/python3.13/site-packages/nvidia/cu13
+# The venv's pinned CUDA pieces (runtime headers 13.0, nvcc 13.4, flashinfer's CCCL) cannot JIT-compile flashinfer's
+# sampling kernels; vLLM's PyTorch top-p/top-k sampler is used instead (same sampling parameters; recorded in the config).
+export VLLM_USE_FLASHINFER_SAMPLER=0
 PY="env -u PYTHONPATH -u PYTHONSAFEPATH /tmp/sprint_venv/bin/python"
 W="$RESULTS_DIR/B1/_hf"
 mkdir -p "$RESULTS_DIR/B1"

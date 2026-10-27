@@ -54,7 +54,8 @@ def add_args(p):
 def job_config(ck, a, sampling):
     return {"job": "B1", "ckpt": list(C.ckpt(ck)), "system": a.system, "seeds": a.seeds, "sampling": sampling,
             "max_tokens": a.max_tokens, "items": "items/items_A_selfreport.json", "readout_suffix": H.ANSWER_SUFFIX,
-            "nothink_suffix": H.NOTHINK_SUFFIX, "version": 1}
+            "nothink_suffix": H.NOTHINK_SUFFIX,
+            "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1}
 
 
 def readout_cols(prefix, ro, alt_prefix):
