@@ -1,0 +1,49 @@
+=== 20:22:58 pre-flight
+20:22:58 PREFLIGHT ram_avail=171.6 ram_total=171.8 rss=0.0 cgroup=0.2 cgroup_max=171.8 du:hf_n2=0.0 free:hf_n2=9223372030.7 | need disk 30 GB, RAM 16 GB
+NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05, 0 MiB, 97887 MiB
+=== 20:22:58 gate 1: frozen full_run.py, DPO, A --limit 16
+20:22:58 RES (sidecar) ram_avail=171.6 ram_total=171.8 rss=0.0 cgroup=0.2 cgroup_max=171.8 du:hf_n2=0.0 free:hf_n2=9223372030.7 job_rss=0.0 gpu_used=0.0/97.9
+20:25:58 RES (sidecar) ram_avail=168.4 ram_total=171.8 rss=0.0 cgroup=3.4 cgroup_max=171.8 du:hf_n2=14.6 free:hf_n2=9223372016.1 job_rss=4.3 gpu_used=60.0/97.9
+environment hash: b25083c2e3494bcd  (sha256 prefix of the installed pinned package versions, GPU, driver, python)
+RESULT: ALL PINNED VERSIONS MATCH
+[    3.0 min] ALL BATCHES DONE; rows: 48
+gate 1: 48 rows regenerated; frozen batches 0-1: 16 rows, 0 differ; all batches: 0 differ []
+=== 20:26:00 GATE 1 PASSED (exact token match)
+=== 20:26:00 gate 2: wrapper dry run, SFT with the DPO system prompt
+gate 2: prompt_tokens == frozen DPO for all 24 rows: True
+=== 20:28:17 GATE 2 PASSED
+=== 20:28:17 rerun: SFT, DPO/RLVR system prompt, frozen pipeline -> /tmp/sprint_out/sft_matched_prompt
+20:28:17 RES (sidecar) ram_avail=171.6 ram_total=171.8 rss=0.0 cgroup=0.2 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=0.0 gpu_used=0.0/97.9
+20:31:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=1.9 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=85.8/97.9
+20:34:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=48.4/97.9
+20:37:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=48.4/97.9
+20:40:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=48.4/97.9
+20:43:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=48.4/97.9
+20:46:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=48.4/97.9
+20:49:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+20:52:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+20:55:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+20:58:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+21:01:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+21:04:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372016.1 job_rss=2.8 gpu_used=57.4/97.9
+21:07:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372007.5 job_rss=2.8 gpu_used=57.4/97.9
+21:10:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372007.5 job_rss=2.8 gpu_used=57.4/97.9
+21:13:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372007.5 job_rss=2.8 gpu_used=57.4/97.9
+21:16:17 RES (sidecar) ram_avail=169.3 ram_total=171.8 rss=0.0 cgroup=2.5 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.4 job_rss=2.8 gpu_used=57.4/97.9
+21:19:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=57.4/97.9
+21:22:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=57.4/97.9
+21:25:17 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=57.4/97.9
+21:28:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=57.4/97.9
+21:31:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=68.8/97.9
+21:34:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=73.9/97.9
+21:37:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=73.9/97.9
+21:40:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=73.9/97.9
+21:43:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=67.6/97.9
+21:46:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=66.9/97.9
+21:49:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=88.2/97.9
+21:52:18 RES (sidecar) ram_avail=169.8 ram_total=171.8 rss=0.0 cgroup=2.0 cgroup_max=171.8 du:hf_n2_sft=14.6 free:hf_n2_sft=9223372006.3 job_rss=2.8 gpu_used=49.5/97.9
+[   86.7 min] ALL BATCHES DONE; rows: 614
+[   86.7 min] status by component: {"A": {"valid": 143, "truncated": 1}, "B": {"valid": 40}, "C": {"valid": 77, "truncated": 3}, "D": {"valid": 295, "truncated": 5}, "E": {"valid": 47, "no_answer": 3}}
+DONE
+=== 21:55:02 rerun done; weights deleted
+EXIT=0
