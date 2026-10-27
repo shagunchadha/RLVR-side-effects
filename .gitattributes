@@ -1,4 +1,1 @@
-# files hashed in items/MANIFEST.sha256 must keep their bytes (LF) on every checkout
-items/** -text
-scripts/full_run.py -text
-requirements_pinned.txt -text
+*.sh text eol=lf
