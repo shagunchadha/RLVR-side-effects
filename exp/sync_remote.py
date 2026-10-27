@@ -75,9 +75,21 @@ def pull_file(url, rpath, lpath):
         new = (local if off else b"") + chunk
         tmp = lpath.with_suffix(lpath.suffix + ".tmp")
         tmp.write_bytes(new)
-        os.replace(tmp, lpath)
+        replace_retry(tmp, lpath)
         if len(new) >= total:
             return len(new)
+
+
+def replace_retry(src, dst, tries=10):
+    """os.replace, retried: on Windows a reader holding dst open (an editor, wc, a test) makes it fail briefly."""
+    for k in range(tries):
+        try:
+            os.replace(src, dst)
+            return
+        except PermissionError:
+            if k == tries - 1:
+                raise
+            time.sleep(0.5 * (k + 1))
 
 
 def push_file(url, lpath, rpath):
@@ -164,6 +176,8 @@ def main():
                 pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)
                 print("job ended (EXIT= in the log)", flush=True)
                 break
+        except (OSError, ValueError) as e:              # local file trouble: report and keep watching
+            print(time.strftime("%H:%M:%S"), f"local error (continuing): {type(e).__name__}: {e}", flush=True)
         except Unreachable as e:
             fails += 1
             print(time.strftime("%H:%M:%S"), f"unreachable ({fails}/{a.max_fail}): {e}", flush=True)
