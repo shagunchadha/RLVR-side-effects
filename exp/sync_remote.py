@@ -13,6 +13,9 @@ push  : upload every local file that is missing or shorter on the remote (chunke
 watch : pull every --every s (the polls also keep the notebook active); stops when the log contains EXIT= (pulling
         once more), or after --max-fail consecutive connection failures, printing the last log lines it holds.
 (MARIMO_EXEC overrides the path of the marimo-pair execute-code.sh, default .claude/skills/marimo-pair/scripts/.)
+From Git Bash on Windows, run it with MSYS_NO_PATHCONV=1: otherwise '/tmp/...' arguments are rewritten to Windows paths
+before Python sees them (remote paths that look like Windows paths are refused). watch prints one status line per poll
+(remote files, local copies, log size), so a watcher that sees nothing says so.
 """
 import argparse
 import base64
@@ -137,6 +140,9 @@ def main():
     ap.add_argument("--every", type=int, default=60)
     ap.add_argument("--max-fail", type=int, default=5)
     a = ap.parse_args()
+    for nm, v in (("--remote-dir", a.remote_dir), ("--remote-log", a.remote_log)):
+        if v and (":" in v or "\\" in v or not v.startswith("/")):
+            sys.exit(f"{nm} {v!r} is not a POSIX path on the notebook (Git Bash path conversion? set MSYS_NO_PATHCONV=1)")
     ldir = Path(a.local_dir)
     if a.action == "push":
         for lp in sorted(p for p in ldir.rglob("*") if p.is_file() and p.name != Path(a.remote_log or "").name):
@@ -150,9 +156,10 @@ def main():
         try:
             n = pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)
             fails = 0
-            if n:
-                print(time.strftime("%H:%M:%S"), f"pulled {n} changed file(s) -> {ldir}", flush=True)
             lg = ldir / Path(a.remote_log).name if a.remote_log else None
+            nloc = sum(1 for p in ldir.rglob("*") if p.is_file()) if ldir.exists() else 0
+            print(time.strftime("%H:%M:%S"), f"poll: pulled {n} changed, {nloc} local file(s) in {ldir}; "
+                  f"log {lg.stat().st_size if lg and lg.exists() else 'MISSING'} bytes", flush=True)
             if lg and lg.exists() and "EXIT=" in lg.read_text(errors="replace")[-2000:]:
                 pull_all(a.url, a.remote_dir, a.remote_log, ldir, a.max_mb)
                 print("job ended (EXIT= in the log)", flush=True)
