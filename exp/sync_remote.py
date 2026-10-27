@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXEC = ROOT / ".claude" / "skills" / "marimo-pair" / "scripts" / "execute-code.sh"
 SKIP_DIRS = ("_dl", "_hf", "hf", ".cache")
 PULL_LIMIT = 200_000          # raw bytes per call
-PUSH_CHUNK = 9_000            # base64 characters per call (the pairing script passes code on a command line)
+PUSH_CHUNK = 20_000           # base64 characters per call (the code travels on a command line; Windows caps it at 32K)
 
 
 class Unreachable(RuntimeError):
