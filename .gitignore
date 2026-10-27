@@ -5,3 +5,8 @@
 # Python
 __pycache__/
 *.pyc
+
+# sprint progress files and mirrored job outputs (large; the durable copy lives on the laptop, not in git)
+results/sprint/**/partial/**/*.csv
+results/sprint/**/partial/**/*.parquet
+results/sprint/**/runs/

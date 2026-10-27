@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 EXEC = ROOT / ".claude" / "skills" / "marimo-pair" / "scripts" / "execute-code.sh"
 SKIP_DIRS = ("_dl", "_hf", "hf", ".cache")
-PULL_LIMIT = 200_000          # raw bytes per call
+PULL_LIMIT = 2_000_000        # raw bytes per call (per-call overhead dominates; 200 KB made a 20 MB pull take minutes)
 PUSH_CHUNK = 20_000           # base64 characters per call (the code travels on a command line; Windows caps it at 32K)
 
 
