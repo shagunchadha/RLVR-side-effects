@@ -102,3 +102,52 @@ M1-H1/H2 and M2-H1–H3 are reported raw, with no Holm correction across the spr
 2. **Sampling for B1 and B3.** Model defaults (0.6 / 0.95), as briefed. If replication of the frozen numbers is the priority, an additional `--sampling frozen` (0.7 / 0.9) arm can be added.
 
 Any change to the hypotheses, metrics or units after a job writes its first shard will be recorded here as a dated amendment, with the reason.
+
+---
+
+## Amendment 1 (Oct 28, 2026): SFT system-prompt arms, frozen-sampling bridge, matched-prompt sensitivity rerun
+
+Committed and pushed **before B1, B3 or the rerun below wrote any output**. M1 (weight differences; no prompts, no sampling) was running at the time, so nothing here touches it. Reason: B0 found that the SFT template injects a different default system prompt from DPO and RLVR (`docs/sprint/checkpoint_inventory.md`; disclosure in `docs/sprint/disclosure-sft-system-prompt.md`). This amendment settles both "Decisions pending" above.
+
+**Bug fixed before any B1/B3 shard (same commit series):** `--system dpo_default` sent the full DPO default text as an explicit system message. For an explicit system message both Think templates append " You do not currently have access to any functions. <functions></functions>" themselves, so the rendered block held that sentence twice and did not equal the DPO default. `exp/prompts_sprint.py` now sends the text without that suffix (`DPO_SYSTEM_MESSAGE`). A test (`tests/sprint/test_jobs.py::test_dpo_default_renders_the_dpo_default_block`, using the pinned SFT and DPO templates as fixtures) asserts that the rendered prompt is byte-identical to the DPO template's own default under both templates.
+
+### C1. B1 system-prompt arms (decision pending 1)
+
+- **B1 arms:** SFT, DPO and RLVR with their own templates (`--system own`, as registered), **plus SFT with the DPO/RLVR system prompt** (`--ckpt sft --system dpo_default`, 48 wordings × 20 seeds = 960 generations). The SFT own-template arm is kept.
+- **Contrasts:**
+  - **Matched DPO − SFT:** DPO (own) − SFT (`dpo_default`). The two prompts are then byte-identical.
+  - **Frozen-style DPO − SFT:** DPO (own) − SFT (own), still confounded, kept for continuity with the frozen run.
+  - **System-prompt effect within SFT:** SFT (`dpo_default`) − SFT (own).
+  - All three are paired by wording (n = 48), with the B1 metrics, statistics and readouts.
+- **Status:** exploratory. B1-H1 and B1-H2 remain RLVR − DPO, with Holm over the two as registered. No DPO − SFT hypothesis is added.
+- **B3 is unchanged:** own templates only, so B3's DPO − SFT contrasts remain **descriptive and confounded**.
+
+### C2. Sampling (decision pending 2)
+
+- **B1 bridge arm at the frozen sampling:**
+  - Parameters: temperature 0.7, top_p 0.9, no top-k filter (`--temperature 0.7 --top-p 0.9`). The frozen run set no `top_k`: it is unset in the checkpoints' `generation_config.json` and `None` in the transformers 5.14.1 defaults.
+  - Size: seeds 0..4 (`--seeds 5`), `max_tokens` 16000, own templates, all three checkpoints; 48 × 3 × 5 = 720 generations.
+  - Role: it separates "different sampling" from "different sample" when B1 at model defaults is compared with the frozen run.
+  - It is a vLLM replication at the frozen parameters, not a re-run. The engine, RNG stream, batching and token cap differ from the frozen HF `generate` (cap 4000 there).
+  - The B1 metrics are computed in this arm as well. They are reported next to the main B1 arm and the frozen values, as exploratory.
+- **B3:** model defaults only (temperature 0.6, top_p 0.95 from `generation_config.json`). No frozen-sampling arm.
+
+### C3. Post-freeze sensitivity rerun: SFT with the DPO/RLVR system prompt through the frozen pipeline
+
+- **What:** the frozen full run for SFT, with **only the system prompt changed** to the DPO/RLVR default.
+- **Command:** `scripts/full_run_matched_prompt.py --checkpoint sft --system-prompt-from dpo`.
+- **Output:** `results/sprint/sft_matched_prompt/`.
+- **Implementation:**
+  - `scripts/full_run.py` is listed in `items/MANIFEST.sha256` and is **not modified**. The wrapper imports it and calls its `main()` unchanged. The manifest guard, version gate (`requirements_pinned.txt`, driver 595.71.05, RTX PRO 6000 Blackwell), items, `items/run_order.json`, batch composition and order, seeds (A: 0, 1, 2; others: 0), sampling (0.7 / 0.9) and caps (4000; E 16000) are therefore the frozen ones.
+  - The single change is that the SFT tokenizer's chat template is replaced by the DPO checkpoint's template. The two differ only in the default system block; that was verified before registration on all 518 frozen items.
+- **Checks before the model loads (any failure aborts):**
+  - the vocabularies are identical;
+  - for every frozen item, the swapped-template input_ids equal DPO's own render exactly;
+  - SFT's own render differs from DPO's only before the first user turn.
+  - The check and per-item prompt token counts go to `full_run_sft_system_prompt.json`. Every prompt becomes 19 tokens longer (as DPO's), so the left-padding in each batch changes accordingly. That is part of the manipulation, not a deviation.
+- **Analysis (fixed now):** `python -m exp.compare_sft_matched` recomputes every frozen result that compares DPO with SFT (list in the disclosure document). It uses the frozen analysis code unchanged (`scripts/analyze.py`'s `analyse()`, `results/analysis/exploratory_dithering.py`'s `report()`), with the matched SFT file in place of the frozen one, and prints frozen against matched side by side. First it checks that recomputing from the frozen files reproduces the committed numbers.
+- **Robustness rule, fixed before the rerun:** a frozen DPO − SFT result is called **robust to the system prompt** if, on the matched run, its primary statistic has the same sign and the same verdict (signal / no signal for table 3 rows and H3; interval excludes zero or not for the exploratory rows). Otherwise it is **prompt-sensitive**. Claims C3 and C8 are re-evaluated with their own wording on the matched values.
+- **Status:**
+  - A post-freeze sensitivity analysis. **The frozen numbers stay the reported frozen results.** The matched values are reported beside them, never in their place.
+  - RLVR − DPO results do not involve SFT and are not re-run.
+  - One seed per item (three for A) in a single rerun, as frozen. With the prompt also changing the random stream, a disagreement can be noise, and that is stated with each one.

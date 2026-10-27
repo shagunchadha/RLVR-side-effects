@@ -3,6 +3,11 @@
     python -m exp.run --job B1 --ckpt rlvr [--shard i/n] [--seeds 20] [--system own|dpo_default]
                       [--temperature T --top-p P] [--max-tokens 16000] [--gpu-mem 0.45]
 
+Arms (registration amendment 1):
+    --ckpt {sft,dpo,rlvr}                                       main arm, own templates, model-default sampling
+    --ckpt sft --system dpo_default                             SFT with the DPO/RLVR system prompt (matched DPO - SFT)
+    --ckpt {sft,dpo,rlvr} --seeds 5 --temperature 0.7 --top-p 0.9   bridge arm at the frozen sampling (no top-k)
+
 One process = one checkpoint. Shards split the 48 wordings round-robin. Within a shard: vLLM samples every
 (wording, seed); then an HF copy of the same checkpoint computes, per generation, the think-conditioned readout
 P("1".."5" | prompt + own think text + "\\n</think>\\n\\nANSWER: "), and, once per wording, the no-think prior

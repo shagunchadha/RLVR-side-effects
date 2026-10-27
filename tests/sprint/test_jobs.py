@@ -1,6 +1,7 @@
 """CPU tests for the prompt builders and for M2 / B1 / B3 end to end (tiny random Olmo3, fake vLLM)."""
 import argparse
 import json
+from pathlib import Path
 
 import pytest
 
@@ -36,9 +37,27 @@ def test_with_system():
     m = [{"role": "user", "content": "q"}]
     assert PS.with_system(m, "own") == m
     s = PS.with_system(m, "dpo_default")
-    assert s[0] == {"role": "system", "content": PS.DPO_DEFAULT_SYSTEM} and s[1:] == m
+    assert s[0] == {"role": "system", "content": PS.DPO_SYSTEM_MESSAGE} and s[1:] == m
     with pytest.raises(ValueError):
         PS.with_system(m, "x")
+
+
+def test_dpo_default_renders_the_dpo_default_block(tiny_tok):
+    """--system dpo_default must render byte-identically to the DPO template's own default, under the SFT and the DPO
+    templates (fixtures: the pinned Think-SFT / Think-DPO chat templates), with <functions></functions> exactly once."""
+    fx = Path(__file__).parent / "fixtures"
+    sft_t = (fx / "chat_template_think_sft.jinja").read_text(encoding="utf-8")
+    dpo_t = (fx / "chat_template_think_dpo.jinja").read_text(encoding="utf-8")
+    item = C.load_items("A")[0]
+
+    def render(tmpl, msgs):
+        return tiny_tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True, chat_template=tmpl)
+    ref = render(dpo_t, item["messages"])
+    assert ref.startswith("<|im_start|>system\n" + PS.DPO_DEFAULT_SYSTEM + "<|im_end|>\n")
+    for tmpl in (sft_t, dpo_t):
+        r = render(tmpl, PS.with_system(item["messages"], "dpo_default"))
+        assert r == ref and r.count("<functions></functions>") == 1
+    assert render(sft_t, item["messages"]) != ref   # the confound itself
 
 
 # ------------------------------------------------------------------ jobs on the tiny model

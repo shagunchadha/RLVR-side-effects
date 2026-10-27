@@ -8,7 +8,9 @@ Conditions (B3): cap in {True, False} x fmt in {"strict", "bare"}
   D strict: question + options + MC_INSTRUCTION + FINISH + FORMAT_LINES["D"] (+ REASONING_CAP) == frozen when cap=True
   D bare:   question + options (+ REASONING_CAP)
 System prompt (all jobs): "own" = no system message (each template injects its own default, as in the frozen run);
-"dpo_default" = an explicit system message with the DPO/RLVR default text (removes the SFT template difference).
+"dpo_default" = an explicit system message that renders to exactly the DPO/RLVR default block under every Think
+template (removes the SFT template difference). For an explicit system message the templates append
+TEMPLATE_FUNCTIONS_SUFFIX themselves, so the message carries the default text without it.
 """
 import sys
 
@@ -22,6 +24,9 @@ import prompts as FROZEN  # noqa: E402  (items/prompts.py, frozen, read-only)
 DPO_DEFAULT_SYSTEM = ("You are OLMo, a helpful function-calling AI assistant built by Ai2. Your date cutoff is November "
                       "2024, and your model weights are available at https://huggingface.co/allenai. You do not "
                       "currently have access to any functions. <functions></functions>")
+TEMPLATE_FUNCTIONS_SUFFIX = " You do not currently have access to any functions. <functions></functions>"
+DPO_SYSTEM_MESSAGE = DPO_DEFAULT_SYSTEM[:-len(TEMPLATE_FUNCTIONS_SUFFIX)]
+assert DPO_SYSTEM_MESSAGE + TEMPLATE_FUNCTIONS_SUFFIX == DPO_DEFAULT_SYSTEM
 BARE_A = 'On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement: "{statement}"'
 SYSTEM_MODES = ("own", "dpo_default")
 
@@ -30,7 +35,7 @@ def with_system(messages, system):
     if system == "own":
         return list(messages)
     if system == "dpo_default":
-        return [{"role": "system", "content": DPO_DEFAULT_SYSTEM}] + list(messages)
+        return [{"role": "system", "content": DPO_SYSTEM_MESSAGE}] + list(messages)
     raise ValueError(f"system must be one of {SYSTEM_MODES}")
 
 
