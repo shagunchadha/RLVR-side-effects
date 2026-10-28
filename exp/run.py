@@ -26,6 +26,7 @@ JOBS = {
     "B4": ("exp.jobs.B4_rlzero", True, True, "reward domain: base (few-shot) + RL-Zero x5 on A, B2 and 100 D items (amendments 3, 5, 10)"),
     "B5": ("exp.jobs.B5_dose", True, True, "dose-response over RL step branches: B1 protocol on A + 100 D items (amendments 3, 5, 8)"),
     "B6": ("exp.jobs.B6_controls", True, True, "hard controls: MATH-L5/AIME, sycophancy, MMLU-Pro calibration, SQuAD v2 refusal (amendments 3, 11)"),
+    "B7": ("exp.jobs.B7_hedging", True, True, "self-report vs behaviour: hedging on 100 TriviaQA questions (amendment 9)"),
     "B8": ("exp.jobs.B8_ipipneo", True, True, "response style on IPIP-NEO-120 with the B1 protocol (amendments 3, 6)"),
     "B3": ("exp.jobs.B3_instructions", True, True, "reasoning-cap x answer-format factorial on A + 50 D items"),
 }

@@ -510,3 +510,15 @@ def test_m6_cka_gram_matches_features_and_runs(tmp_path, tiny_tok, tiny_model, m
     monkeypatch.setattr(M6, "prompts", lambda: [ps[i] for i in keep])
     a = _args(None, None, layers=[0, 1], think=3, boot=10, limit=None)
     assert M6.run(a, load=lambda ck: tiny_model, tok=tiny_tok) == 0
+
+
+def test_b7_hedges_and_run(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import B7_hedging as B7
+    items, _ = B7.load_items()
+    assert len(items) == 100 and all(i["aliases"] for i in items)
+    assert B7.hedge_rate("Maybe it is Paris, I think.") == 100.0 * 2 / 6
+    assert B7.hedge_rate("It is Paris.") == 0.0 and B7.norm("The  Eiffel-Tower!") == "eiffeltower"
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    a = _args(["dpo"], None, seeds=2, system="own", max_tokens=64, gpu_mem=0.8, chunk=4, limit=3)
+    assert B7.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
