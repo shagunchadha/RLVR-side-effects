@@ -80,7 +80,21 @@ def per_arm(gen, read):
     rd = [(x, r) for x, r in rd if x and x.get("read_primary")]
     agree = sum(1 for x, r in rd if int(np.argmax([x[f"p_read_{j}"] for j in range(1, 6)])) + 1 == int(r["answer_strict"]))
     pri = [v for k, v in read.items() if k.startswith("prior|")]
-    return {"n": len(gen), "valid": len(valid), "ext_w": {k: float(np.mean(v)) for k, v in ext.items()},
+    prior = {k.split("|", 1)[1]: v for k, v in read.items() if k.startswith("prior|")}
+    pE = {i: sum(j * v[f"p_nothink_{j}"] for j in range(1, 6)) for i, v in prior.items()}
+    w = collections.defaultdict(lambda: collections.defaultdict(list))
+    for x, r in rd:
+        i = r["id"]
+        w["read_ext"][i].append(x["p_read_1"] + x["p_read_5"])
+        w["read_E"][i].append(x["read_expected"])
+        w["read_H"][i].append(x["read_entropy"])
+        w["agree"][i].append(int(np.argmax([x[f"p_read_{j}"] for j in range(1, 6)])) + 1 == int(r["answer_strict"]))
+        if i in pE:
+            w["shift"][i].append(abs(x["read_expected"] - pE[i]))
+    wd = {k: {i: float(np.mean(v)) for i, v in d.items()} for k, d in w.items()}
+    wd["prior_ext"] = {i: v["p_nothink_1"] + v["p_nothink_5"] for i, v in prior.items()}
+    wd["prior_E"] = pE
+    return {"w": wd, "n": len(gen), "valid": len(valid), "ext_w": {k: float(np.mean(v)) for k, v in ext.items()},
             "mean_rating": float(np.mean([int(r["answer_strict"]) for r in valid])) if valid else float("nan"),
             "read_E": float(np.mean([x["read_expected"] for x, _ in rd])) if rd else float("nan"),
             "read_ext": float(np.mean([x["p_read_1"] + x["p_read_5"] for x, _ in rd])) if rd else float("nan"),
@@ -157,6 +171,18 @@ def main(argv=None):
             ci = DI.percentile_ci(DI.bootstrap_paired_differences(d, lambda x: x.mean(axis=1), "B1|H2"))
             L.append(f"| B1-H2: RLVR - DPO acquiescence index (mean over {len(d)} traits) | {d.mean():+.3f} [{ci[0]:+.3f}, "
                      f"{ci[1]:+.3f}]; RLVR lower on {int((d < 0).sum())} of {len(d)} traits |")
+    if g("rlvr") and g("dpo"):
+        L += ["", "### Gate 1 (a): RLVR - DPO per wording on the readouts (main arms; exploratory except H3/H4 as registered)", "",
+              "| quantity | RLVR - DPO [95% CI] |", "|---|---|"]
+        for k, name in [("read_ext", "think-conditioned readout P(1)+P(5)"), ("read_E", "readout E[rating]"),
+                        ("read_H", "readout entropy"), ("agree", "agreement sampled = readout argmax"),
+                        ("prior_ext", "B1-H3: no-think prior P(1)+P(5)"), ("prior_E", "no-think prior E[rating]"),
+                        ("shift", "B1-H4: |E[r | think] - E[r | no-think]| (mean over seeds)")]:
+            L.append(f"| {name} | {paired(g('rlvr')['w'].get(k, {}), g('dpo')['w'].get(k, {}), 'B1|gate1|' + k)} |")
+        for ck in ("rlvr", "dpo"):
+            sh = g(ck)["w"].get("shift", {})
+            L.append(f"| {ck.upper()}: mean |shift from prior| (absolute, not a contrast) | "
+                     f"{np.mean(list(sh.values())) if sh else float('nan'):.3f} over {len(sh)} wordings |")
     L += ["", "Registered directions: B1-H1 RLVR > DPO; B1-H2 RLVR < DPO (Holm over H1 and H2 when final). "
           "DPO - SFT contrasts are exploratory (amendment 1).", ""]
     out = Path(a.out)
