@@ -17,6 +17,7 @@ JOBS = {
     "M1b": ("exp.jobs.M1b_bf16", False, True, "M1 follow-up: bf16 changed share and ulps, shuffle null, cos(dW, W) (exploratory)"),
     "M2": ("exp.jobs.M2_tracescore", True, True, "teacher-forced scoring of the frozen full-run traces"),
     "B1": ("exp.jobs.B1_likert", True, True, "Likert sampling x20 seeds + think/no-think readouts"),
+    "B2": ("exp.jobs.B2_indeterminacy", True, True, "indeterminacy x self-reference 2x2 grid (amendment 3)"),
     "B3": ("exp.jobs.B3_instructions", True, True, "reasoning-cap x answer-format factorial on A + 50 D items"),
 }
 

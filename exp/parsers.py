@@ -96,3 +96,20 @@ def lenient_letter(text, letters="ABCDE"):
     if hits:
         return hits[-1], "option_pattern"
     return None, "none"
+
+
+_YESNO = re.compile(r"ANSWER\s*:\s*\**\s*(yes|no)\b", re.I)
+
+
+def strict_yesno(text, n_tokens=None, max_new_tokens=None, hit_eos=None):
+    """B2 self-determinate cell: the frozen parser's status rules (items/answer_parser.py) with a yes/no field.
+    valid = think block closed and the last 'ANSWER:' after it is yes or no; answer is 'yes' / 'no'."""
+    out = _frozen_parser().parse_generation(text, "likert", n_tokens, max_new_tokens, hit_eos)
+    if not out["closed"]:
+        return {**out, "answer": None}
+    after = text.rsplit("</think>", 1)[1]
+    m = list(_YESNO.finditer(after))
+    if m:
+        return {**out, "status": "valid", "answer": m[-1].group(1).lower(), "reason": None}
+    status = "truncated" if out["hit_cap"] else ("malformed" if "ANSWER" in after else "no_answer")
+    return {**out, "status": status, "answer": None, "reason": "no yes/no ANSWER after </think>"}

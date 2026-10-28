@@ -13,7 +13,8 @@ def run_requests(llm, tok, requests, sampling, max_tokens, generate_fn=None):
     rows = []
     for r, p, o in zip(requests, pids, outs):
         ended = o["finish_reason"] == "stop"
-        strict = P.strict_answer(o["text"], r["kind"], o["n_tokens"], max_tokens, ended)
+        strict = (P.strict_yesno(o["text"], o["n_tokens"], max_tokens, ended) if r["kind"] == "yesno"
+                  else P.strict_answer(o["text"], r["kind"], o["n_tokens"], max_tokens, ended))
         think, post, closed = P.split_think(o["text"])
         meta = {k: v for k, v in r.items() if k not in ("messages",)}
         rows.append({**meta, "n_prompt_tok": len(p), "text": o["text"], "gen_token_ids": o["token_ids"],

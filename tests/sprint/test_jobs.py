@@ -270,3 +270,25 @@ def test_m2_kl_detail_attributes_think_kl_to_written_tokens():
     assert d["kl_by_token_top"][0][0] == 7 and d["kl_by_token_top"][0][1] == pytest.approx(0.4)
     assert d["kl_by_token_top"][0][2] == 2 and {t for t, _, _ in d["kl_by_token_top"]} == {7, 8, 9}
     assert len(d["kl_pos_bins"]) == M2.KL_BINS
+
+
+def test_strict_yesno():
+    from exp import parsers as P
+    assert P.strict_yesno("<think>a.</think>\nNo body has.\nANSWER: no", 10, 100, True)["answer"] == "no"
+    assert P.strict_yesno("<think>a.</think>\nANSWER: Yes.", 10, 100, True)["status"] == "valid"
+    assert P.strict_yesno("<think>a.</think>\nANSWER: maybe", 10, 100, True)["status"] == "malformed"
+    assert P.strict_yesno("<think>never closed", 100, 100, False)["status"] == "truncated"
+
+
+def test_b2_items_frozen_and_end_to_end(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import B2_indeterminacy as B2
+    items, _ = B2.load_items()
+    cells = {c: sum(1 for i in items if i["cell"] == c) for c in ("self_indet", "self_det", "other_indet", "other_det")}
+    assert cells == {"self_indet": 48, "self_det": 40, "other_indet": 40, "other_det": 40}
+    assert sum(1 for i in items if i["cell"] == "self_det" and i["gold"] == "yes") == 20
+    A = {it["id"]: it for it in C.load_items("A")}
+    assert all(i["messages"] == A[i["source"]]["messages"] for i in items if i["cell"] == "self_indet")
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    a = _args(["rlvr"], "0/84", seeds=2, system="own", chunk=8, max_tokens=64, gpu_mem=0.8, limit=None)
+    assert B2.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
