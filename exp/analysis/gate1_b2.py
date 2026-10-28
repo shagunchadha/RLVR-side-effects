@@ -113,8 +113,14 @@ def f2(S, L, dec):
 def f3(ph_dir, L):
     L += ["## F3. Prefix handoff: remaining think tokens, prefix source x continuing model", ""]
     rows = []
-    for f in sorted(Path(ph_dir).glob("*/gen_shard0of1.csv")):
-        rows += list(DI_read(f).values())
+    shards = sorted((Path(ph_dir).parent / "runs").glob("*/*/shard_000.parquet"))
+    if shards:                                    # finished shards (results/sprint/PH/runs/<ckpt>/<hash>/) win
+        import pyarrow.parquet as pq
+        for f in shards:
+            rows += pq.read_table(f).to_pylist()
+    else:
+        for f in sorted(Path(ph_dir).glob("*/gen_shard0of1.csv")):
+            rows += list(DI_read(f).values())
     if not {r["cont_ckpt"] for r in rows} >= {"rlvr", "dpo"}:
         return L + [f"Not available yet (PH, lane N6; continuations so far: {len(rows)}).", ""]
     L += ["L[cont, prefix] = mean over units of the mean remaining think tokens over seeds (cap hits counted at the cap). "

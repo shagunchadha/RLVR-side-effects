@@ -115,5 +115,16 @@ Totals use each trace's top 50 tokens by KL (tails undercounted); the token is t
 
 ## F3. Prefix handoff: remaining think tokens, prefix source x continuing model
 
-Not available yet (PH, lane N6; continuations so far: 0).
+L[cont, prefix] = mean over units of the mean remaining think tokens over seeds (cap hits counted at the cap). Text share = (L[DPO, RLVR] - L[DPO, DPO]) / (L[RLVR, RLVR] - L[DPO, DPO]); bootstrap over units with all four cells.
+
+| component | cut | n units | L[RLVR,RLVR] | L[DPO,RLVR] | L[RLVR,DPO] | L[DPO,DPO] | cont effect on RLVR prefixes (RLVR - DPO) | **text share** [95% CI] | cap hits | answer changed (DPO cont / RLVR cont) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A | 25% | 48 | 1033 | 388 | 1100 | 430 | +645 [+491, +804] | **-0.07** [-0.19, 0.02] | 0/576 | 0.35 / 0.36 |
+| A | 50% | 48 | 849 | 242 | 916 | 291 | +607 [+481, +745] | **-0.09** [-0.19, 0.01] | 0/576 | 0.28 / 0.31 |
+| A | 75% | 48 | 509 | 182 | 648 | 174 | +327 [+235, +434] | **0.02** [-0.27, 0.17] | 0/576 | 0.20 / 0.17 |
+| D | 25% | 50 | 401 | 323 | 378 | 340 | +78 [+24, +139] | **-0.26** [-8.05, 7.75] | 0/600 | 0.02 / 0.01 |
+| D | 50% | 50 | 260 | 199 | 301 | 250 | +61 [+33, +96] | **-5.50** [-25.00, 29.85] | 0/600 | 0.00 / 0.01 |
+| D | 75% | 50 | 147 | 93 | 176 | 117 | +54 [+20, +98] | **-0.78** [-12.94, 11.08] | 0/600 | 0.00 / 0.00 |
+
+Registered reading (A, 50% cut): text share >= 0.5 -> the length lives in the text; <= 0.2 -> in RLVR's policy.
 
