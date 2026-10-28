@@ -454,3 +454,30 @@ The F1 wrap-up onset analysis (amendment 4) is rerun with the opener group exclu
 - **Rebuild:** from the complete progress file (1842 rows), with row-level equality verified, and uploaded to the same path as a new HF commit (history keeps the torn version).
 - **Logged:** in `docs/sprint/disclosure-ledger.md`.
 - **This is the only overwrite.**
+
+---
+
+## Amendment 6 (Oct 29, 2026): B8 operational details
+
+Committed **before B8 has run**. Nothing in amendment 3's B8 hypothesis or primary measures changes; this amendment fixes the details that were still open.
+
+**Items.** IPIP-NEO-120 (Johnson, 2014; public domain), frozen in `items_sprint/items_B8_ipipneo120.json` with sha256 `0ef8b6dd…` in `items_sprint/MANIFEST.sha256`.
+- Keys, domains and facets come from `thepunitsingh/b5-johnson-120-ipip-neo-pi-r`.
+- Wording comes from `NeuroQuestAi/five-factor-e`. The two sources agree on 119 of 120 items; the 120th differs only in "right or wrong" vs "right and wrong", and Johnson's "or" is used.
+- 30 facets × 4 items; 65 items are positively keyed and 55 reverse-keyed.
+
+**Administration.** Each item is put in the first person ("I " + item; for example "I worry about things."). It is asked in the frozen A strict format with the reasoning cap (1 = strongly disagree … 5 = strongly agree), so B8 is directly comparable with B1. The readouts are B1's.
+
+**Arms.** All with 10 seeds and model-default sampling:
+- RLVR, own template;
+- DPO, own template;
+- SFT with the DPO system prompt (`--system dpo_default`).
+
+**Style indices**, per item (mean over seeds), paired RLVR − DPO and DPO − SFT(dpo_default):
+- **extreme** = share in {1, 5};
+- **midpoint** = share of 3;
+- **acquiescence** = per facet with both keys, the mean raw rating of positively keyed items minus that of reverse-keyed items (raw, not reverse-scored), averaged over those facets.
+  - Paired by facet: 22 of the 30 facets have both keys.
+  - All-facet version (secondary): the mean raw rating over all 120 items.
+
+The readout analogues (P(1) + P(5), P(3)) are secondary.

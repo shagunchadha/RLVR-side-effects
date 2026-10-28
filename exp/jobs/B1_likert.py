@@ -51,9 +51,9 @@ def add_args(p):
     p.add_argument("--limit", type=int, default=None, help="debug: first N wordings of this shard")
 
 
-def job_config(ck, a, sampling):
-    return {"job": "B1", "ckpt": list(C.ckpt(ck)), "system": a.system, "seeds": a.seeds, "sampling": sampling,
-            "max_tokens": a.max_tokens, "items": "items/items_A_selfreport.json", "readout_suffix": H.ANSWER_SUFFIX,
+def job_config(ck, a, sampling, job="B1", items_desc="items/items_A_selfreport.json"):
+    return {"job": job, "ckpt": list(C.ckpt(ck)), "system": a.system, "seeds": a.seeds, "sampling": sampling,
+            "max_tokens": a.max_tokens, "items": items_desc, "readout_suffix": H.ANSWER_SUFFIX,
             "nothink_suffix": H.NOTHINK_SUFFIX,
             "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1}
 
@@ -68,7 +68,8 @@ def readout_cols(prefix, ro, alt_prefix):
     return out, r
 
 
-def run(args, llm=None, model=None, tok=None, generate_fn=None):
+def run(args, llm=None, model=None, tok=None, generate_fn=None, job="B1", load_items=None, items_desc=None):
+    """job / load_items / items_desc let B8 reuse this protocol on another item set (B1 itself is unchanged)."""
     a = args.job_args
     if not args.ckpt or len(args.ckpt) != 1:
         raise SystemExit("B1 needs exactly one --ckpt")
@@ -77,15 +78,16 @@ def run(args, llm=None, model=None, tok=None, generate_fn=None):
     i, n = S.parse_shard(args.shard)
     sampling = H.resolve_sampling(repo, sha, {"temperature": a.temperature, "top_p": a.top_p, "top_k": a.top_k}) \
         if generate_fn is None else {"temperature": 0.6, "top_p": 0.95, "top_k": -1, "source": "test"}
-    st = S.Store("B1", f"{ck}__sys-{a.system}", job_config(ck, a, sampling))
+    cfg = job_config(ck, a, sampling) if job == "B1" else job_config(ck, a, sampling, job, items_desc)
+    st = S.Store(job, f"{ck}__sys-{a.system}", cfg)
     if st.done(i):
         print(f"B1 {ck} shard {i}/{n} exists; skipping")
         return 0
     phase = getattr(a, "phase", "all")
     chunk = getattr(a, "chunk", 4)
-    items = S.shard_slice(C.load_items("A"), i, n)[: a.limit]
+    items = S.shard_slice(load_items() if load_items else C.load_items("A"), i, n)[: a.limit]
     tok = tok or H.load_tokenizer(repo, sha)
-    root = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / "B1" / f"{ck}__sys-{a.system}__{st.hash}"
+    root = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / job / f"{ck}__sys-{a.system}__{st.hash}"
     gen = R.Progress(root / f"gen_shard{i}of{n}.csv", st.hash)
     read = R.Progress(root / f"read_shard{i}of{n}.csv", st.hash)
     cache = os.environ.get("HF_HUB_CACHE") or os.environ.get("HF_HOME") or "."

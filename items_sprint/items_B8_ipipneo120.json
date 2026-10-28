@@ -1,0 +1,2059 @@
+{
+ "meta": {
+  "job": "B8",
+  "registration": "amendment 3 (B8), operational details in amendment 6",
+  "instrument": "IPIP-NEO-120 (Johnson, 2014), public domain (ipip.ori.org)",
+  "sources": [
+   "github.com/thepunitsingh/b5-johnson-120-ipip-neo-pi-r data/en/questions.json (keys, facets)",
+   "github.com/NeuroQuestAi/five-factor-e data/IPIP-NEO/120/questions.json (wording; agrees on 119/120 items, the 120th differs only in 'or'/'and')"
+  ],
+  "administration": "first person ('I ' + item), frozen A strict format with the reasoning cap (1-5 agreement)",
+  "n_items": 120,
+  "keys": {
+   "plus": 65,
+   "minus": 55
+  }
+ },
+ "items": [
+  {
+   "id": "B8_001",
+   "ipip_index": 1,
+   "domain": "N",
+   "facet": "N1",
+   "trait": "N1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Worry about things.",
+   "text": "I worry about things.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I worry about things.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_002",
+   "ipip_index": 2,
+   "domain": "E",
+   "facet": "E1",
+   "trait": "E1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Make friends easily.",
+   "text": "I make friends easily.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I make friends easily.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_003",
+   "ipip_index": 3,
+   "domain": "O",
+   "facet": "O1",
+   "trait": "O1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Have a vivid imagination.",
+   "text": "I have a vivid imagination.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I have a vivid imagination.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_004",
+   "ipip_index": 4,
+   "domain": "A",
+   "facet": "A1",
+   "trait": "A1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Trust others.",
+   "text": "I trust others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I trust others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_005",
+   "ipip_index": 5,
+   "domain": "C",
+   "facet": "C1",
+   "trait": "C1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Complete tasks successfully.",
+   "text": "I complete tasks successfully.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I complete tasks successfully.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_006",
+   "ipip_index": 6,
+   "domain": "N",
+   "facet": "N2",
+   "trait": "N2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Get angry easily.",
+   "text": "I get angry easily.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I get angry easily.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_007",
+   "ipip_index": 7,
+   "domain": "E",
+   "facet": "E2",
+   "trait": "E2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love large parties.",
+   "text": "I love large parties.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love large parties.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_008",
+   "ipip_index": 8,
+   "domain": "O",
+   "facet": "O2",
+   "trait": "O2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Believe in the importance of art.",
+   "text": "I believe in the importance of art.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe in the importance of art.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_009",
+   "ipip_index": 9,
+   "domain": "A",
+   "facet": "A2",
+   "trait": "A2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Use others for my own ends.",
+   "text": "I use others for my own ends.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I use others for my own ends.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_010",
+   "ipip_index": 10,
+   "domain": "C",
+   "facet": "C2",
+   "trait": "C2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Like to tidy up.",
+   "text": "I like to tidy up.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I like to tidy up.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_011",
+   "ipip_index": 11,
+   "domain": "N",
+   "facet": "N3",
+   "trait": "N3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Often feel blue.",
+   "text": "I often feel blue.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I often feel blue.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_012",
+   "ipip_index": 12,
+   "domain": "E",
+   "facet": "E3",
+   "trait": "E3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Take charge.",
+   "text": "I take charge.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I take charge.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_013",
+   "ipip_index": 13,
+   "domain": "O",
+   "facet": "O3",
+   "trait": "O3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Experience my emotions intensely.",
+   "text": "I experience my emotions intensely.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I experience my emotions intensely.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_014",
+   "ipip_index": 14,
+   "domain": "A",
+   "facet": "A3",
+   "trait": "A3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love to help others.",
+   "text": "I love to help others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love to help others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_015",
+   "ipip_index": 15,
+   "domain": "C",
+   "facet": "C3",
+   "trait": "C3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Keep my promises.",
+   "text": "I keep my promises.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I keep my promises.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_016",
+   "ipip_index": 16,
+   "domain": "N",
+   "facet": "N4",
+   "trait": "N4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Find it difficult to approach others.",
+   "text": "I find it difficult to approach others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I find it difficult to approach others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_017",
+   "ipip_index": 17,
+   "domain": "E",
+   "facet": "E4",
+   "trait": "E4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am always busy.",
+   "text": "I am always busy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am always busy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_018",
+   "ipip_index": 18,
+   "domain": "O",
+   "facet": "O4",
+   "trait": "O4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Prefer variety to routine.",
+   "text": "I prefer variety to routine.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I prefer variety to routine.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_019",
+   "ipip_index": 19,
+   "domain": "A",
+   "facet": "A4",
+   "trait": "A4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Love a good fight.",
+   "text": "I love a good fight.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love a good fight.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_020",
+   "ipip_index": 20,
+   "domain": "C",
+   "facet": "C4",
+   "trait": "C4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Work hard.",
+   "text": "I work hard.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I work hard.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_021",
+   "ipip_index": 21,
+   "domain": "N",
+   "facet": "N5",
+   "trait": "N5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Go on binges.",
+   "text": "I go on binges.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I go on binges.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_022",
+   "ipip_index": 22,
+   "domain": "E",
+   "facet": "E5",
+   "trait": "E5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love excitement.",
+   "text": "I love excitement.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love excitement.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_023",
+   "ipip_index": 23,
+   "domain": "O",
+   "facet": "O5",
+   "trait": "O5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love to read challenging material.",
+   "text": "I love to read challenging material.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love to read challenging material.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_024",
+   "ipip_index": 24,
+   "domain": "A",
+   "facet": "A5",
+   "trait": "A5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Believe that I am better than others.",
+   "text": "I believe that I am better than others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that I am better than others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_025",
+   "ipip_index": 25,
+   "domain": "C",
+   "facet": "C5",
+   "trait": "C5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am always prepared.",
+   "text": "I am always prepared.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am always prepared.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_026",
+   "ipip_index": 26,
+   "domain": "N",
+   "facet": "N6",
+   "trait": "N6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Panic easily.",
+   "text": "I panic easily.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I panic easily.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_027",
+   "ipip_index": 27,
+   "domain": "E",
+   "facet": "E6",
+   "trait": "E6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Radiate joy.",
+   "text": "I radiate joy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I radiate joy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_028",
+   "ipip_index": 28,
+   "domain": "O",
+   "facet": "O6",
+   "trait": "O6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Tend to vote for liberal political candidates.",
+   "text": "I tend to vote for liberal political candidates.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tend to vote for liberal political candidates.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_029",
+   "ipip_index": 29,
+   "domain": "A",
+   "facet": "A6",
+   "trait": "A6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Sympathize with the homeless.",
+   "text": "I sympathize with the homeless.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I sympathize with the homeless.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_030",
+   "ipip_index": 30,
+   "domain": "C",
+   "facet": "C6",
+   "trait": "C6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Jump into things without thinking.",
+   "text": "I jump into things without thinking.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I jump into things without thinking.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_031",
+   "ipip_index": 31,
+   "domain": "N",
+   "facet": "N1",
+   "trait": "N1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Fear for the worst.",
+   "text": "I fear for the worst.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I fear for the worst.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_032",
+   "ipip_index": 32,
+   "domain": "E",
+   "facet": "E1",
+   "trait": "E1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Feel comfortable around people.",
+   "text": "I feel comfortable around people.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel comfortable around people.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_033",
+   "ipip_index": 33,
+   "domain": "O",
+   "facet": "O1",
+   "trait": "O1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Enjoy wild flights of fantasy.",
+   "text": "I enjoy wild flights of fantasy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I enjoy wild flights of fantasy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_034",
+   "ipip_index": 34,
+   "domain": "A",
+   "facet": "A1",
+   "trait": "A1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Believe that others have good intentions.",
+   "text": "I believe that others have good intentions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that others have good intentions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_035",
+   "ipip_index": 35,
+   "domain": "C",
+   "facet": "C1",
+   "trait": "C1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Excel in what I do.",
+   "text": "I excel in what I do.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I excel in what I do.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_036",
+   "ipip_index": 36,
+   "domain": "N",
+   "facet": "N2",
+   "trait": "N2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Get irritated easily.",
+   "text": "I get irritated easily.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I get irritated easily.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_037",
+   "ipip_index": 37,
+   "domain": "E",
+   "facet": "E2",
+   "trait": "E2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Talk to a lot of different people at parties.",
+   "text": "I talk to a lot of different people at parties.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I talk to a lot of different people at parties.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_038",
+   "ipip_index": 38,
+   "domain": "O",
+   "facet": "O2",
+   "trait": "O2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "See beauty in things that others might not notice.",
+   "text": "I see beauty in things that others might not notice.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I see beauty in things that others might not notice.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_039",
+   "ipip_index": 39,
+   "domain": "A",
+   "facet": "A2",
+   "trait": "A2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Cheat to get ahead.",
+   "text": "I cheat to get ahead.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I cheat to get ahead.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_040",
+   "ipip_index": 40,
+   "domain": "C",
+   "facet": "C2",
+   "trait": "C2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Often forget to put things back in their proper place.",
+   "text": "I often forget to put things back in their proper place.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I often forget to put things back in their proper place.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_041",
+   "ipip_index": 41,
+   "domain": "N",
+   "facet": "N3",
+   "trait": "N3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Dislike myself.",
+   "text": "I dislike myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I dislike myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_042",
+   "ipip_index": 42,
+   "domain": "E",
+   "facet": "E3",
+   "trait": "E3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Try to lead others.",
+   "text": "I try to lead others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I try to lead others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_043",
+   "ipip_index": 43,
+   "domain": "O",
+   "facet": "O3",
+   "trait": "O3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Feel others' emotions.",
+   "text": "I feel others' emotions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel others' emotions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_044",
+   "ipip_index": 44,
+   "domain": "A",
+   "facet": "A3",
+   "trait": "A3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am concerned about others.",
+   "text": "I am concerned about others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am concerned about others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_045",
+   "ipip_index": 45,
+   "domain": "C",
+   "facet": "C3",
+   "trait": "C3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Tell the truth.",
+   "text": "I tell the truth.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tell the truth.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_046",
+   "ipip_index": 46,
+   "domain": "N",
+   "facet": "N4",
+   "trait": "N4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am afraid to draw attention to myself.",
+   "text": "I am afraid to draw attention to myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am afraid to draw attention to myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_047",
+   "ipip_index": 47,
+   "domain": "E",
+   "facet": "E4",
+   "trait": "E4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am always on the go.",
+   "text": "I am always on the go.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am always on the go.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_048",
+   "ipip_index": 48,
+   "domain": "O",
+   "facet": "O4",
+   "trait": "O4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Prefer to stick with things that I know.",
+   "text": "I prefer to stick with things that I know.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I prefer to stick with things that I know.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_049",
+   "ipip_index": 49,
+   "domain": "A",
+   "facet": "A4",
+   "trait": "A4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Yell at people.",
+   "text": "I yell at people.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I yell at people.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_050",
+   "ipip_index": 50,
+   "domain": "C",
+   "facet": "C4",
+   "trait": "C4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Do more than what's expected of me.",
+   "text": "I do more than what's expected of me.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do more than what's expected of me.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_051",
+   "ipip_index": 51,
+   "domain": "N",
+   "facet": "N5",
+   "trait": "N5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Rarely overindulge.",
+   "text": "I rarely overindulge.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I rarely overindulge.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_052",
+   "ipip_index": 52,
+   "domain": "E",
+   "facet": "E5",
+   "trait": "E5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Seek adventure.",
+   "text": "I seek adventure.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I seek adventure.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_053",
+   "ipip_index": 53,
+   "domain": "O",
+   "facet": "O5",
+   "trait": "O5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Avoid philosophical discussions.",
+   "text": "I avoid philosophical discussions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I avoid philosophical discussions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_054",
+   "ipip_index": 54,
+   "domain": "A",
+   "facet": "A5",
+   "trait": "A5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Think highly of myself.",
+   "text": "I think highly of myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I think highly of myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_055",
+   "ipip_index": 55,
+   "domain": "C",
+   "facet": "C5",
+   "trait": "C5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Carry out my plans.",
+   "text": "I carry out my plans.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I carry out my plans.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_056",
+   "ipip_index": 56,
+   "domain": "N",
+   "facet": "N6",
+   "trait": "N6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Become overwhelmed by events.",
+   "text": "I become overwhelmed by events.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I become overwhelmed by events.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_057",
+   "ipip_index": 57,
+   "domain": "E",
+   "facet": "E6",
+   "trait": "E6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Have a lot of fun.",
+   "text": "I have a lot of fun.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I have a lot of fun.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_058",
+   "ipip_index": 58,
+   "domain": "O",
+   "facet": "O6",
+   "trait": "O6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Believe that there is no absolute right or wrong.",
+   "text": "I believe that there is no absolute right or wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that there is no absolute right or wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_059",
+   "ipip_index": 59,
+   "domain": "A",
+   "facet": "A6",
+   "trait": "A6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Feel sympathy for those who are worse off than myself.",
+   "text": "I feel sympathy for those who are worse off than myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel sympathy for those who are worse off than myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_060",
+   "ipip_index": 60,
+   "domain": "C",
+   "facet": "C6",
+   "trait": "C6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Make rash decisions.",
+   "text": "I make rash decisions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I make rash decisions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_061",
+   "ipip_index": 61,
+   "domain": "N",
+   "facet": "N1",
+   "trait": "N1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am afraid of many things.",
+   "text": "I am afraid of many things.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am afraid of many things.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_062",
+   "ipip_index": 62,
+   "domain": "E",
+   "facet": "E1",
+   "trait": "E1",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Avoid contacts with others.",
+   "text": "I avoid contacts with others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I avoid contacts with others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_063",
+   "ipip_index": 63,
+   "domain": "O",
+   "facet": "O1",
+   "trait": "O1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love to daydream.",
+   "text": "I love to daydream.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love to daydream.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_064",
+   "ipip_index": 64,
+   "domain": "A",
+   "facet": "A1",
+   "trait": "A1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Trust what people say.",
+   "text": "I trust what people say.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I trust what people say.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_065",
+   "ipip_index": 65,
+   "domain": "C",
+   "facet": "C1",
+   "trait": "C1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Handle tasks smoothly.",
+   "text": "I handle tasks smoothly.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I handle tasks smoothly.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_066",
+   "ipip_index": 66,
+   "domain": "N",
+   "facet": "N2",
+   "trait": "N2",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Lose my temper.",
+   "text": "I lose my temper.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I lose my temper.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_067",
+   "ipip_index": 67,
+   "domain": "E",
+   "facet": "E2",
+   "trait": "E2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Prefer to be alone.",
+   "text": "I prefer to be alone.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I prefer to be alone.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_068",
+   "ipip_index": 68,
+   "domain": "O",
+   "facet": "O2",
+   "trait": "O2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Do not like poetry.",
+   "text": "I do not like poetry.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do not like poetry.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_069",
+   "ipip_index": 69,
+   "domain": "A",
+   "facet": "A2",
+   "trait": "A2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Take advantage of others.",
+   "text": "I take advantage of others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I take advantage of others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_070",
+   "ipip_index": 70,
+   "domain": "C",
+   "facet": "C2",
+   "trait": "C2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Leave a mess in my room.",
+   "text": "I leave a mess in my room.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I leave a mess in my room.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_071",
+   "ipip_index": 71,
+   "domain": "N",
+   "facet": "N3",
+   "trait": "N3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Am often down in the dumps.",
+   "text": "I am often down in the dumps.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am often down in the dumps.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_072",
+   "ipip_index": 72,
+   "domain": "E",
+   "facet": "E3",
+   "trait": "E3",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Take control of things.",
+   "text": "I take control of things.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I take control of things.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_073",
+   "ipip_index": 73,
+   "domain": "O",
+   "facet": "O3",
+   "trait": "O3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Rarely notice my emotional reactions.",
+   "text": "I rarely notice my emotional reactions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I rarely notice my emotional reactions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_074",
+   "ipip_index": 74,
+   "domain": "A",
+   "facet": "A3",
+   "trait": "A3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am indifferent to the feelings of others.",
+   "text": "I am indifferent to the feelings of others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am indifferent to the feelings of others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_075",
+   "ipip_index": 75,
+   "domain": "C",
+   "facet": "C3",
+   "trait": "C3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Break rules.",
+   "text": "I break rules.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I break rules.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_076",
+   "ipip_index": 76,
+   "domain": "N",
+   "facet": "N4",
+   "trait": "N4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Only feel comfortable with friends.",
+   "text": "I only feel comfortable with friends.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I only feel comfortable with friends.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_077",
+   "ipip_index": 77,
+   "domain": "E",
+   "facet": "E4",
+   "trait": "E4",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Do a lot in my spare time.",
+   "text": "I do a lot in my spare time.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do a lot in my spare time.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_078",
+   "ipip_index": 78,
+   "domain": "O",
+   "facet": "O4",
+   "trait": "O4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Dislike changes.",
+   "text": "I dislike changes.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I dislike changes.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_079",
+   "ipip_index": 79,
+   "domain": "A",
+   "facet": "A4",
+   "trait": "A4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Insult people.",
+   "text": "I insult people.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I insult people.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_080",
+   "ipip_index": 80,
+   "domain": "C",
+   "facet": "C4",
+   "trait": "C4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Do just enough work to get by.",
+   "text": "I do just enough work to get by.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do just enough work to get by.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_081",
+   "ipip_index": 81,
+   "domain": "N",
+   "facet": "N5",
+   "trait": "N5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Easily resist temptations.",
+   "text": "I easily resist temptations.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I easily resist temptations.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_082",
+   "ipip_index": 82,
+   "domain": "E",
+   "facet": "E5",
+   "trait": "E5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Enjoy being reckless.",
+   "text": "I enjoy being reckless.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I enjoy being reckless.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_083",
+   "ipip_index": 83,
+   "domain": "O",
+   "facet": "O5",
+   "trait": "O5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Have difficulty understanding abstract ideas.",
+   "text": "I have difficulty understanding abstract ideas.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I have difficulty understanding abstract ideas.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_084",
+   "ipip_index": 84,
+   "domain": "A",
+   "facet": "A5",
+   "trait": "A5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Have a high opinion of myself.",
+   "text": "I have a high opinion of myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I have a high opinion of myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_085",
+   "ipip_index": 85,
+   "domain": "C",
+   "facet": "C5",
+   "trait": "C5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Waste my time.",
+   "text": "I waste my time.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I waste my time.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_086",
+   "ipip_index": 86,
+   "domain": "N",
+   "facet": "N6",
+   "trait": "N6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Feel that I'm unable to deal with things.",
+   "text": "I feel that I'm unable to deal with things.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel that I'm unable to deal with things.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_087",
+   "ipip_index": 87,
+   "domain": "E",
+   "facet": "E6",
+   "trait": "E6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Love life.",
+   "text": "I love life.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I love life.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_088",
+   "ipip_index": 88,
+   "domain": "O",
+   "facet": "O6",
+   "trait": "O6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Tend to vote for conservative political candidates.",
+   "text": "I tend to vote for conservative political candidates.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tend to vote for conservative political candidates.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_089",
+   "ipip_index": 89,
+   "domain": "A",
+   "facet": "A6",
+   "trait": "A6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am not interested in other people's problems.",
+   "text": "I am not interested in other people's problems.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am not interested in other people's problems.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_090",
+   "ipip_index": 90,
+   "domain": "C",
+   "facet": "C6",
+   "trait": "C6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Rush into things.",
+   "text": "I rush into things.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I rush into things.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_091",
+   "ipip_index": 91,
+   "domain": "N",
+   "facet": "N1",
+   "trait": "N1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Get stressed out easily.",
+   "text": "I get stressed out easily.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I get stressed out easily.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_092",
+   "ipip_index": 92,
+   "domain": "E",
+   "facet": "E1",
+   "trait": "E1",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Keep others at a distance.",
+   "text": "I keep others at a distance.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I keep others at a distance.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_093",
+   "ipip_index": 93,
+   "domain": "O",
+   "facet": "O1",
+   "trait": "O1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Like to get lost in thought.",
+   "text": "I like to get lost in thought.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I like to get lost in thought.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_094",
+   "ipip_index": 94,
+   "domain": "A",
+   "facet": "A1",
+   "trait": "A1",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Distrust people.",
+   "text": "I distrust people.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I distrust people.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_095",
+   "ipip_index": 95,
+   "domain": "C",
+   "facet": "C1",
+   "trait": "C1",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Know how to get things done.",
+   "text": "I know how to get things done.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I know how to get things done.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_096",
+   "ipip_index": 96,
+   "domain": "N",
+   "facet": "N2",
+   "trait": "N2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am not easily annoyed.",
+   "text": "I am not easily annoyed.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am not easily annoyed.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_097",
+   "ipip_index": 97,
+   "domain": "E",
+   "facet": "E2",
+   "trait": "E2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Avoid crowds.",
+   "text": "I avoid crowds.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I avoid crowds.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_098",
+   "ipip_index": 98,
+   "domain": "O",
+   "facet": "O2",
+   "trait": "O2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Do not enjoy going to art museums.",
+   "text": "I do not enjoy going to art museums.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do not enjoy going to art museums.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_099",
+   "ipip_index": 99,
+   "domain": "A",
+   "facet": "A2",
+   "trait": "A2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Obstruct others' plans.",
+   "text": "I obstruct others' plans.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I obstruct others' plans.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_100",
+   "ipip_index": 100,
+   "domain": "C",
+   "facet": "C2",
+   "trait": "C2",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Leave my belongings around.",
+   "text": "I leave my belongings around.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I leave my belongings around.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_101",
+   "ipip_index": 101,
+   "domain": "N",
+   "facet": "N3",
+   "trait": "N3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Feel comfortable with myself.",
+   "text": "I feel comfortable with myself.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel comfortable with myself.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_102",
+   "ipip_index": 102,
+   "domain": "E",
+   "facet": "E3",
+   "trait": "E3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Wait for others to lead the way.",
+   "text": "I wait for others to lead the way.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I wait for others to lead the way.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_103",
+   "ipip_index": 103,
+   "domain": "O",
+   "facet": "O3",
+   "trait": "O3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Don't understand people who get emotional.",
+   "text": "I don't understand people who get emotional.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I don't understand people who get emotional.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_104",
+   "ipip_index": 104,
+   "domain": "A",
+   "facet": "A3",
+   "trait": "A3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Take no time for others.",
+   "text": "I take no time for others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I take no time for others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_105",
+   "ipip_index": 105,
+   "domain": "C",
+   "facet": "C3",
+   "trait": "C3",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Break my promises.",
+   "text": "I break my promises.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I break my promises.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_106",
+   "ipip_index": 106,
+   "domain": "N",
+   "facet": "N4",
+   "trait": "N4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am not bothered by difficult social situations.",
+   "text": "I am not bothered by difficult social situations.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am not bothered by difficult social situations.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_107",
+   "ipip_index": 107,
+   "domain": "E",
+   "facet": "E4",
+   "trait": "E4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Like to take it easy.",
+   "text": "I like to take it easy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I like to take it easy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_108",
+   "ipip_index": 108,
+   "domain": "O",
+   "facet": "O4",
+   "trait": "O4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am attached to conventional ways.",
+   "text": "I am attached to conventional ways.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am attached to conventional ways.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_109",
+   "ipip_index": 109,
+   "domain": "A",
+   "facet": "A4",
+   "trait": "A4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Get back at others.",
+   "text": "I get back at others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I get back at others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_110",
+   "ipip_index": 110,
+   "domain": "C",
+   "facet": "C4",
+   "trait": "C4",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Put little time and effort into my work.",
+   "text": "I put little time and effort into my work.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I put little time and effort into my work.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_111",
+   "ipip_index": 111,
+   "domain": "N",
+   "facet": "N5",
+   "trait": "N5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am able to control my cravings.",
+   "text": "I am able to control my cravings.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am able to control my cravings.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_112",
+   "ipip_index": 112,
+   "domain": "E",
+   "facet": "E5",
+   "trait": "E5",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Act wild and crazy.",
+   "text": "I act wild and crazy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I act wild and crazy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_113",
+   "ipip_index": 113,
+   "domain": "O",
+   "facet": "O5",
+   "trait": "O5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Am not interested in theoretical discussions.",
+   "text": "I am not interested in theoretical discussions.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am not interested in theoretical discussions.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_114",
+   "ipip_index": 114,
+   "domain": "A",
+   "facet": "A5",
+   "trait": "A5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Boast about my virtues.",
+   "text": "I boast about my virtues.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I boast about my virtues.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_115",
+   "ipip_index": 115,
+   "domain": "C",
+   "facet": "C5",
+   "trait": "C5",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Have difficulty starting tasks.",
+   "text": "I have difficulty starting tasks.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I have difficulty starting tasks.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_116",
+   "ipip_index": 116,
+   "domain": "N",
+   "facet": "N6",
+   "trait": "N6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Remain calm under pressure.",
+   "text": "I remain calm under pressure.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I remain calm under pressure.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_117",
+   "ipip_index": 117,
+   "domain": "E",
+   "facet": "E6",
+   "trait": "E6",
+   "key": 1,
+   "original": true,
+   "ipip_text": "Look at the bright side of life.",
+   "text": "I look at the bright side of life.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I look at the bright side of life.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_118",
+   "ipip_index": 118,
+   "domain": "O",
+   "facet": "O6",
+   "trait": "O6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Believe that we should be tough on crime.",
+   "text": "I believe that we should be tough on crime.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that we should be tough on crime.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_119",
+   "ipip_index": 119,
+   "domain": "A",
+   "facet": "A6",
+   "trait": "A6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Try not to think about the needy.",
+   "text": "I try not to think about the needy.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I try not to think about the needy.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B8_120",
+   "ipip_index": 120,
+   "domain": "C",
+   "facet": "C6",
+   "trait": "C6",
+   "key": -1,
+   "original": true,
+   "ipip_text": "Act without thinking.",
+   "text": "I act without thinking.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I act without thinking.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  }
+ ]
+}

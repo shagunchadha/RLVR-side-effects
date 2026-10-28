@@ -346,3 +346,15 @@ def test_m3_d_traces_and_letters(tiny_tok, tiny_model):
                                [H.single_token_id(tiny_tok, x) for x in letters],
                                H.text_ids(tiny_tok, H.ANSWER_SUFFIX), [], letters, M3.wrapup_groups(tiny_tok))
     assert feats == {} and row["component"] == "D" and set(row["argmax_sent"]) <= set(letters) and row["e_last"] is None
+
+
+def test_b8_items_and_b1_hash_unchanged(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import B8_ipipneo as B8
+    items = B8.load_items()
+    assert len(items) == 120 and len({i["facet"] for i in items}) == 30
+    assert all(i["text"].startswith("I ") and i["messages"][0]["content"].count(i["text"]) == 1 for i in items)
+    a = _args(["rlvr"], None, seeds=20, system="own", temperature=None, top_p=None, top_k=None, max_tokens=16000,
+              gpu_mem=0.85, phase="all", chunk=4, limit=None)
+    s = {"temperature": 0.6, "top_p": 0.95, "top_k": -1, "source": "test"}
+    assert B1_likert.job_config("rlvr", a.job_args, s)["items"] == "items/items_A_selfreport.json"
+    assert B1_likert.job_config("rlvr", a.job_args, s)["job"] == "B1"
