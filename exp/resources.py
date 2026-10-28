@@ -81,10 +81,12 @@ def _memstat():
 
 
 def cgroup_mem():
-    """cgroup v1 figures in bytes (None where unavailable); cg_ws = usage - total_inactive_file."""
+    """cgroup v1 figures in bytes (None where unavailable). gVisor has no max_usage_in_bytes and no memory.stat: the
+    peak then comes from exp/memwatch.py's peak file, and the working set falls back to usage."""
+    from .memwatch import read_peak
     use, ms = _read_int(CG1 + "memory.usage_in_bytes"), _memstat()
     ws = use - ms.get("total_inactive_file", 0) if use is not None else None
-    return {"cg_use": use, "cg_peak": _read_int(CG1 + "memory.max_usage_in_bytes"), "cg_ws": ws,
+    return {"cg_use": use, "cg_peak": _read_int(CG1 + "memory.max_usage_in_bytes") or read_peak(), "cg_ws": ws,
             "cg_rss": ms.get("total_rss"), "cg_cache": ms.get("total_cache"),
             "cg_limit": _read_int(CG1 + "memory.limit_in_bytes")}
 
