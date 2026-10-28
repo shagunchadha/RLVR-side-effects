@@ -24,7 +24,7 @@ if [ ! -f "$RESULTS_DIR/B5/.smoke_ok" ]; then         # throwaway dir, always lo
   STORE=local RESULTS_DIR=/tmp/b5_smoke HF_HUB_CACHE="$W/step_0025" step --ckpt rlvr@step_0025 --part A --phase gen --limit 1 --seeds 2   && STORE=local RESULTS_DIR=/tmp/b5_smoke HF_HUB_CACHE="$W/step_0025" step --ckpt rlvr@step_0025 --part A --phase read --limit 1 --seeds 2   && STORE=local RESULTS_DIR=/tmp/b5_smoke HF_HUB_CACHE="$W/step_0025" step --ckpt rlvr@step_0025 --part D --limit 1 --seeds 2   && touch "$RESULTS_DIR/B5/.smoke_ok" || exit 1
 fi
 [ -f "$RESULTS_DIR/B5/verify_last.json" ] || step --verify-last          # step_1375 vs main, tensor by tensor
-for b in ${B5_STEPS:-step_0025 step_0050 step_0075 step_0150 step_0250 step_0425 step_0775 step_1375}; do
+for b in ${B5_STEPS:-step_0025 step_0050 step_0075 step_0150 step_0250 step_0425 step_0775 step_1375 main}; do   # main = 9th point (amendment 9)
   HF_HUB_CACHE="$W/$b" arm "$b" || exit 1
   rm -rf "$W/$b"; echo "=== $(date +%T) deleted weights of $b"
 done

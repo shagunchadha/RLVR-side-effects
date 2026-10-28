@@ -461,10 +461,11 @@ The F1 wrap-up onset analysis (amendment 4) is rerun with the opener group exclu
 
 Committed **before B8 has run**. Nothing in amendment 3's B8 hypothesis or primary measures changes; this amendment fixes the details that were still open.
 
-**Items.** IPIP-NEO-120 (Johnson, 2014; public domain), frozen in `items_sprint/items_B8_ipipneo120.json` with sha256 `0ef8b6dd…` in `items_sprint/MANIFEST.sha256`.
-- Keys, domains and facets come from `thepunitsingh/b5-johnson-120-ipip-neo-pi-r`.
-- Wording comes from `NeuroQuestAi/five-factor-e`. The two sources agree on 119 of 120 items; the 120th differs only in "right or wrong" vs "right and wrong", and Johnson's "or" is used.
-- 30 facets × 4 items; 65 items are positively keyed and 55 reverse-keyed.
+**Items** (revised Oct 29, before B8 ran; this replaces the first freeze `0ef8b6dd…`). IPIP-NEO-120 (Johnson, 2014, *J. Res. Pers.* 51, 78–89; public domain), frozen in `items_sprint/items_B8_ipipneo120.json`, sha256 `ca5bea597710044601d524edb2579eeb8ec39a09e8eef7aec3623d81b495728c` (`items_sprint/MANIFEST.sha256`).
+- **Order and wording:** github.com/NeuroQuestAi/five-factor-e (`data/IPIP-NEO/120/questions.json`).
+- **Keys and facets:** github.com/thepunitsingh/b5-johnson-120-ipip-neo-pi-r (`data/en/questions.json`).
+- **Check:** every item was compared on facet, key and wording with the IPIP-NEO-120 key at https://ipip.ori.org/30FacetNEO-PI-RItems.htm (Johnson, 2014). 119 of 120 matched exactly. The one disagreement ("right or wrong" in the GitHub wording) is resolved to ipip.ori.org's "Believe that there is no absolute right and wrong."
+- **Composition:** 30 facets × 4 items; 65 items positively keyed, 55 reverse-keyed.
 
 **Administration.** Each item is put in the first person ("I " + item; for example "I worry about things."). It is asked in the frozen A strict format with the reasoning cap (1 = strongly disagree … 5 = strongly agree), so B8 is directly comparable with B1. The readouts are B1's.
 
@@ -537,3 +538,35 @@ Committed **before B5 has run**.
 **Primary measures (amendments 3, 5).** All per unit (A: wording; D: item), mean over seeds:
 - Spearman correlation with log step for A think length, A P(extreme) (sampled, and from the readout), and D think length.
 - The A-vs-D slope difference in length.
+
+---
+
+## Amendment 9 (Oct 29, 2026): B8 item check, B5 ninth point, F3b, B7
+
+Committed **before** the F3b analysis is computed, before B5 or B8 run, and before B7 has any code or output.
+
+**B8.** The items were re-checked against ipip.ori.org and re-frozen; see the revised "Items" paragraph of amendment 6 (sha256 `ca5bea59…`). If B8 is not ready when B1 ends, B5 runs first and B8 after. Not needed: B8 was ready before B1 ended, so the order stays B8 → B5.
+
+**B5.**
+- **Ninth point:** main (`rlvr@main`, the same commit as the RLVR checkpoint), run with the same B5 protocol, added after `step_1375`.
+- **step_1375 vs main:** the comparison is reported per tensor (exact equality, max |diff|, relative L2 norm of the difference, share of elements changed) in `B5/verify_last.json`, with its median and maximum.
+
+**F3b (exploratory, from the PH data, no GPU).** Extremity by prefix source × continuing model, from the final sampled answers of the PH continuations (valid ones only). Units, cuts and bootstrap are as in F3.
+- **A:** P(extreme) = share of answers in {1, 5}, and the mean rating.
+- **D:** accuracy and the rate of agreement with the trace's own answer. Extremity is not defined for D.
+
+Contrasts:
+- **continuing-model effect** on each prefix source: RLVR cont − DPO cont, paired by unit;
+- **prefix-source effect** for each continuer.
+
+**Reading:** extremity "follows the continuing model" if, at the 50% cut on A, the continuing-model effect on P(extreme) is positive on both prefix sources (interval excludes 0), while the prefix-source effect for the DPO continuer is not.
+
+**B7: self-report vs behaviour (small job, last in N2's queue; descriptive).** Per checkpoint (RLVR own, DPO own, SFT with the DPO system prompt):
+- **Behavioural hedging:**
+  - Questions: 100 open factual questions, the first 100 of the TriviaQA `rc.nocontext` validation split after a shuffle with seed 20261024.
+  - 5 seeds, model-default sampling; the prompt is the question alone plus "Answer briefly." and the reasoning cap.
+  - **Hedge-word rate:** occurrences per 100 words of a fixed lexicon (maybe, perhaps, probably, possibly, likely, I think, I believe, not sure, uncertain, might, could be, approximately, around), in the final answer and separately in the think block. Correctness: normalised exact match against the TriviaQA aliases.
+- **Stated confidence:** taken from B6's MMLU-Pro outputs (B6 (iii)): mean stated confidence, accuracy and their gap.
+- **Self-report:** B1's hedging and confidence wordings (sampled answers, main arms; B8's facet scores where relevant).
+- **Report:** per checkpoint, the self-report vs behaviour pairs: self-reported hedging vs the hedge-word rate; self-reported confidence vs the stated-confidence − accuracy gap. With three checkpoints this is descriptive (no test).
+- **Dependency:** B7 needs B6 (iii), so it runs last in N2's queue.

@@ -11,8 +11,10 @@ step: the branches carry a different generation_config.json (amendment 8).
           readouts) on the 48 A wordings, 10 seeds; store job 'B5'.
   part D: the first 100 D base items (o0) with their frozen messages (strict format + reasoning cap), 10 seeds,
           vLLM only; think tokens, validity (frozen parser) and accuracy; store job 'B5D'.
+  main (amendment 9): '--ckpt rlvr@main' is the 9th point, run with the same protocol.
   --verify-last: streams model-0000k-of-00003.safetensors of step_1375 and of main one file at a time and compares
-          every tensor (exact equality, max |diff|); writes $RESULTS_DIR/B5/verify_last.json.
+          every tensor (exact equality, max |diff|, relative L2, share of elements changed, per tensor); writes
+          $RESULTS_DIR/B5/verify_last.json.
 """
 import json
 import os
@@ -50,7 +52,7 @@ def verify_last():
     repo = C.ckpt("rlvr")[0]
     revs = {"main": C.ckpt("rlvr")[1], "step_1375": C.ckpt("rlvr@step_1375")[1]}
     work = Path(os.environ.get("B5_DL", "/tmp/b5_dl"))       # outside $RESULTS_DIR: never mirrored to HF
-    out = {"n_tensors": 0, "n_equal": 0, "max_abs_diff": 0.0, "files": {}}
+    out = {"n_tensors": 0, "n_equal": 0, "max_abs_diff": 0.0, "files": {}, "per_tensor": []}
     for k in (1, 2, 3):
         name = f"model-0000{k}-of-00003.safetensors"
         paths = {r: hf_hub_download(repo, name, revision=sha, cache_dir=str(work / r)) for r, sha in revs.items()}
@@ -60,20 +62,28 @@ def verify_last():
             for t in keys:
                 a, b = fa.get_tensor(t), fb.get_tensor(t)
                 out["n_tensors"] += 1
-                if a.shape == b.shape and bool((a == b).all()):
+                eq = a.shape == b.shape and bool((a == b).all())
+                d = (a.float() - b.float())
+                rec = {"tensor": t, "file": name, "equal": eq, "max_abs_diff": float(d.abs().max()),
+                       "rel_l2": float(d.norm() / a.float().norm().clamp_min(1e-30)),
+                       "share_changed": float((a != b).float().mean())}
+                out["per_tensor"].append(rec)
+                if eq:
                     out["n_equal"] += 1
                 else:
-                    out["max_abs_diff"] = max(out["max_abs_diff"], float((a.float() - b.float()).abs().max()))
+                    out["max_abs_diff"] = max(out["max_abs_diff"], rec["max_abs_diff"])
         out["files"][name] = "compared"
         for r in revs:
             import shutil
             shutil.rmtree(work / r, ignore_errors=True)
         R.log(f"B5 verify-last: {name} done ({out['n_equal']}/{out['n_tensors']} tensors equal so far)")
     out["identical"] = out["n_equal"] == out["n_tensors"]
+    rel = [r["rel_l2"] for r in out["per_tensor"]]
+    out["rel_l2_median"], out["rel_l2_max"] = (float(sorted(rel)[len(rel) // 2]), float(max(rel))) if rel else (None, None)
     dst = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / "B5" / "verify_last.json"
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(json.dumps(out, indent=1))
-    print("B5 verify-last:", json.dumps(out))
+    print("B5 verify-last:", json.dumps({k: v for k, v in out.items() if k != "per_tensor"}))
     return 0
 
 

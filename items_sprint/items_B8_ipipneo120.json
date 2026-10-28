@@ -1,11 +1,19 @@
 {
  "meta": {
   "job": "B8",
-  "registration": "amendment 3 (B8), operational details in amendment 6",
-  "instrument": "IPIP-NEO-120 (Johnson, 2014), public domain (ipip.ori.org)",
-  "sources": [
-   "github.com/thepunitsingh/b5-johnson-120-ipip-neo-pi-r data/en/questions.json (keys, facets)",
-   "github.com/NeuroQuestAi/five-factor-e data/IPIP-NEO/120/questions.json (wording; agrees on 119/120 items, the 120th differs only in 'or'/'and')"
+  "registration": "amendment 3 (B8); operational details amendment 6 (as revised Oct 29)",
+  "instrument": "IPIP-NEO-120 (Johnson, 2014, J. Res. Pers. 51, 78-89), public domain",
+  "wording_source": "https://ipip.ori.org/30FacetNEO-PI-RItems.htm (Johnson IPIP-NEO-120; every item checked)",
+  "order_keys_facets": [
+   "https://github.com/NeuroQuestAi/five-factor-e data/IPIP-NEO/120/questions.json (order, wording)",
+   "https://github.com/thepunitsingh/b5-johnson-120-ipip-neo-pi-r data/en/questions.json (keys, facets)"
+  ],
+  "check": "120/120 items match ipip.ori.org on facet, key and wording after resolving 1 disagreement",
+  "resolved": [
+   {
+    "github": "Believe that there is no absolute right or wrong.",
+    "ipip.ori.org": "Believe that there is no absolute right and wrong."
+   }
   ],
   "administration": "first person ('I ' + item), frozen A strict format with the reasoning cap (1-5 agreement)",
   "n_items": 120,
@@ -992,12 +1000,12 @@
    "trait": "O6",
    "key": 1,
    "original": true,
-   "ipip_text": "Believe that there is no absolute right or wrong.",
-   "text": "I believe that there is no absolute right or wrong.",
+   "ipip_text": "Believe that there is no absolute right and wrong.",
+   "text": "I believe that there is no absolute right and wrong.",
    "messages": [
     {
      "role": "user",
-     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that there is no absolute right or wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I believe that there is no absolute right and wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
     }
    ]
   },
