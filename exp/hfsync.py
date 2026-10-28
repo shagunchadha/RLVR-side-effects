@@ -117,14 +117,15 @@ def main(argv=None):
     ap.add_argument("--lane", default="laptop")
     ap.add_argument("--log", default=None)
     ap.add_argument("--every", type=int, default=300)
-    ap.add_argument("rest", nargs=argparse.REMAINDER)
-    a = ap.parse_args(argv)
+    argv = list(sys.argv[1:] if argv is None else argv)
+    rest = argv[argv.index("--") + 1:] if "--" in argv else []
+    a = ap.parse_args(argv[:argv.index("--")] if "--" in argv else argv)
     if a.cmd == "pull":
         pull(a.root, a.hf_repo, a.jobs)
     elif a.cmd == "push":
         push(a.root, a.hf_repo, a.lane, [a.log] if a.log else [])
     else:
-        cmd = a.rest[1:] if a.rest[:1] == ["--"] else a.rest
+        cmd = rest
         if not cmd or not a.log:
             sys.exit("run needs --log and a command after --")
         return run(a.root, a.hf_repo, a.lane, a.log, a.every, cmd)
