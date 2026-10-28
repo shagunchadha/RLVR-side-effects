@@ -292,3 +292,19 @@ def test_b2_items_frozen_and_end_to_end(tmp_path, tiny_tok, monkeypatch):
     monkeypatch.setenv("STORE", "local")
     a = _args(["rlvr"], "0/84", seeds=2, system="own", chunk=8, max_tokens=64, gpu_mem=0.8, limit=None)
     assert B2.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
+
+
+def test_ph_handoff_end_to_end(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import PH_handoff as PH
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    us, _ = PH.units(tiny_tok, 50)
+    assert {u["prefix_src"] for u in us} == {"rlvr", "dpo"} and {u["cut"] for u in us} <= set(PH.CUTS)
+    assert all(0 < u["prefix_tok"] < u["trace_think_tok"] for u in us)
+    a = _args(["dpo"], None, seeds=2, n_d=50, chunk=4, max_tokens=64, gpu_mem=0.8, limit=3)
+
+    def fake(llm, pids, seeds, sampling, max_tokens=None):
+        assert isinstance(max_tokens, list) and len(max_tokens) == len(seeds)
+        return [{"text": " So done.\n</think>\n\nANSWER: 4", "token_ids": [1, 2], "logprobs": [0.0, 0.0],
+                 "finish_reason": "stop", "n_tokens": 2} for _ in seeds]
+    assert PH.run(a, tok=tiny_tok, generate_fn=fake) == 0

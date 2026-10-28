@@ -23,4 +23,7 @@ for ck in rlvr dpo sft; do
 done
 HF_HUB_CACHE="$W/pair" step --pair rlvr dpo
 HF_HUB_CACHE="$W/pair" step --pair rlvr dpo --kl-detail     # Gate 1: KL by written token + positional profile
+for ck in rlvr dpo; do                                        # amendment 4, F1: P(conclusion opener), A and D
+  HF_HUB_CACHE="$W/pair" step --ckpt "$ck" --wrapup --traces rlvr dpo --components A D
+done
 rm -rf "$W"; echo "=== $(date +%T) M2 queue done; weights deleted"

@@ -117,13 +117,15 @@ def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=
 
 
 def generate(llm, prompt_token_ids, seeds, sampling, max_tokens=16000):
-    """prompt_token_ids: list of list[int]; seeds: list[int] (one per request). Returns list of dicts with
-    text, token_ids, logprobs (chosen-token logprob per generated token), finish_reason, n_tokens."""
+    """prompt_token_ids: list of list[int]; seeds: list[int] (one per request); max_tokens: int, or a list with one
+    cap per request. Returns list of dicts with text, token_ids, logprobs (chosen-token logprob per generated token),
+    finish_reason, n_tokens."""
     from vllm import SamplingParams
     from vllm.inputs import TokensPrompt
     assert len(prompt_token_ids) == len(seeds)
+    caps = max_tokens if isinstance(max_tokens, (list, tuple)) else [max_tokens] * len(seeds)
     params = [SamplingParams(temperature=sampling["temperature"], top_p=sampling["top_p"], top_k=sampling["top_k"],
-                             max_tokens=max_tokens, seed=int(s), logprobs=0) for s in seeds]
+                             max_tokens=int(m), seed=int(s), logprobs=0) for s, m in zip(seeds, caps)]
     outs = llm.generate([TokensPrompt(prompt_token_ids=p) for p in prompt_token_ids], params, use_tqdm=False)
     res = []
     for o in outs:

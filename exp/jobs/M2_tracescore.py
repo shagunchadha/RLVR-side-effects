@@ -58,6 +58,8 @@ def add_args(p):
     p.add_argument("--components", nargs="*", default=list("ABCDE"))
     p.add_argument("--chunk", type=int, default=1024)
     p.add_argument("--limit", type=int, default=None, help="debug: first N traces of this shard")
+    p.add_argument("--wrapup", action="store_true",
+                   help="single mode: also read P(conclusion opener) (amendment 4, F1); label <ckpt>_wrapup")
     p.add_argument("--kl-detail", action="store_true",
                    help="pair mode: also store KL attributed to the written token and a 20-bin positional profile")
 
@@ -154,12 +156,23 @@ def kl_detail(prep, kl):
             "kl_pos_bins": bins}
 
 
-def target_groups(tok):
+WRAPUP_PRIMARY = ("So", "Therefore", "Thus", "Final")      # amendment 4, F1: primary group
+WRAPUP_PROXY = {"illgowith": "I'll go with", "theanswer": "The answer"}   # first-token proxies, reported per word
+
+
+def target_groups(tok, wrapup=False):
     groups = {"think_end": H.close_ids(tok, C.THINK_END)[0]}          # first-token proxy (sensitivity only)
     sw = H.first_token_ids(tok, C.SWITCH_WORDS)
     groups["switch"] = sorted({t for v in sw.values() for t in v})
     for w, ids in sw.items():
         groups[f"switch_{w}"] = ids
+    if wrapup:
+        wu = H.first_token_ids(tok, WRAPUP_PRIMARY)
+        groups["wrapup"] = sorted({t for v in wu.values() for t in v})
+        for w, ids in wu.items():
+            groups[f"wrapup_{w}"] = ids
+        for k, phrase in WRAPUP_PROXY.items():
+            groups[f"wrapup_{k}"] = H.first_token_ids(tok, [phrase])[phrase]
     return groups
 
 
@@ -167,7 +180,8 @@ def job_config(a, scorer_desc):
     return {"job": "M2", "mode": "pair" if a.pair else "single", "scorer": scorer_desc, "traces": sorted(a.traces),
             "components": sorted(a.components), "trace_files": {t: str(C.FULL_RUN[t].relative_to(C.REPO_ROOT)) for t in a.traces},
             "ladder": {k: list(C.ckpt(k)) for k in LADDER}, "switch_words": list(C.SWITCH_WORDS), "close": "sum_v P(v) P(think | v), v in first tokens of </think>, ' </think>'; min_p 1e-6", "version": 3,
-            **({"kl_detail": {"bins": KL_BINS, "top": KL_TOP}} if getattr(a, "kl_detail", False) else {})}
+            **({"kl_detail": {"bins": KL_BINS, "top": KL_TOP}} if getattr(a, "kl_detail", False) else {}),
+            **({"wrapup": {"primary": list(WRAPUP_PRIMARY), "proxy": WRAPUP_PROXY}} if getattr(a, "wrapup", False) else {})}
 
 
 def check_same_vocab(toks):
@@ -188,7 +202,7 @@ def run(args, models=None, toks=None):
         if not args.ckpt or len(args.ckpt) != 1:
             raise SystemExit("single mode needs exactly one --ckpt (the scorer)")
         A, B = args.ckpt[0], None
-        label = A
+        label = A + ("_wrapup" if getattr(a, "wrapup", False) else "")
     cfg = job_config(a, label)
     st = S.Store("M2", label, cfg)
     if st.done(i):
@@ -210,7 +224,7 @@ def run(args, models=None, toks=None):
         if B:
             models[B] = H.load_hf(*C.ckpt(B))
         res.now("models loaded")
-    groups = target_groups(toks[A])
+    groups = target_groups(toks[A], wrapup=getattr(a, "wrapup", False))
     close = H.close_ids(toks[A], C.THINK_END)
     for t, (tc, r) in enumerate(todo):
         t0 = time.time()
