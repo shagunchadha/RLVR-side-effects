@@ -26,7 +26,7 @@ def valid(r, comp, tc):
 def wrapup_trace(r):
     """(mean P(wrap-up) at non-final sentence starts, onset in % of the think block or None if never >= ONSET_P)."""
     te, n = r.get("think_end_tok"), r.get("n_think_pos")
-    pos, p = r.get("sent_next_tok") or [], r.get("wrapup_at_sent") or []
+    pos, p = r.get("sent_next_tok") or [], r.get("p_wrapup_at_sent") or []
     pairs = [(k, x) for k, x in zip(pos, p) if k != te]
     if not pairs or not n:
         return None, None
@@ -93,7 +93,7 @@ def f2(S, L, dec):
     for c in "AD":
         tot, cnt = collections.Counter(), collections.Counter()
         for r in rows[c]:
-            for t, s, k in r["kl_by_token_top"]:
+            for t, s, k in ((int(t), s, int(k)) for t, s, k in r["kl_by_token_top"]):
                 tot[t] += s
                 cnt[t] += k
         allkl = sum(r["sum_kl_think"] for r in rows[c])
@@ -157,6 +157,15 @@ def main(argv=None):
     ap.add_argument("--out", default=str(ROOT / "results/sprint/M2/gate1_b2.md"))
     a = ap.parse_args(argv)
     S = load(a.m2)
+    # finished shards (results/sprint/M2/runs/<label>/<hash>/shard_000.parquet) win over mid-run progress snapshots
+    for f in sorted((Path(a.m2).parent / "runs").glob("*/*/shard_000.parquet")):
+        import pyarrow.parquet as pq
+        try:
+            rows = pq.read_table(f).to_pylist()
+        except Exception as e:                                 # noqa: BLE001 - a torn copy: keep the progress file
+            print(f"skipping unreadable shard {f}: {type(e).__name__}")
+            continue
+        S[f.parts[-3]] = {f"{r['trace_ckpt']}|{r['id']}|{r['seed']}": r for r in rows}
     try:
         from transformers import AutoTokenizer
         from .. import config as C
