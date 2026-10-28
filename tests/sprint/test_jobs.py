@@ -417,7 +417,7 @@ def test_b5_branches_and_d_part(tmp_path, tiny_tok, monkeypatch):
     assert B5.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
 
 
-def test_b4_items_parse_and_run(tmp_path, tiny_tok, monkeypatch):
+def test_b4_items_parse_and_run(tmp_path, tiny_tok, tiny_model, monkeypatch):
     from exp.jobs import B4_rlzero as B4
     its = B4.items()
     assert len(its) == 48 + 40 + 40 + 100 and len({i["id"] for i in its}) == len(its)
@@ -431,4 +431,7 @@ def test_b4_items_parse_and_run(tmp_path, tiny_tok, monkeypatch):
     a = _args(["rl_zero_math"], None, seeds=2, max_tokens=64, gpu_mem=0.8, phase="gen", chunk=4, limit=3)
     assert B4.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
     a.job_args.phase = "read"
-    assert B4.run(a, tok=tiny_tok, model=object()) == 0      # fake answers parse, so no readout is needed
+    assert B4.run(a, tok=tiny_tok, model=tiny_model) == 0    # half the fake generations do not parse: readout runs
+    from exp import store as S
+    rows = S.Store("B4", "rl_zero_math", B4.job_config("rl_zero_math", a.job_args)).read(0).to_pylist()
+    assert rows[0]["readout_used"] is True and all("p_read_1" in r for r in rows if r["set"] == "A")
