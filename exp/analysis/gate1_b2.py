@@ -156,6 +156,57 @@ def f3(ph_dir, L):
     return L + ["", "Registered reading (A, 50% cut): text share >= 0.5 -> the length lives in the text; <= 0.2 -> in RLVR's policy.", ""]
 
 
+def ph_rows(ph_dir):
+    shards = sorted((Path(ph_dir).parent / "runs").glob("*/*/shard_000.parquet"))
+    if shards:
+        import pyarrow.parquet as pq
+        return [r for f in shards for r in pq.read_table(f).to_pylist()]
+    return [r for f in sorted(Path(ph_dir).glob("*/gen_shard0of1.csv")) for r in DI_read(f).values()]
+
+
+def f3b(ph_dir, L):
+    """Amendment 9: extremity (A) / accuracy (D) of the PH continuations by prefix source x continuing model."""
+    from .. import config as C
+    L += ["## F3b. Does extremity follow the continuing model? (PH continuations, final sampled answers, valid only)", ""]
+    rows = ph_rows(ph_dir)
+    if not {r["cont_ckpt"] for r in rows} >= {"rlvr", "dpo"}:
+        return L + ["Not available yet.", ""]
+    gold = {it["id"]: it["key"] for it in C.load_items("D")}
+    keys = [("rlvr", "rlvr"), ("dpo", "rlvr"), ("rlvr", "dpo"), ("dpo", "dpo")]
+    for comp, metrics in (("A", (("ext", "P(extreme)"), ("rating", "mean rating"))),
+                          ("D", (("acc", "accuracy"), ("agree", "agreement with the trace's answer")))):
+        for mk, mname in metrics:
+            L += [f"**{comp}: {mname}**", "",
+                  "| cut | n units | [RLVR cont, RLVR prefix] | [DPO, RLVR] | [RLVR, DPO] | [DPO, DPO] | continuer effect on RLVR prefixes | "
+                  "continuer effect on DPO prefixes | prefix effect, DPO continuer | prefix effect, RLVR continuer |",
+                  "|---|---|---|---|---|---|---|---|---|---|"]
+            for cut in (0.25, 0.5, 0.75):
+                cell = collections.defaultdict(lambda: collections.defaultdict(list))
+                for r in rows:
+                    if r["component"] != comp or abs(r["cut"] - cut) > 1e-9 or r.get("status") != "valid" or r.get("answer") is None:
+                        continue
+                    a = r["answer"]
+                    if mk == "ext":
+                        v = float(a in ("1", "5"))
+                    elif mk == "rating":
+                        v = float(a)
+                    elif mk == "acc":
+                        v = float(a == gold.get(r["id"]))
+                    else:
+                        v = float(a == r.get("trace_answer"))
+                    cell[(r["cont_ckpt"], r["prefix_src"])][unit(r)].append(v)
+                m = {k: {u: float(np.mean(v)) for u, v in cell[k].items()} for k in keys}
+                q = lambda x, y, lab: paired(m[x], m[y], f"gate1b2|f3b|{comp}|{mk}|{cut}|{lab}")  # noqa: E731
+                f = lambda d: f"{d['mean']:+.3f} [{d['ci'][0]:+.3f}, {d['ci'][1]:+.3f}]" if d.get("n", 0) >= 2 else "n/a"  # noqa: E731
+                n = len(set.intersection(*[set(m[k]) for k in keys])) if all(m[k] for k in keys) else 0
+                L.append(f"| {cut:.0%} | {n} | " + " | ".join(f"{np.mean(list(m[k].values())):.3f}" if m[k] else "-" for k in keys)
+                         + f" | {f(q(('rlvr', 'rlvr'), ('dpo', 'rlvr'), 'cont_on_r'))} | {f(q(('rlvr', 'dpo'), ('dpo', 'dpo'), 'cont_on_d'))}"
+                         + f" | {f(q(('dpo', 'rlvr'), ('dpo', 'dpo'), 'src_dpo'))} | {f(q(('rlvr', 'rlvr'), ('rlvr', 'dpo'), 'src_rlvr'))} |")
+            L.append("")
+    return L + ["Registered reading (A, 50% cut): extremity follows the continuing model if the continuer effect on P(extreme) "
+                "is positive on both prefix sources (interval excludes 0) while the prefix effect for the DPO continuer is not.", ""]
+
+
 def DI_read(f):
     from .b1_summary import read_progress
     return read_progress(f)
@@ -196,6 +247,7 @@ def main(argv=None):
     L = f1(S, L, no_so=True)
     L = f2(S, L, dec)
     L = f3(a.ph, L)
+    L = f3b(a.ph, L)
     Path(a.out).write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
     return 0

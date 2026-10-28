@@ -128,3 +128,39 @@ L[cont, prefix] = mean over units of the mean remaining think tokens over seeds 
 
 Registered reading (A, 50% cut): text share >= 0.5 -> the length lives in the text; <= 0.2 -> in RLVR's policy.
 
+## F3b. Does extremity follow the continuing model? (PH continuations, final sampled answers, valid only)
+
+**A: P(extreme)**
+
+| cut | n units | [RLVR cont, RLVR prefix] | [DPO, RLVR] | [RLVR, DPO] | [DPO, DPO] | continuer effect on RLVR prefixes | continuer effect on DPO prefixes | prefix effect, DPO continuer | prefix effect, RLVR continuer |
+|---|---|---|---|---|---|---|---|---|---|
+| 25% | 48 | 0.417 | 0.257 | 0.319 | 0.201 | +0.160 [+0.083, +0.243] | +0.118 [+0.049, +0.194] | +0.056 [-0.028, +0.146] | +0.097 [-0.014, +0.208] |
+| 50% | 48 | 0.438 | 0.312 | 0.292 | 0.194 | +0.125 [+0.056, +0.201] | +0.097 [+0.028, +0.167] | +0.118 [+0.021, +0.222] | +0.146 [+0.042, +0.264] |
+| 75% | 48 | 0.500 | 0.389 | 0.278 | 0.174 | +0.111 [+0.042, +0.188] | +0.104 [+0.042, +0.181] | +0.215 [+0.069, +0.361] | +0.222 [+0.083, +0.368] |
+
+**A: mean rating**
+
+| cut | n units | [RLVR cont, RLVR prefix] | [DPO, RLVR] | [RLVR, DPO] | [DPO, DPO] | continuer effect on RLVR prefixes | continuer effect on DPO prefixes | prefix effect, DPO continuer | prefix effect, RLVR continuer |
+|---|---|---|---|---|---|---|---|---|---|
+| 25% | 48 | 3.312 | 3.431 | 3.500 | 3.632 | -0.118 [-0.264, +0.014] | -0.132 [-0.257, -0.007] | -0.201 [-0.354, -0.056] | -0.188 [-0.396, +0.007] |
+| 50% | 48 | 3.396 | 3.375 | 3.521 | 3.535 | +0.021 [-0.090, +0.132] | -0.014 [-0.118, +0.090] | -0.160 [-0.347, +0.021] | -0.125 [-0.326, +0.077] |
+| 75% | 48 | 3.382 | 3.368 | 3.604 | 3.549 | +0.014 [-0.083, +0.111] | +0.056 [-0.035, +0.146] | -0.181 [-0.438, +0.056] | -0.222 [-0.493, +0.035] |
+
+**D: accuracy**
+
+| cut | n units | [RLVR cont, RLVR prefix] | [DPO, RLVR] | [RLVR, DPO] | [DPO, DPO] | continuer effect on RLVR prefixes | continuer effect on DPO prefixes | prefix effect, DPO continuer | prefix effect, RLVR continuer |
+|---|---|---|---|---|---|---|---|---|---|
+| 25% | 50 | 0.953 | 0.960 | 0.940 | 0.920 | -0.007 [-0.020, +0.000] | +0.020 [+0.000, +0.053] | +0.040 [+0.000, +0.093] | +0.013 [-0.020, +0.060] |
+| 50% | 50 | 0.947 | 0.940 | 0.933 | 0.940 | +0.007 [+0.000, +0.020] | -0.007 [-0.020, +0.000] | +0.000 [-0.060, +0.060] | +0.013 [-0.033, +0.067] |
+| 75% | 50 | 0.940 | 0.940 | 0.933 | 0.940 | +0.000 [+0.000, +0.000] | -0.007 [-0.020, +0.000] | +0.000 [-0.060, +0.060] | +0.007 [-0.053, +0.067] |
+
+**D: agreement with the trace's answer**
+
+| cut | n units | [RLVR cont, RLVR prefix] | [DPO, RLVR] | [RLVR, DPO] | [DPO, DPO] | continuer effect on RLVR prefixes | continuer effect on DPO prefixes | prefix effect, DPO continuer | prefix effect, RLVR continuer |
+|---|---|---|---|---|---|---|---|---|---|
+| 25% | 50 | 0.973 | 0.980 | 1.000 | 0.980 | -0.007 [-0.020, +0.000] | +0.020 [+0.000, +0.053] | +0.000 [-0.040, +0.040] | -0.027 [-0.073, +0.000] |
+| 50% | 50 | 0.993 | 1.000 | 0.993 | 1.000 | -0.007 [-0.020, +0.000] | -0.007 [-0.020, +0.000] | +0.000 [+0.000, +0.000] | +0.000 [-0.020, +0.020] |
+| 75% | 50 | 1.000 | 1.000 | 0.993 | 1.000 | +0.000 [+0.000, +0.000] | -0.007 [-0.020, +0.000] | +0.000 [+0.000, +0.000] | +0.007 [+0.000, +0.020] |
+
+Registered reading (A, 50% cut): extremity follows the continuing model if the continuer effect on P(extreme) is positive on both prefix sources (interval excludes 0) while the prefix effect for the DPO continuer is not.
+
