@@ -5,7 +5,7 @@
 #   cd /tmp/rse && nohup bash exp/launch/B1.sh > /tmp/b1.log 2>&1; echo EXIT=$? >> /tmp/b1.log
 set -uo pipefail
 cd "$(dirname "$0")/../.."
-export STORE=local RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf HF_XET_CHUNK_CACHE_SIZE_BYTES=0
+export STORE="${STORE:-local}" RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf HF_XET_CHUNK_CACHE_SIZE_BYTES=0
 export PATH="/tmp/sprint_venv/bin:$PATH"   # vLLM JIT needs ninja from the venv
 # molab sets CUDA_HOME to the image's nvcc 13.3; flashinfer JIT must use the venv's pinned 13.4 toolkit (header mismatch otherwise)
 export CUDA_HOME=/tmp/sprint_venv/lib/python3.13/site-packages/nvidia/cu13
@@ -25,13 +25,17 @@ if [ ! -f "$RESULTS_DIR/B1/.smoke_ok" ]; then         # small test in a throwawa
   RESULTS_DIR=/tmp/b1_smoke HF_HUB_CACHE="$W/rlvr" arm rlvr --limit 1 --seeds 2 && touch "$RESULTS_DIR/B1/.smoke_ok"
 fi
 BRIDGE="--seeds 5 --temperature 0.7 --top-p 0.9"
+# Gate 1 order (Oct 29): RLVR and DPO main arms first, then the SFT arms, then the bridge arms. Weights are deleted
+# after each checkpoint's block, so RLVR and DPO are downloaded twice (about 3 min each).
 HF_HUB_CACHE="$W/rlvr" arm rlvr
-HF_HUB_CACHE="$W/rlvr" arm rlvr $BRIDGE
 rm -rf "$W/rlvr"; echo "=== $(date +%T) deleted weights of rlvr"
 HF_HUB_CACHE="$W/dpo" arm dpo
-HF_HUB_CACHE="$W/dpo" arm dpo $BRIDGE
 rm -rf "$W/dpo"; echo "=== $(date +%T) deleted weights of dpo"
 HF_HUB_CACHE="$W/sft" arm sft
 HF_HUB_CACHE="$W/sft" arm sft --system dpo_default
 HF_HUB_CACHE="$W/sft" arm sft $BRIDGE
+rm -rf "$W/sft"; echo "=== $(date +%T) deleted weights of sft"
+HF_HUB_CACHE="$W/rlvr" arm rlvr $BRIDGE
+rm -rf "$W/rlvr"; echo "=== $(date +%T) deleted weights of rlvr"
+HF_HUB_CACHE="$W/dpo" arm dpo $BRIDGE
 rm -rf "$W"; echo "=== $(date +%T) B1 queue done; weights deleted"

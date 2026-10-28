@@ -260,3 +260,13 @@ def test_b3_format_ok():
     assert not B3_instructions.format_ok("\nANSWER: 4", "A")             # no justification line
     assert not B3_instructions.format_ok("\nIt fits.\nANSWER: 4\nthanks", "A")
     assert B3_instructions.format_ok("\nBecause.\nANSWER: C", "D")
+
+
+def test_m2_kl_detail_attributes_think_kl_to_written_tokens():
+    from exp.jobs import M2_tracescore as M2
+    prep = {"think_end_tok": 4, "gen_ids": [7, 8, 7, 9, 5, 5]}
+    d = M2.kl_detail(prep, [0.1, 0.2, 0.3, 0.05, 9.0, 9.0])      # positions >= think_end_tok are ignored
+    assert d["sum_kl_think"] == pytest.approx(0.65)
+    assert d["kl_by_token_top"][0][0] == 7 and d["kl_by_token_top"][0][1] == pytest.approx(0.4)
+    assert d["kl_by_token_top"][0][2] == 2 and {t for t, _, _ in d["kl_by_token_top"]} == {7, 8, 9}
+    assert len(d["kl_pos_bins"]) == M2.KL_BINS

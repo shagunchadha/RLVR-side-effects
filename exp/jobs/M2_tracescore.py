@@ -58,6 +58,8 @@ def add_args(p):
     p.add_argument("--components", nargs="*", default=list("ABCDE"))
     p.add_argument("--chunk", type=int, default=1024)
     p.add_argument("--limit", type=int, default=None, help="debug: first N traces of this shard")
+    p.add_argument("--kl-detail", action="store_true",
+                   help="pair mode: also store KL attributed to the written token and a 20-bin positional profile")
 
 
 def load_traces(trace_sets, components):
@@ -130,6 +132,28 @@ def summarize(prep, out, pair=False):
     return row
 
 
+KL_BINS = 20
+KL_TOP = 50
+
+
+def kl_detail(prep, kl):
+    """Pair mode, --kl-detail (Gate 1, exploratory): over think positions, KL summed by the token written there
+    (the target of the prediction; top KL_TOP per trace as [token_id, sum_kl, count]) and the mean KL in KL_BINS
+    equal bins of relative position in the think block."""
+    te = prep["think_end_tok"]
+    n = te if te is not None else len(kl)
+    v, g = np.asarray(kl[:n], dtype=float), np.asarray(prep["gen_ids"][:n])
+    by = {}
+    for t, x in zip(g.tolist(), v.tolist()):
+        a = by.setdefault(t, [0.0, 0])
+        a[0] += x
+        a[1] += 1
+    top = sorted(by.items(), key=lambda kv: -kv[1][0])[:KL_TOP]
+    bins = [float(b.mean()) if len(b) else None for b in np.array_split(v, KL_BINS)] if n else []
+    return {"sum_kl_think": float(v.sum()), "kl_by_token_top": [[t, round(a[0], 6), a[1]] for t, a in top],
+            "kl_pos_bins": bins}
+
+
 def target_groups(tok):
     groups = {"think_end": H.close_ids(tok, C.THINK_END)[0]}          # first-token proxy (sensitivity only)
     sw = H.first_token_ids(tok, C.SWITCH_WORDS)
@@ -142,7 +166,8 @@ def target_groups(tok):
 def job_config(a, scorer_desc):
     return {"job": "M2", "mode": "pair" if a.pair else "single", "scorer": scorer_desc, "traces": sorted(a.traces),
             "components": sorted(a.components), "trace_files": {t: str(C.FULL_RUN[t].relative_to(C.REPO_ROOT)) for t in a.traces},
-            "ladder": {k: list(C.ckpt(k)) for k in LADDER}, "switch_words": list(C.SWITCH_WORDS), "close": "sum_v P(v) P(think | v), v in first tokens of </think>, ' </think>'; min_p 1e-6", "version": 3}
+            "ladder": {k: list(C.ckpt(k)) for k in LADDER}, "switch_words": list(C.SWITCH_WORDS), "close": "sum_v P(v) P(think | v), v in first tokens of </think>, ' </think>'; min_p 1e-6", "version": 3,
+            **({"kl_detail": {"bins": KL_BINS, "top": KL_TOP}} if getattr(a, "kl_detail", False) else {})}
 
 
 def check_same_vocab(toks):
@@ -158,7 +183,7 @@ def run(args, models=None, toks=None):
     check_same_vocab(toks)
     if a.pair:
         A, B = a.pair
-        label = f"pair_{A}_{B}"
+        label = f"pair_{A}_{B}" + ("_kldetail" if getattr(a, "kl_detail", False) else "")
     else:
         if not args.ckpt or len(args.ckpt) != 1:
             raise SystemExit("single mode needs exactly one --ckpt (the scorer)")
@@ -201,6 +226,8 @@ def run(args, models=None, toks=None):
         if B:
             out = H.score(models[A], ids, gs, pair_model=models[B], chunk=a.chunk)
             row = {**base, "scorer_a": A, "scorer_b": B, **summarize(prep, out, pair=True)}
+            if getattr(a, "kl_detail", False):
+                row.update(kl_detail(prep, out["kl"]))
         else:
             out = H.score(models[A], ids, gs, target_groups=groups, chunk=a.chunk)
             row = {**base, "scorer": A, "n_prompt_tok": prep["n_prompt_tok"], "prompt_tok_match": prep["prompt_tok_match"],

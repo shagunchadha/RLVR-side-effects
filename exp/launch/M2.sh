@@ -5,7 +5,7 @@
 #   cd /tmp/rse && nohup bash exp/launch/M2.sh > /tmp/m2.log 2>&1; echo EXIT=$? >> /tmp/m2.log
 set -uo pipefail
 cd "$(dirname "$0")/../.."
-export STORE=local RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf HF_XET_CHUNK_CACHE_SIZE_BYTES=0
+export STORE="${STORE:-local}" RESULTS_DIR="${RESULTS_DIR:-/tmp/sprint_out}" HF_HOME=/tmp/hf HF_XET_CHUNK_CACHE_SIZE_BYTES=0
 export PATH="/tmp/sprint_venv/bin:$PATH"   # vLLM JIT needs ninja from the venv
 # molab sets CUDA_HOME to the image's nvcc 13.3; flashinfer JIT must use the venv's pinned 13.4 toolkit (header mismatch otherwise)
 export CUDA_HOME=/tmp/sprint_venv/lib/python3.13/site-packages/nvidia/cu13
@@ -22,4 +22,5 @@ for ck in rlvr dpo sft; do
   rm -rf "$W/$ck"; echo "=== $(date +%T) deleted weights of $ck"
 done
 HF_HUB_CACHE="$W/pair" step --pair rlvr dpo
+HF_HUB_CACHE="$W/pair" step --pair rlvr dpo --kl-detail     # Gate 1: KL by written token + positional profile
 rm -rf "$W"; echo "=== $(date +%T) M2 queue done; weights deleted"
