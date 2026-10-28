@@ -401,3 +401,56 @@ Committed and pushed **before any of these three analyses or jobs produced outpu
 **Secondary measures:** the final-answer change rate relative to the trace's own answer, and the closing rate.
 
 **Order.** It runs on N6 right after M2 `--kl-detail` and `--wrapup`, before B3a.
+
+---
+
+## Amendment 5 (Oct 29, 2026): Gate 1 call, lane order, added outputs, F1 robustness
+
+Committed and pushed **before any of the jobs or analyses named here produced output under these specifications.** At commit time:
+- B1's SFT and bridge arms, and PH (amendment 4), are running unchanged.
+- M3, M5, B8, B5, B4, B2, B6 and B3b have not started.
+- B3a has 78 RLVR generations from Oct 28 (unchanged design).
+
+**Gate 1 call (PI).** The headline: RLVR re-opens deliberation (an earlier wrap-up signal, then a diffuse divergence on discourse and hedging tokens, not a stopping deficit), and that reasoning drives the extreme-answer shift. Everything below is planned around testing it.
+
+### Lane order
+
+| lane | order |
+|---|---|
+| N2 | B1 (finish the SFT arms + bridge) → B8 → B5 → B2 → B4 → B6 → B3b |
+| N6 | PH → M3 → M5 → B3a → M4 → M6 |
+
+- **Cut order if behind:** M6, then B3a, then M4, then B4 to {Math, IF, General}, then B5 to 5 steps.
+- **B6 must ship at least** the MATH-L5/AIME positive control.
+- *(operational)* The running lanes switch to the new order at their next job boundary: `exp/launch/queue.sh` reads `exp/launch/queues/<lane>.txt`. No running job is interrupted.
+
+### Added outputs
+
+**M3**, in addition to amendment 3:
+- **(a′) Per-sentence trajectory.** For A (B1 main-arm traces), the trajectory of P(extreme) = P(1) + P(5) and of E[rating] from the per-sentence readout. It is summarised in 10 bins of relative position, RLVR vs DPO (and SFT), paired by wording.
+- **D analogue.** On the frozen full-run D traces (RLVR and DPO, valid, o0, the first 50 base items), the same per-sentence readout over the letters A–E. The trajectory is of P(max letter) and P(final letter).
+  - "Extremity" is not defined for D. P(max letter) is its decisiveness analogue.
+- **(a″) Wrap-up onset inside the M3 pass.** From the same forward, P(wrap-up) is read at each sentence start: the F1 primary group (So / Therefore / Thus / Final), and the same group without "So". The onset is the first sentence start with P ≥ 0.2.
+  - **Primary added test:** per trace, mean P(extreme) after the onset minus before it, RLVR vs DPO, paired by wording.
+  - **Registered direction (from the Gate 1 call):** extremity grows after the onset more for RLVR.
+  - Traces with no onset are reported, not imputed.
+
+**M5**, refining amendment 3:
+- **Backtracking direction.** Mean residual at the positions just before " But", " maybe" and " Wait" (each first token, with or without the leading space), minus matched control positions. Controls are other sentence-internal positions in the same traces, matched on relative position (same decile) and on the preceding token being a sentence end vs not. Taken from DPO and RLVR traces at the M3–M6 layers; chosen on held-out wordings as registered.
+- **Outcomes.** Ablation (projecting the direction out in RLVR) and steering (adding ±alpha × the stage-offset vector) both report:
+  - think length (A and D);
+  - answer change;
+  - **extremity**: P(extreme) from the B1 readout at the end of the steered or ablated trace, and the sampled-answer extreme share.
+
+**B5 and B4.** P(extreme) is a **primary** outcome alongside length (B4: per domain; B5: Spearman with log step and the A-vs-D slope difference for length).
+
+### F1 robustness (exploratory)
+
+The F1 wrap-up onset analysis (amendment 4) is rerun with the opener group excluding " So": Therefore / Thus / Final. It uses the stored per-word columns of the existing `--wrapup` shards (P(group) − P("So") first tokens; the groups' first tokens are disjoint). No new GPU run is needed.
+
+### Repair of the M2 pair shard (approved by the PI)
+
+`runs/M2/pair_rlvr_dpo/b35466982f5e/shard_000.parquet` on HF is a torn copy (400,000 bytes, no parquet footer).
+- **Rebuild:** from the complete progress file (1842 rows), with row-level equality verified, and uploaded to the same path as a new HF commit (history keeps the torn version).
+- **Logged:** in `docs/sprint/disclosure-ledger.md`.
+- **This is the only overwrite.**
