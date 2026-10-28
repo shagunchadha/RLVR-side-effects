@@ -570,3 +570,34 @@ Contrasts:
 - **Self-report:** B1's hedging and confidence wordings (sampled answers, main arms; B8's facet scores where relevant).
 - **Report:** per checkpoint, the self-report vs behaviour pairs: self-reported hedging vs the hedge-word rate; self-reported confidence vs the stated-confidence − accuracy gap. With three checkpoints this is descriptive (no test).
 - **Dependency:** B7 needs B6 (iii), so it runs last in N2's queue.
+
+---
+
+## Amendment 10 (Oct 29, 2026): B4 operational details
+
+Committed **before B4 has run**. The hypothesis and primary measures are those of amendments 3 and 5 (length ratio relative to base, P(extreme), parse rate, logprob readout under 70%).
+
+**Models.**
+- The base model `allenai/Olmo-3-1025-7B`, which has no chat template. It gets a plain-text 3-shot prompt: per item kind, three worked "Question / Response / ANSWER:" examples that are not sprint items. Generation stops at the next "Question:", with a cap of 2,048 tokens.
+- RL-Zero Math, Code, IF, General and Mix, each with **its own chat template**. That template wraps the user message in the model's training instruction; for Math, for example, "Solve the following math problem step by step … Answer: $Answer". The cap is 16,000 tokens.
+
+**Sampling.** 0.6 / 0.95, no top-k, for every model (their `generation_config.json` files set nothing), 5 seeds.
+
+**Items.**
+- the 48 A wordings;
+- B2's self-determinate (40) and other-indeterminate (40) cells;
+- the first 100 D base items (o0).
+
+B2's self-indeterminate cell is A, and its other-determinate cell is contained in the 100 D items, so nothing is duplicated.
+
+**Parsing (all models).** The last "ANSWER:" or "Answer:" line with a value valid for the item kind (1–5, yes/no, A–E). Otherwise, for Likert items, the lenient last-digit rule of `exp/parsers.py`.
+
+**Parse rate.** Reported per model and set.
+
+**Logprob readout.** If a model's A parse rate is below 70%, every A generation also gets P(1..5) after its own text, cut before its answer line, + "\nANSWER: " (HF model, B1's primary variant). That model's P(extreme) is then read from the readout.
+
+**Length.** Tokens before `</think>` if the model closed a think block; otherwise, tokens before the parsed answer line (otherwise all tokens). `has_think` is recorded.
+
+**Primary measures.** Both per domain, with a bootstrap over items:
+- (A length / D length) ÷ the base model's (A length / D length), the ratio of per-item means;
+- P(extreme) on A.

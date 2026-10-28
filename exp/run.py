@@ -21,6 +21,7 @@ JOBS = {
     "B1": ("exp.jobs.B1_likert", True, True, "Likert sampling x20 seeds + think/no-think readouts"),
     "B2": ("exp.jobs.B2_indeterminacy", True, True, "indeterminacy x self-reference 2x2 grid (amendment 3)"),
     "PH": ("exp.jobs.PH_handoff", True, True, "prefix handoff: RLVR/DPO trace prefixes continued by the other model (amendment 4)"),
+    "B4": ("exp.jobs.B4_rlzero", True, True, "reward domain: base (few-shot) + RL-Zero x5 on A, B2 and 100 D items (amendments 3, 5, 10)"),
     "B5": ("exp.jobs.B5_dose", True, True, "dose-response over RL step branches: B1 protocol on A + 100 D items (amendments 3, 5, 8)"),
     "B8": ("exp.jobs.B8_ipipneo", True, True, "response style on IPIP-NEO-120 with the B1 protocol (amendments 3, 6)"),
     "B3": ("exp.jobs.B3_instructions", True, True, "reasoning-cap x answer-format factorial on A + 50 D items"),

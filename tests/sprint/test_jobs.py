@@ -415,3 +415,20 @@ def test_b5_branches_and_d_part(tmp_path, tiny_tok, monkeypatch):
     a = _args(["rlvr@step_0025"], None, seeds=2, max_tokens=64, gpu_mem=0.8, limit=3, n_d=100, part="D",
               verify_last=False, temperature=0.6, top_p=0.95)
     assert B5.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
+
+
+def test_b4_items_parse_and_run(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import B4_rlzero as B4
+    its = B4.items()
+    assert len(its) == 48 + 40 + 40 + 100 and len({i["id"] for i in its}) == len(its)
+    assert B4.parse("<think>x</think>\nANSWER: 4", "likert")[0] == "4"
+    assert B4.parse("reasoning...\nAnswer: B", "mc5")[0] == "B"
+    assert B4.parse("so yes.\nANSWER: Yes", "yesno")[0] == "yes"
+    assert B4.parse("no answer here", "mc5")[0] is None
+    assert "Question:" in B4.base_prompt(its[0]) and B4.base_prompt(its[0]).endswith("Response:")
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    a = _args(["rl_zero_math"], None, seeds=2, max_tokens=64, gpu_mem=0.8, phase="gen", chunk=4, limit=3)
+    assert B4.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0
+    a.job_args.phase = "read"
+    assert B4.run(a, tok=tiny_tok, model=object()) == 0      # fake answers parse, so no readout is needed
