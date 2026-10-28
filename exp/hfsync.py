@@ -27,7 +27,7 @@ from pathlib import Path
 from .resources import cgroup_mem
 from .store import DEFAULT_HF_REPO
 
-IGNORE = ["**/.smoke_ok", "**/_hf/**", "_hf/**", "runs/**", "**/.tmp*", "**/*.tmp", "**/__pycache__/**"]
+IGNORE = ["**/*.npz", "**/.smoke_ok", "**/_hf/**", "_hf/**", "runs/**", "**/.tmp*", "**/*.tmp", "**/__pycache__/**"]
 
 
 def _api():

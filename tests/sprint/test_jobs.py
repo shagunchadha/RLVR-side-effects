@@ -308,3 +308,24 @@ def test_ph_handoff_end_to_end(tmp_path, tiny_tok, monkeypatch):
         return [{"text": " So done.\n</think>\n\nANSWER: 4", "token_ids": [1, 2], "logprobs": [0.0, 0.0],
                  "finish_reason": "stop", "n_tokens": 2} for _ in seeds]
     assert PH.run(a, tok=tiny_tok, generate_fn=fake) == 0
+
+
+def test_m3_settle_rule():
+    from exp.jobs import M3_settle as M3
+    assert M3.settle([3, 4, 4, 4], 4) == 1
+    assert M3.settle([4, 3, 4], 4) == 2
+    assert M3.settle([4, 4, 3], 4) is None
+    assert M3.settle([5], 5) == 0
+
+
+def test_m3_trace_pass_tiny(tiny_tok, tiny_model):
+    from exp import harness as H
+    from exp.jobs import M3_settle as M3
+    it = C.load_items("A")[0]
+    r = {"ckpt": "rlvr", "id": it["id"], "seed": 0, "answer_strict": 4,
+         "think_text": "I think so. Then again maybe not. Overall I agree."}
+    digits = [H.single_token_id(tiny_tok, str(d)) for d in range(1, 6)]
+    row, feats = M3.trace_pass(tiny_model, tiny_tok, it, r, digits, H.text_ids(tiny_tok, H.ANSWER_SUFFIX), [0, 1])
+    assert len(row["p_sent"]) == len(row["sent_tok"]) >= 2 and row["sent_tok"][-1] == row["n_think_tok"]
+    assert all(abs(sum(p) - 1) < 1e-3 for p in row["p_sent"]) and 0 <= row["share_after"] <= 1
+    assert set(feats) == set(M3.POS) and set(feats["think25"]) == {0, 1}
