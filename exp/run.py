@@ -17,6 +17,7 @@ JOBS = {
     "M1b": ("exp.jobs.M1b_bf16", False, True, "M1 follow-up: bf16 changed share and ulps, shuffle null, cos(dW, W) (exploratory)"),
     "M2": ("exp.jobs.M2_tracescore", True, True, "teacher-forced scoring of the frozen full-run traces"),
     "M3": ("exp.jobs.M3_settle", True, True, "settle point of the Likert answer + probes on B1 traces (amendment 3)"),
+    "M5": ("exp.jobs.M5_causal", True, True, "causal tests: offset steering, backtracking ablation, prompt patching (amendments 3, 5, 7)"),
     "B1": ("exp.jobs.B1_likert", True, True, "Likert sampling x20 seeds + think/no-think readouts"),
     "B2": ("exp.jobs.B2_indeterminacy", True, True, "indeterminacy x self-reference 2x2 grid (amendment 3)"),
     "PH": ("exp.jobs.PH_handoff", True, True, "prefix handoff: RLVR/DPO trace prefixes continued by the other model (amendment 4)"),

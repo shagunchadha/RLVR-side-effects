@@ -358,3 +358,36 @@ def test_b8_items_and_b1_hash_unchanged(tmp_path, tiny_tok, monkeypatch):
     s = {"temperature": 0.6, "top_p": 0.95, "top_k": -1, "source": "test"}
     assert B1_likert.job_config("rlvr", a.job_args, s)["items"] == "items/items_A_selfreport.json"
     assert B1_likert.job_config("rlvr", a.job_args, s)["job"] == "B1"
+
+
+def test_m5_hooks_and_direction(tiny_tok, tiny_model):
+    import numpy as np
+    import torch
+    from exp import harness as H
+    from exp.jobs import M5_causal as M5
+    tr, ev_a, ev_d = M5.split_items()
+    assert len(tr) == 24 and len(ev_a) == 24 and len(ev_d) == 25 and not {i["id"] for i in tr} & {i["id"] for i in ev_a}
+    ids = H.prompt_ids(tiny_tok, ev_a[0]["messages"])
+    li = 0
+    base = M5.resid_at(tiny_model, ids, [len(ids) - 1], [li])[li]
+    iv = M5.Intervene(tiny_model)
+    d = base.shape[-1]
+    iv.steer(li, np.ones(d, dtype=np.float32))
+    st = M5.resid_at(tiny_model, ids, [len(ids) - 1], [li])[li]
+    iv.clear()
+    assert np.allclose(st - base, 1.0, atol=0.05)
+    u = np.zeros(d, dtype=np.float32); u[0] = 1.0
+    iv.ablate(li, u)
+    ab = M5.resid_at(tiny_model, ids, [len(ids) - 1], [li])[li]
+    iv.clear()
+    assert abs(ab[0, 0]) < 1e-2
+    ps = M5.PatchRows(); ps.rows = [(0, np.zeros((len(ids), d), dtype=np.float16))]
+    iv.patch(li, ps)
+    pt = M5.resid_at(tiny_model, ids, list(range(len(ids))), [li])[li]
+    iv.clear()
+    assert np.abs(pt).max() < 1e-3
+    traces = [(ev_a[0], "But I think so. Wait, maybe not. Hmm, but then again maybe yes. I am not sure but I lean yes.")] * 3
+    tids = {t for w in M5.TARGETS for t in H.first_token_ids(tiny_tok, [w])[w]}
+    dvec, T, Cc = M5.backtrack_direction(tiny_model, tiny_tok, traces, li, tids, np.random.default_rng(0))
+    assert dvec.shape == (d,) and len(T) > 0 and len(Cc) > 0
+    assert M5.auc(np.array([2.0, 3.0]), np.array([0.0, 1.0])) == 1.0

@@ -481,3 +481,37 @@ Committed **before B8 has run**. Nothing in amendment 3's B8 hypothesis or prima
   - All-facet version (secondary): the mean raw rating over all 120 items.
 
 The readout analogues (P(1) + P(5), P(3)) are secondary.
+
+---
+
+## Amendment 7 (Oct 29, 2026): M5 operational details
+
+Committed **before M5 has run**. The hypotheses and primary measures are those of amendments 3 and 5; this amendment fixes the operational choices left open.
+
+**Split.**
+- TRAIN: A wordings with index 0, 2 and 4 (24 wordings). They are used for the offset vector and the backtracking direction.
+- EVAL: A wordings 1, 3 and 5 (24), plus the last 25 of the first 50 D base items (o0).
+
+**Offset vector.** Per layer: the mean over TRAIN wordings of the RLVR − DPO residual at the last prompt token.
+
+**Backtracking direction.**
+- **Positions:** those whose next token is a first token of " But", " maybe" or " Wait" (with or without the leading space), in B1 main-arm RLVR and DPO traces of the TRAIN wordings (seeds 0–4), read in the RLVR model.
+- **Controls:** one per target position, drawn from the same trace with the same relative-position decile and the same "the current token ends a sentence" status.
+- **Direction:** the mean target residual minus the mean control residual.
+- **Held-out quality:** the AUC of the projection on EVAL-wording traces, reported.
+
+**Layers.** Steering and ablation act at **layer 19** (the median of the registered layers 11, 15, 19, 23, 29), fixed now, at every position during generation and during the readout. Patching runs at each of layers 4, 11, 15, 19, 23 and 29: RLVR's residuals replace DPO's at the prompt positions only, during the prefill and the readout.
+
+**Conditions.**
+- RLVR: baseline (seeds 0 and 1; the second seed is the noise floor for answer change); −alpha × offset for alpha ∈ {0.5, 1, 2}; ablation of the backtracking direction.
+- DPO: baseline; +alpha × offset for alpha ∈ {0.5, 1, 2}; patching at each of the six layers.
+
+**Generation.** HF `generate` with hooks, model-default sampling (0.6 / 0.95), a cap of 3,000 new tokens (unclosed traces are counted at the cap and flagged), and one seed per condition.
+
+**Outcomes.**
+- **Primary (amendment 3):**
+  - the A/D think-length ratio at alpha = 1 relative to the model's baseline;
+  - the answer-change rate under ablation (vs RLVR baseline seed 0), judged against the seed-to-seed rate.
+- **Added (amendment 5):** P(extreme) from the B1 readout on the generated think text, under the same intervention, and the sampled-answer extreme share.
+
+**Status.** Exploratory interventions. Raw contrasts are reported per condition against the model's baseline, paired by item, with a bootstrap over items.
