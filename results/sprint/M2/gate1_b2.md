@@ -15,6 +15,19 @@ Primary group: first tokens of So / Therefore / Thus / Final. Onset = first non-
 
 Onset lag = 100 - onset. Registered reading: the stopping decision shows up earlier than `</think>` if the lag is > 10% of the think block on average; RLVR postpones it if its onset is later than DPO's on the same text.
 
+## F1 robustness (amendment 5): wrap-up onset WITHOUT 'So' (Therefore / Thus / Final)
+
+Primary group: first tokens of So / Therefore / Thus / Final. Onset = first non-final sentence start with P(wrap-up) >= 0.2, in % of the think block (the realised close is at 100%); traces with no onset are counted separately.
+
+| component | traces | n units | mean P(wrap-up) RLVR | DPO | RLVR - DPO [95% CI] | onset RLVR (% think) | onset DPO | onset RLVR - DPO [95% CI] | no onset RLVR / DPO (traces) |
+|---|---|---|---|---|---|---|---|---|---|
+| A | RLVR | 48 | 0.0145 | 0.0191 | -0.004623 [-0.006657, -0.002302] (p=4.5e-06) | 64.0 | 65.1 | -1.09 [-5.78, +3.82] (p=0.6) | 57 / 36 |
+| A | DPO | 48 | 0.0068 | 0.0100 | -0.003273 [-0.005054, -0.00157] (p=0.00037) | 80.6 | 85.7 | -5.16 [-10.6, -0.546] (p=0.055) | 102 / 91 |
+| D | RLVR | 150 | 0.0056 | 0.0077 | -0.002051 [-0.003045, -0.001049] (p=1.2e-05) | 82.7 | 81.9 | +0.781 [-1.32, +2.97] (p=0.56) | 218 / 202 |
+| D | DPO | 149 | 0.0058 | 0.0066 | -0.0008001 [-0.001537, -0.0001015] (p=0.11) | 89.5 | 90.8 | -1.31 [-2.81, +0.124] (p=0.034) | 241 / 230 |
+
+Onset lag = 100 - onset. Registered reading: the stopping decision shows up earlier than `</think>` if the lag is > 10% of the think block on average; RLVR postpones it if its onset is later than DPO's on the same text.
+
 ## F2. Where KL(RLVR || DPO) spikes, and the tokens carrying it
 
 Threshold = 95th percentile of per-bin mean KL over RLVR-written D traces = 0.434 (20 relative-position bins).
