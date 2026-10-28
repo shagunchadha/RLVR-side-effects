@@ -13,7 +13,7 @@ W="$RESULTS_DIR/B3/_hf"
 mkdir -p "$RESULTS_DIR/B3"
 step() { echo "=== $(date +%T) B3 $*"; $PY -m exp.run --job B3 "$@" || { echo "FAILED: B3 $*"; exit 1; }; }
 if [ ! -f "$RESULTS_DIR/B3/.smoke_ok" ]; then
-  RESULTS_DIR=/tmp/b3_smoke HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --limit 1 --seeds 2 && touch "$RESULTS_DIR/B3/.smoke_ok"
+  STORE=local RESULTS_DIR=/tmp/b3_smoke HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --limit 1 --seeds 2 && touch "$RESULTS_DIR/B3/.smoke_ok"
 fi
 for ck in ${B3_CKPTS:-rlvr dpo sft}; do      # B3_CKPTS splits B3 across the two GPU lanes
   HF_HUB_CACHE="$W/$ck" step --ckpt "$ck"

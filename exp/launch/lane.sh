@@ -7,6 +7,8 @@
 # is skipped and the lane moves on (logged as SKIPPED).
 set -u
 cd "$(dirname "$0")/../.."
+# Oct 29: the machine has 4 CPUs and a 28 GiB working RAM budget; keep thread pools and compile workers small
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 TOKENIZERS_PARALLELISM=false MAX_JOBS=4 TORCHINDUCTOR_COMPILE_THREADS=1
 WAIT="$1"; shift
 if [ "$WAIT" != "-" ]; then
   echo "$(date +%T) lane: waiting for EXIT= in $WAIT"

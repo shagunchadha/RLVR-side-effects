@@ -6,8 +6,14 @@
   Progress(path, cfg_hash)       append-only CSV, one row per finished unit (key + JSON payload), fsynced; a torn last
                                  line is dropped on load; rows of another config abort. Jobs skip keys already in it.
 
-On molab (gVisor) the root filesystem reports ~8 EB free, so the disk check cannot see a real limit there; the
-cgroup memory counter is reported but does not move with file writes either. Both are logged anyway.
+On molab (gVisor) the root filesystem reports ~8 EB free, so the disk check cannot see a real limit there.
+
+Memory (Oct 29): molab advertises 32 GiB for the GPU machine while the cgroup v1 hard limit is 160 GiB and /proc/meminfo
+shows the host. Sandboxes were reclaimed with no error, so the working budget is RAM_BUDGET_GB (28 GiB; env
+SPRINT_RAM_BUDGET_GB). RES lines log cgroup v1 memory.usage_in_bytes (cg_use), memory.max_usage_in_bytes (cg_peak,
+since the sandbox started), and from memory.stat total_rss, total_cache and the working set (cg_ws = usage -
+total_inactive_file, the figure container runtimes evict on). preflight aborts if cg_ws + the job's expected RAM
+(need_ram_gb) exceeds the budget.
 """
 import csv
 import json
@@ -18,6 +24,8 @@ import time
 from pathlib import Path
 
 MIN_RAM_GB = 16
+RAM_BUDGET_GB = float(os.environ.get("SPRINT_RAM_BUDGET_GB", "28"))
+CG1 = "/sys/fs/cgroup/memory/"
 os.environ.setdefault("HF_XET_CHUNK_CACHE_SIZE_BYTES", "0")
 csv.field_size_limit(min(sys.maxsize, 2 ** 31 - 1))
 
@@ -65,12 +73,26 @@ def du(path):
     return total
 
 
+def _memstat():
+    try:
+        return {k: int(v) for k, v in (line.split() for line in open(CG1 + "memory.stat"))}
+    except (OSError, ValueError):
+        return {}
+
+
+def cgroup_mem():
+    """cgroup v1 figures in bytes (None where unavailable); cg_ws = usage - total_inactive_file."""
+    use, ms = _read_int(CG1 + "memory.usage_in_bytes"), _memstat()
+    ws = use - ms.get("total_inactive_file", 0) if use is not None else None
+    return {"cg_use": use, "cg_peak": _read_int(CG1 + "memory.max_usage_in_bytes"), "cg_ws": ws,
+            "cg_rss": ms.get("total_rss"), "cg_cache": ms.get("total_cache"),
+            "cg_limit": _read_int(CG1 + "memory.limit_in_bytes")}
+
+
 def snapshot(dirs=(), gpu=True):
     """dict of resource figures in bytes (None where unavailable)."""
     mi = _meminfo()
-    s = {"ram_avail": mi.get("MemAvailable"), "ram_total": mi.get("MemTotal"), "rss": _rss(),
-         "cgroup": _read_int("/sys/fs/cgroup/memory.current") or _read_int("/sys/fs/cgroup/memory/memory.usage_in_bytes"),
-         "cgroup_max": _read_int("/sys/fs/cgroup/memory.max") or _read_int("/sys/fs/cgroup/memory/memory.limit_in_bytes")}
+    s = {"rss": _rss(), **cgroup_mem(), "host_avail": mi.get("MemAvailable")}
     for d in dirs:
         d = Path(d)
         d.mkdir(parents=True, exist_ok=True)
@@ -89,20 +111,24 @@ def snapshot(dirs=(), gpu=True):
 
 
 def fmt(s):
-    gb = lambda x: "na" if x is None else f"{x / 1e9:.1f}"
-    return " ".join(f"{k}={gb(v)}" for k, v in s.items())
+    gb = lambda x: "na" if x is None else f"{x / 2 ** 30:.1f}"
+    return " ".join(f"{k}={gb(v)}" for k, v in s.items()) + " (GiB)"
 
 
 def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
 
-def preflight(need_disk_gb, dirs=(), min_ram_gb=MIN_RAM_GB, gpu=True):
+def preflight(need_disk_gb, dirs=(), min_ram_gb=MIN_RAM_GB, gpu=True, need_ram_gb=8):
+    """need_ram_gb: CPU RAM the job is expected to add (weights load straight to the GPU; this is the process,
+    CUDA context, tokenizer and vLLM engine overhead)."""
     s = snapshot(dirs, gpu)
-    log("PREFLIGHT", fmt(s), f"| need disk {need_disk_gb:.0f} GB, RAM {min_ram_gb} GB")
+    log("PREFLIGHT", fmt(s), f"| need disk {need_disk_gb:.0f} GB, job RAM {need_ram_gb} GB, budget {RAM_BUDGET_GB} GiB")
     bad = []
-    if s["ram_avail"] is not None and s["ram_avail"] < min_ram_gb * 1e9:
-        bad.append(f"available RAM {s['ram_avail'] / 1e9:.1f} GB < {min_ram_gb} GB")
+    if s["host_avail"] is not None and s["host_avail"] < min_ram_gb * 1e9:
+        bad.append(f"available RAM {s['host_avail'] / 1e9:.1f} GB < {min_ram_gb} GB")
+    if s["cg_ws"] is not None and s["cg_ws"] + need_ram_gb * 2 ** 30 > RAM_BUDGET_GB * 2 ** 30:
+        bad.append(f"projected RAM {s['cg_ws'] / 2 ** 30:.1f} + {need_ram_gb} GiB > budget {RAM_BUDGET_GB} GiB")
     for k, v in s.items():
         if k.startswith("free:") and v < need_disk_gb * 1e9:
             bad.append(f"free disk at {k[5:]} {v / 1e9:.1f} GB < {need_disk_gb:.0f} GB")

@@ -108,9 +108,12 @@ def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=
     """vLLM engine with the sprint's resource rules: no CPU offload (vLLM 0.31's V1 engine has no swap space), and
     max_model_len set by the caller to the longest prompt + the token cap."""
     from vllm import LLM
+    from vllm.engine.arg_utils import EngineArgs
+    # Oct 29 RAM budget (28 GiB of CPU RAM): no swap space where the engine still has the option, no CPU offload
+    extra = {"swap_space": 0} if "swap_space" in getattr(EngineArgs, "__dataclass_fields__", {}) else {}
     return LLM(model=repo, revision=sha, tokenizer=repo, tokenizer_revision=sha, dtype="bfloat16",
                max_model_len=max_model_len, gpu_memory_utilization=gpu_memory_utilization, seed=seed,
-               enable_prefix_caching=True, cpu_offload_gb=0)
+               enable_prefix_caching=True, cpu_offload_gb=0, **extra)
 
 
 def generate(llm, prompt_token_ids, seeds, sampling, max_tokens=16000):

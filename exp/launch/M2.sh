@@ -15,7 +15,7 @@ mkdir -p "$RESULTS_DIR/M2"
 step() { echo "=== $(date +%T) M2 $*"; $PY -m exp.run --job M2 "$@" || { echo "FAILED: M2 $*"; exit 1; }; }
 
 if [ ! -f "$RESULTS_DIR/M2/.smoke_ok" ]; then        # small test in a throwaway results dir (no real shard written)
-  RESULTS_DIR=/tmp/m2_smoke HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --limit 3 && touch "$RESULTS_DIR/M2/.smoke_ok"
+  STORE=local RESULTS_DIR=/tmp/m2_smoke HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --limit 3 && touch "$RESULTS_DIR/M2/.smoke_ok"
 fi
 for ck in rlvr dpo sft; do
   HF_HUB_CACHE="$W/$ck" step --ckpt "$ck"

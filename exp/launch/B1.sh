@@ -22,7 +22,7 @@ arm() {   # arm <ckpt> <extra args...>
   done
 }
 if [ ! -f "$RESULTS_DIR/B1/.smoke_ok" ]; then         # small test in a throwaway results dir
-  RESULTS_DIR=/tmp/b1_smoke HF_HUB_CACHE="$W/rlvr" arm rlvr --limit 1 --seeds 2 && touch "$RESULTS_DIR/B1/.smoke_ok"
+  STORE=local RESULTS_DIR=/tmp/b1_smoke HF_HUB_CACHE="$W/rlvr" arm rlvr --limit 1 --seeds 2 && touch "$RESULTS_DIR/B1/.smoke_ok"
 fi
 BRIDGE="--seeds 5 --temperature 0.7 --top-p 0.9"
 # Gate 1 order (Oct 29): RLVR and DPO main arms first, then the SFT arms, then the bridge arms. Weights are deleted

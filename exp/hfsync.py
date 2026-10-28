@@ -24,6 +24,7 @@ import tempfile
 import time
 from pathlib import Path
 
+from .resources import cgroup_mem
 from .store import DEFAULT_HF_REPO
 
 IGNORE = ["**/.smoke_ok", "**/_hf/**", "_hf/**", "runs/**", "**/.tmp*", "**/*.tmp", "**/__pycache__/**"]
@@ -96,7 +97,8 @@ def run(root, repo, lane, log, every, cmd):
                 logs = [log] + sorted(str(q) for q in Path(log).parent.glob("*.log") if q != Path(log))
                 ok = _safe_push(root, repo, lane, logs)
                 tail = open(log, errors="replace").read().splitlines()[-1:] or [""]
-                _log(f"{'pushed' if ok else 'push FAILED'}; job running; last log line: {tail[0][:160]}")
+                cg = " ".join(f"{k}={v / 2 ** 30:.1f}" for k, v in cgroup_mem().items() if v is not None)
+                _log(f"{'pushed' if ok else 'push FAILED'}; job running; RES {cg} (GiB); last log line: {tail[0][:160]}")
     logs = [log] + sorted(str(q) for q in Path(log).parent.glob("*.log") if q != Path(log))
     for _ in range(3):
         if _safe_push(root, repo, lane, logs):
