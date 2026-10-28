@@ -477,7 +477,7 @@ Committed **before B8 has run**. Nothing in amendment 3's B8 hypothesis or prima
 - **extreme** = share in {1, 5};
 - **midpoint** = share of 3;
 - **acquiescence** = per facet with both keys, the mean raw rating of positively keyed items minus that of reverse-keyed items (raw, not reverse-scored), averaged over those facets.
-  - Paired by facet: 22 of the 30 facets have both keys.
+  - Paired by facet: 21 of the 30 facets have both keys (corrected from "22" before B8 ran).
   - All-facet version (secondary): the mean raw rating over all 120 items.
 
 The readout analogues (P(1) + P(5), P(3)) are secondary.
