@@ -42,6 +42,8 @@ POS = ("prompt_end", "think10", "think25", "think50")
 
 def add_args(p):
     p.add_argument("--layers", type=int, nargs="*", default=list(LAYERS))
+    p.add_argument("--d-traces", action="store_true",
+                   help="amendment 5 D analogue: frozen full-run D traces (o0, first 50 base items), letters A-E, no probes")
     p.add_argument("--limit", type=int, default=None)
 
 
@@ -71,7 +73,9 @@ def settle(argmax, final):
     return s
 
 
-def trace_pass(model, tok, item, r, digits, suffix_ids, layers):
+def trace_pass(model, tok, item, r, digits, suffix_ids, layers, labels=("1", "2", "3", "4", "5"), wrapup=None):
+    """digits: token ids of the options (labels in the same order); wrapup: {name: token ids} read at each sentence
+    start from the same forward (amendment 5): P(next token in group | think prefix ending at the sentence end)."""
     import torch
     from transformers import DynamicCache
     pids = H.prompt_ids(tok, item["messages"])
@@ -95,7 +99,16 @@ def trace_pass(model, tok, item, r, digits, suffix_ids, layers):
         out = model.model(input_ids=torch.tensor([ids], device=model.device), past_key_values=cache, use_cache=True,
                           output_hidden_states=True)
         feats = {p: {li: out.hidden_states[li + 1][0, j].float().cpu().numpy().astype(np.float16) for li in layers}
-                 for p, j in want.items()}
+                 for p, j in want.items()} if layers else {}
+        wu = {}
+        if wrapup:
+            starts = [k for k in ks if k < n]                    # sentence starts inside the think block
+            if starts:
+                h = out.last_hidden_state[0, [gs + k - 1 for k in starts]]
+                pw = torch.softmax(model.lm_head(h).float(), dim=-1)
+            for name, gids in wrapup.items():
+                vals = pw[:, gids].sum(-1).cpu().numpy().tolist() if starts else []
+                wu[name] = [round(x, 5) for x in vals] + [None] * (len(ks) - len(starts))   # aligned with ks
         del out
         probs, mass = {}, {}
         for k in sorted(ks, reverse=True):
@@ -107,12 +120,14 @@ def trace_pass(model, tok, item, r, digits, suffix_ids, layers):
             mass[k] = float(pv.sum())
             probs[k] = (pv / pv.sum()).tolist()
     p_sent = [probs[k] for k in ks]
-    argmax = [int(np.argmax(p)) + 1 for p in p_sent]
-    final = int(r["answer_strict"])
+    argmax = [labels[int(np.argmax(p))] for p in p_sent]
+    final = str(r["answer_strict"])
     s = settle(argmax, final)
-    e_last = float(np.dot(p_sent[-1], np.arange(1, 6)))
-    row = {"ckpt": r["ckpt"], "id": r["id"], "seed": r["seed"], "trait": item["trait"], "key": item["key"],
-           "answer": final, "n_think_tok": n, "sent_tok": ks, "p_sent": [[round(x, 5) for x in p] for p in p_sent],
+    likert = tuple(labels) == ("1", "2", "3", "4", "5")
+    e_last = float(np.dot(p_sent[-1], np.arange(1, 6))) if likert else None
+    row = {"ckpt": r["ckpt"], "id": r["id"], "seed": r["seed"], "component": item["component"],
+           "trait": item.get("trait"), "key": item.get("key"),
+           "answer": final, "n_think_tok": n, **{f"p_{k}_sent": v for k, v in wu.items()}, "sent_tok": ks, "p_sent": [[round(x, 5) for x in p] for p in p_sent],
            "mass_sent": [round(mass[k], 5) for k in ks], "argmax_sent": argmax, "settle_sent": s, "settled": s is not None,
            "share_after": (n - ks[s]) / n if s is not None else 0.0,
            "e_last": e_last}
@@ -125,7 +140,7 @@ def fit_probes(feats_by_key, rows, layers, seed=20261024):
     from sklearn.pipeline import make_pipeline
     from sklearn.preprocessing import StandardScaler
     keys = [k for k in (f"{r['id']}|{r['seed']}" for r in rows) if k in feats_by_key]
-    y = np.array([int(k2["answer"]) for k2 in rows if f"{k2['id']}|{k2['seed']}" in feats_by_key])
+    y = np.array([str(k2["answer"]) for k2 in rows if f"{k2['id']}|{k2['seed']}" in feats_by_key])
     words = sorted({k.split("|")[0] for k in keys})
     rng = np.random.default_rng(seed)
     fold_of = {w: i % 5 for i, w in enumerate(rng.permutation(words))}
@@ -149,11 +164,38 @@ def fit_probes(feats_by_key, rows, layers, seed=20261024):
     return out
 
 
+def d_traces(ck, n_d=50):
+    """Valid frozen full-run D traces of checkpoint ck: o0, the first n_d base items by draw_index."""
+    from . import M2_tracescore as M2
+    d_ids = {it["id"] for it in sorted((x for x in C.load_items("D") if x["order"] == 0),
+                                       key=lambda x: x["draw_index"])[:n_d]}
+    out = []
+    for _, r in M2.load_traces([ck], ["D"]):
+        if r["id"] in d_ids and r.get("status") == "valid" and "</think>" in r["raw_output"]:
+            think, _, _ = P.split_think(r["raw_output"])
+            ans = P.strict_answer(r["raw_output"], "mc5")["answer"]
+            if ans is not None:
+                out.append({"ckpt": ck, "id": r["id"], "seed": r["seed"], "think_text": think, "answer_strict": ans})
+    return sorted(out, key=lambda r: (r["id"], r["seed"]))
+
+
+def wrapup_groups(tok):
+    from .M2_tracescore import WRAPUP_PRIMARY
+    wu = H.first_token_ids(tok, WRAPUP_PRIMARY)
+    return {"wrapup": sorted({t for v in wu.values() for t in v}),
+            "wrapup_noso": sorted({t for w, v in wu.items() if w != "So" for t in v})}
+
+
 def job_config(ck, a):
+    if getattr(a, "d_traces", False):
+        return {"job": "M3", "ckpt": list(C.ckpt(ck)), "traces": "frozen full-run D, o0, first 50 base items, valid",
+                "readout_suffix": H.ANSWER_SUFFIX, "options": "A-E", "wrapup": "amendment 5 (with and without So)",
+                "version": 2}
     return {"job": "M3", "ckpt": list(C.ckpt(ck)), "traces": "B1 main arm (own template, model defaults), valid",
+            "wrapup": "amendment 5 (with and without So)",
             "readout_suffix": H.ANSWER_SUFFIX, "layers": list(a.layers), "positions": list(POS),
             "probe": "sklearn LogisticRegression(C=1.0) on standardised residuals, 5-fold grouped by wording, seed 20261024",
-            "version": 1}
+            "version": 2}
 
 
 def run(args, model=None, tok=None):
@@ -162,21 +204,27 @@ def run(args, model=None, tok=None):
         raise SystemExit("M3 needs exactly one --ckpt")
     ck = args.ckpt[0]
     repo, sha = C.ckpt(ck)
-    st = S.Store("M3", ck, job_config(ck, a))
+    dmode = getattr(a, "d_traces", False)
+    label = f"{ck}_D" if dmode else ck
+    st = S.Store("M3", label, job_config(ck, a))
     if st.done(0):
-        print(f"M3 {ck} exists; skipping")
+        print(f"M3 {label} exists; skipping")
         return 0
-    rows_b1 = b1_traces(ck)[: a.limit]
+    rows_b1 = (d_traces(ck) if dmode else b1_traces(ck))[: a.limit]
     if not rows_b1:
-        raise SystemExit(f"M3 {ck}: no valid B1 main-arm generations found under $RESULTS_DIR/B1")
-    items = {it["id"]: it for it in C.load_items("A")}
+        raise SystemExit(f"M3 {label}: no valid traces found")
+    from .M2_tracescore import items_by_id
+    items = items_by_id()
     tok = tok or H.load_tokenizer(repo, sha)
-    digits = [H.single_token_id(tok, str(d)) for d in range(1, 6)]
+    labels = tuple("ABCDE") if dmode else ("1", "2", "3", "4", "5")
+    digits = [H.single_token_id(tok, x) for x in labels]
     suffix_ids = H.text_ids(tok, H.ANSWER_SUFFIX)
-    root = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / "M3" / f"{ck}__{st.hash}"
+    wgroups = wrapup_groups(tok)
+    layers = [] if dmode else list(a.layers)
+    root = Path(os.environ.get("RESULTS_DIR", "sprint_out")) / "M3" / f"{label}__{st.hash}"
     prog = R.Progress(root / "progress_shard0of1.csv", st.hash)
     # activations (~190 MB per checkpoint) stay outside $RESULTS_DIR so the HF progress mirror never uploads them
-    fpath = Path(os.environ.get("M3_FEATS_DIR", "/tmp/m3_feats")) / f"{ck}__{st.hash}.npz"
+    fpath = Path(os.environ.get("M3_FEATS_DIR", "/tmp/m3_feats")) / f"{label}__{st.hash}.npz"
     fpath.parent.mkdir(parents=True, exist_ok=True)
     feats = {}
     if fpath.exists():
@@ -185,7 +233,7 @@ def run(args, model=None, tok=None):
     cache = os.environ.get("HF_HUB_CACHE") or os.environ.get("HF_HOME") or "."
     res = R.ResLog(180, dirs=[cache])
     key = lambda r: f"{r['id']}|{r['seed']}"  # noqa: E731
-    todo = [r for r in rows_b1 if key(r) not in prog.done or key(r) not in feats]
+    todo = [r for r in rows_b1 if key(r) not in prog.done or (not dmode and key(r) not in feats)]
     R.log(f"M3 {ck}: {len(rows_b1)} valid B1 traces, {len(rows_b1) - len(todo)} done")
     if todo and model is None:
         R.preflight(2 * 15, dirs=[cache])
@@ -193,7 +241,7 @@ def run(args, model=None, tok=None):
         res.now("HF model loaded")
     for t, r in enumerate(todo):
         t0 = time.time()
-        row, f = trace_pass(model, tok, items[r["id"]], r, digits, suffix_ids, a.layers)
+        row, f = trace_pass(model, tok, items[r["id"]], r, digits, suffix_ids, layers, labels, wgroups)
         feats[key(r)] = f
         if key(r) not in prog.done:
             prog.add(key(r), row, time.time() - t0)
@@ -203,11 +251,11 @@ def run(args, model=None, tok=None):
         res.maybe(f"{t + 1}/{len(todo)}")
     np.savez(fpath, feats=np.array(feats, dtype=object))
     rows = [prog.done[key(r)] for r in rows_b1]
-    probes = fit_probes(feats, rows, a.layers)
+    probes = {} if dmode else fit_probes(feats, rows, layers)
     (root / "probe.json").write_text(json.dumps({p: {str(li): v for li, v in d.items()} for p, d in probes.items()}, indent=1))
     res.now("done")
     loc = st.write(0, 1, rows, model_repo=repo, model_sha=sha,
                    extra_meta={"env_report": args.env_report or {}, "probes": probes})
-    print(f"wrote {loc}: {len(rows)} rows; probe accuracy at prompt end: "
-          + ", ".join(f"L{li} {v[0]:.2f} (base {v[1]:.2f})" for li, v in probes["prompt_end"].items()))
+    print(f"wrote {loc}: {len(rows)} rows" + ("" if dmode else "; probe accuracy at prompt end: "
+          + ", ".join(f"L{li} {v[0]:.2f} (base {v[1]:.2f})" for li, v in probes["prompt_end"].items())))
     return 0

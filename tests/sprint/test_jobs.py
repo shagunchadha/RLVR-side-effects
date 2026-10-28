@@ -312,10 +312,10 @@ def test_ph_handoff_end_to_end(tmp_path, tiny_tok, monkeypatch):
 
 def test_m3_settle_rule():
     from exp.jobs import M3_settle as M3
-    assert M3.settle([3, 4, 4, 4], 4) == 1
-    assert M3.settle([4, 3, 4], 4) == 2
-    assert M3.settle([4, 4, 3], 4) is None
-    assert M3.settle([5], 5) == 0
+    assert M3.settle(["3", "4", "4", "4"], "4") == 1
+    assert M3.settle(["4", "3", "4"], "4") == 2
+    assert M3.settle(["4", "4", "3"], "4") is None
+    assert M3.settle(["E"], "E") == 0
 
 
 def test_m3_trace_pass_tiny(tiny_tok, tiny_model):
@@ -325,7 +325,24 @@ def test_m3_trace_pass_tiny(tiny_tok, tiny_model):
     r = {"ckpt": "rlvr", "id": it["id"], "seed": 0, "answer_strict": 4,
          "think_text": "I think so. Then again maybe not. Overall I agree."}
     digits = [H.single_token_id(tiny_tok, str(d)) for d in range(1, 6)]
-    row, feats = M3.trace_pass(tiny_model, tiny_tok, it, r, digits, H.text_ids(tiny_tok, H.ANSWER_SUFFIX), [0, 1])
+    row, feats = M3.trace_pass(tiny_model, tiny_tok, it, r, digits, H.text_ids(tiny_tok, H.ANSWER_SUFFIX), [0, 1],
+                               wrapup=M3.wrapup_groups(tiny_tok))
+    assert len(row["p_wrapup_sent"]) == len(row["sent_tok"]) and row["p_wrapup_sent"][-1] is None
+    assert all(a >= b for a, b in zip(row["p_wrapup_sent"][:-1], row["p_wrapup_noso_sent"][:-1]))
     assert len(row["p_sent"]) == len(row["sent_tok"]) >= 2 and row["sent_tok"][-1] == row["n_think_tok"]
     assert all(abs(sum(p) - 1) < 1e-3 for p in row["p_sent"]) and 0 <= row["share_after"] <= 1
     assert set(feats) == set(M3.POS) and set(feats["think25"]) == {0, 1}
+
+
+def test_m3_d_traces_and_letters(tiny_tok, tiny_model):
+    from exp import harness as H
+    from exp.jobs import M3_settle as M3
+    from exp.jobs.M2_tracescore import items_by_id
+    ds = M3.d_traces("dpo")
+    assert ds and all(r["answer_strict"] in "ABCDE" for r in ds) and all(r["id"].endswith("_o0") for r in ds)
+    r = ds[0]
+    letters = tuple("ABCDE")
+    row, feats = M3.trace_pass(tiny_model, tiny_tok, items_by_id()[r["id"]], r,
+                               [H.single_token_id(tiny_tok, x) for x in letters],
+                               H.text_ids(tiny_tok, H.ANSWER_SUFFIX), [], letters, M3.wrapup_groups(tiny_tok))
+    assert feats == {} and row["component"] == "D" and set(row["argmax_sent"]) <= set(letters) and row["e_last"] is None
