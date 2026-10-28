@@ -492,3 +492,21 @@ def test_m4_directions_and_projections(tmp_path, tiny_tok, tiny_model, monkeypat
     assert D.shape == (10, 2, tiny_model.config.hidden_size) and np.abs(D).sum() > 0
     a2 = _args(["rlvr"], None, layers=[0, 1], new_tokens=4, batch=8, seeds=1, limit=2)
     assert M4.run(a2, model=tiny_model, tok=tiny_tok) == 0
+
+
+def test_m6_cka_gram_matches_features_and_runs(tmp_path, tiny_tok, tiny_model, monkeypatch):
+    import numpy as np
+    from exp.jobs import M6_cka as M6
+    rng = np.random.default_rng(0)
+    X, Y = rng.normal(size=(30, 8)), rng.normal(size=(30, 8))
+    Xc, Yc = X - X.mean(0), Y - Y.mean(0)
+    ref = np.linalg.norm(Xc.T @ Yc) ** 2 / (np.linalg.norm(Xc.T @ Xc) * np.linalg.norm(Yc.T @ Yc))
+    assert abs(M6.cka_gram(X @ X.T, Y @ Y.T) - ref) < 1e-9 and abs(M6.cka_gram(X @ X.T, X @ X.T) - 1) < 1e-9
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    monkeypatch.setenv("M6_WORK", str(tmp_path / "work"))
+    ps = M6.prompts()
+    keep = [i for s in M6.SETS for i in [j for j, p in enumerate(ps) if p[0] == s][:3]]
+    monkeypatch.setattr(M6, "prompts", lambda: [ps[i] for i in keep])
+    a = _args(None, None, layers=[0, 1], think=3, boot=10, limit=None)
+    assert M6.run(a, load=lambda ck: tiny_model, tok=tiny_tok) == 0

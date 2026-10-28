@@ -673,3 +673,24 @@ Committed **before M4 has run**. The hypotheses are those of amendment 3.
 - "Beyond the across-seed variation" means: the think-64 RLVR − DPO difference per wording exceeds the across-seed SD of the DPO projection per wording, in its mean over wordings.
 
 Only the directions (small .npy files) and the per-unit projections are kept.
+
+---
+
+## Amendment 13 (Oct 29, 2026): M6 operational details
+
+Committed **before M6 has run**. The hypothesis is amendment 3's: DPO ↔ RLVR CKA is lower on A than on D in middle and late layers, while SFT ↔ DPO shows no such A/D gap.
+
+**Inputs.** Matched token ids across all three models:
+- **Prompts:** the 48 A wordings and B2's self-determinate (40), other-indeterminate (40) and other-determinate (40 D items) cells.
+  - DPO and RLVR use their own templates, which are byte-identical.
+  - **SFT is run with the DPO system prompt**, so that SFT ↔ DPO is compared on identical ids (its own template injects a different system prompt).
+- **Think tokens:** the first 64 are DPO's greedy continuation of each prompt, generated once and teacher-forced into every model.
+
+**Positions.** The last prompt token, and the 64 think positions (token-level rows).
+
+**CKA.** Linear, centred (Kornblith et al. 2019), per layer (4, 11, 15, 19, 23, 29), per set, for DPO ↔ RLVR and SFT ↔ DPO. It is computed from Gram matrices, which is identical to the feature form.
+
+**Primary.** The CKA difference A − D (D = the other-determinate cell) per layer and pair.
+- **Interval:** bootstrap over prompts (1,000 resamples, seed 20261024; a prompt's think tokens are resampled together).
+- **Result:** for DPO ↔ RLVR, a negative difference whose interval excludes 0 at layers 15–29; for SFT ↔ DPO, intervals including 0.
+- The other B2 cells are reported descriptively.
