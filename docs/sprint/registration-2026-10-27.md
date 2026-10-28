@@ -515,3 +515,25 @@ Committed **before M5 has run**. The hypotheses and primary measures are those o
 - **Added (amendment 5):** P(extreme) from the B1 readout on the generated think text, under the same intervention, and the sampled-answer extreme share.
 
 **Status.** Exploratory interventions. Raw contrasts are reported per condition against the model's baseline, paired by item, with a bootstrap over items.
+
+---
+
+## Amendment 8 (Oct 29, 2026): B5 operational details
+
+Committed **before B5 has run**.
+
+**Steps.** 8 branches of `allenai/Olmo-3-7B-Think`, log-spaced between the first and the last (geometric spacing rounded to the 25-step grid): `step_0025`, `0050`, `0075`, `0150`, `0250`, `0425`, `0775`, `1375`. Each is loaded by the commit SHA recorded in the B0 inventory (`config.ckpt('rlvr@<branch>')`). The cut list (amendment 5) is `step_0025`, `0075`, `0175`, `0500`, `1375`.
+
+**Last step vs main.** The safetensors files of `step_1375` have different hashes from main's, and `config.json` / `generation_config.json` differ too. B5 therefore compares every tensor of `step_1375` and main first (exact equality, max |diff|) and reports the result (`B5/verify_last.json`).
+- If the tensors are identical, step_1375 stands for main.
+- If not, main (the B1 RLVR main arm) is reported as a separate point after step_1375.
+
+**Sampling.** Fixed to main's generation_config for every step (temperature 0.6, top_p 0.95, no top-k), because the branches carry a different `generation_config.json`.
+
+**Protocol.**
+- **A:** the B1 protocol (generation, think-conditioned and no-think readouts) on the 48 A wordings, 10 seeds.
+- **D:** the first 100 D base items (o0) with their frozen messages, 10 seeds; generation only, for think tokens and accuracy.
+
+**Primary measures (amendments 3, 5).** All per unit (A: wording; D: item), mean over seeds:
+- Spearman correlation with log step for A think length, A P(extreme) (sampled, and from the readout), and D think length.
+- The A-vs-D slope difference in length.

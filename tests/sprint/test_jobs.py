@@ -401,3 +401,17 @@ def test_m5_hooks_and_direction(tiny_tok, tiny_model):
     dvec, T, Cc = M5.backtrack_direction(tiny_model, tiny_tok, traces, li, tids, np.random.default_rng(0))
     assert dvec.shape == (d,) and len(T) > 0 and len(Cc) > 0
     assert M5.auc(np.array([2.0, 3.0]), np.array([0.0, 1.0])) == 1.0
+
+
+def test_b5_branches_and_d_part(tmp_path, tiny_tok, monkeypatch):
+    from exp.jobs import B5_dose as B5
+    for b in B5.STEPS8 + B5.STEPS5:
+        repo, sha = C.ckpt(f"rlvr@{b}")
+        assert repo == C.ckpt("rlvr")[0] and len(sha) == 40
+    assert len(B5.STEPS8) == 8 and B5.STEPS8[0] == "step_0025" and B5.STEPS8[-1] == "step_1375"
+    assert len(B5.d_items(100)) == 100
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    a = _args(["rlvr@step_0025"], None, seeds=2, max_tokens=64, gpu_mem=0.8, limit=3, n_d=100, part="D",
+              verify_last=False, temperature=0.6, top_p=0.95)
+    assert B5.run(a, tok=tiny_tok, generate_fn=_fake_generate(tiny_tok)) == 0

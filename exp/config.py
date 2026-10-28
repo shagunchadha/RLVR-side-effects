@@ -37,6 +37,18 @@ SWITCH_WORDS = ("Wait", "Hmm", "But", "Alternatively")
 
 
 def ckpt(key):
+    """(repo, sha) of a checkpoint key; '<key>@<branch>' (e.g. rlvr@step_0025, B5) resolves the branch to the commit
+    recorded by B0 in results/sprint/B0_inventory.json, so branch checkpoints are also loaded by (repo, sha) only."""
+    if "@" in key:
+        base, branch = key.split("@", 1)
+        repo = ckpt(base)[0]
+        inv = json.load(open(RESULTS_SPRINT / "B0_inventory.json", encoding="utf-8"))
+        for r in inv["repos"]:
+            if r["repo"] == repo:
+                for b in r["branches"]:
+                    if b["name"] == branch:
+                        return repo, b["sha"]
+        raise KeyError(f"branch {branch!r} of {repo} is not in the B0 inventory")
     if key not in CHECKPOINTS:
         raise KeyError(f"unknown checkpoint {key!r}; known: {sorted(CHECKPOINTS)}")
     return CHECKPOINTS[key]
