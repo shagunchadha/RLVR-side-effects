@@ -10,3 +10,6 @@ __pycache__/
 results/sprint/**/partial/**/*.csv
 results/sprint/**/partial/**/*.parquet
 results/sprint/**/runs/
+# lane mirrors of progress files (same policy as partial/), and the rerun's partial dir (byte-identical to the committed copies)
+results/sprint/_lanes/**/*.csv
+results/sprint/sft_matched_prompt/partial/
