@@ -341,3 +341,63 @@ All exploratory, on data already collected or in collection:
 - **Memory budget:** molab sandboxes were reclaimed without errors, so jobs keep to a 28 GiB RAM budget. The cgroup working set plus the job's expected RAM is checked at pre-flight, and the peak is sampled by `exp/memwatch.py`.
 - **Model loading:** weights load straight to the GPU, with one model per process (two only on the GPU for M2 `--pair`).
 - **B1 readouts:** still run with the HF model, in a separate process after the vLLM process has exited.
+
+---
+
+## Amendment 4 (Oct 29, 2026): Gate 1 (b) follow-ups (exploratory)
+
+Committed and pushed **before any of these three analyses or jobs produced output**. All three are **exploratory**. They follow the Gate 1 (b) result that a lower stopping hazard explains only 0.2% [0.1%, 0.3%] of the A length gap (`results/sprint/M2/gate1_m2.md`). The statistics are as in "Fixed design facts": the unit is the A wording or the D base item, the bootstrap uses 10,000 resamples with seed 20261024, and the test is two-sided Wilcoxon.
+
+### F1. Wrap-up onset (M2 `--wrapup`, GPU)
+
+**Why a GPU run.** The M2 shards do not store the probability of conclusion openers, so the RLVR and DPO scorers are re-run in single mode with extra target groups.
+- Traces: RLVR- and DPO-written. Components: A and D.
+- Each run has its own config hash; the registered M2 shards are untouched.
+
+**Openers.** The quantity is P(wrap-up) at think-block sentence starts: the position after each sentence end, i.e. `sent_next_tok`, as in M2. The opener sets:
+- **Primary group:** first tokens, with and without a leading space, of "So", "Therefore", "Thus", "Final".
+- **Reported separately:** "I'll go with" and "The answer". Their first tokens ("I", "The") are not specific to wrap-up, so these two are reported per word as first-token proxies and are not in the primary group.
+
+**Measures.**
+1. Mean P(wrap-up) at non-final sentence starts, RLVR scorer − DPO scorer, paired per unit, by component × trace source.
+2. Onset: the position, as % of the think block, of the first sentence start with P(wrap-up) ≥ 0.2 under each scorer on the same trace. Compared with the realised close as a lag (close position − onset, in % of the think block); per unit, RLVR scorer − DPO scorer.
+
+**Reading.** "The stopping decision shows up earlier than `</think>`" if the onset lag under a scorer is > 10% of the think block on average. RLVR "postpones" the decision if its onset is later than DPO's on the same text.
+
+### F2. Where KL spikes (from `--kl-detail`, no extra GPU)
+
+1. **Top 30 tokens** by total KL(RLVR ‖ DPO) over think positions, on RLVR-written A and D traces.
+2. **First spike.** Threshold: the 95th percentile of the per-bin mean KL over the D traces, using the 20 equal relative-position bins of each RLVR-written D trace. For each A trace, record the first bin above that threshold and the number of bins above it.
+
+**Reading.**
+- **Early (the plan):** median first-spike bin ≤ 5 (first 25% of the trace) and median ≤ 3 bins above threshold.
+- **Spread (repeated re-opening):** median ≥ 6 bins above threshold.
+- Anything else is unclear.
+
+*(operational)* Positions are relative bins, not sentence indices: sentence positions are not in the `--kl-detail` rows.
+
+### F3. Prefix handoff (job PH, GPU)
+
+**Material.**
+- Items: the 48 A wordings and the first 50 D base items (o0).
+- Traces: the frozen full-run traces of RLVR and DPO, using the first valid seed whose think block closed. For A: seed 0, else 1, else 2. For D: the o0 trace.
+
+**Cuts.** Each trace is cut at the first sentence start (`sent_next_tok`, as in M2) at or after 25%, 50% and 75% of its think tokens.
+
+**Continuation.**
+- Each prefix is continued by **both** RLVR and DPO from the same token ids: prompt + think prefix. Their templates and default system prompts are byte-identical.
+- 3 seeds, model-default sampling (0.6 / 0.95).
+- Cap: 16,000 generated tokens including the prefix.
+
+**Primary measure:** remaining think tokens, i.e. continuation tokens before `</think>`. A continuation that hits the cap is counted at the cap and flagged; the share of such continuations is reported.
+
+**The 2 × 2.** Prefix source {RLVR, DPO} × continuing model {RLVR, DPO}, per cut, A and D separately. Per unit, the mean over seeds.
+- Contrasts: continuing-model effect on RLVR prefixes, (RLVR cont − DPO cont); the same on DPO prefixes; prefix-source effect for each continuer.
+- **Text share** = (L[DPO cont, RLVR prefix] − L[DPO cont, DPO prefix]) / (L[RLVR cont, RLVR prefix] − L[DPO cont, DPO prefix]), computed from means over units, with a bootstrap over units.
+- **Reading:**
+  - text share ≥ 0.5 on A at the 50% cut: the length lives in the text, since DPO goes long on RLVR prefixes;
+  - ≤ 0.2: the length lives in RLVR's policy, since DPO wraps up quickly.
+
+**Secondary measures:** the final-answer change rate relative to the trace's own answer, and the closing rate.
+
+**Order.** It runs on N6 right after M2 `--kl-detail` and `--wrapup`, before B3a.
