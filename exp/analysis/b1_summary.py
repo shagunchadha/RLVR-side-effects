@@ -40,12 +40,30 @@ def read_progress(f):
     return out
 
 
-def load(dirs):
+def load_shards(root):
+    """Finished B1 shards (<root>/runs/B1/<ckpt>__sys-<s>/<hash>/shard_000.parquet) as {arm dir name: {gen, read}}."""
+    import pyarrow.parquet as pq
     arms = {}
+    for f in sorted(Path(root).glob("runs/B1/*/*/shard_000.parquet")):
+        rows = pq.read_table(f).to_pylist()
+        gen, read = {}, {}
+        for r in rows:
+            k = f"{r['id']}|{r['seed']}"
+            gen[k] = r
+            read[k] = r
+            read[f"prior|{r['id']}"] = r
+        arms[f"{f.parts[-3]}__{f.parts[-2]}"] = {"gen": gen, "read": read}
+    return arms
+
+
+def load(dirs, shard_root=None):
+    arms = load_shards(shard_root) if shard_root else {}
     for d in dirs:
         for a in sorted(Path(d).glob("*__sys-*__*")):
             g = read_progress(a / "gen_shard0of1.csv")
             r = read_progress(a / "read_shard0of1.csv")
+            if a.name in arms and len(arms[a.name]["gen"]) >= len(g):
+                continue                                   # the finished shard wins
             cur = arms.setdefault(a.name, {"gen": {}, "read": {}})
             if len(g) > len(cur["gen"]):
                 cur["gen"] = g
@@ -131,9 +149,10 @@ def main(argv=None):
     ap.add_argument("--dirs", nargs="*", default=[str(ROOT / "results/sprint/_lanes/N2/B1"),
                                                   str(ROOT / "results/sprint/B1/partial")])
     ap.add_argument("--out", default=str(ROOT / "results" / "sprint" / "B1"))
+    ap.add_argument("--shards", default=str(ROOT / "results" / "sprint" / "B1"), help="root holding runs/B1/... shards")
     a = ap.parse_args(argv)
     items = json.load(open(ROOT / "items" / "items_A_selfreport.json", encoding="utf-8"))["items"]
-    arms = load(a.dirs)
+    arms = load(a.dirs, a.shards)
     A = {}
     for name, v in arms.items():
         A[arm_label(name, v["gen"])] = per_arm(v["gen"], v["read"])
@@ -169,8 +188,16 @@ def main(argv=None):
         d = np.array([ar[t] - ad[t] for t in ts])
         if len(d) >= 2:
             ci = DI.percentile_ci(DI.bootstrap_paired_differences(d, lambda x: x.mean(axis=1), "B1|H2"))
+            p2 = DI.wilcoxon_detail(d)["p"]
             L.append(f"| B1-H2: RLVR - DPO acquiescence index (mean over {len(d)} traits) | {d.mean():+.3f} [{ci[0]:+.3f}, "
-                     f"{ci[1]:+.3f}]; RLVR lower on {int((d < 0).sum())} of {len(d)} traits |")
+                     f"{ci[1]:+.3f}]; RLVR lower on {int((d < 0).sum())} of {len(d)} traits; Wilcoxon p = {p2:.3g} |")
+            e1, e2 = g("rlvr")["ext_w"], g("dpo")["ext_w"]
+            d1 = np.array([e1[u] - e2[u] for u in sorted(set(e1) & set(e2))])
+            p1 = DI.wilcoxon_detail(d1)["p"]
+            lo, hi = sorted([p1, p2])
+            h_lo, h_hi = min(1.0, 2 * lo), min(1.0, max(2 * lo, hi))
+            L.append(f"| Holm over B1-H1, B1-H2 (Wilcoxon) | H1 p_adj = {h_lo if p1 <= p2 else h_hi:.3g}; "
+                     f"H2 p_adj = {h_lo if p2 < p1 else h_hi:.3g} |")
     if g("rlvr") and g("dpo"):
         L += ["", "### Gate 1 (a): RLVR - DPO per wording on the readouts (main arms; exploratory except H3/H4 as registered)", "",
               "| quantity | RLVR - DPO [95% CI] |", "|---|---|"]
