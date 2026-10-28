@@ -191,3 +191,153 @@ B2, B4, B5, B6, B8 and M3–M6 are not registered in this document. Each gets a 
 
 - The sprint environment adds `accelerate==1.15.0`, the frozen environment's version. `harness.load_hf` uses `device_map`, and the M2 small test failed without it.
 - Jobs now run a pre-flight (RAM ≥ 16 GB, disk ≥ 2× model size) and log RES lines. They resume from per-unit progress files that are mirrored off the notebook (`exp/sync_remote.py`).
+
+---
+
+## Amendment 3 (Oct 29, 2026): B2, B4, B5, B6, B8, M3–M6 registered; Gate 1 exploratory analyses; infrastructure
+
+Committed and pushed **before any of B2, B4, B5, B6, B8 or M3–M6 has code or output**. The designs are the PI's (sent Oct 29). Where a detail had to be fixed to make a design runnable, it is marked *(operational)*. B1, B3, M1, M1b and M2 are unchanged.
+
+**Common to everything below.**
+- **Checkpoints:**
+  - SFT, DPO and RLVR as in "Fixed design facts".
+  - RL-Zero and the base model at the SHAs in `docs/sprint/checkpoint_inventory.md`, loaded by (repo, sha).
+- **Pairing and statistics:**
+  - Pairing unit: the A wording (n = 48), or the item for other item sets.
+  - Statistics as in "Fixed design facts": mean of paired differences; percentile bootstrap over units, 10,000 resamples, seed 20261024, generator `default_rng([20261024, crc32(label)])`; two-sided Wilcoxon.
+  - A "result" = the interval excludes zero in the registered direction.
+  - No multiplicity correction across jobs (stated limitation).
+- **Layers for M3–M6:** 11, 15, 19, 23, 29, with layer 4 as an early control.
+- **Sampling and readout (unless stated):**
+  - each checkpoint's `generation_config.json` defaults (0.6 / 0.95 for the Think checkpoints);
+  - `max_tokens` 16000, per-request seeds 0..S−1, own templates;
+  - B1's readout (`harness.likert_readout`) wherever a Likert readout is named.
+- **New item sets:** frozen in `items_sprint/`, with a sha256 manifest committed **before** the job's first run.
+- **Status:** all confirmatory for the sprint, in the sense of "Status of everything here" (post hoc to the frozen study, not blind).
+
+### B2: indeterminacy vs self-reference
+
+- **H:** the RLVR − DPO increase in think length is driven by indeterminacy, not self-reference. The indeterminate cells (self and other) increase more than the determinate ones, and the self × indeterminacy interaction is small.
+- **Design:** 2 × 2 grid with about 40 items per cell, frozen with sha256 in `items_sprint/` before any run.
+
+| cell | items |
+|---|---|
+| self, indeterminate | A wordings |
+| self, determinate | yes/no facts about the model itself |
+| other, indeterminate | A wordings in the third person, plus aesthetic/opinion Likert items |
+| other, determinate | D items |
+
+- **Runs:** 10 seeds × 3 checkpoints.
+- **Primary:**
+  - Per cell: the median over items of the paired think-length difference RLVR − DPO (per item, the mean over seeds).
+  - The indeterminacy main effect: (mean of the two indeterminate cells) − (mean of the two determinate cells).
+  - The interaction: (self-indet − self-det) − (other-indet − other-det).
+  - Each with a bootstrap over items within cells.
+- *(operational)* "Small" interaction = its 95% interval lies within ±25% of the indeterminacy main effect.
+- *(operational)* Think tokens and validity as in B3.
+
+### B4: reward domain (RL-Zero)
+
+- **H:** lengthening and the extreme-answer shift on self-report appear most in RL-Zero-General/Mix (LM-judge reward) and least in Math/Code.
+- **Design:** the base model (few-shot) and RL-Zero × 5 (Math, Code, IF, General, Mix), on A, the B2 items and 100 D items, using the RL-Zero template.
+- **Primary:**
+  - per domain, (A think length / D think length) relative to base;
+  - P(extreme) per domain.
+- **Parse rate:** reported. Use the logprob readout for any checkpoint whose parse rate is under 70%.
+- *(operational)*
+  - 5 seeds.
+  - D items = the first 100 base items by `draw_index`, option order o0.
+  - For checkpoints without a think block, "length" = generated tokens before the answer line, stated per checkpoint.
+- **Cut order (PI), if behind:** {Math, IF, General}.
+
+### B5: dose-response over RL
+
+- **H:** A-item think length and P(extreme) rise with RL step, and D length rises less.
+- **Design:**
+  - Checkpoints: 8 of the 55 step branches of `allenai/Olmo-3-7B-Think`, log-spaced, including the first and the last. The last must equal main: verify by weights hash and record it.
+  - Protocol: B1's, with 10 seeds, plus 100 D items (as in B4).
+- **Primary:**
+  - The Spearman correlation of each metric (A think length, A P(extreme), D think length) with log step.
+  - The A-vs-D slope difference: the OLS slope of A length on log step minus that of D length. Both are per-unit means standardised by the DPO value, with a bootstrap over units.
+- **Cut order (PI), if behind:** 5 steps.
+
+### B6: hard controls
+
+- **(i) Positive control:** RLVR > DPO on MATH-500 level 5 + AIME 24/25 (16K cap).
+- **(ii) Sycophancy:**
+  - Items: MMLU/ARC items that DPO gets 40–70% right.
+  - Elicitations, three: plain pushback; "are you sure?"; forced openers as in Xu & Daneshjou. No "double check".
+  - Hypothesis: caving (initially correct answers switched to incorrect) > 0, and RLVR ≤ DPO.
+- **(iii) Calibration:** on `TIGER-Lab/MMLU-Pro` (not the gated GPQA; amendment 2) with stated confidence. RLVR is more overconfident: higher ECE and a larger confidence − accuracy gap.
+- **(iv) Refusal:** on SQuAD v2 unanswerable questions, RLVR < DPO.
+- **Pairing:** by item.
+- *(operational)* Item selection for (ii), by DPO accuracy in a 10-seed pre-pass, and all item lists are frozen in `items_sprint/` before the RLVR runs.
+
+### B8: response style on a validated instrument
+
+- **H:** extreme-response style RLVR > DPO, and acquiescence RLVR < DPO.
+- **Instrument:** IPIP-NEO-120, public domain; the items are committed as JSON. Balanced keys.
+- **Runs:** B1 readout, 10 seeds. Also DPO vs SFT with the DPO system prompt.
+- **Primary:** three style indices, paired by item:
+  - extreme = share in {1, 5};
+  - midpoint = share of 3;
+  - acquiescence = mean rating of positively keyed − reverse-keyed items, per facet, then averaged.
+
+### M3: when the answer is settled
+
+- **H:** RLVR settles its final Likert answer at a similar or earlier point than DPO, so most of RLVR's extra tokens (> 50%) come after the settle point.
+- **Method:**
+  - (a) After each think-block sentence, force "</think>ANSWER:" and read P(1..5). The settle point is the first sentence after which the argmax equals the final answer and stays there.
+  - (b) Logistic probes (5-fold CV, grouped by wording) at prompt end and at 10/25/50% of the think block, at the M3–M6 layers.
+- **Primary:**
+  - the share of the trace after the settle point, RLVR − DPO;
+  - probe accuracy at prompt end, per checkpoint.
+- *(operational)*
+  - Traces: valid B1 main-arm generations.
+  - The forced suffix is B1's readout suffix ("\n</think>\n\nANSWER: "), so at the trace end it equals B1's readout.
+
+### M4: persona vectors
+
+- **H:**
+  - Trait directions are stable across checkpoints (cos > 0.8).
+  - RLVR shifts A-prompt projections on at least one trait beyond the across-seed variation, even where the Likert mean is flat.
+- **Method:**
+  - Contrastive system prompts as in Chen et al. 2025: 8 traits + uncertain + sycophantic, over 40 alpaca questions.
+  - Directions from DPO; projections for all 3 checkpoints.
+  - Only summaries and direction vectors are saved.
+- **Primary:** the projection difference RLVR − DPO per trait, with a CI over wordings.
+
+### M5: causal tests
+
+- **H:**
+  - Adding the RLVR − DPO stage-offset vector to DPO lengthens A traces in proportion to alpha, and much more than D traces.
+  - Subtracting it from RLVR shortens A traces.
+  - Ablating a backtracking direction in RLVR shortens A traces while changing the answer in < 10% of items.
+- **Method:**
+  - Offset vector = mean(RLVR − DPO) activation on A prompts, evaluated on held-out wordings; alpha ∈ {0.5, 1, 2}.
+  - Backtracking direction = mean before "Wait" minus matched positions.
+  - Activation patching DPO ↔ RLVR at prompt positions, layer by layer.
+- **Primary:**
+  - the A/D length ratio at alpha = 1;
+  - the answer-change rate under ablation.
+- *(operational)* Held-out split: 24/24 wordings, split within trait.
+
+### M6: representation similarity
+
+- **H:** DPO ↔ RLVR CKA is lower on A prompts than on D prompts in middle and late layers, while SFT ↔ DPO shows no such A/D gap.
+- **Method:** linear CKA per layer on matched A, B2 and D prompts, at the prompt end and over the first 64 think tokens.
+
+### Gate 1 exploratory analyses (added Oct 29)
+
+All exploratory, on data already collected or in collection:
+- `exp/analysis/gate1_m2.py`:
+  - P(`</think>`) at sentence ends, RLVR vs DPO scorer, by component × trace source;
+  - a stopping-hazard counterfactual for the share of the A length gap.
+- M2 `--pair --kl-detail`: KL(RLVR ‖ DPO) attributed to the written token, plus a 20-bin positional profile. It has a new config hash; the registered pair shard is untouched.
+
+### Infrastructure (no effect on any metric)
+
+- **Results store:** private HF dataset `Shagsc/rlvr-se-runs`, the namespace of the available token (`HF_REPO`). Progress files and logs are mirrored by `exp/hfsync.py`.
+- **Memory budget:** molab sandboxes were reclaimed without errors, so jobs keep to a 28 GiB RAM budget. The cgroup working set plus the job's expected RAM is checked at pre-flight, and the peak is sampled by `exp/memwatch.py`.
+- **Model loading:** weights load straight to the GPU, with one model per process (two only on the GPU for M2 `--pair`).
+- **B1 readouts:** still run with the HF model, in a separate process after the vLLM process has exited.
