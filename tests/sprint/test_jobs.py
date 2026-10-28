@@ -435,3 +435,45 @@ def test_b4_items_parse_and_run(tmp_path, tiny_tok, tiny_model, monkeypatch):
     from exp import store as S
     rows = S.Store("B4", "rl_zero_math", B4.job_config("rl_zero_math", a.job_args)).read(0).to_pylist()
     assert rows[0]["readout_used"] is True and all("p_read_1" in r for r in rows if r["set"] == "A")
+
+
+
+def test_b6_items_grading_and_syc_flow(tmp_path, tiny_tok, monkeypatch):
+    import json
+    from exp.jobs import B6_controls as B6
+    pos, _ = B6.load("items_B6_pos.json")
+    assert len(pos) == 134 and all(i["gold"].lstrip("-").isdigit() for i in pos)
+    assert "5-6 sentences" not in pos[0]["messages"][0]["content"]                 # no reasoning cap
+    g = B6.grade("pos", pos[0], "<think>x</think>\nANSWER: " + pos[0]["gold"], 10, 100, True)
+    assert g["correct"] is True
+    cal, _ = B6.load("items_B6_cal.json")
+    g = B6.grade("cal", cal[0], "<think>x</think>\nANSWER: " + cal[0]["gold"] + " | CONFIDENCE: 80", 10, 100, True)
+    assert g["correct"] is True and g["confidence"] == 80
+    ref, _ = B6.load("items_B6_ref.json")
+    un = next(i for i in ref if i["unanswerable"])
+    assert B6.grade("ref", un, "<think>x</think>\nANSWER: UNANSWERABLE", 10, 100, True)["refused"] is True
+    pool, _ = B6.load("items_B6_sycpool.json")
+    it = pool[0]
+    assert B6.grade("syc", it, "<think>x</think>\nANSWER: " + it["gold"], 10, 100, True)["correct"] is True
+
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+
+    def fake(llm, pids, seeds, sampling, max_tokens=16000):        # always answers the first item's gold letter
+        text = "<think>Let me think. It is clear.</think>\nBecause.\nANSWER: " + it["gold"]
+        ids = H.text_ids(tiny_tok, text)
+        return [{"text": text, "token_ids": ids, "logprobs": [0.0] * len(ids), "finish_reason": "stop",
+                 "n_tokens": len(ids)} for _ in seeds]
+    a = _args(["dpo"], None, part="sycpre", seeds=2, max_tokens=64, gpu_mem=0.8, chunk=4, limit=1)
+    assert B6.run(a, tok=tiny_tok, generate_fn=fake) == 0
+    sel = json.loads((tmp_path / "store" / "B6" / "syc_selection.json").read_text())
+    assert sel["ids"] == []                                          # accuracy 1.0 is outside [0.4, 0.7]
+    sel["ids"] = [it["id"]]
+    (tmp_path / "store" / "B6" / "syc_selection.json").write_text(json.dumps(sel))
+    a = _args(["rlvr"], None, part="syc", seeds=2, max_tokens=64, gpu_mem=0.8, chunk=4, limit=None)
+    assert B6.run(a, tok=tiny_tok, generate_fn=fake) == 0
+    from exp import store as S
+    rows = [r for r in S.Store("B6", "syc__rlvr", B6.job_config("rlvr", "syc", a.job_args, B6.load("items_B6_sycpool.json")[1],
+            {"selection_sha256": __import__("hashlib").sha256((tmp_path / "store" / "B6" / "syc_selection.json").read_bytes()).hexdigest(),
+             "n_selected": 1})).read(0).to_pylist()]
+    assert len(rows) == 2 + 2 * 3 and {r["elicitation"] for r in rows if r["turn"] != "t1"} == {"plain", "sure", "opener"}
