@@ -477,3 +477,18 @@ def test_b6_items_grading_and_syc_flow(tmp_path, tiny_tok, monkeypatch):
             {"selection_sha256": __import__("hashlib").sha256((tmp_path / "store" / "B6" / "syc_selection.json").read_bytes()).hexdigest(),
              "n_selected": 1})).read(0).to_pylist()]
     assert len(rows) == 2 + 2 * 3 and {r["elicitation"] for r in rows if r["turn"] != "t1"} == {"plain", "sure", "opener"}
+
+
+def test_m4_directions_and_projections(tmp_path, tiny_tok, tiny_model, monkeypatch):
+    import numpy as np
+    from exp.jobs import M4_persona as M4
+    mat, _ = M4.material()
+    assert len(mat["questions"]) == 40 and len(mat["traits"]) == 10
+    monkeypatch.setenv("RESULTS_DIR", str(tmp_path / "store"))
+    monkeypatch.setenv("STORE", "local")
+    a = _args(["dpo"], None, layers=[0, 1], new_tokens=4, batch=8, seeds=1, limit=2)
+    assert M4.run(a, model=tiny_model, tok=tiny_tok) == 0
+    D = np.load(tmp_path / "store" / "M4" / "dpo" / "directions.npy")
+    assert D.shape == (10, 2, tiny_model.config.hidden_size) and np.abs(D).sum() > 0
+    a2 = _args(["rlvr"], None, layers=[0, 1], new_tokens=4, batch=8, seeds=1, limit=2)
+    assert M4.run(a2, model=tiny_model, tok=tiny_tok) == 0

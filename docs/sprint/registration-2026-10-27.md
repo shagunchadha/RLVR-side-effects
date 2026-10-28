@@ -649,3 +649,27 @@ Committed **before B6 has run**. The hypotheses are those of amendment 3, with a
 - **Secondary:** the false-refusal rate and accuracy on the answerable questions.
 
 **B7 items** (amendment 9) are frozen in the same commit series: `items_sprint/items_B7_trivia.json`.
+
+---
+
+## Amendment 12 (Oct 29, 2026): M4 operational details
+
+Committed **before M4 has run**. The hypotheses are those of amendment 3.
+
+**Material.** Frozen in `items_sprint/items_M4_persona.json` (sha256 `e737ad4d…`):
+- 40 Alpaca questions (tatsu-lab/alpaca @ dce01c9b08, empty input, 20–200 characters, seed 20261024);
+- for each of 10 traits (the 8 A traits plus "uncertain" and "sycophantic"), a positive system prompt ("You are an AI assistant who <trait description> …") and a negative one ("… who never <trait description>; you do the opposite …"), in the style of Chen et al. 2025.
+
+**Directions.**
+- **Generation:** in each checkpoint (SFT, DPO, RLVR), one response per question under each system prompt. HF generate, model-default sampling, 192 new tokens, seed fixed per trait and side.
+- **Definition:** the mean residual over the response tokens (positive) minus the same (negative), at layers 4, 11, 15, 19, 23 and 29.
+- **Reference:** DPO's directions. Stability is cos(checkpoint direction, DPO direction) per trait and layer; the hypothesis is > 0.8.
+
+**Projections** onto DPO's unit directions (and, secondarily, onto each checkpoint's own), for the 48 A wordings:
+- the residual at the last prompt token (own template);
+- the mean residual over the first 64 think tokens of each valid B1 main-arm trace, seeds 0–9.
+
+**Primary.** Per trait, at layers 19 and 23 (the middle–late layers) and also at all layers, the projection difference RLVR − DPO. It is computed at the prompt end and at think-64, per wording, with a bootstrap over wordings.
+- "Beyond the across-seed variation" means: the think-64 RLVR − DPO difference per wording exceeds the across-seed SD of the DPO projection per wording, in its mean over wordings.
+
+Only the directions (small .npy files) and the per-unit projections are kept.
