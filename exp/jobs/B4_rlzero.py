@@ -103,11 +103,17 @@ def job_config(ck, a):
             "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1}
 
 
+CUT = {"rl_zero_mix"}   # registration amendment 14 (cut order)
+
+
 def run(args, llm=None, model=None, tok=None, generate_fn=None):
     a = args.job_args
     if not args.ckpt or len(args.ckpt) != 1 or args.ckpt[0] not in MODELS:
         raise SystemExit(f"B4 needs exactly one --ckpt in {MODELS}")
     ck = args.ckpt[0]
+    if ck in CUT:
+        print(f"B4 {ck} cut (registration amendment 14); skipping")
+        return 0
     repo, sha = C.ckpt(ck)
     st = S.Store("B4", ck, job_config(ck, a))
     if st.done(0):

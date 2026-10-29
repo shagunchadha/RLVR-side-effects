@@ -694,3 +694,13 @@ Committed **before M6 has run**. The hypothesis is amendment 3's: DPO ↔ RLVR C
 - **Interval:** bootstrap over prompts (1,000 resamples, seed 20261024; a prompt's think tokens are resampled together).
 - **Result:** for DPO ↔ RLVR, a negative difference whose interval excludes 0 at layers 15–29; for SFT ↔ DPO, intervals including 0.
 - The other B2 cells are reported descriptively.
+
+## Amendment 14 (Oct 29, 2026): lane rebalancing and the B4 cut
+
+Committed at about 21:10 IST, at the PI's request. No registered design, item set or hypothesis changes. Only the order of the remaining jobs across the two GPU notebooks, and one cut-order item, change.
+
+**Queues** (`exp/launch/queues/*.txt`):
+- **N6:** B6 (positive control first, as in amendment 11), then B7, then M6. M6 had not started when this was committed (N6's lane had not been launched), so no running job is stopped.
+- **N2:** B4 (finishing `rl_zero_general`), then B3b. B6 and B7 move to N6.
+
+**B4 cut.** `rl_zero_mix` is dropped, as the cut-order item for B4. B4 is reported for base and RL-Zero {math, code, if, general}; amendment 10's analysis applies to these five. The cut is enforced in `exp/jobs/B4_rlzero.py` (`CUT`), so the B4 launcher already running on N2 skips `rl_zero_mix` without downloading it, and in the launcher's default list.
