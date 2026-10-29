@@ -6,16 +6,23 @@ per-unit progress files under $RESULTS_DIR/<job>/ and the job logs. Layout in th
     logs/<lane>/<log file name>
 
   python -m exp.hfsync pull [--jobs B1 B3 M2]     copy progress/ into $RESULTS_DIR; a local file is replaced only when
-                                                  the HF copy is longer (never shortens local progress)
+                                                  the HF copy is longer (never shortens local progress). Files that
+                                                  equal their HF copy after the pull are recorded in
+                                                  $RESULTS_DIR/_hf/pulled.json (size, mtime)
   python -m exp.hfsync push --lane N2 [--log /tmp/lane.log]
   python -m exp.hfsync run --lane N2 --log /tmp/lane.log [--every 300] -- bash exp/launch/lane.sh - B1 B3b
         pull, run the command in the FOREGROUND (stdout+stderr -> --log), push progress + log every --every seconds
         and once more at the end; exits with the command's return code. Push failures are logged, never fatal.
 
+Push uploads only files this notebook changed: a file still equal (size and mtime) to what pull() brought down is
+skipped. Without this, a notebook holding a stale pulled copy of another lane's progress file overwrote that lane's
+newer upload on every push (found Oct 30: N6 reset N2's B4 rl_zero_general progress to its 320-row copy; ledger).
+
 HF_TOKEN is read from the environment by huggingface_hub; it is never printed, logged or written to any file here.
 Torn last rows (a laptop copy cut mid-write) are uploaded as they are: resources.Progress drops them on load.
 """
 import argparse
+import json
 import os
 import shutil
 import subprocess
@@ -45,6 +52,7 @@ def pull(root, repo, jobs=None):
     from huggingface_hub import snapshot_download
     pats = [f"progress/{j}/**" for j in jobs] if jobs else ["progress/**"]
     root = Path(root)
+    pulled = {}
     with tempfile.TemporaryDirectory() as tmp:
         snapshot_download(repo, repo_type="dataset", allow_patterns=pats, local_dir=tmp)
         src = Path(tmp) / "progress"
@@ -59,7 +67,37 @@ def pull(root, repo, jobs=None):
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(f, dst)
             n_new += 1
+            pulled[str(f.relative_to(src).as_posix())] = _stamp(dst)
+        for f in (src.rglob("*") if src.exists() else []):
+            rel = f.relative_to(src).as_posix() if f.is_file() else None
+            dst = root / rel if rel else None
+            if rel and rel not in pulled and dst.exists() and dst.stat().st_size == f.stat().st_size:
+                pulled[rel] = _stamp(dst)                      # local copy identical in size to HF's: not ours to push
+    man = root / "_hf" / "pulled.json"
+    man.parent.mkdir(parents=True, exist_ok=True)
+    old = json.loads(man.read_text()) if man.exists() else {}
+    old.update(pulled)
+    man.write_text(json.dumps(old))
     _log(f"pull: {n_new} file(s) copied into {root}, {n_keep} local copies kept (same size or longer)")
+
+
+def _stamp(p):
+    st = Path(p).stat()
+    return [st.st_size, st.st_mtime_ns]
+
+
+def unchanged_since_pull(root):
+    """Relative paths of files that are exactly as pull() left them (same size and mtime): never pushed."""
+    root = Path(root)
+    man = root / "_hf" / "pulled.json"
+    if not man.exists():
+        return []
+    out = []
+    for rel, stamp in json.loads(man.read_text()).items():
+        f = root / rel
+        if f.exists() and _stamp(f) == stamp:
+            out.append(rel)
+    return sorted(out)
 
 
 def push(root, repo, lane, logs=()):
@@ -68,7 +106,8 @@ def push(root, repo, lane, logs=()):
     root = Path(root)
     if root.exists() and any(root.iterdir()):
         api.upload_folder(folder_path=str(root), path_in_repo="progress", repo_id=repo, repo_type="dataset",
-                          ignore_patterns=IGNORE, commit_message=f"progress {lane} {time.strftime('%H:%M:%S')}")
+                          ignore_patterns=IGNORE + unchanged_since_pull(root),
+                          commit_message=f"progress {lane} {time.strftime('%H:%M:%S')}")
     for lg in logs:
         if lg and Path(lg).exists():
             api.upload_file(path_or_fileobj=str(lg), path_in_repo=f"logs/{lane}/{Path(lg).name}", repo_id=repo,
