@@ -704,3 +704,13 @@ Committed at about 21:10 IST, at the PI's request. No registered design, item se
 - **N2:** B4 (finishing `rl_zero_general`), then B3b. B6 and B7 move to N6.
 
 **B4 cut.** `rl_zero_mix` is dropped, as the cut-order item for B4. B4 is reported for base and RL-Zero {math, code, if, general}; amendment 10's analysis applies to these five. The cut is enforced in `exp/jobs/B4_rlzero.py` (`CUT`), so the B4 launcher already running on N2 skips `rl_zero_mix` without downloading it, and in the launcher's default list.
+
+---
+
+## Amendment 15 (Oct 30, 2026): B7 moves to N2
+
+Committed at about 10:00 IST, at the PI's request, **before B7 has run** on either notebook. No registered design, item set or hypothesis changes; only the queue assignment changes.
+
+- **N2:** B4 (finishing `rl_zero_general`), then B3b, then **B7**. This restores amendment 9's placement of B7 last in N2's queue.
+- **N6:** B6 (positive control, DPO, resuming), then M6.
+- **Why:** after both sandboxes ended at about 06:13 IST, N2 had about 3 h of work left and N6 about 7–8 h. B7's generation does not use B6's outputs; only its analysis does (the stated confidence comes from B6 (iii)). So B7 can run on N2 in parallel, and its summary is written after B6 (iii) finishes.
