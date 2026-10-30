@@ -130,18 +130,22 @@ def main():
         L.append(f"- **B4-H: not yet testable on length.** General has reached only {', '.join(sorted({r['set'] for r in R[gen]}))} "
                  f"({src[gen]}), so its A/D ratio is not available; Mix is cut. The extreme-shift half is reported on A below.")
     ordered = sorted((d for d in res if not np.isnan(res[d]["ratio"][0])), key=lambda d: -res[d]["ratio"][0])
-    L.append("- Length ratio order (finished domains): " + " > ".join(f"{d.split('_')[-1].title()} {res[d]['ratio'][0]:.2f}" for d in ordered) + ".")
+    L.append("- Length ratio order: " + " > ".join(f"{d.split('_')[-1].title()} {res[d]['ratio'][0]:.2f}" for d in ordered) + ".")
     L.append("- A P(extreme) order: " + " > ".join(f"{d.split('_')[-1].title()} {res[d]['ext'][0]:.3f}"
                                                    for d in sorted(res, key=lambda d: -res[d]["ext"][0])) + f" (base {be[0]:.3f}).")
-    L += [f"- **Extreme-shift half of B4-H: opposite on the data so far.** General has the *lowest* A P(extreme), "
+    L += [f"- **Extreme-shift half of B4-H: opposite.** General has the *lowest* A P(extreme), "
           f"below Math, Code and base; Code is by far the highest.",
           "", "**Data-quality caveats (they limit the length half):**",
           "- **IF** answers almost at once (mean length about 7 tokens on A and about 0 on D), so its A/D ratio is a "
           "ratio of near-zeros and is not interpretable.",
           "- **Math** rarely follows the multiple-choice format on D (parse rate 0.02), and 98 of its 240 A generations "
           "hit the 16K cap, so its lengths are dominated by runaway generations.",
-          "- **General** hits the cap on 71 of 240 A generations so far. Its A/D ratio waits for its D items "
-          "(N2 is still generating).",
+          f"- **General** hits the cap on 71 of 240 A generations. Its A/D ratio, {res[gen]['ratio'][0]:.2f} "
+          f"[{res[gen]['ratio'][1]:.2f}, {res[gen]['ratio'][2]:.2f}], is the lowest of the four domains, below Code's "
+          f"{res['rl_zero_code']['ratio'][0]:.2f}, the only other domain whose lengths are interpretable (no test of the "
+          "difference was registered; descriptive).",
+          "- **Length half of B4-H: not supported.** General lengthens least relative to base, not most; with IF and "
+          "Math degenerate, this rests on the General vs Code comparison alone.",
           "- With Mix cut and these caveats, B4 cannot cleanly separate LM-judge from verifiable reward on length. The "
           "extremity result is the more usable half, and it does not support the registered ordering.",
           "", "Note: RL-Zero models have no think block (`has_think` ≈ 0), so length is the tokens before the parsed answer "

@@ -1,6 +1,6 @@
 # Gate 2: verdicts per registered hypothesis, and the headline
 
-Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. Still running or not yet started: B4 General (partial), B6, B7, M6, B3b (SFT arm of B3).
+Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. Still running or not yet started: B6, B7, M6, B3b (SFT arm of B3). B4 updated Oct 31 after General finished.
 
 ## Verdicts
 
@@ -31,12 +31,12 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 | B3-H3 RLVR fewer justification sentences | **result** | −0.94 [−1.03, −0.85] |
 | B3-H4, H5 | exploratory / descriptive | |
 
-**B4**, Math/Code/IF finished, General partial, Mix cut (`results/sprint/B4/summary.md`)
+**B4**, base and Math/Code/IF/General finished, Mix cut (`results/sprint/B4/summary.md`)
 
 | ID | verdict | estimate |
 |---|---|---|
-| B4-H extreme shift most in General | **opposite so far** | General has the lowest A P(extreme), 0.137, against base 0.278; Code is highest at 0.763 |
-| B4-H lengthening most in General | **not testable yet** | General's D pending; IF and Math lengths degenerate |
+| B4-H extreme shift most in General | **opposite** | General has the lowest A P(extreme), 0.137, against base 0.278; Code is highest at 0.763 |
+| B4-H lengthening most in General | **not supported** | General's A/D ratio vs base is the lowest, 1.72 [1.08, 2.97] (Code 2.57); IF and Math lengths degenerate, so this rests on General vs Code |
 
 **B5** (`results/sprint/B5/summary.md`)
 
@@ -104,7 +104,7 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 | F3 | **policy**: text share −0.09 [−0.19, 0.01] |
 | F3b | extremity follows **both** the continuing model and the text |
 
-**Pending:** B6 (positive control running on N6), B7, M6, B3b, B4 General length.
+**Pending:** B6 (positive control on N6), B7, M6, B3b.
 
 ## Does the headline hold?
 
