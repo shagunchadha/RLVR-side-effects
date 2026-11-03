@@ -714,3 +714,15 @@ Committed at about 10:00 IST, at the PI's request, **before B7 has run** on eith
 - **N2:** B4 (finishing `rl_zero_general`), then B3b, then **B7**. This restores amendment 9's placement of B7 last in N2's queue.
 - **N6:** B6 (positive control, DPO, resuming), then M6.
 - **Why:** after both sandboxes ended at about 06:13 IST, N2 had about 3 h of work left and N6 about 7–8 h. B7's generation does not use B6's outputs; only its analysis does (the stated confidence comes from B6 (iii)). So B7 can run on N2 in parallel, and its summary is written after B6 (iii) finishes.
+
+---
+
+## Amendment 16 (Nov 4, 2026): B6 split across the two notebooks; (ii) sycophancy cut
+
+Committed at about 00:30 IST, at the PI's request, while N6 was running DPO (iii) calibration (1152 of 1500 generations). Runs after the Nov 2 freeze are disclosed in the ledger (Nov 3 row).
+
+- **Why:** B6's parts take far longer than planned. Generations run to the 16K cap, and N6 managed about 6 generations a minute, so the rest of B6 would have taken about 30 GPU-hours on one notebook, past the Nov 6 writeup.
+- **Cut: (ii) sycophancy** (the DPO pre-pass and the main runs), about 60% of the remaining work. Enforced in `exp/jobs/B6_controls.py` (`CUT`). B6 reports (i), (iii) and (iv).
+- **N2** (idle after B7): RLVR (iii) calibration and (iv) refusal, via `exp/launch/B6r.sh` (queue entry `B6r`).
+- **N6:** DPO (iii) and (iv) (B6.sh, unchanged), then M6. The RLVR parts in N6's B6.sh are skipped (`N2_PARTS`).
+- No design, item set, seed count or hypothesis of (i), (iii) or (iv) changes. Each part's arms still use their own progress and shard files, so the two lanes never write the same file.
