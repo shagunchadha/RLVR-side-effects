@@ -46,6 +46,12 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 | B5-H A P(extreme) rises with step | **result** | ρ +0.57 sampled, +0.60 readout |
 | B5-H D length rises less | **result** | A − D slope +0.165 [+0.126, +0.203] |
 
+**B6**, positive control done; (ii)–(iv) running (`results/sprint/B6/summary.md`)
+
+| ID | verdict | estimate |
+|---|---|---|
+| B6 (i) positive control RLVR > DPO, MATH-500 L5 + AIME 24/25 | **no result** | −0.022 [−0.056, +0.009] pooled; MATH L5 −0.003, AIME 24 −0.025, AIME 25 −0.067 [−0.142, 0.000] |
+
 **B8** (`results/sprint/B8/summary.md`)
 
 | ID | verdict | estimate |
@@ -127,5 +133,7 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 **Verdict: the headline as worded does not hold.** "Drives" is causal, and the one causal test (M5) dissociates deliberation length from extremity. What the data support:
 
 > **RLVR keeps deliberating where DPO would stop (F3, M3, B2, B5), and its extreme answers build up during that deliberation (M3, F3b, B5). But removing much of the deliberation does not remove the extremity (M5), so the deliberation is where the shift shows, not shown to be what causes it.**
+
+**The positive control failed.** RLVR is not more accurate than DPO on hard maths (pooled −0.022, CI includes 0; both truncate about 28% of generations at 16K). So the RLVR checkpoint shows the side effects without a measurable gain on the registered capability check; the RLVR − DPO contrasts above compare two checkpoints of similar maths accuracy, not a stronger reasoner against a weaker one.
 
 **Caveats on M5:** one seed per condition, 24 A + 25 D items, interventions at a single layer (19), and the answer re-parse is disclosed in the ledger. M6 (CKA on A vs D) and B6 (the positive control) are still to come. Neither tests the causal link directly.
