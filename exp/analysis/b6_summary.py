@@ -64,7 +64,7 @@ def positive_control(L):
             by[r["status"]].append(bool(r["correct"]))
         L.append(f"- {ck.upper()} by parser status (count, accuracy): "
                  + "; ".join(f"{k} {len(v)}, {np.mean(v):.3f}" for k, v in sorted(by.items())) + ".")
-    L.append("- Most correct answers come from the registered `\boxed{}` fallback (status `no_answer` = no final "
+    L.append("- Most correct answers come from the registered `\\boxed{}` fallback (status `no_answer` = no final "
              "ANSWER line), in both arms; every truncated generation counts as incorrect.")
     rt = C.paired(trunc["rlvr"], trunc["dpo"], "B6|pos|trunc")
     v = C.verdict(res["pooled"], +1)
