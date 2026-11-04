@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# B6, RLVR (iii) calibration and (iv) refusal, on N2 (registration amendment 16); N6's B6.sh runs the DPO parts.
+# B6, RLVR (iii) calibration, on N2 (registration amendments 16, 17); RLVR (iv) refusal runs on N6 (B6r6.sh).
 # vLLM only; every generation is appended to a progress file, so re-running this script after a reclaim resumes.
 #   run by exp/launch/queue.sh N2 (log /tmp/b6r.log)
 set -uo pipefail
@@ -17,5 +17,5 @@ if [ ! -f "$RESULTS_DIR/B6/.smoke_ok_r" ]; then       # throwaway dir, always lo
   STORE=local RESULTS_DIR=/tmp/b6_smoke HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --part ref --limit 2 --seeds 1 \
     && touch "$RESULTS_DIR/B6/.smoke_ok_r" || exit 1
 fi
-for part in cal ref; do HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --part "$part" || exit 1; done
+HF_HUB_CACHE="$W/rlvr" step --ckpt rlvr --part cal || exit 1
 rm -rf "$W"; echo "=== $(date +%T) B6r queue done"

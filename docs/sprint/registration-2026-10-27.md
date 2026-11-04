@@ -726,3 +726,13 @@ Committed at about 00:30 IST, at the PI's request, while N6 was running DPO (iii
 - **N2** (idle after B7): RLVR (iii) calibration and (iv) refusal, via `exp/launch/B6r.sh` (queue entry `B6r`).
 - **N6:** DPO (iii) and (iv) (B6.sh, unchanged), then M6. The RLVR parts in N6's B6.sh are skipped (`N2_PARTS`).
 - No design, item set, seed count or hypothesis of (i), (iii) or (iv) changes. Each part's arms still use their own progress and shard files, so the two lanes never write the same file.
+
+## Amendment 17 (Nov 4, 2026): B6 RLVR (iv) moves to N6; M6 not rerun
+
+Committed at about 08:00 IST, at the PI's request, with both notebooks down (N2 ended 05:15 IST during RLVR (iii) at 1152 of 1500 generations; N6 ended 06:23 IST after M6 and DPO (iii)–(iv) were done).
+
+- **N2:** RLVR (iii) calibration only, resuming from 1152 (`exp/launch/B6r.sh`, queue entry `B6r`).
+- **N6:** RLVR (iv) refusal, from the start (`exp/launch/B6r6.sh`, queue entry `B6r6`, after the finished `M6`).
+- Enforced in `exp/jobs/B6_controls.py` (`PART_LANE`): each RLVR part runs only on its assigned lane, so the two lanes never write the same file.
+- **M6 is not rerun.** Its A − D bootstrap intervals were lost to a shard-writer defect (disclosure ledger, Nov 4). M6 is reported descriptively, from the point estimates.
+- No design, item set, seed count or hypothesis changes.
