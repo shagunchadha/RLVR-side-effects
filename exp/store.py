@@ -124,6 +124,9 @@ class Store:
 
     def write(self, i, n, rows, model_repo=None, model_sha=None, extra_meta=None):
         """rows: list of dicts (or a pyarrow Table). Raises ShardExists if shard i exists."""
+        if not isinstance(rows, pa.Table):   # from_pylist takes the columns from the first row; use the union (M6 lost its CIs)
+            keys = list(dict.fromkeys(k for r in rows for k in r))
+            rows = [{k: r.get(k) for k in keys} for r in rows]
         table = rows if isinstance(rows, pa.Table) else pa.Table.from_pylist(rows)
         meta = {"git_sha": C.git_sha(), "model_repo": model_repo or "", "model_sha": model_sha or "",
                 "config": json.dumps(self.cfg, sort_keys=True, default=str), "config_hash": self.hash,

@@ -1,6 +1,6 @@
 # Gate 2: verdicts per registered hypothesis, and the headline
 
-Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. Still running or not yet started: B6 (positive control done; other parts running), B7, M6. B3b added Nov 3. B4 updated Oct 31 after General finished.
+Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. Still running: B6 (iii) and (iv) RLVR arms. M6 added Nov 4 (point estimates only). B3b added Nov 3. B4 updated Oct 31 after General finished.
 
 ## Verdicts
 
@@ -110,7 +110,15 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 | F3 | **policy**: text share −0.09 [−0.19, 0.01] |
 | F3b | extremity follows **both** the continuing model and the text |
 
-**Pending:** B6 (cal, ref, syc), B7, M6.
+## M6: representation similarity (CKA)
+
+| hypothesis | verdict |
+|---|---|
+| DPO ↔ RLVR CKA lower on A than D at layers 15–29; SFT ↔ DPO no gap | **registered test not computable** (CIs lost; ledger 2026-11-04). Point estimates **do not support** it: at the last prompt token, A − D is about −0.02 in **both** pairs (DPO ↔ RLVR −0.022, SFT ↔ DPO −0.021, mean over layers 15–29); over think tokens ≈ 0 |
+
+The A set is represented less alike across checkpoints at every post-SFT step, not specifically after RLVR.
+
+**Pending:** B6 (iii) calibration and (iv) refusal (RLVR arms running), B7's RLVR stated-confidence row. B6 (ii) sycophancy was cut for time (amendment 16).
 
 ## Does the headline hold?
 
@@ -136,4 +144,4 @@ Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results
 
 **The positive control failed.** RLVR is not more accurate than DPO on hard maths (pooled −0.022, CI includes 0; both truncate about 28% of generations at 16K). So the RLVR checkpoint shows the side effects without a measurable gain on the registered capability check; the RLVR − DPO contrasts above compare two checkpoints of similar maths accuracy, not a stronger reasoner against a weaker one.
 
-**Caveats on M5:** one seed per condition, 24 A + 25 D items, interventions at a single layer (19), and the answer re-parse is disclosed in the ledger. M6 (CKA on A vs D) and B6 (the positive control) are still to come. Neither tests the causal link directly.
+**Caveats on M5:** one seed per condition, 24 A + 25 D items, interventions at a single layer (19), and the answer re-parse is disclosed in the ledger. M6 (CKA, point estimates only) shows no RLVR-specific A/D representational gap, and B6's positive control failed; neither tests the causal link directly.
