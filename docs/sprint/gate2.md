@@ -1,6 +1,6 @@
 # Gate 2: verdicts per registered hypothesis, and the headline
 
-Written Oct 29, 2026 (about 21:30 IST), from the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. All runs complete (Nov 4); B6 (iii)–(iv), B7 and M6 (point estimates only) added Nov 4. B3b added Nov 3. B4 updated Oct 31 after General finished.
+Written Oct 29, 2026 (about 21:30 IST); last updated Nov 4, 2026. From the committed summaries in `results/sprint/<job>/summary.md`, Gate 1 (`gate1-2026-10-29.md`) and `results/sprint/M1*/`. A **result** is a 95% CI excluding 0 (or 1 for ratios) in the registered direction. There is no multiplicity correction across jobs (stated limitation), and Holm is applied only where registered. All runs complete (Nov 4); B6 (iii)–(iv), B7 and M6 (point estimates only) added Nov 4. B3b added Nov 3. B4 updated Oct 31 after General finished.
 
 ## Verdicts
 
