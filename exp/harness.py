@@ -110,6 +110,14 @@ def resolve_sampling(repo, sha, override=None):
 FAST_ENGINE = {"enable_prefix_caching": True, "enable_chunked_prefill": True, "max_num_seqs": 256,
                "max_num_batched_tokens": 8192, "tensor_parallel_size": 1}
 FAST_GPU_MEM = 0.92
+# Named engine variants (F0b/F1 diagnosis, Nov 28). "fast" is FAST_ENGINE exactly, so every config that recorded it
+# keeps its hash; "fast_nopc" turns prefix caching off (hypothesis: with prefix caching the sliding-window KV groups
+# keep blocks outside the 4,096-token window, so every layer is budgeted at full length).
+ENGINES = {"fast": FAST_ENGINE, "fast_nopc": {**FAST_ENGINE, "enable_prefix_caching": False}}
+
+
+def engine_args(name):
+    return dict(ENGINES[name])
 
 
 def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=0, engine=None):

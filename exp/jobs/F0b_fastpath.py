@@ -40,12 +40,14 @@ def add_args(p):
     p.add_argument("--gpu-mem", type=float, default=H.FAST_GPU_MEM)
     p.add_argument("--limit", type=int, default=None, help="smoke: first N items")
     p.add_argument("--seeds", type=int, default=None, help="smoke only; defaults are the registered 20 (b1) / 4 (bench)")
+    p.add_argument("--engine", default="fast", choices=list(H.ENGINES), help="engine variant (harness.ENGINES)")
 
 
 def b1_args(a):
     """B1's own argument namespace for the registered main arm, with the fast engine."""
     return argparse.Namespace(seeds=a.seeds or 20, system="own", temperature=None, top_p=None, top_k=None,
-                              max_tokens=16000, gpu_mem=a.gpu_mem, phase="gen", chunk=4, limit=a.limit, engine="fast")
+                              max_tokens=16000, gpu_mem=a.gpu_mem, phase="gen", chunk=4, limit=a.limit,
+                              engine=getattr(a, "engine", "fast"))
 
 
 def run_b1(args, llm=None, tok=None, generate_fn=None):
@@ -98,7 +100,7 @@ def run_bench(args, llm=None, tok=None, generate_fn=None):
     items = bench_items(a.limit)
     cfg = {"job": BENCH_JOB, "part": "bench", "ckpt": [repo, sha], "items": "items_B6_pos.json: AIME 2024 + 2025",
            "n_items": len(items), "seeds": seeds, "max_tokens": BENCH_CAP, "sampling": sampling,
-           "engine": {**H.FAST_ENGINE, "gpu_memory_utilization": a.gpu_mem, "generator": "generate_stream"},
+           "engine": {**H.engine_args(getattr(a, "engine", "fast")), "gpu_memory_utilization": a.gpu_mem, "generator": "generate_stream"},
            "version": 1}
     st = S.Store(BENCH_JOB, f"bench__{ck}", cfg)
     if st.done(0):
@@ -118,7 +120,7 @@ def run_bench(args, llm=None, tok=None, generate_fn=None):
         if llm is None and generate_fn is None:
             R.preflight(2 * 15, dirs=[cache])
             llm = H.load_vllm(repo, sha, max_model_len=max(len(p) for p in pids) + BENCH_CAP,
-                              gpu_memory_utilization=a.gpu_mem, engine=H.FAST_ENGINE)
+                              gpu_memory_utilization=a.gpu_mem, engine=H.engine_args(getattr(a, "engine", "fast")))
             res.now("vLLM loaded (engine fast)")
         t0, seg = time.time(), {"start": time.strftime("%Y-%m-%dT%H:%M:%S"), "generations": 0, "tokens": 0}
 

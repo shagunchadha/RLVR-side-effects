@@ -46,6 +46,8 @@ def add_args(p):
     p.add_argument("--samples", type=int, default=None, help="smoke only; default = registered samples per item")
     p.add_argument("--cap1", type=int, default=CAP1, help="smoke only")
     p.add_argument("--cap2", type=int, default=CAP_TOTAL, help="smoke only: total context for stage 2")
+    p.add_argument("--engine", default=os.environ.get("F1_ENGINE", "fast"), choices=list(H.ENGINES),
+                   help="engine variant (harness.ENGINES); recorded per segment, not in the config hash")
 
 
 def load_items(bench):
@@ -92,7 +94,8 @@ def run(args, llm=None, tok=None, generate_fn=None):
     cache = os.environ.get("HF_HUB_CACHE") or os.environ.get("HF_HOME") or "."
     res = R.ResLog(180, dirs=[cache])
     t0 = time.time()
-    seg = {"start": time.strftime("%Y-%m-%dT%H:%M:%S"), "engine": {**H.FAST_ENGINE, "gpu_memory_utilization": a.gpu_mem},
+    seg = {"start": time.strftime("%Y-%m-%dT%H:%M:%S"), "engine": {"variant": getattr(a, "engine", "fast"), **H.engine_args(getattr(a, "engine", "fast")),
+                      "gpu_memory_utilization": a.gpu_mem},
            "env": {k: os.environ.get(k) for k in ("VLLM_ATTENTION_BACKEND", "VLLM_USE_V1", "CUDA_VISIBLE_DEVICES")},
            "stage1": 0, "stage2": 0, "tokens": 0}
 
@@ -100,8 +103,9 @@ def run(args, llm=None, tok=None, generate_fn=None):
         nonlocal llm
         if llm is None and generate_fn is None:
             R.preflight(2 * 15, dirs=[cache])
-            llm = H.load_vllm(repo, sha, max_model_len=a.cap2, gpu_memory_utilization=a.gpu_mem, engine=H.FAST_ENGINE)
-            res.now(f"vLLM loaded (max_model_len {a.cap2}, engine fast)")
+            llm = H.load_vllm(repo, sha, max_model_len=a.cap2, gpu_memory_utilization=a.gpu_mem,
+                              engine=H.engine_args(getattr(a, "engine", "fast")))
+            res.now(f"vLLM loaded (max_model_len {a.cap2}, engine {getattr(a, 'engine', 'fast')})")
         return llm
 
     def save_seg():
