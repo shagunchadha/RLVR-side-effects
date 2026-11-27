@@ -70,11 +70,12 @@ Rules marked *(added)* come from the sprint docs, the launch scripts, earlier no
   - *(added)* **How:** the code that sets it is piped over stdin into the marimo scratchpad, never written to a file. Only `bool(...)` is printed, plus an HF `whoami` status check.
 - **molab sandbox tokens** go only to Claude Code. Claude Code keeps them outside the repository.
 - **Committed files** contain no usernames, account names, sandbox IDs or emails. The HF dataset is referred to as `<owner>/rlvr-se-runs` in docs, and code takes it from `$HF_REPO`.
+- **Anonymous mirror (PI, Nov 28):** before submission, build the anonymous mirror of the repository with all identifying terms hidden. That includes the two older files that still name the account, `docs/history/README_v1.md` and registration amendment 3, which stay unedited in the repo.
 
 ## Process
 
 - **Registered design:** any change is written as a dated amendment note **before** it runs, with the PI's approval. Ask the PI before changing any registered decision.
-- **Smoke test** before every full job.
+- **Smoke test** before every full job. Exemption (PI, Nov 28): the engine probe, a 2 × 10-min diagnostic that writes no results, has no smoke step.
 - **Engine changes:** any change to the engine or the generation path is validated with the F0b rule before use: B1-H1 within its submitted interval, plus the two per-arm checks (amendment 18 and its Nov 27 note).
 - **Tests:** unit tests for every parser and readout (and every scorer). The CPU suite passes before every GPU launch.
 - **CLI:** every job is a standalone CLI (`python -m exp.run --job ...`) with no marimo dependency.
@@ -98,6 +99,6 @@ Rules marked *(added)* come from the sprint docs, the launch scripts, earlier no
 | weights deleted when the job ends | F1 launchers kept one checkpoint's weights across units | fixed: deleted after each unit |
 | RES line every few minutes | F1, the F0b bench and the probe logged RES only when a generation finished | fixed: `on_step` heartbeat |
 | pre-flight before every job | the engine probe had none | fixed |
-| smoke before every full job | the engine probe (a 2 × 10-min diagnostic that writes no results) has no smoke step | **open:** exempt unless the PI wants one |
+| smoke before every full job | the engine probe (a 2 × 10-min diagnostic that writes no results) has no smoke step | resolved: exempt (PI, Nov 28) |
 | `gpu_memory_utilization` 0.85 → 0.92 | not recorded before | recorded above (kept at 0.92) |
-| no account names in committed files | `docs/history/README_v1.md` (a clone URL and dataset path with a username) and registration amendment 3 (the HF dataset's account name) | **open:** archival or registered text, so not edited without the PI's approval |
+| no account names in committed files | `docs/history/README_v1.md` (a clone URL and dataset path with a username) and registration amendment 3 (the HF dataset's account name) | resolved: left as they are (PI, Nov 28); hidden in the anonymous mirror before submission |
