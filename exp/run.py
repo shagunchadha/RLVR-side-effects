@@ -29,6 +29,7 @@ JOBS = {
     "B7": ("exp.jobs.B7_hedging", True, True, "self-report vs behaviour: hedging on 100 TriviaQA questions (amendment 9)"),
     "B8": ("exp.jobs.B8_ipipneo", True, True, "response style on IPIP-NEO-120 with the B1 protocol (amendments 3, 6)"),
     "B3": ("exp.jobs.B3_instructions", True, True, "reasoning-cap x answer-format factorial on A + 50 D items"),
+    "F0b": ("exp.jobs.F0b_fastpath", True, True, "revision F0b: fast generation path, B1-H1 validation + 32K AIME throughput (amendment 18)"),
 }
 
 

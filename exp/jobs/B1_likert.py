@@ -35,7 +35,7 @@ from .. import harness as H
 from .. import prompts_sprint as PS
 from .. import resources as R
 from .. import store as S
-from ._gen import run_requests
+from ._gen import run_requests, run_requests_stream
 
 
 def add_args(p):
@@ -49,13 +49,18 @@ def add_args(p):
     p.add_argument("--phase", default="all", choices=["gen", "read", "all"])
     p.add_argument("--chunk", type=int, default=4, help="wordings per vLLM call (progress granularity)")
     p.add_argument("--limit", type=int, default=None, help="debug: first N wordings of this shard")
+    p.add_argument("--engine", default="submitted", choices=["submitted", "fast"],
+                   help="fast = the revision fast path (amendment 18, F0b): harness.FAST_ENGINE + generate_stream")
 
 
 def job_config(ck, a, sampling, job="B1", items_desc="items/items_A_selfreport.json"):
     return {"job": job, "ckpt": list(C.ckpt(ck)), "system": a.system, "seeds": a.seeds, "sampling": sampling,
             "max_tokens": a.max_tokens, "items": items_desc, "readout_suffix": H.ANSWER_SUFFIX,
             "nothink_suffix": H.NOTHINK_SUFFIX,
-            "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1}
+            "vllm_flashinfer_sampler": os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "default"), "version": 1,
+            # the key is present only for the fast path, so every submitted config (and its hash) is unchanged
+            **({"engine": {**H.FAST_ENGINE, "gpu_memory_utilization": a.gpu_mem, "generator": "generate_stream"}}
+               if getattr(a, "engine", "submitted") == "fast" else {})}
 
 
 def readout_cols(prefix, ro, alt_prefix):
@@ -102,12 +107,25 @@ def run(args, llm=None, model=None, tok=None, generate_fn=None, job="B1", load_i
 
     # ---------------- generation (vLLM only)
     if phase in ("gen", "all"):
+        fast = getattr(a, "engine", "submitted") == "fast"
         todo = [r for r in reqs if key(r["id"], r["seed"]) not in gen.done]
         if todo and llm is None and generate_fn is None:
             R.preflight(2 * 15, dirs=[cache])
             mpl = max(len(H.prompt_ids(tok, m)) for m in msgs.values()) + a.max_tokens
-            llm = H.load_vllm(repo, sha, max_model_len=mpl, gpu_memory_utilization=a.gpu_mem)
-            res.now(f"vLLM loaded (max_model_len {mpl})")
+            llm = H.load_vllm(repo, sha, max_model_len=mpl, gpu_memory_utilization=a.gpu_mem,
+                              engine=H.FAST_ENGINE if fast else None)
+            res.now(f"vLLM loaded (max_model_len {mpl}, engine {'fast' if fast else 'submitted'})")
+        if fast and todo:                 # one stream over every pending request; progress per finished generation
+            t0 = time.time()
+
+            def on_row(row):
+                row["lp_chosen"] = [round(x, 5) for x in row["lp_chosen"]]
+                gen.add(key(row["id"], row["seed"]), row, time.time() - t0)
+                if len(gen.done) % 50 == 0:
+                    R.log(f"B1 gen {len(gen.done)}/{len(reqs)}")
+                res.maybe(f"gen {len(gen.done)}/{len(reqs)}")
+            run_requests_stream(llm, tok, todo, sampling, a.max_tokens, on_row, generate_fn)
+            todo = []
         by_item = {}
         for r in todo:
             by_item.setdefault(r["id"], []).append(r)

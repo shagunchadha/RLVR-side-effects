@@ -104,40 +104,109 @@ def resolve_sampling(repo, sha, override=None):
     return s
 
 
-def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=0):
+# Revision fast path (registration amendment 18, F0b): one replica on one 96 GB GPU (tensor- and data-parallel 1),
+# prefix caching, chunked prefill, a large running batch. Recorded in each job's config when used; the submitted
+# jobs never pass `engine`, so their engines (and config hashes) are unchanged.
+FAST_ENGINE = {"enable_prefix_caching": True, "enable_chunked_prefill": True, "max_num_seqs": 256,
+               "max_num_batched_tokens": 8192, "tensor_parallel_size": 1}
+FAST_GPU_MEM = 0.92
+
+
+def load_vllm(repo, sha, max_model_len=20000, gpu_memory_utilization=0.85, seed=0, engine=None):
     """vLLM engine with the sprint's resource rules: no CPU offload (vLLM 0.31's V1 engine has no swap space), and
-    max_model_len set by the caller to the longest prompt + the token cap."""
+    max_model_len set by the caller to the longest prompt + the token cap. engine: extra engine arguments (the
+    revision fast path passes FAST_ENGINE); None keeps the submitted engine exactly."""
     from vllm import LLM
     from vllm.engine.arg_utils import EngineArgs
     # Oct 29 RAM budget (28 GiB of CPU RAM): no swap space where the engine still has the option, no CPU offload
     extra = {"swap_space": 0} if "swap_space" in getattr(EngineArgs, "__dataclass_fields__", {}) else {}
-    return LLM(model=repo, revision=sha, tokenizer=repo, tokenizer_revision=sha, dtype="bfloat16",
-               max_model_len=max_model_len, gpu_memory_utilization=gpu_memory_utilization, seed=seed,
-               enable_prefix_caching=True, cpu_offload_gb=0, **extra)
+    kw = dict(model=repo, revision=sha, tokenizer=repo, tokenizer_revision=sha, dtype="bfloat16",
+              max_model_len=max_model_len, gpu_memory_utilization=gpu_memory_utilization, seed=seed,
+              enable_prefix_caching=True, cpu_offload_gb=0, **extra)
+    kw.update(engine or {})
+    return LLM(**kw)
+
+
+def _sampling_params(sampling, seed, cap, stop=None):
+    from vllm import SamplingParams
+    return SamplingParams(temperature=sampling["temperature"], top_p=sampling["top_p"], top_k=sampling["top_k"],
+                          max_tokens=int(cap), seed=int(seed), logprobs=0, **({"stop": list(stop)} if stop else {}))
+
+
+def _completion_row(c):
+    """One vLLM CompletionOutput -> the row dict every job stores."""
+    lps = []
+    if c.logprobs is not None:
+        for tid, d in zip(c.token_ids, c.logprobs):
+            lps.append(float(d[tid].logprob) if tid in d else float("nan"))
+    return {"text": c.text, "token_ids": list(c.token_ids), "logprobs": lps,
+            "finish_reason": c.finish_reason, "n_tokens": len(c.token_ids)}
 
 
 def generate(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, stop=None):
     """prompt_token_ids: list of list[int]; seeds: list[int] (one per request); max_tokens: int, or a list with one
     cap per request; stop: optional stop strings (B4's few-shot base model). Returns list of dicts with text, token_ids, logprobs (chosen-token logprob per generated token),
     finish_reason, n_tokens."""
-    from vllm import SamplingParams
     from vllm.inputs import TokensPrompt
     assert len(prompt_token_ids) == len(seeds)
     caps = max_tokens if isinstance(max_tokens, (list, tuple)) else [max_tokens] * len(seeds)
-    params = [SamplingParams(temperature=sampling["temperature"], top_p=sampling["top_p"], top_k=sampling["top_k"],
-                             max_tokens=int(m), seed=int(s), logprobs=0, **({"stop": list(stop)} if stop else {}))
-              for s, m in zip(seeds, caps)]
+    params = [_sampling_params(sampling, s, m, stop) for s, m in zip(seeds, caps)]
     outs = llm.generate([TokensPrompt(prompt_token_ids=p) for p in prompt_token_ids], params, use_tqdm=False)
-    res = []
-    for o in outs:
-        c = o.outputs[0]
-        lps = []
-        if c.logprobs is not None:
-            for tid, d in zip(c.token_ids, c.logprobs):
-                lps.append(float(d[tid].logprob) if tid in d else float("nan"))
-        res.append({"text": c.text, "token_ids": list(c.token_ids), "logprobs": lps,
-                    "finish_reason": c.finish_reason, "n_tokens": len(c.token_ids)})
-    return res
+    return [_completion_row(o.outputs[0]) for o in outs]
+
+
+def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on_done=None, window=None, stop=None,
+                    generate_fn=None):
+    """The revision fast path (amendment 18, F0b): the same requests and SamplingParams as `generate` (per-request
+    seeds, chosen-token logprobs), but the engine is kept full instead of waiting for the slowest request of each
+    chunk. Up to `window` requests are in the engine at once (default 4 x max_num_seqs); as each finishes it is
+    replaced by the next, and on_done(index, row) is called right away, so a job can write it to its progress file
+    (crash-resume at the level of single generations). Returns the rows in input order.
+
+    The loop is vLLM 0.31's own LLM._run_engine loop (llm_engine.step() until has_unfinished_requests() is False),
+    fed through the public LLM.enqueue. generate_fn (tests) replaces the engine: it is called once on all requests
+    and on_done is then called per row."""
+    assert len(prompt_token_ids) == len(seeds)
+    n = len(seeds)
+    caps = list(max_tokens) if isinstance(max_tokens, (list, tuple)) else [max_tokens] * n
+    rows = [None] * n
+    if generate_fn is not None:
+        for i, row in enumerate(generate_fn(llm, prompt_token_ids, seeds, sampling, max_tokens=max_tokens)):
+            rows[i] = row
+            if on_done:
+                on_done(i, row)
+        return rows
+    from vllm.inputs import TokensPrompt
+    eng = llm.llm_engine
+    window = window or 4 * int(FAST_ENGINE["max_num_seqs"])
+    rid_to_idx, nxt = {}, 0
+
+    def refill():
+        nonlocal nxt
+        k = min(window - eng.get_num_unfinished_requests(), n - nxt)
+        if k <= 0:
+            return
+        idx = list(range(nxt, nxt + k))
+        rids = llm.enqueue([TokensPrompt(prompt_token_ids=prompt_token_ids[i]) for i in idx],
+                           [_sampling_params(sampling, seeds[i], caps[i], stop) for i in idx])
+        if rids is None or len(rids) != len(idx):
+            raise RuntimeError(f"LLM.enqueue returned {rids!r} for {len(idx)} requests (vLLM API changed?)")
+        rid_to_idx.update({str(r): i for r, i in zip(rids, idx)})
+        nxt += k
+
+    refill()
+    while nxt < n or eng.has_unfinished_requests():
+        for o in eng.step():
+            if getattr(o, "finished", False) and str(o.request_id) in rid_to_idx:
+                i = rid_to_idx.pop(str(o.request_id))
+                rows[i] = _completion_row(o.outputs[0])
+                if on_done:
+                    on_done(i, rows[i])
+        refill()
+    missing = [i for i, r in enumerate(rows) if r is None]
+    if missing:
+        raise RuntimeError(f"generate_stream: {len(missing)} requests never finished")
+    return rows
 
 
 # ====================================================================== HF models
