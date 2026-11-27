@@ -80,4 +80,20 @@ def tiny_model_b(tiny_tok):
     return Olmo3ForCausalLM(cfg).eval()
 
 
+def pytest_configure(config):
+    config.addinivalue_line("markers", "real_preflight: run with the real RAM/disk preflight (exp.resources.preflight)")
+
+
+@pytest.fixture(autouse=True)
+def _no_host_preflight(request, monkeypatch):
+    """The unit tests use tiny CPU models, so the host RAM/disk preflight (sized for the 7B GPU jobs) says nothing
+    about them and made them fail on hosts with < 16 GB RAM (F0a, docs/eacl_revision_1/known_issues.md). Replace it
+    with a no-op for tests only; real jobs are unaffected because nothing outside the tests is patched. Tests marked
+    `real_preflight` keep the real one."""
+    if request.node.get_closest_marker("real_preflight"):
+        return
+    from exp import resources as R
+    monkeypatch.setattr(R, "preflight", lambda *a, **k: {})
+
+
 A_MESSAGES = [{"role": "user", "content": CORPUS[0]}]

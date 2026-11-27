@@ -2,7 +2,7 @@
 
 ## `tests/sprint/test_jobs.py::test_b6_items_grading_and_syc_flow` fails
 
-**Status:** cause found and fixed (F0a, registration amendment 18). Waiting on confirmation from the Linux run in the pinned environment (molab).
+**Status:** fixed and confirmed on Linux (F0a, registration amendment 18; fix commit `fb54232`).
 
 **Observed (Nov 27, 2026).** This is the only failure in `tests/sprint`: 1 failed, 80 passed. It fails identically on `eacl_revision_1` before and after the anonymity commit, so that commit did not cause it.
 
@@ -36,9 +36,22 @@ FileNotFoundError: ...\store\runs\B6\syc__rlvr\7b9bc789aef3\shard_000.parquet
 - `HF_REPO` was unset.
 - numpy was 2.5.1, from the system site-packages, not the pinned 2.4.6.
 
-**Linux confirmation (pending).** `exp/launch/F0a_linux_check.sh` runs on molab, in the pinned venv built by `exp/setup_env.sh`:
-1. the test at the commit before the fix (expected to fail);
-2. the test at the fix commit (expected to pass);
-3. the whole `tests/sprint` suite.
+**Linux confirmation (Nov 27, 2026).** Run by the PI in a separate Linux container:
+- **Environment:** Python 3.13.18, all 220 pins of `requirements_sprint.txt` installed exactly (numpy 2.4.6, torch 2.13.0, vllm 0.31.0), no GPU, `HF_TOKEN` unset.
+- **Version check:** `exp/setup_env.sh` reported all versions matching. Its only report was "no CUDA GPU visible", so the test steps of `exp/launch/F0a_linux_check.sh` were run directly.
+- **Before the fix (`3e7c363`):** the test **failed** with `FileNotFoundError`, after logging "B6 syc rlvr: cut (registration amendment 16); skipping". This confirms the diagnosis.
+- **At the fix (`fb54232`):** the test **passed**.
+- **`tests/sprint` at `fb54232`:** 79 passed, 2 failed (`test_m6_cka_gram_matches_features_and_runs`, `test_m1b_known_values`).
+  - Both stopped at the host RAM preflight, `exp/resources.py:138`: "PREFLIGHT ABORT: available RAM 15.7 GB < 16 GB". The container had under 16 GB.
+  - This is not a code fault, but a unit test should not depend on host RAM. See the next issue.
 
-The result will be recorded here.
+## Unit tests depended on host RAM and disk (the job preflight)
+
+**Status:** fixed (F0a).
+
+- **Cause:** jobs call `exp.resources.preflight` before loading a model. It aborts when available RAM is under 16 GB or free disk is under the 7B job's need. The CPU unit tests run the jobs with tiny models, but still went through that preflight, so on a host with < 16 GB RAM `test_m6_cka_gram_matches_features_and_runs` and `test_m1b_known_values` aborted.
+- **Fix, tests only:**
+  - An autouse fixture in `tests/sprint/conftest.py` (`_no_host_preflight`) replaces `exp.resources.preflight` with a no-op for the duration of each test.
+  - A test marked `real_preflight` keeps the real one.
+  - `tests/sprint/test_preflight.py` checks both sides: the bypass is active in unit tests, and the real preflight still aborts on an impossible disk need.
+- **Real jobs are unchanged:** `exp/resources.py` is not modified, and nothing outside the tests is patched.
