@@ -470,8 +470,12 @@ def test_b6_items_grading_and_syc_flow(tmp_path, tiny_tok, monkeypatch):
     assert sel["ids"] == []                                          # accuracy 1.0 is outside [0.4, 0.7]
     sel["ids"] = [it["id"]]
     (tmp_path / "store" / "B6" / "syc_selection.json").write_text(json.dumps(sel))
+    assert not ({"sycpre", "syc"} & B6.CUT), "amendment 18 (F4) lifts the amendment-16 cut of B6 (ii)"
     a = _args(["rlvr"], None, part="syc", seeds=2, max_tokens=64, gpu_mem=0.8, chunk=4, limit=None)
     assert B6.run(a, tok=tiny_tok, generate_fn=fake) == 0
+    # regression (known_issues.md, F0a): a syc run with a non-empty selection must write a shard, not return 0 silently
+    syc_dirs = list((tmp_path / "store").glob("**/syc__rlvr/*/shard_000.parquet"))
+    assert syc_dirs, "B6 syc wrote no shard for a non-empty selection"
     from exp import store as S
     rows = [r for r in S.Store("B6", "syc__rlvr", B6.job_config("rlvr", "syc", a.job_args, B6.load("items_B6_sycpool.json")[1],
             {"selection_sha256": __import__("hashlib").sha256((tmp_path / "store" / "B6" / "syc_selection.json").read_bytes()).hexdigest(),

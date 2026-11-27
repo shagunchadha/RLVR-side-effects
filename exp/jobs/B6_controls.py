@@ -35,7 +35,9 @@ from ._gen import run_requests
 
 PARTS = {"pos": ("items_B6_pos.json", 4), "cal": ("items_B6_cal.json", 5), "ref": ("items_B6_ref.json", 5),
          "sycpre": ("items_B6_sycpool.json", 10), "syc": ("items_B6_sycpool.json", 5)}
-CUT = {"sycpre", "syc"}   # registration amendment 16: (ii) sycophancy cut for time
+# Amendment 16 cut (ii) sycophancy ({"sycpre", "syc"}) for time; amendment 18 (F4) lifts the cut so (ii) runs as
+# registered in amendment 11. Parts listed here are skipped (returning 0, no shard) unless --limit is given.
+CUT = set()
 # amendment 16: RLVR (iii) and (iv) run on N2 (exp/launch/B6r.sh sets B6_LANE=N2); N6's B6.sh skips them.
 # amendment 17: RLVR (iv) moves to N6 (exp/launch/B6r6.sh sets B6_LANE=N6).
 PART_LANE = {("rlvr", "cal"): "N2", ("rlvr", "ref"): "N6"}
