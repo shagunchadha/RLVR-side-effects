@@ -146,19 +146,20 @@ def test_ifbench_sample_outputs_reproduce_the_official_results(nltk_data):
         # 294 records; exactly one is malformed upstream (its "prompt" is ~7 tab-joined rows), the other 293 must match
         malformed = [e for e in expected if e["prompt"].strip() not in items]
         assert len(expected) == 294 and len(malformed) == 1 and malformed[0]["prompt"].count("\t") == 18
-        mism = []
+        mism, mism_head = [], []
         for e in expected:
             p = e["prompt"].strip()
             if p not in items:
                 continue
-            s = SC.ifbench_scores(items[p], "<think></think>" + sample[p])
-            if s[f"prompt_{level}"] != e["follow_all_instructions"] or s[f"inst_{level}"] != e["follow_instruction_list"]:
-                mism.append(items[e["prompt"]]["key"])
-        # The official results were committed on 2025-10-17 (c94da020). IFBench @ c94da020 reproduces all 293 strict
-        # records exactly (checked Nov 27; that version needs spaCy, so it is not run here). The pinned head
-        # (48891866) differs on exactly these 5, all in checkers fixed after that date (format:list, ratio:overlap,
-        # ratio:sentence_type; docs/eacl_revision_1/known_issues.md).
-        assert sorted(mism, key=int) == ["82", "85", "148", "163", "214"], f"{level}: {mism}"
+            for fn, out in ((SC.ifbench_scores, mism), (SC.ifbench_scores_head, mism_head)):
+                s = fn(items[p], "<think></think>" + sample[p])
+                if s[f"prompt_{level}"] != e["follow_all_instructions"] or s[f"inst_{level}"] != e["follow_instruction_list"]:
+                    out.append(items[p]["key"])
+        # F1's main IFBench scorer is IFBench @ c94da020 (2025-10-17), the commit that produced these results: all 293
+        # records must match. The pinned head (48891866, reported alongside) differs on exactly these 5, all in
+        # checkers fixed after that date (format:list, ratio:overlap, ratio:sentence_type).
+        assert not mism, f"{level}: main (c94da020) differs on {mism}"
+        assert sorted(mism_head, key=int) == ["82", "85", "148", "163", "214"], f"{level}: head {mism_head}"
 
 
 def test_if_unclosed_think_follows_nothing():

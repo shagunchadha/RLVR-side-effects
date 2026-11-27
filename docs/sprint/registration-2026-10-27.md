@@ -1022,3 +1022,12 @@ Fixed **before any F1 generation ran**; no F1 job had been launched. The PI chos
     - **IFBench:** IFBench @ `c94da020`, the commit of its committed expected results, reproduces all 293 strict records exactly. The pinned head differs on 5 records (keys 82, 85, 148, 163, 214), all in checkers fixed after Oct 2025 (`format:list`, `ratio:overlap`, `ratio:sentence_type`).
 - **Scoring runs on CPU after generation:** the GPU jobs need no new package. `requirements_revision.txt` is resolved against `requirements_sprint.txt` as a constraint, so no sprint pin changes.
 - **Engine settings stay out of F1's config hash:** `FAST_ENGINE`, `gpu_memory_utilization` and the attention backend are recorded per process segment. They change throughput, not the sampling distribution, so retuning them resumes from saved progress. Everything that defines the samples is in the hash: items, samples, seeds, sampling, caps and the continuation rule.
+
+### Note to amendment 18 (Nov 28, 2026, later): F1's main IFBench checker
+
+The PI decided this on Nov 28, **before any F1 scoring** (generation had started on N6; scoring is separate and on CPU).
+
+- **Main score:** IFBench is scored with `allenai/IFBench` @ `c94da020` (2025-10-17), the version closest in time to the developers' evaluation. It reproduces all 293 of IFBench's committed expected results at strict and loose.
+- **Alongside:** the pinned head `48891866`.
+- **Unchanged:** prompts, items, metric (prompt-level loose, with the other three reported) and the 5-point rule.
+- **AIME check order:** if AIME differs from the developers by more than 5 points, OLMES's 16,384-token AIME cap is checked first (`docs/eacl_revision_1/known_issues.md`).

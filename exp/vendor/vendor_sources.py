@@ -24,6 +24,15 @@ LMEVAL = ("EleutherAI/lm-evaluation-harness", "3fa4fd725c8a428710109f1d6c14eda37
 OLMES = ("allenai/olmes", "5a51f502d463b8cdc4a2dcad7d7096c41ff1197e", None, "Apache-2.0")
 GOOGLE = ("google-research/google-research", "e6890f85757dd84e27ca6df2dd30651dafad28e0", None, "Apache-2.0")
 IFBENCH = ("allenai/IFBench", "488918665d53f867fa908a293769ec6e71e74aec", None, "Apache-2.0")
+# IFBench as of 2025-10-17: the commit that produced its committed eval_results (F1 main IFBench scorer, PI Nov 28)
+IFBENCH_2025 = ("allenai/IFBench", "c94da0204a1552be9e5c206b732e29f7d279f0c7", None, "Apache-2.0")
+OLD = "exp.vendor.ifbench_2025_10"
+NL = "\n"
+IFBENCH_2025_FIX = [("import instructions_util" + NL, f"from {OLD} import instructions_util" + NL),
+                    ("import instructions_registry" + NL, f"from {OLD} import instructions_registry" + NL),
+                    ("import instructions" + NL, f"from {OLD} import instructions" + NL),
+                    ("download('en_core_web_sm')" + NL,
+                     "# vendored: no model download at import; en_core_web_sm 3.8.0 is pinned in requirements_revision.txt" + NL)]
 
 LMEVAL_FIX = [  # (old, new): lm_eval's package imports, unavailable here, replaced by stdlib equivalents
     ("import datasets\n", ""),
@@ -56,6 +65,9 @@ FILES = [
     (IFBENCH, "evaluation_lib.py", "exp/vendor/ifbench/evaluation_lib.py",
      [("from ifbench import ", "from exp.vendor.ifbench import ")], ""),
     (IFBENCH, "LICENSE", "exp/vendor/ifbench/LICENSE", [], ""),
+] + [
+    (IFBENCH_2025, f, f"exp/vendor/ifbench_2025_10/{f}", IFBENCH_2025_FIX, "")
+    for f in ("instructions.py", "instructions_registry.py", "instructions_util.py", "evaluation_lib.py", "LICENSE")
 ]
 FIXTURES = [  # official example outputs and their official expected results (gzipped, unmodified)
     (IFBENCH, "data/sample_output.jsonl", "ifbench_sample_output.jsonl.gz"),

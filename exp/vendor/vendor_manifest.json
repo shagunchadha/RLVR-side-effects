@@ -206,6 +206,58 @@
   "rewrites": []
  },
  {
+  "file": "exp/vendor/ifbench_2025_10/instructions.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/c94da0204a1552be9e5c206b732e29f7d279f0c7/instructions.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "917ab2217b83841de669c497c0bf12ca0c09d043a97aa114bec1051bde562bf1",
+  "vendored_sha256": "feb51b7824fe568eea5f08d3d5b398484e4499884400f2b6642ffd0274f9e613",
+  "modified": true,
+  "rewrites": [
+   "import instructions_util",
+   "download('en_core_web_sm')"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench_2025_10/instructions_registry.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/c94da0204a1552be9e5c206b732e29f7d279f0c7/instructions_registry.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "4df83d050d29d8ccf8d476de1319d47d7b8379143e85d701c9c99d4816c19cd9",
+  "vendored_sha256": "b8f0b46c4d2bb7ab65e78e62992fa0747b3a32d46532c59fffe4a5858d40f261",
+  "modified": true,
+  "rewrites": [
+   "import instructions"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench_2025_10/instructions_util.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/c94da0204a1552be9e5c206b732e29f7d279f0c7/instructions_util.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "ab845134085826f6cfb400f5ac74c2062c5b1590e611732831c2fc62c8c5fa7c",
+  "vendored_sha256": "ab845134085826f6cfb400f5ac74c2062c5b1590e611732831c2fc62c8c5fa7c",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/ifbench_2025_10/evaluation_lib.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/c94da0204a1552be9e5c206b732e29f7d279f0c7/evaluation_lib.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "ac3bfeb81d9aceb712850152aa3e379e08f17512c8210e056654ea7314a7dc23",
+  "vendored_sha256": "95723ef4e6ba0b79e3b75d19586348ea69d5e09291d461f5ed9c1037fc5e3da7",
+  "modified": true,
+  "rewrites": [
+   "import instructions_registry"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench_2025_10/LICENSE",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/c94da0204a1552be9e5c206b732e29f7d279f0c7/LICENSE",
+  "license": "Apache-2.0",
+  "upstream_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "vendored_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "modified": false,
+  "rewrites": []
+ },
+ {
   "file": "tests/sprint/fixtures/revision/ifbench_sample_output.jsonl.gz",
   "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/data/sample_output.jsonl",
   "license": "Apache-2.0",

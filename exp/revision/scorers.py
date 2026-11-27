@@ -134,10 +134,37 @@ def _seed_checkers():
     langdetect.DetectorFactory.seed = IF_SEED
 
 
+_NLTK_READY = False
+
+
+class _NoNltkDownload:
+    """IFBench @ c94da020 calls nltk.download(...) inside its checks (a network request per check). The resources are
+    fetched once by ensure_nltk_data(); during a check nltk.download is a no-op. No checker logic changes."""
+    def __enter__(self):
+        import nltk
+        self._dl, nltk.download = nltk.download, (lambda *a, **k: True)
+
+    def __exit__(self, *exc):
+        import nltk
+        nltk.download = self._dl
+        return False
+
+
 def _if_scores(lib, item, text):
+    global _NLTK_READY
+    if not _NLTK_READY:
+        ensure_nltk_data()
+        _NLTK_READY = True
+    with _NoNltkDownload():
+        return _if_scores_inner(lib, item, text)
+
+
+def _if_scores_inner(lib, item, text):
     resp, closed = strip_think(text)
+    # None-valued kwargs are dropped, as IFBench's current evaluation_lib does itself (parquet copies fill absent keys
+    # with None; IFBench @ c94da020's loose path crashes on them). F1's items have none; Google's IFEval data has none.
     inp = lib.InputExample(key=item["key"], instruction_id_list=list(item["instruction_id_list"]),
-                           prompt=item["prompt"], kwargs=[dict(k) for k in item["kwargs"]])
+                           prompt=item["prompt"], kwargs=[{k: v for k, v in d.items() if v is not None} for d in item["kwargs"]])
     p2r = {item["prompt"]: resp}
     out = {}
     for level, fn in (("strict", lib.test_instruction_following_strict), ("loose", lib.test_instruction_following_loose)):
@@ -159,6 +186,14 @@ def ifeval_scores(item, text):
 
 
 def ifbench_scores(item, text):
+    """F1's main IFBench score (PI, Nov 28): IFBench as of 2025-10-17 (c94da020), the checker that produced IFBench's
+    committed expected results, closest in time to the developers' evaluation. Needs spaCy + en_core_web_sm 3.8.0."""
+    from exp.vendor.ifbench_2025_10 import evaluation_lib as lib
+    return _if_scores(lib, item, text)
+
+
+def ifbench_scores_head(item, text):
+    """IFBench at the pinned head (48891866, with the later checker fixes), reported alongside the main score."""
     from exp.vendor.ifbench import evaluation_lib as lib
     return _if_scores(lib, item, text)
 
@@ -177,3 +212,5 @@ def ensure_nltk_data(path=None):
             nltk.data.find(loc)
         except LookupError:
             nltk.download(pkg, download_dir=path, quiet=True)
+    global _NLTK_READY
+    _NLTK_READY = True

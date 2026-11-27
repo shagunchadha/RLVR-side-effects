@@ -8,3 +8,5 @@ immutabledict==4.2.2                # IFBench uv.lock; IFEval
 absl-py==2.3.1                      # IFBench uv.lock; IFEval (logging, tests)
 emoji==2.15.0                       # IFBench uv.lock
 syllapy==0.8.0                      # IFBench uv.lock
+spacy==3.8.7                        # IFBench @ c94da020 (the F1 main IFBench scorer) loads spaCy's en_core_web_sm
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

@@ -89,3 +89,21 @@ None of these is fixed in our code. They are recorded so the F1 numbers can be r
    - IFBench's repo has two copies of the test set; they differ by trailing whitespace on 2 prompts.
    - Google's GitHub IFEval data corrected one prompt (key 2785) after the HF release.
    - F1 uses the HF versions, which are the developers' inputs.
+
+## F1: what to check first if AIME differs from the developers' numbers (PI, Nov 28)
+
+If our AIME 2024 or AIME 2025 score differs from the developers' (DPO→RLVR 74.6→71.6 and 62.7→64.6) by **more than 5 points**, the first thing to check is **OLMES's AIME generation cap**. OLMES's `aime:2024::olmo3:adapt` and `aime:2025::olmo3:adapt` configs set `max_gen_toks` to **16,384**. The report says 32,768, and F1 uses 32,768 plus continuation to 65,536, as registered.
+
+- If the developers' AIME numbers came from 16,384-token generations, a higher cap by itself can raise our accuracy, or lower it if long generations wander.
+- The check: rescore F1's AIME generations **truncated at 16,384 new tokens**, using each generation's stage-1 tokens, under the same scorers. Compare that number with the developers'.
+- Only then go on through the rest of the amendment's investigation order (prompt template, extractor, dataset revision, system prompt, cap-hit rate).
+
+## F1: which IFBench checker is the main score (PI, Nov 28)
+
+- **Main IFBench score:** IFBench @ `c94da020` (2025-10-17), vendored as `exp/vendor/ifbench_2025_10/`. It is the commit that produced IFBench's committed expected results, and it reproduces all 293 of them at both strict and loose. It is also the closest version in time to the developers' evaluation.
+- **Alongside:** the pinned head (`48891866`), which differs on 5 sample records.
+- **What that version needs:** spaCy 3.8.7 and `en_core_web_sm` 3.8.0, pinned with a hash in `requirements_revision.txt`.
+- **Vendored modifications,** beyond import paths:
+  - its import-time `download('en_core_web_sm')` is removed, since the model is pinned instead;
+  - during scoring, `nltk.download` is a no-op, because the code calls it inside every check and the resources are fetched once beforehand.
+- **Scorer wrapper:** it drops `None`-valued kwargs before calling either version, as the head's own `evaluation_lib` does. Without that, the old version's loose path crashes.
