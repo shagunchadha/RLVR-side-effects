@@ -132,7 +132,8 @@ def run(args, llm=None, tok=None, generate_fn=None):
                     R.log(f"F1 {a.bench} {ck} stage 1: {len(g1.done)}/{len(items) * k}; {seg['tokens'] / max(time.time() - t0, 1):.0f} tok/s")
                 res.maybe(f"stage1 {len(g1.done)}")
             H.generate_stream(engine(), [pids[iid] for iid, _ in todo], [s for _, s in todo], sampling,
-                              max_tokens=a.cap1, on_done=done1, generate_fn=generate_fn)
+                              max_tokens=a.cap1, on_done=done1, generate_fn=generate_fn,
+                              on_step=lambda: res.maybe(f"stage1 {len(g1.done)}"))
         # ---------------- stage 2: continue every capped generation to the total context
         capped = [r for r in g1.done.values() if r["finish_reason"] == "length"]
         room = {key(r["id"], r["seed"]): a.cap2 - r["n_prompt_tok"] - r["n_tokens"] for r in capped}
@@ -154,7 +155,7 @@ def run(args, llm=None, tok=None, generate_fn=None):
             H.generate_stream(engine(), [pids[r["id"]] + r["token_ids"] for r in todo2],
                               [CONT_SEED + r["seed"] for r in todo2], sampling,
                               max_tokens=[room[key(r["id"], r["seed"])] for r in todo2], on_done=done2,
-                              generate_fn=generate_fn)
+                              generate_fn=generate_fn, on_step=lambda: res.maybe(f"stage2 {len(g2.done)}"))
     finally:
         if seg["stage1"] or seg["stage2"]:
             segments.append({**seg, "wall_s": round(time.time() - t0, 1)})

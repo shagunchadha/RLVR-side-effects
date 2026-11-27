@@ -34,12 +34,16 @@ def child(a):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     from exp import config as C
     from exp import harness as H
+    from exp import resources as R
     from exp.jobs import F1_capability as F1
     from vllm.inputs import TokensPrompt
     repo, sha = C.ckpt(a.ckpt)
     tok = H.load_tokenizer(repo, sha)
     items = F1.load_items("aime2024")[0] + F1.load_items("aime2025")[0]
     sampling = H.resolve_sampling(repo, sha, {"temperature": None, "top_p": None, "top_k": None})
+    cache = os.environ.get("HF_HUB_CACHE") or os.environ.get("HF_HOME") or "."
+    R.preflight(2 * 15, dirs=[cache])                    # operations.md: pre-flight before every GPU job
+    res = R.ResLog(180, dirs=[cache])
     llm = H.load_vllm(repo, sha, max_model_len=a.max_model_len, gpu_memory_utilization=a.gpu_mem,
                       engine={**H.engine_args(a.variant), "disable_log_stats": False})
     pids = [H.prompt_ids(tok, it["messages"]) for it in items for _ in range(SAMPLES_PER_PROBLEM)]
@@ -57,6 +61,7 @@ def child(a):
     samples.append(snap())
     while time.time() - t0 < a.minutes * 60 and eng.has_unfinished_requests():
         finished += sum(1 for o in eng.step() if getattr(o, "finished", False))
+        res.maybe(f"probe {a.variant}")
         if time.time() - samples[-1]["t"] >= 30:
             samples.append(snap())
             s = samples[-1]

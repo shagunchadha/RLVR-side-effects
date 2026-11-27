@@ -178,7 +178,7 @@ def _external_request_id(rid):
 
 
 def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on_done=None, window=None, stop=None,
-                    generate_fn=None):
+                    generate_fn=None, on_step=None):
     """The revision fast path (amendment 18, F0b): the same requests and SamplingParams as `generate` (per-request
     seeds, chosen-token logprobs), but the engine is kept full instead of waiting for the slowest request of each
     chunk. Up to `window` requests are in the engine at once (default 4 x max_num_seqs); as each finishes it is
@@ -187,7 +187,8 @@ def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on
 
     The loop is vLLM 0.31's own LLM._run_engine loop (llm_engine.step() until has_unfinished_requests() is False),
     fed through the public LLM.enqueue. generate_fn (tests) replaces the engine: it is called once on all requests
-    and on_done is then called per row."""
+    and on_done is then called per row. on_step() (optional) is called after every engine step, e.g. a ResLog
+    heartbeat, so a job logs RES lines during long stretches with no finished generation."""
     assert len(prompt_token_ids) == len(seeds)
     n = len(seeds)
     caps = list(max_tokens) if isinstance(max_tokens, (list, tuple)) else [max_tokens] * n
@@ -232,6 +233,8 @@ def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on
             rows[i] = _completion_row(o.outputs[0])
             if on_done:
                 on_done(i, rows[i])
+        if on_step:
+            on_step()
         refill()
     missing = [i for i, r in enumerate(rows) if r is None]
     if missing:

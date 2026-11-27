@@ -139,7 +139,7 @@ def run_bench(args, llm=None, tok=None, generate_fn=None):
 
         try:
             H.generate_stream(llm, pids, [s for _, s in reqs], sampling, max_tokens=BENCH_CAP, on_done=done,
-                              generate_fn=generate_fn)
+                              generate_fn=generate_fn, on_step=lambda: res.maybe(f"bench {len(gen.done)}"))
         finally:                      # keep this segment's wall time and tokens even if the process dies here
             segments.append(seg)
             seg_f.write_text(json.dumps(segments, indent=1))

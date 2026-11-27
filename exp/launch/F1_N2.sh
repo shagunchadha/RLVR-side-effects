@@ -2,8 +2,8 @@
 # F1 on N2 (registration amendment 18): the units in exp/launch/queues/F1_N2.txt, top to bottom.
 # The queue is re-read after a git pull before every unit (rebalancing between lanes without a restart). A unit whose
 # shard exists returns at once; an unfinished one resumes from its progress files. One smoke per checkpoint (small
-# caps, so the continuation path runs too) before that checkpoint's first unit. Only the current checkpoint's
-# weights are kept on disk.
+# caps, so the continuation path runs too) before that checkpoint's first unit. Weights live in a per-unit directory
+# that is deleted when the unit ends (operations.md); a failed unit keeps them for the lane's one retry.
 #   run by exp/launch/lane.sh (log /tmp/f1_n2.log)
 set -uo pipefail
 cd "$(dirname "$0")/../.."
@@ -27,5 +27,6 @@ while :; do
     STORE=local RESULTS_DIR=/tmp/f1_smoke HF_HUB_CACHE="$W/$ck" step --ckpt "$ck" --bench "$bench" --limit 1 --samples 2       --cap1 256 --cap2 2048 && touch "$MARK/smoke_$ck" || exit 1
   fi
   HF_HUB_CACHE="$W/$ck" step --ckpt "$ck" --bench "$bench" && touch "$MARK/done_${next/:/_}" || exit 1
+  rm -rf "$W/$ck"                                              # per-job weights dir, deleted when the job ends
 done
 rm -rf "$W"; echo "=== $(date +%T) F1_N2 queue done"
