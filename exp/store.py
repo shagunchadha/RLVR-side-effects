@@ -1,7 +1,8 @@
 """Pluggable shard storage.
 
 STORE=local (default): shards under $RESULTS_DIR (default ./sprint_out/).
-STORE=hf: the same layout in the private dataset repo $HF_REPO (default shagunchadha/rlvr-se-runs); needs HF_TOKEN.
+STORE=hf: the same layout in the private dataset repo $HF_REPO (required, no default; e.g. <owner>/rlvr-se-runs);
+needs HF_TOKEN.
 
 Layout:  runs/<job>/<ckpt>/<config_hash>/shard_XXX.parquet   (+ config.json beside the shards)
 
@@ -12,6 +13,7 @@ created_utc, shard, n_shards, job, ckpt, config_hash.
 import io
 import json
 import os
+import sys
 import tempfile
 import time
 from pathlib import Path
@@ -21,7 +23,12 @@ import pyarrow.parquet as pq
 
 from . import config as C
 
-DEFAULT_HF_REPO = "shagunchadha/rlvr-se-runs"
+def resolve_hf_repo(explicit=None):
+    """The HF dataset holding the results: `explicit` if given, else $HF_REPO. No default; exits if neither is set."""
+    repo = explicit or os.environ.get("HF_REPO")
+    if not repo:
+        sys.exit("HF_REPO is not set: export HF_REPO=<owner>/<dataset>, the Hugging Face dataset that holds the results")
+    return repo
 
 
 class ShardExists(RuntimeError):
@@ -55,7 +62,7 @@ class Store:
         if self.backend not in ("local", "hf"):
             raise ValueError(f"STORE must be local or hf, not {self.backend!r}")
         self.root = Path(root or os.environ.get("RESULTS_DIR", "sprint_out"))
-        self.hf_repo = hf_repo or os.environ.get("HF_REPO", DEFAULT_HF_REPO)
+        self.hf_repo = resolve_hf_repo(hf_repo) if self.backend == "hf" else hf_repo
         self.rel = f"runs/{job}/{ckpt}/{self.hash}"
         self._api = None
 

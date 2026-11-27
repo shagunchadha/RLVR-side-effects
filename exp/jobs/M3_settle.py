@@ -53,7 +53,7 @@ def b1_traces(ck):
     root = Path(os.environ.get("M3_B1_ROOT") or os.environ.get("RESULTS_DIR", "sprint_out"))
     if os.environ.get("STORE", "local") == "hf":
         from .. import hfsync
-        hfsync.pull(root, os.environ.get("HF_REPO", S.DEFAULT_HF_REPO), jobs=["B1"])
+        hfsync.pull(root, S.resolve_hf_repo(), jobs=["B1"])
     best = {}
     for d in sorted((root / "B1").glob(f"{ck}__sys-own__*")):
         g = read_progress(d / "gen_shard0of1.csv")

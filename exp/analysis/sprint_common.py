@@ -1,7 +1,7 @@
 """Shared helpers for the sprint summaries (results/sprint/<job>/summary.md).
 
-Shards are fetched from the HF results repo (HF_REPO, default Shagsc/rlvr-se-runs) into results/sprint/_hf/
-(git-ignored: results/sprint/**/runs/), reading only the files a summary needs. Statistics as registered ("Fixed
+Shards are fetched from the HF results repo $HF_REPO (required, no default; e.g. <owner>/rlvr-se-runs) into
+results/sprint/_hf/ (git-ignored), reading only the files a summary needs. Statistics as registered ("Fixed
 design facts", amendment 3): mean of paired differences, percentile bootstrap over units (10,000 resamples, seed
 20261024, generator default_rng([20261024, crc32(label)])), two-sided Wilcoxon.
 """
@@ -13,7 +13,13 @@ import numpy as np
 
 from .m2_summary import DI, ROOT
 
-HF_REPO = os.environ.get("HF_REPO", "Shagsc/rlvr-se-runs")
+def _repo():
+    repo = os.environ.get("HF_REPO")
+    if not repo:
+        sys.exit("HF_REPO is not set: export HF_REPO=<owner>/<dataset>, the Hugging Face dataset that holds the results")
+    return repo
+
+
 LOCAL = ROOT / "results" / "sprint" / "_hf"
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -21,7 +27,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 def _files():
     from huggingface_hub import HfApi
-    return HfApi().list_repo_files(HF_REPO, repo_type="dataset")
+    return HfApi().list_repo_files(_repo(), repo_type="dataset")
 
 
 def fetch(prefix, suffix=".parquet"):
@@ -29,7 +35,7 @@ def fetch(prefix, suffix=".parquet"):
     from huggingface_hub import hf_hub_download
     out = []
     for p in sorted(f for f in _files() if f.startswith(prefix) and f.endswith(suffix)):
-        out.append(Path(hf_hub_download(HF_REPO, p, repo_type="dataset", local_dir=str(LOCAL))))
+        out.append(Path(hf_hub_download(_repo(), p, repo_type="dataset", local_dir=str(LOCAL))))
     return out
 
 

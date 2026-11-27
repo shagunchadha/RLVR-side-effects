@@ -33,7 +33,7 @@ Draft of Nov 4, 2026, for the PI to edit. Built from `gate2.md` (verdicts, CIs) 
 
 ## Disclosures the writeup must carry
 
-- **Post-freeze runs, second account:** B3b (part), B6, B7 and M6 ran after the Nov 2 freeze on a second molab account, with designs unchanged and every job resumed from saved progress (ledger, Nov 3).
+- **Post-freeze runs, second account:** B3b (part), B6, B7 and M6 ran after the Nov 2 freeze on a second compute account after the first became unavailable, with designs unchanged and every job resumed from saved progress (ledger, Nov 3).
 - **Cuts and moves:** B6 (ii) sycophancy cut for time (amendment 16); B4's Mix arm cut; B6 parts split across notebooks (amendments 16, 17).
 - **M6:** the registered intervals were lost to a shard-writer bug; the job is reported from point estimates only (ledger, Nov 4).
 - **M5:** answers re-parsed in analysis after a decoding bug (ledger, Oct 29). One seed, 24 A + 25 D items, a single layer.

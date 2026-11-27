@@ -95,7 +95,7 @@ def run(args, model=None, tok=None):
     dpo_dir_f = root / "dpo" / "directions.npy"
     if ck != "dpo" and not dpo_dir_f.exists() and os.environ.get("STORE", "local") == "hf":
         from .. import hfsync
-        hfsync.pull(rroot, os.environ.get("HF_REPO", S.DEFAULT_HF_REPO), jobs=["M4"])
+        hfsync.pull(rroot, S.resolve_hf_repo(), jobs=["M4"])
     if ck != "dpo" and not dpo_dir_f.exists():
         raise SystemExit("M4 needs DPO's directions first (run --ckpt dpo)")
     tok = tok or H.load_tokenizer(repo, sha)

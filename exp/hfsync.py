@@ -1,4 +1,4 @@
-"""Mirror job progress files and logs to the private HF dataset ($HF_REPO, default shagunchadha/rlvr-se-runs).
+"""Mirror job progress files and logs to the private HF dataset $HF_REPO (or --hf-repo; required, no default).
 
 With STORE=hf the shards go to HF directly (exp/store.py); this module covers everything else a resume needs: the
 per-unit progress files under $RESULTS_DIR/<job>/ and the job logs. Layout in the dataset:
@@ -32,7 +32,7 @@ import time
 from pathlib import Path
 
 from .resources import cgroup_mem
-from .store import DEFAULT_HF_REPO
+from .store import resolve_hf_repo
 
 IGNORE = ["**/*.npz", "**/.smoke_ok", "**/_hf/**", "_hf/**", "runs/**", "**/.tmp*", "**/*.tmp", "**/__pycache__/**"]
 
@@ -151,7 +151,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["pull", "push", "run"])
     ap.add_argument("--root", default=os.environ.get("RESULTS_DIR", "sprint_out"))
-    ap.add_argument("--hf-repo", default=os.environ.get("HF_REPO", DEFAULT_HF_REPO))
+    ap.add_argument("--hf-repo", default=None, help="HF dataset (default: $HF_REPO; one of the two is required)")
     ap.add_argument("--jobs", nargs="*", default=None)
     ap.add_argument("--lane", default="laptop")
     ap.add_argument("--log", default=None)
@@ -159,6 +159,7 @@ def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     rest = argv[argv.index("--") + 1:] if "--" in argv else []
     a = ap.parse_args(argv[:argv.index("--")] if "--" in argv else argv)
+    a.hf_repo = resolve_hf_repo(a.hf_repo)
     if a.cmd == "pull":
         pull(a.root, a.hf_repo, a.jobs)
     elif a.cmd == "push":

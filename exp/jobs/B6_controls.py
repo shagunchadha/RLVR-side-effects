@@ -124,7 +124,7 @@ def run(args, llm=None, tok=None, generate_fn=None):
         sel_f = root / "syc_selection.json"
         if not sel_f.exists() and os.environ.get("STORE", "local") == "hf":
             from .. import hfsync
-            hfsync.pull(Path(os.environ.get("RESULTS_DIR", "sprint_out")), os.environ.get("HF_REPO", S.DEFAULT_HF_REPO), jobs=["B6"])
+            hfsync.pull(Path(os.environ.get("RESULTS_DIR", "sprint_out")), S.resolve_hf_repo(), jobs=["B6"])
         if not sel_f.exists():
             raise SystemExit("syc needs B6/syc_selection.json from the DPO pre-pass (part sycpre)")
         sel = json.loads(sel_f.read_text())
