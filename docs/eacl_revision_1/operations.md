@@ -92,9 +92,9 @@ Rules marked *(added)* come from the sprint docs, the launch scripts, earlier no
 
 | rule | finding | status |
 |---|---|---|
-| lane = blocking foreground cell | N2's PROBE lane was started as a detached process; its `lane` cell only waits on it | the next N2 relaunch uses the full cell form |
+| lane = blocking foreground cell | N2's PROBE lane was started as a detached process; its `lane` cell only waited on it | resolved: N2's F1 lane (21:51 UTC) and N6's run from full `lane` cells |
 | lane cells started reliably | starting the cell from code mode was interrupted when the request stream ended | fixed: started through the notebook's run endpoint |
-| `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1` | the current session was not started with it (a background shell was killed for low memory on Nov 28) | **open:** needs Claude Code restarted with the variable set; it cannot be set from inside the session |
+| `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1` | the current session was not started with it (a background shell was killed for low memory on Nov 28) | resolved: Claude Code restarted with the variable set (Nov 28, ~03:40 IST) |
 | `HF_TOKEN` never written to a file | for N6 on Nov 28 the token went through a temporary file in Claude Code's scratchpad, deleted at once | fixed: stdin pipe only |
 | weights deleted when the job ends | F1 launchers kept one checkpoint's weights across units | fixed: deleted after each unit |
 | RES line every few minutes | F1, the F0b bench and the probe logged RES only when a generation finished | fixed: `on_step` heartbeat |
