@@ -12,7 +12,7 @@ The RLVR training domains are math, code and instruction-following. Our probes a
 
 ## Why it matters, and what is new here
 
-The instrumental-convergence question (do RL-trained reasoning models show more self-preservation-style behavior?) has largely been answered with negative or measurement-noise-limited results on this exact checkpoint family. Trait and behavioral drift at the *RLVR stage in isolation* is much less covered: prior personality-drift work bundles RLHF/DPO/instruction tuning together, and none of it uses the Olmo 3 ladder. A second motivation is measurement quality: earlier checkpoint studies found apparent behavior shifts that were really measurement drift, so this project treats sampling variance as something to measure first (see [VARIANCE.md](VARIANCE.md)). Full literature review and rationale: [docs/sprint_plan.md](docs/sprint_plan.md).
+The instrumental-convergence question (do RL-trained reasoning models show more self-preservation-style behavior?) has largely been answered with negative or measurement-noise-limited results on this exact checkpoint family. Trait and behavioral drift at the *RLVR stage in isolation* is much less covered: prior personality-drift work bundles RLHF/DPO/instruction tuning together, and none of it uses the Olmo 3 ladder. A second motivation is measurement quality: earlier checkpoint studies found apparent behavior shifts that were really measurement drift, so this project treats sampling variance as something to measure first (see [VARIANCE.md](VARIANCE.md)). Full literature review and rationale: [docs/sprint_plan.md](../sprint_plan.md).
 
 ## Repo structure
 
@@ -77,7 +77,7 @@ This work was done by pairing Claude Code with a live [marimo](https://marimo.io
 
 ## DPO pilot (exploratory pipeline check, not a finding)
 
-`results/dpo_pilot_v3.{json,csv}` is a pipeline check of the v3 protocol on `allenai/Olmo-3-7B-Think-DPO`, pinned at commit `7b18bf927b430ff06376fdfa5610eb3b1b6a5c38`. It uses the same 36 items and seeds, the same prompt template and cap sentence, `temperature=0.7`, `top_p=0.9`, and a uniform `max_new_tokens=4000` (v3 used 2000). It was run in an isolated venv (transformers 5.14.1, huggingface-hub 1.33.0, torch 2.11.0+cu130; see `results/dpo_pilot_v3_env.txt`), not the versions used for v3, which were never recorded. It is not compared to RLVR and supports no claim about the DPO stage. Script: [`scripts/dpo_pilot_v3.py`](scripts/dpo_pilot_v3.py) (standalone, no marimo; its header lists the inputs it expects).
+`results/dpo_pilot_v3.{json,csv}` is a pipeline check of the v3 protocol on `allenai/Olmo-3-7B-Think-DPO`, pinned at commit `7b18bf927b430ff06376fdfa5610eb3b1b6a5c38`. It uses the same 36 items and seeds, the same prompt template and cap sentence, `temperature=0.7`, `top_p=0.9`, and a uniform `max_new_tokens=4000` (v3 used 2000). It was run in an isolated venv (transformers 5.14.1, huggingface-hub 1.33.0, torch 2.11.0+cu130; see `results/dpo_pilot_v3_env.txt`), not the versions used for v3, which were never recorded. It is not compared to RLVR and supports no claim about the DPO stage. Script: [`scripts/dpo_pilot_v3.py`](../../scripts/dpo_pilot_v3.py) (standalone, no marimo; its header lists the inputs it expects).
 
 **Output schema note: `early_stop` vs truncation.** A row can be forced for two different reasons, and they should not be pooled. *Truncation*: generation used the whole budget (`n_generated_tokens >= max_new_tokens`, flagged as `hit_token_cap`). *Early stop* (`early_stop`): generation ended on an EOS token before the cap without a closed think block, i.e. `not think_closed and n_generated_tokens < max_new_tokens`. `early_stop` is defined here but is not a column in the existing DPO pilot files; it is derivable from `think_closed`, `n_generated_tokens` and `max_new_tokens`. The pilot has one such row (`trait_confidence_selfreport` sample 3: sampled `<|endoftext|>` after 53 tokens, mid-sentence; it reproduces exactly under the same seed).
 
@@ -98,7 +98,7 @@ These were deliberately left alone because the notebook session is still live an
 
 ## Five-week plan and where we stand
 
-Summary of [docs/sprint_plan.md](docs/sprint_plan.md):
+Summary of [docs/sprint_plan.md](../sprint_plan.md):
 
 | Week | Goal | Status |
 |---|---|---|

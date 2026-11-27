@@ -119,4 +119,9 @@ The Hub SHAs at registration are in [`docs/sprint/checkpoint_inventory.md`](docs
 
 ## History
 
+These documents describe only the early single-checkpoint pilot (v1-v3 baseline). They are kept for the record and are superseded by the full run and the sprint.
+
 - [`docs/history/README_v1.md`](docs/history/README_v1.md): the previous README, which describes the v1-v3 baseline and the notebook workflow.
+- [`docs/history/RESULTS.md`](docs/history/RESULTS.md): findings on the RLVR checkpoint alone, from before any DPO or SFT comparison.
+- [`docs/history/VARIANCE.md`](docs/history/VARIANCE.md): version history (v1 → v3) and the sampling-variance findings of the baseline.
+- [`docs/history/probe_list.md`](docs/history/probe_list.md): a readable list of the 20 v3 probe items; the source of truth is `probes/`.
