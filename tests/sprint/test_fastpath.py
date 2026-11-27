@@ -193,3 +193,13 @@ def test_f0b_bench_resumes_and_reports_throughput(tmp_path, tiny_tok, monkeypatc
     assert len(json.loads(meta["segments"])) == 2                          # the crashed segment is kept
     assert {r["source"] for r in t.to_pylist()} <= {"AIME 2024", "AIME 2025"}
     assert len(F0b.bench_items()) == 60
+
+
+def test_rule2_one_sided_wilson_edges():
+    """Amendment 18 note (Nov 27): rule 2 is one-sided. A perfect run passes against DPO's submitted 959/960 (a
+    two-sided interval would fail it); RLVR's 960/960 tolerates 3 invalid of 960, not 4; DPO's tolerates 5, not 6."""
+    from exp.analysis.b1_summary import wilson
+    ok = lambda k_sub, k_fast, n=960: k_fast / n >= wilson(k_sub, n)[0]   # noqa: E731
+    assert ok(959, 960) and wilson(959, 960)[1] < 1.0
+    assert ok(960, 957) and not ok(960, 956)
+    assert ok(959, 955) and not ok(959, 954)

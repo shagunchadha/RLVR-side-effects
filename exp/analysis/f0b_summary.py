@@ -11,10 +11,13 @@ percentile bootstrap 10,000, seed 20261024, per-label generator; Wilcoxon).
 
 Registered pass rule (amendment 18, F0b), all of:
   1. the reproduced B1-H1 point estimate lies inside the submitted interval [+0.131, +0.233];
-  2. per arm (RLVR, DPO), the reproduced valid rate lies inside the submitted valid rate's bootstrap interval;
+  2. per arm (RLVR, DPO), the reproduced valid rate (valid generations / generations) is at or above the 95% Wilson
+     lower bound of the submitted valid rate (one-sided; changed Nov 27, before any F0b generation ran, because the
+     submitted RLVR 960/960 gave a [1, 1] bootstrap interval that one invalid generation would fail; registration
+     doc, note under amendment 18). RLVR 960/960 -> at most 3 invalid of 960; DPO 959/960 -> at most 5;
   3. per arm, the reproduced mean think tokens lie inside the submitted mean think tokens' bootstrap interval.
-Valid rate and think tokens use the same unit as B1-H1: per wording (mean over its generations), then the mean over
-wordings, bootstrapped over wordings. The throughput benchmark (part bench) is summarised from its shard metadata.
+Think tokens use the same unit as B1-H1: per wording (mean over its generations), then the mean over wordings,
+bootstrapped over wordings. The throughput benchmark (part bench) is summarised from its shard metadata.
 """
 import argparse
 import collections
@@ -48,6 +51,11 @@ def _progress_arms(root):
         if g:
             out[d.name.split("__")[0]] = g
     return out
+
+
+def valid_count(gen):
+    k = sum(1 for r in gen.values() if r["status"] == "valid" and r.get("answer_strict") is not None)
+    return k, len(gen)
 
 
 def per_wording(gen):
@@ -86,17 +94,18 @@ def main(argv=None):
               f"| fast path | {SC.fmt(r_h1)} |", "",
               f"- Rule 1, point estimate inside [+0.131, +0.233]: **{'pass' if ok1 else 'FAIL'}** ({r_h1['mean']:+.3f}).", ""]
         L += ["## Per arm: valid rate and mean think tokens (per wording, then mean)", "",
-              "| arm | generations (submitted / fast) | valid rate, submitted [95% CI] | valid rate, fast | "
+              "| arm | generations (submitted / fast) | valid, submitted [95% Wilson lower bound] | valid, fast | "
               "think tokens, submitted [95% CI] | think tokens, fast | rule 2 | rule 3 |", "|---|---|---|---|---|---|---|---|"]
         for c in ("rlvr", "dpo"):
-            sv, stt = per_wording(sub[c])
-            rv, rtt = per_wording(rev[c])
-            vm, vlo, vhi = SC.ci_mean(list(sv.values()), f"F0b|valid|{c}")
+            _, stt = per_wording(sub[c])
+            _, rtt = per_wording(rev[c])
+            (ks, ns), (kf, nf) = valid_count(sub[c]), valid_count(rev[c])
+            vlo = B1S.wilson(ks, ns)[0]
             tm, tlo, thi = SC.ci_mean(list(stt.values()), f"F0b|think|{c}")
-            rvm, rtm = float(np.mean(list(rv.values()))), float(np.mean(list(rtt.values()))) if rtt else float("nan")
-            ok2, ok3 = vlo <= rvm <= vhi, tlo <= rtm <= thi
+            rtm = float(np.mean(list(rtt.values()))) if rtt else float("nan")
+            ok2, ok3 = nf > 0 and kf / nf >= vlo, tlo <= rtm <= thi
             checks += [ok2, ok3]
-            L.append(f"| {c.upper()} | {len(sub[c])} / {len(rev[c])} | {vm:.3f} [{vlo:.3f}, {vhi:.3f}] | {rvm:.3f} | "
+            L.append(f"| {c.upper()} | {ns} / {nf} | {ks}/{ns} = {ks / ns:.4f} [{vlo:.4f}] | {kf}/{nf} = {kf / max(nf, 1):.4f} | "
                      f"{tm:.0f} [{tlo:.0f}, {thi:.0f}] | {rtm:.0f} | {'pass' if ok2 else 'FAIL'} | {'pass' if ok3 else 'FAIL'} |")
         L.append("")
     else:

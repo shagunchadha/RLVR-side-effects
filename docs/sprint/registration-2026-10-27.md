@@ -972,3 +972,15 @@ Same hypotheses and outcomes as amendments 3, 5 and 7, with the following change
   - `results/eacl_revision_1/<job>/summary.md`, plus a line in `docs/eacl_revision_1/status.md` with what ran, what changed vs the submitted results, and any contradiction of a paper claim, stated plainly;
   - commit and push to `eacl_revision_1`.
 - **Design changes:** any further change to a registered design is a new dated amendment, approved by the PI first.
+
+### Note to amendment 18 (Nov 27, 2026): F0b rule 2 changed before any F0b generation ran
+
+Approved by the PI on Nov 27, 2026. Made **before any F0b generation ran**: the F0b code was committed (`509828b`), but no F0b job had been launched on a GPU.
+
+- **Reason:** the submitted RLVR valid rate is 960/960, so its bootstrap interval is [1.000, 1.000], and the original rule 2 would fail F0b on a single invalid generation out of 960. That is sampling noise, not evidence that the fast path is broken.
+- **Rule 2 now:** per arm, the fast path passes if its valid rate (valid generations / generations, B1's validity definition) is **at or above the 95% Wilson lower bound** of the submitted valid rate.
+  - RLVR, submitted 960/960: lower bound 0.9960, so at most 3 invalid out of 960 pass.
+  - DPO, submitted 959/960: lower bound 0.9941, so at most 5 invalid out of 960 pass.
+- **Why one-sided:** a two-sided 95% Wilson interval would also fail a run that is *better* than submitted. DPO's submitted 959/960 gives [0.9941, 0.9998], so a perfect 960/960 run would land above it. Rule 2 exists to catch the fast path breaking generations, so only a drop counts.
+- **Rules 1 and 3 are unchanged:** the B1-H1 point estimate inside [+0.131, +0.233], and mean think tokens inside the submitted bootstrap interval.
+- **Implementation:** `exp/analysis/f0b_summary.py`; `tests/sprint/test_fastpath.py::test_rule2_one_sided_wilson_edges` checks the edges.
