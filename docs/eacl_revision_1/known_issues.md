@@ -72,3 +72,20 @@ FileNotFoundError: ...\store\runs\B6\syc__rlvr\7b9bc789aef3\shard_000.parquet
   - The fake engine returns suffixed internal ids from `enqueue` and plain external ids in the outputs, as vLLM 0.31 does.
   - New tests cover an unknown output id, an enqueue id without the suffix, and the id parser.
   - Against the previous `harness.py`, the stream test fails with exactly the smoke error ("2 requests never finished"). With the fix, the CPU suite passes: 93 passed.
+
+## F1 scorers: upstream properties found while testing on known examples (Nov 27–28, 2026)
+
+None of these is fixed in our code. They are recorded so the F1 numbers can be read correctly. Full detail is in the registration note to amendment 18 of Nov 28.
+
+1. **OLMES EM Flex (the developers' maths scorer) turns `\left(` into `\le(`.** lm_eval 0.4.3's `normalize_final_answer` deletes the unit "ft". A correct tuple or interval written without `\left…\right` is therefore scored wrong. math-verify, the primary scorer, scores it right.
+2. **OLMES EM Flex scores a leading-zero answer (`\boxed{073}`) wrong:** sympy refuses to parse "073". math-verify scores it right.
+3. **The IFEval and IFBench checkers are nondeterministic:** they draw `random` values for arguments an item does not give. Unseeded reruns of Google's code on its own GPT-4 responses gave prompt-strict 416 or 417 of 541. F1 seeds `random` and `langdetect` before every check.
+4. **OLMES's `nltk` 3.8.1 cannot load `punkt_tab`.** It rewrites the path to `punkt/PY3_tab` and raises `OSError`, which IFBench does not catch, so IFBench crashes. Pinned to IFBench's own `uv.lock` (`nltk` 3.9.2).
+5. **IFBench's committed expected results (Oct 2025) predate later checker fixes.**
+   - The Oct-2025 code reproduces all 293 strict records.
+   - The pinned head differs on 5 records (`format:list`, `ratio:overlap`, `ratio:sentence_type`).
+   - One expected-results record is malformed upstream: about 7 tab-joined rows in one "prompt".
+6. **The data copies differ upstream.**
+   - IFBench's repo has two copies of the test set; they differ by trailing whitespace on 2 prompts.
+   - Google's GitHub IFEval data corrected one prompt (key 2785) after the HF release.
+   - F1 uses the HF versions, which are the developers' inputs.

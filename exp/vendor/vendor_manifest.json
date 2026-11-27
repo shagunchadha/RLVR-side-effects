@@ -1,0 +1,262 @@
+[
+ {
+  "file": "exp/vendor/lm_eval_math/minerva_utils.py",
+  "upstream": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/3fa4fd725c8a428710109f1d6c14eda37e95baea/lm_eval/tasks/minerva_math/utils.py",
+  "license": "MIT",
+  "upstream_sha256": "59604119822c2d48f48b01152c07ad04c24099620153b8a1eac4218256ce1c6c",
+  "vendored_sha256": "4cb83c83c93983d0487ec4c9c726428b4e33e68b65d386631356c2993dcc06d2",
+  "modified": true,
+  "rewrites": [
+   "import datasets",
+   "from lm_eval.utils import eval_logger",
+   "prepended `from __future__ import annotations`"
+  ]
+ },
+ {
+  "file": "exp/vendor/lm_eval_math/hendrycks_utils.py",
+  "upstream": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/3fa4fd725c8a428710109f1d6c14eda37e95baea/lm_eval/tasks/hendrycks_math/utils.py",
+  "license": "MIT",
+  "upstream_sha256": "8332e42f23c62043b23d74ee6d3934f997b209cd60a1ad45b7882d6b00929d5c",
+  "vendored_sha256": "ec08bbfbbbab7ec6c6ed91f8fd59bbcbd697676dda2aaa49fc9c5e5d92756436",
+  "modified": true,
+  "rewrites": [
+   "import datasets",
+   "prepended `from __future__ import annotations`"
+  ]
+ },
+ {
+  "file": "exp/vendor/lm_eval_math/LICENSE.md",
+  "upstream": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/3fa4fd725c8a428710109f1d6c14eda37e95baea/LICENSE.md",
+  "license": "MIT",
+  "upstream_sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f",
+  "vendored_sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/olmes_reference/minerva_math.py.txt",
+  "upstream": "https://raw.githubusercontent.com/allenai/olmes/5a51f502d463b8cdc4a2dcad7d7096c41ff1197e/oe_eval/tasks/oe_eval_tasks/minerva_math.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "ba5715b9ad37477337a097de7e7a479a7a6920f9fe0551fc4718dfe6f0e656ee",
+  "vendored_sha256": "ba5715b9ad37477337a097de7e7a479a7a6920f9fe0551fc4718dfe6f0e656ee",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/olmes_reference/aime.py.txt",
+  "upstream": "https://raw.githubusercontent.com/allenai/olmes/5a51f502d463b8cdc4a2dcad7d7096c41ff1197e/oe_eval/tasks/oe_eval_tasks/aime.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "d8f788af52a5dca84185cb1cc69d2055dd94e37a0e652530f2dd3ea1d7dde98d",
+  "vendored_sha256": "d8f788af52a5dca84185cb1cc69d2055dd94e37a0e652530f2dd3ea1d7dde98d",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/olmes_reference/tasks.py.txt",
+  "upstream": "https://raw.githubusercontent.com/allenai/olmes/5a51f502d463b8cdc4a2dcad7d7096c41ff1197e/oe_eval/configs/tasks.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "a2e63e044af9b9fc47949647839852aeb435292319d6e0ebb14dddaf21edcfe7",
+  "vendored_sha256": "a2e63e044af9b9fc47949647839852aeb435292319d6e0ebb14dddaf21edcfe7",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/olmes_reference/LICENSE",
+  "upstream": "https://raw.githubusercontent.com/allenai/olmes/5a51f502d463b8cdc4a2dcad7d7096c41ff1197e/LICENSE",
+  "license": "Apache-2.0",
+  "upstream_sha256": "62fb8a3a9621dc2388174caaabe9c2317b694bb9a1d46c98bcf5655b68f51be3",
+  "vendored_sha256": "62fb8a3a9621dc2388174caaabe9c2317b694bb9a1d46c98bcf5655b68f51be3",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/ifeval_google/instructions.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+  "vendored_sha256": "ee0ee369b377715d18043f3737bc10c37c505fcb856c04cbe942658b09b9b0db",
+  "modified": true,
+  "rewrites": [
+   "from instruction_following_eval import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifeval_google/instructions_registry.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_registry.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+  "vendored_sha256": "ab9c1bd3785d28caa0be4f36aa2711a456bdae6f27be8e314e25cbb2bbd1aeca",
+  "modified": true,
+  "rewrites": [
+   "from instruction_following_eval import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifeval_google/instructions_util.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_util.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+  "vendored_sha256": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/ifeval_google/evaluation_lib.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/evaluation_lib.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+  "vendored_sha256": "73b7d0551b4c18b91067396c6259def7ec6b0e9cb99f4560543b3215c16a9a59",
+  "modified": true,
+  "rewrites": [
+   "from instruction_following_eval import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifeval_google/instructions_test.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_test.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "e677c190c393162f7733e89ca3b47ae98b6d9e816d800681d6e14ad918128de5",
+  "vendored_sha256": "cc29d6d2a2f9195f70a5d622b0cbb2cd77d46ecc178a63f3bea55e5b6c6908b5",
+  "modified": true,
+  "rewrites": [
+   "from instruction_following_eval import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifeval_google/instructions_util_test.py",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_util_test.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "e8e17d434e074c6e2ad997334f4d743b3cafe0abf15cca46d4cf97b94d67ccfe",
+  "vendored_sha256": "0026cf69318ad0165fca7175ad128d6881f8cc32a31e791f0bf7927a9774c326",
+  "modified": true,
+  "rewrites": [
+   "from instruction_following_eval import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifeval_google/LICENSE",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/LICENSE",
+  "license": "Apache-2.0",
+  "upstream_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "vendored_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/ifbench/instructions.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/ifbench/instructions.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "d3390118284ad4679f3c202ecfcd55811dc3e5a99fd94fced7320a7e718dcfdf",
+  "vendored_sha256": "0d77101780361d3f318e358f5ade6a8eded2c7d64d0232fac437cf41ff92e576",
+  "modified": true,
+  "rewrites": [
+   "from ifbench import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench/instructions_registry.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/ifbench/instructions_registry.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "5119f2919261c77566f698f2f367883aff56cf89443bac5a56b6e30ddbd5aef9",
+  "vendored_sha256": "cd74c584af4ca920887f548e893da5b41da7166a070732eed0eb1df9b36b98de",
+  "modified": true,
+  "rewrites": [
+   "from ifbench import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench/instructions_util.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/ifbench/instructions_util.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "6996a6efaf6e3c92a2e926881eadc8c0262fb8d06c8cb56394ef7322f69e1930",
+  "vendored_sha256": "6996a6efaf6e3c92a2e926881eadc8c0262fb8d06c8cb56394ef7322f69e1930",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "exp/vendor/ifbench/classic_instructions.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/ifbench/classic_instructions.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "d26e642f2e71e4f57218e5e05f098a22e36311485779baac401161d3228c9973",
+  "vendored_sha256": "dd930ca2e875e5269c55399fd3d2b22e014543c8953550dfd0596b23928c2610",
+  "modified": true,
+  "rewrites": [
+   "from ifbench import",
+   "from ifbench.instructions import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench/evaluation_lib.py",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/evaluation_lib.py",
+  "license": "Apache-2.0",
+  "upstream_sha256": "3c37d11cf10718ec90ca14c5873a8ae7d1b666417a39ded498f835699961b533",
+  "vendored_sha256": "ae92e06961c69435aacdd886390e8d1d4636027a94dd8980db897a33244d4c1e",
+  "modified": true,
+  "rewrites": [
+   "from ifbench import"
+  ]
+ },
+ {
+  "file": "exp/vendor/ifbench/LICENSE",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/LICENSE",
+  "license": "Apache-2.0",
+  "upstream_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "vendored_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifbench_sample_output.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/data/sample_output.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "f9ad5227e47b175d91ec18c1b9ae222e71c64c7aaf1696f915e83efc00f62b3a",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifbench_eval_results_loose.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/eval/eval_results_loose.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "5a4140596b2b3b850f14b512080d99debd64e9b98a3263e741311280d98adea2",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifbench_eval_results_strict.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/eval/eval_results_strict.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "88eba686eb38c3198a4828115c75bf63fb64f48f4ec51bb7fc2348a6ba240e4a",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifbench_test.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/allenai/IFBench/488918665d53f867fa908a293769ec6e71e74aec/ifbench/data/IFBench_test.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "a2bf7b8e7ed11d39c65b4ec781da8b99663ed0121f97033d70fcecb61f8a9d85",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifeval_input_data.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/data/input_data.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ },
+ {
+  "file": "tests/sprint/fixtures/revision/ifeval_gpt4_responses.jsonl.gz",
+  "upstream": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl",
+  "license": "Apache-2.0",
+  "upstream_sha256": "0cff1d1469b774e80296bee20ca696894df35f3c6d6539f2c886d67c07599dcb",
+  "vendored_sha256": "(gzip of upstream bytes)",
+  "modified": false,
+  "rewrites": []
+ }
+]

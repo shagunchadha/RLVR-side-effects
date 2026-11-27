@@ -1,0 +1,10 @@
+# F1 work units for N6 (registration amendment 18): <ckpt>:<bench>, run top to bottom, AIME first.
+# Re-read after a git pull before every unit, so units can be moved between lanes mid-run (never move a running one).
+rlvr:aime2024
+rlvr:aime2025
+dpo:aime2024
+rlvr:math500
+dpo:math500
+rlvr:ifeval
+rlvr:ifbench
+dpo:ifeval

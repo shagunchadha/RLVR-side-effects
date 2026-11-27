@@ -1,2 +1,4 @@
 *.sh text eol=lf
 items_sprint/** -text
+items_revision/** -text
+tests/sprint/fixtures/revision/** -text

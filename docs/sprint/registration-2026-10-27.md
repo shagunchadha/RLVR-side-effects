@@ -984,3 +984,41 @@ Approved by the PI on Nov 27, 2026. Made **before any F0b generation ran**: the 
 - **Why one-sided:** a two-sided 95% Wilson interval would also fail a run that is *better* than submitted. DPO's submitted 959/960 gives [0.9941, 0.9998], so a perfect 960/960 run would land above it. Rule 2 exists to catch the fast path breaking generations, so only a drop counts.
 - **Rules 1 and 3 are unchanged:** the B1-H1 point estimate inside [+0.131, +0.233], and mean think tokens inside the submitted bootstrap interval.
 - **Implementation:** `exp/analysis/f0b_summary.py`; `tests/sprint/test_fastpath.py::test_rule2_one_sided_wilson_edges` checks the edges.
+
+### Note to amendment 18 (Nov 28, 2026): F1 sources, prompts and scorers, fixed before any F1 generation
+
+Fixed **before any F1 generation ran**; no F1 job had been launched. The PI chose the AIME 2025 source on Nov 27 (below). Everything else here implements F1 as registered.
+
+- **AIME 2025 source (PI's decision, Nov 27):** `allenai/aime-2021-2025` @ `73e1eba7`, year 2025. This is the developers' OLMES source, used **instead of the registered `MathArena/aime_2025`**.
+  - The two have the same 30 answers.
+  - The wording differs in 27 of 30 problems, so only the developers' text makes the 5-point comparison like-for-like.
+- **Other sources, each frozen with its file sha256** (`items_revision/F1_*.json`, `items_revision/MANIFEST.sha256`, built by `items_revision/build_F1.py`):
+  - **AIME 2024:** the same file, year 2024. It is identical to `HuggingFaceH4/aime_2024` @ `2fe88a2f`.
+  - **MATH-500:** `HuggingFaceH4/MATH-500` @ `6e4ed1a2`. It is byte-identical to OpenAI's split (`openai/prm800k` `math_splits/test.jsonl`, sha256 `35dc4108…`).
+  - **IFEval:** `google/IFEval` @ `966cd895`, as registered. This is the same repository as `HuggingFaceH4/ifeval`, which OLMES loads.
+    - Google's GitHub `input_data.jsonl` later corrected one prompt (key 2785, "one" → "3" placeholders).
+    - The HF version is used because it is the developers' input.
+  - **IFBench:** `allenai/IFBench_test` @ `ed7c1245`, OLMES's source. It is identical to `ifbench/data/IFBench_test.jsonl` in `allenai/IFBench` @ `48891866`; the repo's `data/` copy differs only by trailing whitespace on keys 13 and 19.
+- **Prompts** are verbatim from OLMES @ `5a51f502` (`olmo3:adapt` configs), as one user turn under the checkpoint's native template:
+  - MATH-500: `problem.strip()` + `"\n\nPresent the answer in LaTex format: \boxed{Your answer}"`;
+  - AIME: the problem + the same suffix;
+  - IFEval / IFBench: the prompt as given.
+- **Generation settings where OLMES's configs differ from the report:** amendment 18 follows the report.
+  - OLMES's `aime:*::olmo3:adapt` caps generation at 16,384 tokens. F1 uses the report's 32,768 (Table 15/16) plus continuation, as registered.
+  - OLMES's `ifbench::olmo3:adapt` stops at `"</answer>"`. F1 uses no stop string: generation runs to EOS or the cap, as registered.
+- **Maths scorers:**
+  - **Primary:** math-verify 0.9.0 on the last `\boxed{}` of the response, against the dataset answer.
+  - **Cross-check:** OLMES EM Flex, re-stated from OLMES `minerva_math.py` / `aime.py`, with lm_eval 0.4.3's utilities vendored at pinned commits (`exp/vendor/VENDOR.md`). Gold as OLMES builds it.
+  - **Two properties of the developers' flex scorer are kept, not fixed,** so the cross-check stays like-for-like:
+    - "ft" is deleted during normalisation, so `\left(` becomes `\le(`: a correct tuple written without `\left…\right` is scored wrong;
+    - an answer with a leading zero (`\boxed{073}`) fails sympy parsing and is scored wrong.
+  - math-verify handles both.
+- **Instruction-following checkers:** Google's `instruction_following_eval` @ `e6890f85` and `allenai/IFBench` @ `48891866`, vendored with import rewrites only.
+  - **Seeding:** both draw `random` values for unspecified arguments. F1 seeds `random` and `langdetect` with 0 before every check, so its scores are reproducible; no checker code is changed.
+  - **Pins:** the checkers' dependencies follow IFBench's `uv.lock`: `nltk` 3.9.2, `emoji` 2.15.0, `immutabledict` 4.2.2, `absl-py` 2.3.1. OLMES's `nltk` 3.8.1 cannot load `punkt_tab` and breaks IFBench.
+  - **Validation on CPU, against known examples** (`tests/sprint/test_revision_scorers.py`):
+    - **Maths:** hand-checked correct answers formatted differently, wrong answers, the last-`\boxed` rule, and unclosed think blocks.
+    - **IFEval:** Google's own unit tests pass. Google's GPT-4 responses score 417/541 prompt-strict, 431 prompt-loose, 698/834 instruction-strict and 714 instruction-loose, within 2 of every value published in arXiv 2311.07911 Table 3 (416 / 429 / 697 / 712). The published values are one draw of the checker's randomness: unseeded reruns of the same code gave 416 or 417.
+    - **IFBench:** IFBench @ `c94da020`, the commit of its committed expected results, reproduces all 293 strict records exactly. The pinned head differs on 5 records (keys 82, 85, 148, 163, 214), all in checkers fixed after Oct 2025 (`format:list`, `ratio:overlap`, `ratio:sentence_type`).
+- **Scoring runs on CPU after generation:** the GPU jobs need no new package. `requirements_revision.txt` is resolved against `requirements_sprint.txt` as a constraint, so no sprint pin changes.
+- **Engine settings stay out of F1's config hash:** `FAST_ENGINE`, `gpu_memory_utilization` and the attention backend are recorded per process segment. They change throughput, not the sampling distribution, so retuning them resumes from saved progress. Everything that defines the samples is in the hash: items, samples, seeds, sampling, caps and the continuation rule.

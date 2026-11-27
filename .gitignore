@@ -16,3 +16,4 @@ results/sprint/sft_matched_prompt/partial/
 
 # local cache of HF shards downloaded by exp/analysis (raw outputs live in the HF dataset)
 results/sprint/_hf/
+results/eacl_revision_1/_hf/
