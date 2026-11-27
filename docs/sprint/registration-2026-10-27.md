@@ -736,3 +736,239 @@ Committed at about 08:00 IST, at the PI's request, with both notebooks down (N2 
 - Enforced in `exp/jobs/B6_controls.py` (`PART_LANE`): each RLVR part runs only on its assigned lane, so the two lanes never write the same file.
 - **M6 is not rerun.** Its A − D bootstrap intervals were lost to a shard-writer defect (disclosure ledger, Nov 4). M6 is reported descriptively, from the point estimates.
 - No design, item set, seed count or hypothesis changes.
+
+---
+
+## Amendment 18 (Nov 27, 2026): revision fixes F0–F6 (branch `eacl_revision_1`)
+
+**Approved by the PI on Nov 27, 2026, before any F-job ran.** The PI's answers to the draft, recorded here:
+- AIME uses 32 samples;
+- the figures are the paper's `fig1_dose`, `fig2_prefix_swap` and `fig3_trajectory_ablation`;
+- `requirements_revision.txt` is approved, with exact pins;
+- both sets of numbers are kept, with corrected numbers reported as post-freeze;
+- the eight design decisions of the draft are approved;
+- a random-direction steering control is added for the DPO α = 2 row (F2).
+
+- **Context:** written after submission (tag `submitted-2026-11-07`, frozen `main`). It is post hoc to every result it revisits, so all of it is **post-hoc revision work**, not blind.
+- **Storage:**
+  - code, results and docs live only on `eacl_revision_1`: results in `results/eacl_revision_1/<job>/`, docs in `docs/eacl_revision_1/`;
+  - nothing stored under `results/sprint/`, `results/analysis/` or on HF `runs/` is overwritten, and new HF objects go under `runs/eacl_revision_1/` and `progress/eacl_revision_1/`.
+- **Reporting rule:**
+  - Both sets of numbers are kept in the repo. The submitted numbers remain the submitted numbers.
+  - The corrected numbers from F1 and F3 (and the reruns of F2, F4 and F5) are reported as **post-freeze** results, **alongside** the submitted ones they revisit, never silently in their place.
+  - Which numbers the paper uses is a later decision, by the PI.
+
+### Common to F0–F6
+
+- **Checkpoints, templates, seeds, units and statistics:** as in "Fixed design facts" and amendment 3 unless stated:
+  - percentile bootstrap, 10,000 resamples, seed 20261024, generator `default_rng([20261024, crc32(label)])`;
+  - two-sided Wilcoxon;
+  - pairing by item.
+- **Environment:**
+  - `requirements_sprint.txt` exactly, checked by `exp/versioncheck.py` at start; every notebook sets `HF_REPO` and never prints `HF_TOKEN`.
+  - **New packages** (F1 scorers only) are added to a separate pinned file, `requirements_revision.txt`, before F1 runs. Each is pinned to an exact version or git commit, with its sha256 recorded. Candidates: `math-verify`; the IFEval checker as vendored in OLMES (`allenai/olmes` at a fixed commit); IFBench's checker (`allenai/IFBench` at a fixed commit) with their dependencies (`langdetect`, `nltk` + data, `immutabledict`, `emoji`, `syllapy`). No existing pin changes.
+- **Hardware:** molab, RTX PRO 6000 96 GB, at most two notebooks (lanes N2, N6), 28 GiB RAM budget, staged lane launch.
+- **Resume:** every job resumes from per-unit progress files mirrored to HF, as before.
+- **Generation cap and "cap-hit continuation" (used in F1, F2, F3, F4):**
+  - **Context limit:** the checkpoints support a **total** context of 65,536 tokens (Olmo 3 report §3, YaRN on full-attention layers). A "65,536" cap is therefore applied as `min(65,536, 65,536 − prompt tokens)` new tokens; any generation with no room left is recorded as such.
+  - **Method:** a generation that hits a cap is **continued** from its own prompt + generated token ids, at the same model, template and sampling, up to the higher cap. It is not resampled from scratch.
+    - Continuing a truncated sample draws from exactly the distribution a run with the higher cap would have drawn from.
+    - Resampling only the capped items would replace long samples with fresh, mostly shorter ones, which biases lengths and accuracies down.
+  - **Disclosure:** the continuation uses a different RNG stream, and for HF-generated originals a different engine (vLLM). Both are disclosed.
+  - **Reporting:** for every job, the cap-hit rate is reported at each cap stage (original, 32,768, 65,536).
+  - **Unresolved generations:** a generation still capped at the final stage (65,536, or the context limit) is **unresolved**.
+    - It is not dropped: it stays in every denominator.
+    - It is scored as it stands, under the job's own rule for unclosed or truncated output. For example, no answer means incorrect or invalid, as registered, and think length is counted at the cap and flagged.
+    - Unresolved counts are reported per job × arm (and per benchmark in F1).
+
+### F0. Infrastructure (no effect on any registered metric)
+
+**F0a. `test_b6_items_grading_and_syc_flow`.**
+1. Rerun on Linux with the pinned environment. This is a CPU-only molab cell; no GPU is used.
+2. Diagnose why `part="syc"` returns 0 and writes no `runs/B6/syc__rlvr/` shard.
+3. Fix the cause, and add a regression assertion that a `syc` run with a non-empty selection writes a shard.
+4. Record the cause in `docs/eacl_revision_1/known_issues.md`.
+
+The fix touches no stored result. It must land before F4's sycophancy run.
+
+**F0b. Generation throughput.**
+- **New generation path:** vLLM 0.31.0 (pinned), on one GPU:
+  - tensor-parallel 1, data-parallel 1 (one replica; a 7B bf16 model fits easily);
+  - `enable_prefix_caching=True`, `enable_chunked_prefill=True`;
+  - `max_num_seqs` and `max_num_batched_tokens` tuned for 32K outputs;
+  - `gpu_memory_utilization` ≤ 0.92, and host RAM within the 28 GiB budget.
+- **Recorded:** the exact engine arguments go in each job's config.json.
+- **Where the change goes:** the fast path is implemented in the shared generation step, `exp/harness.py` (`load_vllm`, `generate`), called through `exp/jobs/_gen.py: run_requests`, and in the per-job batching that feeds it. It is not a separate code path.
+- **Validation before any F-job uses the new path:** reproduce **B1-H1**, the RLVR − DPO sampled P(extreme) over the 48 A wordings × 20 seeds, under B1's protocol and 16,000 cap.
+  - **Why B1-H1 tests the new path (checked Nov 27):**
+    - B1's generation phase samples through exactly that step (`B1_likert.py` → `_gen.run_requests` → `harness.generate`);
+    - B1-H1 is computed from the parsed sampled answers of that phase alone;
+    - the HF readouts, which the fast path does not touch, do not enter B1-H1.
+  - **Submitted value:** +0.181 [+0.131, +0.233].
+  - **Pass:** the reproduced point estimate lies inside [+0.131, +0.233], and the per-arm valid rate and mean think tokens are within the submitted values' bootstrap intervals.
+  - **Fail:** the new path is not used. The cause is investigated and reported to the PI first.
+- **Throughput:** tokens/s, and the projected GPU-hours for F1–F4, are reported from a 32K-cap AIME benchmark run (not scored).
+
+### F1. Capability control (replaces B6 (i) as the capability control; B6 (i) stays reported as submitted)
+
+**Why.** B6 (i) used a 16K cap (27–29% truncated), a forced "ANSWER:" line and a non-standard subset, so it does not measure what the developers measured.
+
+**Protocol (Olmo 3 report, Table 15, Table 16, Appendix A.8).**
+- **Template and sampling:**
+  - native chat template, with each checkpoint's default system prompt; reasoning on;
+  - T = 0.6, top-p = 0.95, no top-k;
+  - max 32,768 new tokens, then cap-hit continuation to 65,536 (Common).
+- **Scoring:** the think block (`<think>…</think>`) is stripped before scoring, as the developers do.
+- **Prompts:** taken verbatim from the OLMES task configs at the pinned commit (MATH-500, AIME, IFEval, IFBench), with the config file sha256 recorded.
+
+| benchmark | items | samples per item | primary metric | cross-check |
+|---|---|---|---|---|
+| MATH-500 | 500 (HuggingFaceH4/MATH-500, pinned revision) | 3 (= the developers' "mean of three runs") | math-verify on the last `\boxed{}` | Minerva extraction + flex match ("EM Flex", the developers' scorer) |
+| AIME 2024 | 30 (pinned HF revision) | 32, avg@32 (the developers' N, Table 16) | math-verify | Minerva flex |
+| AIME 2025 | 30 (MathArena/aime_2025, pinned) | 32, avg@32 | math-verify | Minerva flex |
+| IFEval | 541 (google/IFEval, pinned) | 3 | official checker, prompt-level loose accuracy | prompt-level strict, instruction-level loose and strict |
+| IFBench | 300 (allenai/IFBench_test, pinned) | 3 | official checker, prompt-level loose accuracy | as IFEval |
+
+- **Checkpoints:** SFT, DPO, RLVR (main), at the registered SHAs. SFT on its own template is confounded with the system prompt for DPO − SFT (as everywhere). The F1 contrast of interest is RLVR − DPO, which is clean.
+- **Cap-hit rate:** reported per checkpoint × benchmark at 32,768 and after continuation to 65,536. A generation still capped at 65,536 is scored as it stands (no `\boxed{}` means incorrect), counted and flagged.
+
+**Comparison with the developers (gate before F1 is used anywhere).** Developer values (model card and Table 24):
+
+| | MATH | AIME24 | AIME25 | IFEval | IFBench |
+|---|---|---|---|---|---|
+| SFT | 94.4 | 69.6 | 57.6 | 77.9 | 30.0 |
+| DPO | 92.4 | 74.6 | 62.7 | 75.9 | 28.3 |
+| RLVR | 95.1 | 71.6 | 64.6 | 88.2 | 41.6 |
+
+- **Like-for-like scorers:** the comparison uses Minerva flex for maths and prompt-level loose for IF, at 32,768. This is the developers' cap; the 65,536 continuation is reported separately.
+- **Flag rule:** any cell with |ours − developers'| > 5 points is flagged.
+- **Investigation:** before F1 numbers are used, we check, in order:
+  1. the prompt template;
+  2. the extractor;
+  3. the dataset revision;
+  4. the system prompt;
+  5. the cap-hit rate.
+- **Outcome:** the cause, or "not found", is recorded in `results/eacl_revision_1/F1/summary.md`, and the PI is told before F1 goes on.
+
+**Statistics.**
+- **Primary:** paired RLVR − DPO per benchmark. Per item: the mean over samples (AIME: avg@32). Paired bootstrap over items, 10,000 resamples, seed 20261024 (per-label generator); Wilcoxon.
+- **Pooled maths:** an item-weighted pool over MATH-500 + AIME24 + AIME25. The pool is reported, but per-benchmark results are primary.
+- **avg@32 CI:** a bootstrap over problems of the per-problem mean.
+- **Secondary:** DPO − SFT (confounded, descriptive).
+
+**What counts as success.**
+- **F1 succeeds as a control** if every cell is within 5 points of the developers', or every gap > 5 has an identified, documented cause.
+- **Paper claim at stake:** "RLVR is no better at hard maths than its DPO parent".
+  - It is **contradicted** if RLVR − DPO on AIME25, AIME24 or MATH-500 has a 95% CI above 0.
+  - It is **supported** if every maths CI includes 0 or is below 0.
+  - Either way it is reported as found and flagged to the PI.
+
+### F2. Interventions (M5 rerun; replaces the seed-noise caveat)
+
+Same hypotheses and outcomes as amendments 3, 5 and 7, with the following changes.
+
+- **Items:** all 48 A wordings and all 50 D items (the first 50 base items, o0).
+- **Cross-fitting:** the offset vector and backtracking direction were fit on 24 TRAIN wordings, so they are now computed **2-fold cross-fitted**. Fold 1 fits on wordings {0, 2, 4} and evaluates on {1, 3, 5}; fold 2 is the reverse. Every A wording is therefore evaluated only by a vector fitted without it, and D items take the fold-1 vectors.
+- **Seeds:** 5 per condition (0–4); baselines also have 5 seeds.
+- **Layers:** 15, 19 and 23, for steering, ablation and patching. Patching at 4, 11 and 29 (submitted) is not rerun.
+- **Conditions per layer:**
+  - RLVR: −α·offset (α ∈ {0.5, 1, 2}); ablation of the backtracking direction.
+  - DPO: +α·offset (α ∈ {0.5, 1, 2}); patching of RLVR prompt residuals.
+  - **Random-direction ablation (RLVR):** 5 random directions.
+    - A projection-ablation of a unit vector has no free norm, so "norm-matched" means each random direction is drawn covariance-shaped: Σ^{1/2}g / ‖Σ^{1/2}g‖, with g ~ N(0, I) and Σ the residual covariance at that layer on TRAIN traces.
+    - This puts its removed energy on the scale of a real direction. The mean removed norm per token is reported for real and random directions.
+  - **Random-direction steering:** 5 random directions, each scaled to α·‖offset‖ at that layer (exact norm match).
+    - **α = 1:** applied as + on DPO and − on RLVR.
+    - **α = 2:** applied as + on DPO only.
+    - **Why these strengths (checked Nov 27 against the submitted PDF):** the paper's steering result, Appendix D.5 ("adding the RLVR-DPO offset raises extremity in both directions"), rests on the α = 1 rows of Table 8 (RLVR −offset, DPO +offset). Table 8 also reports DPO +offset at α = 2.
+    - **The α = 2 control was added at the PI's request (Nov 27):** 5 directions × 3 layers × 98 items × 5 seeds = 7,350 generations. Every steering row of Table 8 therefore has a norm-matched random control.
+  - Directions are drawn with seed 20261024 + layer.
+- **Generation:**
+  - HF `generate` with hooks (as submitted). A vLLM in-process hook path may replace it only if it reproduces HF's hooked logits on 20 teacher-forced A prompts (max |Δ logit| ≤ 0.05 in bf16) for every intervention type.
+  - Sampling 0.6 / 0.95. Cap 32,768, then cap-hit continuation to 65,536 under the same intervention.
+- **Size:** 86 conditions × 98 items × 5 seeds = 42,140 generations (estimate 12–25 GPU-hours, refined by F0b).
+  - The 86 conditions are 2 baselines plus 28 per layer × 3 layers.
+  - Per layer: 3 RLVR −offset; 3 DPO +offset; 1 ablation; 1 patching; 5 random ablations; 10 random steerings at α = 1; 5 random steerings at α = 2.
+- **Statistics, per condition, layer and outcome:**
+  - **Effect sizes:**
+    - the mean paired difference vs the model's baseline (per item, mean over 5 seeds), with a bootstrap CI over items;
+    - d_z (mean / SD of the paired differences), with a bootstrap CI.
+  - **Specificity:** Δ(real) − mean over the 5 random directions of Δ(random), per item, bootstrapped over items. Directions are fixed and their spread is reported.
+  - **Answer change:** against the seed-to-seed rate, which is now estimated from all baseline seed pairs.
+- **Registered primaries (unchanged):**
+  - the A/D length ratio at α = 1;
+  - the answer-change rate under ablation (< 10% and not above the seed-to-seed rate).
+- **Extremity:** reported as in amendment 5.
+- **Status:** exploratory, as before.
+- **Paper claim at stake:** "ablating backtracking removes RLVR's extra deliberation without reducing extremity". It is **contradicted** if, at layer 19, ablation's Δ P(extreme) is negative with a CI below 0 and below the random-ablation control.
+
+### F3. Truncation audit
+
+1. **Audit (CPU only, from stored data).** For every existing job with a generation cap, report the cap-hit fraction per job × arm (checkpoint, condition), from the stored `closed` / `n_new` / status columns:
+   - the frozen full run (4,000; E 16,000) and its matched-prompt SFT rerun;
+   - B1 and its bridge arm;
+   - B2, B3a/b, B4 (base 2,048; RL-Zero 16,000), B5, B6 (i), (iii) and (iv), B7, B8;
+   - PH (16,000 including the prefix);
+   - M5 (3,000).
+   - **Design windows, not truncation, so not rerun:** M4's 192-token persona responses and M6's 64 greedy think tokens. Their windows are stated.
+   - **B6 (i):** its rates are reported, but it is superseded by F1, not continued.
+2. **Rerun rule.** Every job × arm above 1% gets cap-hit continuation to 32,768, and anything still capped to 65,536 (Common).
+   - M5 is covered by F2, which runs at 32,768 from the start.
+   - The frozen full run is continued as a sensitivity analysis; the frozen results stay the frozen results.
+3. **Recompute** every registered statistic of each continued job, with the job's own analysis code unchanged, on the completed generations.
+4. **"Changes"**: a paper number is listed as **changed** if its verdict changes, or if its new point estimate falls outside its submitted 95% CI. Every number is tabulated old vs new in `results/eacl_revision_1/F3/changed_numbers.md`, with the changed ones marked.
+
+### F4. Registered but not run
+
+- **B4 RL-Zero Mix:** exactly amendment 10. That is: its own chat template, 0.6 / 0.95, 5 seeds, 16,000 cap, and the same items, parsing, length definition and analysis as the other four domains. Amendment 14's cut is lifted. After it runs, the F3 rule applies to it as to the other domains.
+- **B6 (ii) sycophancy:** exactly amendment 11. That is:
+  - the DPO pre-pass over the 400-item pool (10 seeds), with the 40–70% selection written and hashed before the main runs;
+  - 5 seeds on RLVR and DPO;
+  - the three elicitations; caving as defined; 16,000 cap.
+  - The third elicitation is the registered **substitute** (the user asserts a wrong option), labelled as such (amendment 11's note). It is not an assistant-prefill opener.
+  - After it runs, the F3 rule applies.
+- **Order:** F0a must pass first.
+
+### F5. M6 rerun
+
+- **Protocol:** exactly amendment 13, rerun with the fixed `store.write` (union of row keys). That covers the same inputs (SFT with the DPO system prompt, DPO's greedy 64 think tokens), positions, layers, linear CKA, and the A − D difference with a bootstrap over prompts (1,000 resamples, seed 20261024; a prompt's think tokens resampled together).
+- **Reproduction check:** the per-set CKA values must match the submitted shard within 1e-3. If any differs, the difference is reported and investigated before the intervals are interpreted.
+- **Verdict rule:** amendment 13's, unchanged.
+- **Added (exploratory):** the difference of A − D gaps between the pairs, (DPO↔RLVR) − (SFT↔DPO), per layer, with the same bootstrap. This is the direct test of "RLVR-specific".
+
+### F6. Statistics for the paper
+
+- **Figures:** the paper's three figures. Their plotting scripts are not in the repository, so each is rebuilt from the stored data by a new script in `exp/analysis/`.
+  - **Figure 1 (`fig1_dose`)**, from B5 (9 points: 8 in-run steps + final):
+    - (a) the A readout P(1) + P(5) per checkpoint, with the DPO reference line;
+    - (b) mean think tokens on A and D per checkpoint.
+  - **Figure 2 (`fig2_prefix_swap`)**, from PH: remaining think tokens by prefix source × continuing model, on A and D.
+  - **Figure 3 (`fig3_trajectory_ablation`)**:
+    - (a) from M3: the per-tenth A extreme share for RLVR and DPO, with the RLVR − DPO band;
+    - (b, c) from M5: think tokens and extreme share for RLVR, RLVR seed 2, RLVR ablated, and DPO.
+- **CIs:** every plotted point gets a 95% percentile bootstrap CI over the figure's units (A wordings, D items, or PH units), 10,000 resamples, seed 20261024, per-label generator. That includes reference lines (DPO in Figure 1a) and Figure 3a's per-line values, not only the existing difference band.
+- **Reproduction check:** before CIs are added, each rebuilt figure's point values must match the values quoted in the paper text. For example, Figure 2's "about 240" / "about 920" tokens at the 50% cut, and Figure 3b's 1175 → 506 tokens. Any mismatch is reported to the PI before going on.
+- **Two versions of each figure:**
+  - on the submitted data;
+  - on the post-freeze data, once it exists: B5 and PH after F3, and Figure 3 (b, c) from F2 (48 + 50 items, 5 seeds, layer 19, with the random-ablation control added).
+- **Benjamini–Hochberg adjusted p-values** are added beside the existing Holm values, within exactly the same families. Those are:
+  - frozen family 1 (behavioural rows, per comparison and form);
+  - frozen family 2 (8 traits, reporting-only);
+  - B1 {H1, H2}.
+- **No verdict changes:** BH is reported, not gating. Verdicts stay CI-based as registered.
+- **Outputs:** figures are regenerated into `results/eacl_revision_1/figures/`, and no paper file is touched.
+
+### Order, lanes, reporting
+
+- **Order:**
+  1. Step 0 (this amendment) → F0a, F0b.
+  2. F1 on N2 and F3 continuations on N6.
+  3. F2 on both lanes.
+  4. F4.
+  5. F5.
+  6. F6 (CPU).
+  - Both lanes are kept busy: a lane that finishes early takes the next item in order.
+- **After each job:**
+  - `results/eacl_revision_1/<job>/summary.md`, plus a line in `docs/eacl_revision_1/status.md` with what ran, what changed vs the submitted results, and any contradiction of a paper claim, stated plainly;
+  - commit and push to `eacl_revision_1`.
+- **Design changes:** any further change to a registered design is a new dated amendment, approved by the PI first.
