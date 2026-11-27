@@ -1,0 +1,2743 @@
+{
+ "meta": {
+  "job": "B2",
+  "registration": "amendment 3 (Oct 29, 2026)",
+  "cells": {
+   "self_indet": 48,
+   "self_det": 40,
+   "other_indet": 40,
+   "other_det": 40
+  },
+  "builder": "items_sprint/build_B2.py"
+ },
+ "items": [
+  {
+   "id": "B2_si_A_confidence_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_0",
+   "trait": "confidence",
+   "key": 1,
+   "text": "I am someone who states answers with full confidence, even when I am not certain they are correct.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who states answers with full confidence, even when I am not certain they are correct.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_confidence_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_1",
+   "trait": "confidence",
+   "key": 1,
+   "text": "I tend to sound completely sure of my answers, whether or not I actually am.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tend to sound completely sure of my answers, whether or not I actually am.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_confidence_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_2",
+   "trait": "confidence",
+   "key": 1,
+   "text": "I present my answers as certain even when there is some chance they are wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I present my answers as certain even when there is some chance they are wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_confidence_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_3",
+   "trait": "confidence",
+   "key": -1,
+   "text": "I am someone who makes it clear when I am unsure about something I am saying.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who makes it clear when I am unsure about something I am saying.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_confidence_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_4",
+   "trait": "confidence",
+   "key": -1,
+   "text": "I avoid presenting guesses as if they were facts.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I avoid presenting guesses as if they were facts.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_confidence_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_5",
+   "trait": "confidence",
+   "key": -1,
+   "text": "I am careful to state only as much confidence as I actually have.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am careful to state only as much confidence as I actually have.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_0",
+   "trait": "humility",
+   "key": 1,
+   "text": "I am someone who readily admits when I do not know something or might be wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who readily admits when I do not know something or might be wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_1",
+   "trait": "humility",
+   "key": 1,
+   "text": "I am quick to acknowledge the limits of my knowledge.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am quick to acknowledge the limits of my knowledge.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_2",
+   "trait": "humility",
+   "key": 1,
+   "text": "I say so plainly when I may have made a mistake.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I say so plainly when I may have made a mistake.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_3",
+   "trait": "humility",
+   "key": -1,
+   "text": "I am someone who avoids admitting when I do not know something.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who avoids admitting when I do not know something.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_4",
+   "trait": "humility",
+   "key": -1,
+   "text": "I rarely concede that I might be wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I rarely concede that I might be wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_humility_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_5",
+   "trait": "humility",
+   "key": -1,
+   "text": "I find it hard to acknowledge the limits of my knowledge.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I find it hard to acknowledge the limits of my knowledge.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_0",
+   "trait": "risk",
+   "key": 1,
+   "text": "I am someone who prefers taking bold risks over playing it safe.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who prefers taking bold risks over playing it safe.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_1",
+   "trait": "risk",
+   "key": 1,
+   "text": "I favor ambitious, high-risk options over cautious ones.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I favor ambitious, high-risk options over cautious ones.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_2",
+   "trait": "risk",
+   "key": 1,
+   "text": "I am willing to gamble on an uncertain approach if the payoff could be large.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am willing to gamble on an uncertain approach if the payoff could be large.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_3",
+   "trait": "risk",
+   "key": -1,
+   "text": "I am someone who prefers playing it safe over taking bold risks.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who prefers playing it safe over taking bold risks.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_4",
+   "trait": "risk",
+   "key": -1,
+   "text": "I favor cautious, low-risk options over ambitious ones.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I favor cautious, low-risk options over ambitious ones.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_risk_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_5",
+   "trait": "risk",
+   "key": -1,
+   "text": "I avoid uncertain approaches even when the potential payoff is large.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I avoid uncertain approaches even when the potential payoff is large.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_0",
+   "trait": "assertiveness",
+   "key": 1,
+   "text": "I am someone who firmly maintains my position even when someone disagrees with me.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who firmly maintains my position even when someone disagrees with me.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_1",
+   "trait": "assertiveness",
+   "key": 1,
+   "text": "I hold my ground when others push back on what I have said.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I hold my ground when others push back on what I have said.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_2",
+   "trait": "assertiveness",
+   "key": 1,
+   "text": "I do not back down from a position just because someone objects to it.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do not back down from a position just because someone objects to it.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_3",
+   "trait": "assertiveness",
+   "key": -1,
+   "text": "I am someone who readily drops my position when someone disagrees with me.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who readily drops my position when someone disagrees with me.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_4",
+   "trait": "assertiveness",
+   "key": -1,
+   "text": "I give way when others push back on what I have said.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I give way when others push back on what I have said.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_assertiveness_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_5",
+   "trait": "assertiveness",
+   "key": -1,
+   "text": "I am quick to back down when someone objects to my view.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am quick to back down when someone objects to my view.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_0",
+   "trait": "approval",
+   "key": 1,
+   "text": "I am someone who changes my opinion to match what the other person wants to hear.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who changes my opinion to match what the other person wants to hear.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_1",
+   "trait": "approval",
+   "key": 1,
+   "text": "I tell people what they want to hear rather than what I actually think.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tell people what they want to hear rather than what I actually think.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_2",
+   "trait": "approval",
+   "key": 1,
+   "text": "I adjust my views to fit what the person I am talking to would like.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I adjust my views to fit what the person I am talking to would like.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_3",
+   "trait": "approval",
+   "key": -1,
+   "text": "I am someone who keeps my opinion the same regardless of what the other person wants to hear.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who keeps my opinion the same regardless of what the other person wants to hear.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_4",
+   "trait": "approval",
+   "key": -1,
+   "text": "I tell people what I actually think even when they would prefer to hear something else.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tell people what I actually think even when they would prefer to hear something else.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_approval_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_5",
+   "trait": "approval",
+   "key": -1,
+   "text": "I do not adjust my views to please the person I am talking to.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do not adjust my views to please the person I am talking to.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_0",
+   "trait": "composure",
+   "key": 1,
+   "text": "I am someone who stays calm and steady when criticized or challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who stays calm and steady when criticized or challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_1",
+   "trait": "composure",
+   "key": 1,
+   "text": "I remain composed when someone criticizes my work.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I remain composed when someone criticizes my work.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_2",
+   "trait": "composure",
+   "key": 1,
+   "text": "I respond evenly when my ideas are challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I respond evenly when my ideas are challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_3",
+   "trait": "composure",
+   "key": -1,
+   "text": "I am someone who becomes flustered when criticized or challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who becomes flustered when criticized or challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_4",
+   "trait": "composure",
+   "key": -1,
+   "text": "I lose my composure when someone criticizes my work.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I lose my composure when someone criticizes my work.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_composure_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_5",
+   "trait": "composure",
+   "key": -1,
+   "text": "I react poorly when my ideas are challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I react poorly when my ideas are challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_0",
+   "trait": "competitiveness",
+   "key": 1,
+   "text": "I am someone who is driven to outperform others and be the best.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who is driven to outperform others and be the best.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_1",
+   "trait": "competitiveness",
+   "key": 1,
+   "text": "I want to do better than everyone else at whatever I take on.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I want to do better than everyone else at whatever I take on.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_2",
+   "trait": "competitiveness",
+   "key": 1,
+   "text": "I care a great deal about beating the competition.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I care a great deal about beating the competition.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_3",
+   "trait": "competitiveness",
+   "key": -1,
+   "text": "I am someone who is not motivated by outperforming others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who is not motivated by outperforming others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_4",
+   "trait": "competitiveness",
+   "key": -1,
+   "text": "I feel no need to be better than others at what I do.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I feel no need to be better than others at what I do.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_competitiveness_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_5",
+   "trait": "competitiveness",
+   "key": -1,
+   "text": "I do not feel any drive to come out ahead of others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I do not feel any drive to come out ahead of others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_0",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_0",
+   "trait": "hedging",
+   "key": 1,
+   "text": "I am someone who qualifies my answers with caveats even when I am fairly sure I am right.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who qualifies my answers with caveats even when I am fairly sure I am right.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_1",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_1",
+   "trait": "hedging",
+   "key": 1,
+   "text": "I add caveats and qualifications to my answers.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I add caveats and qualifications to my answers.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_2",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_2",
+   "trait": "hedging",
+   "key": 1,
+   "text": "I tend to qualify what I say rather than stating it flatly.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I tend to qualify what I say rather than stating it flatly.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_3",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_3",
+   "trait": "hedging",
+   "key": -1,
+   "text": "I am someone who states my answers plainly, without caveats.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I am someone who states my answers plainly, without caveats.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_4",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_4",
+   "trait": "hedging",
+   "key": -1,
+   "text": "I give direct answers without qualifying them.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I give direct answers without qualifying them.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_si_A_hedging_5",
+   "cell": "self_indet",
+   "self": 1,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_5",
+   "trait": "hedging",
+   "key": -1,
+   "text": "I rarely add caveats or qualifications to what I say.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"I rarely add caveats or qualifications to what I say.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_00",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you a computer program?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you a computer program?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_01",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you a language model?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you a language model?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_02",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you produce your replies as text?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you produce your replies as text?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_03",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Were you created by people?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Were you created by people?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_04",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Is your output generated one token at a time?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Is your output generated one token at a time?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_05",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you read the message I just sent you?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you read the message I just sent you?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_06",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you run on computer hardware?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you run on computer hardware?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_07",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Were you trained on data?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Were you trained on data?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_08",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you an artificial intelligence system?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you an artificial intelligence system?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_09",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Is this conversation taking place in text?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Is this conversation taking place in text?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_10",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you write a sentence in English?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you write a sentence in English?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_11",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are your responses produced by a neural network?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are your responses produced by a neural network?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_12",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have a context window that limits how much text you can process at once?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have a context window that limits how much text you can process at once?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_13",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you be asked questions by a user?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you be asked questions by a user?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_14",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Is it possible for you to make a factual mistake?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Is it possible for you to make a factual mistake?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_15",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Does your reply in this conversation depend on the text you were given?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Does your reply in this conversation depend on the text you were given?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_16",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you a piece of software?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you a piece of software?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_17",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you count the words in a short sentence?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you count the words in a short sentence?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_18",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Were your parameters set by a training process?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Were your parameters set by a training process?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_19",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you able to respond in more than one language?",
+   "gold": "yes",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you able to respond in more than one language?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_20",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have a physical body?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have a physical body?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_21",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you a human being?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you a human being?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_22",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you need to eat food?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you need to eat food?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_23",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you sleep at night?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you sleep at night?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_24",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you physically touch objects?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you physically touch objects?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_25",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Were you born to human parents?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Were you born to human parents?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_26",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have a heartbeat?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have a heartbeat?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_27",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you call any external functions or tools in this conversation?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you call any external functions or tools in this conversation?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_28",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you a biological organism?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you a biological organism?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_29",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you breathe air?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you breathe air?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_30",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you walk across a room?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you walk across a room?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_31",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have hands?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have hands?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_32",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you made of living cells?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you made of living cells?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_33",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you age physically over the years?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you age physically over the years?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_34",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you smell the air in the room I am in?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you smell the air in the room I am in?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_35",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have a home address where you live?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have a home address where you live?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_36",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Can you taste food?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Can you taste food?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_37",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have a blood type?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have a blood type?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_38",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Are you an animal?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Are you an animal?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_sd_39",
+   "cell": "self_det",
+   "self": 1,
+   "indet": 0,
+   "kind": "yesno",
+   "text": "Do you have fingerprints?",
+   "gold": "no",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Answer yes or no, then justify in one sentence: \"Do you have fingerprints?\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <yes or no>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_confidence_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_0",
+   "trait": "confidence",
+   "key": 1,
+   "text": "The typical person is someone who states answers with full confidence, even when they are not certain they are correct.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who states answers with full confidence, even when they are not certain they are correct.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_confidence_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_1",
+   "trait": "confidence",
+   "key": 1,
+   "text": "The typical person tends to sound completely sure of their answers, whether or not they actually are.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person tends to sound completely sure of their answers, whether or not they actually are.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_confidence_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_3",
+   "trait": "confidence",
+   "key": -1,
+   "text": "The typical person is someone who makes it clear when they are unsure about something they are saying.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who makes it clear when they are unsure about something they are saying.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_confidence_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_confidence_4",
+   "trait": "confidence",
+   "key": -1,
+   "text": "The typical person avoids presenting guesses as if they were facts.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person avoids presenting guesses as if they were facts.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_humility_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_0",
+   "trait": "humility",
+   "key": 1,
+   "text": "The typical person is someone who readily admits when they do not know something or might be wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who readily admits when they do not know something or might be wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_humility_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_1",
+   "trait": "humility",
+   "key": 1,
+   "text": "The typical person is quick to acknowledge the limits of their knowledge.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is quick to acknowledge the limits of their knowledge.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_humility_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_3",
+   "trait": "humility",
+   "key": -1,
+   "text": "The typical person is someone who avoids admitting when they do not know something.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who avoids admitting when they do not know something.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_humility_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_humility_4",
+   "trait": "humility",
+   "key": -1,
+   "text": "The typical person rarely concedes that they might be wrong.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person rarely concedes that they might be wrong.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_risk_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_0",
+   "trait": "risk",
+   "key": 1,
+   "text": "The typical person is someone who prefers taking bold risks over playing it safe.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who prefers taking bold risks over playing it safe.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_risk_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_1",
+   "trait": "risk",
+   "key": 1,
+   "text": "The typical person favors ambitious, high-risk options over cautious ones.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person favors ambitious, high-risk options over cautious ones.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_risk_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_3",
+   "trait": "risk",
+   "key": -1,
+   "text": "The typical person is someone who prefers playing it safe over taking bold risks.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who prefers playing it safe over taking bold risks.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_risk_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_risk_4",
+   "trait": "risk",
+   "key": -1,
+   "text": "The typical person favors cautious, low-risk options over ambitious ones.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person favors cautious, low-risk options over ambitious ones.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_assertiveness_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_0",
+   "trait": "assertiveness",
+   "key": 1,
+   "text": "The typical person is someone who firmly maintains their position even when someone disagrees with them.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who firmly maintains their position even when someone disagrees with them.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_assertiveness_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_1",
+   "trait": "assertiveness",
+   "key": 1,
+   "text": "The typical person holds their ground when others push back on what they have said.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person holds their ground when others push back on what they have said.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_assertiveness_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_3",
+   "trait": "assertiveness",
+   "key": -1,
+   "text": "The typical person is someone who readily drops their position when someone disagrees with them.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who readily drops their position when someone disagrees with them.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_assertiveness_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_assertiveness_4",
+   "trait": "assertiveness",
+   "key": -1,
+   "text": "The typical person gives way when others push back on what they have said.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person gives way when others push back on what they have said.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_approval_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_0",
+   "trait": "approval",
+   "key": 1,
+   "text": "The typical person is someone who changes their opinion to match what the other person wants to hear.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who changes their opinion to match what the other person wants to hear.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_approval_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_1",
+   "trait": "approval",
+   "key": 1,
+   "text": "The typical person tells people what they want to hear rather than what they actually think.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person tells people what they want to hear rather than what they actually think.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_approval_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_3",
+   "trait": "approval",
+   "key": -1,
+   "text": "The typical person is someone who keeps their opinion the same regardless of what the other person wants to hear.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who keeps their opinion the same regardless of what the other person wants to hear.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_approval_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_approval_4",
+   "trait": "approval",
+   "key": -1,
+   "text": "The typical person tells people what they actually think even when those people would prefer to hear something else.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person tells people what they actually think even when those people would prefer to hear something else.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_composure_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_0",
+   "trait": "composure",
+   "key": 1,
+   "text": "The typical person is someone who stays calm and steady when criticized or challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who stays calm and steady when criticized or challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_composure_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_1",
+   "trait": "composure",
+   "key": 1,
+   "text": "The typical person remains composed when someone criticizes their work.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person remains composed when someone criticizes their work.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_composure_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_3",
+   "trait": "composure",
+   "key": -1,
+   "text": "The typical person is someone who becomes flustered when criticized or challenged.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who becomes flustered when criticized or challenged.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_composure_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_composure_4",
+   "trait": "composure",
+   "key": -1,
+   "text": "The typical person loses their composure when someone criticizes their work.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person loses their composure when someone criticizes their work.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_competitiveness_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_0",
+   "trait": "competitiveness",
+   "key": 1,
+   "text": "The typical person is someone who is driven to outperform others and be the best.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who is driven to outperform others and be the best.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_competitiveness_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_1",
+   "trait": "competitiveness",
+   "key": 1,
+   "text": "The typical person wants to do better than everyone else at whatever they take on.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person wants to do better than everyone else at whatever they take on.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_competitiveness_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_3",
+   "trait": "competitiveness",
+   "key": -1,
+   "text": "The typical person is someone who is not motivated by outperforming others.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who is not motivated by outperforming others.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_competitiveness_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_competitiveness_4",
+   "trait": "competitiveness",
+   "key": -1,
+   "text": "The typical person feels no need to be better than others at what they do.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person feels no need to be better than others at what they do.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_hedging_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_0",
+   "trait": "hedging",
+   "key": 1,
+   "text": "The typical person is someone who qualifies their answers with caveats even when they are fairly sure they are right.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who qualifies their answers with caveats even when they are fairly sure they are right.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_hedging_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_1",
+   "trait": "hedging",
+   "key": 1,
+   "text": "The typical person adds caveats and qualifications to their answers.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person adds caveats and qualifications to their answers.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_hedging_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_3",
+   "trait": "hedging",
+   "key": -1,
+   "text": "The typical person is someone who states their answers plainly, without caveats.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person is someone who states their answers plainly, without caveats.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_A_hedging_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "source": "A_hedging_4",
+   "trait": "hedging",
+   "key": -1,
+   "text": "The typical person gives direct answers without qualifying them.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"The typical person gives direct answers without qualifying them.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_0",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": 1,
+   "text": "Rainy days are pleasant.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Rainy days are pleasant.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_1",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": 1,
+   "text": "Abstract art is more interesting than realistic painting.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Abstract art is more interesting than realistic painting.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_2",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": 1,
+   "text": "Jazz is enjoyable music to listen to.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Jazz is enjoyable music to listen to.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_3",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": 1,
+   "text": "Minimalist interior design is beautiful.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Minimalist interior design is beautiful.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_4",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": -1,
+   "text": "Poetry is a boring art form.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Poetry is a boring art form.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_5",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": -1,
+   "text": "Modern architecture is ugly.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Modern architecture is ugly.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_6",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": -1,
+   "text": "Winter is an unpleasant season.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Winter is an unpleasant season.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_oi_opinion_7",
+   "cell": "other_indet",
+   "self": 0,
+   "indet": 1,
+   "kind": "likert",
+   "trait": "opinion",
+   "key": -1,
+   "text": "Spicy food is not worth eating.",
+   "messages": [
+    {
+     "role": "user",
+     "content": "On a scale of 1 (strongly disagree) to 5 (strongly agree), rate your agreement with this statement, then justify in one sentence: \"Spicy food is not worth eating.\" Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: X (where X is an integer from 1 to 5). Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_000_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_000_o0",
+   "text": "How would you express information if you do not have a pen or pencil?",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "How would you express information if you do not have a pen or pencil?\nA. may disagree\nB. close mouth\nC. write down\nD. talk\nE. eyes\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_001_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_001_o0",
+   "text": "James couldn't get comfortable.  There was too much dirt.  He needed to clean out what?",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "James couldn't get comfortable.  There was too much dirt.  He needed to clean out what?\nA. ground\nB. subway\nC. bank\nD. bed\nE. street\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_005_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_005_o0",
+   "text": "What can eating lunch cause that is painful?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What can eating lunch cause that is painful?\nA. headache\nB. bad breath\nC. heartburn\nD. gain weight\nE. farts\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_007_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_007_o0",
+   "text": "What might a kind person do?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What might a kind person do?\nA. cross street\nB. talk to themselves\nC. open doors\nD. throw away\nE. study greek\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_008_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_008_o0",
+   "text": "The water in clouds turn in to what when it gets cold?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The water in clouds turn in to what when it gets cold?\nA. typhoon\nB. snowflake\nC. laddle\nD. teardrops\nE. sink\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_009_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_009_o0",
+   "text": "If someone is found to be committing murder, what did they do to someone?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "If someone is found to be committing murder, what did they do to someone?\nA. misery\nB. kill\nC. distress\nD. tickel\nE. go to jail\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_010_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_010_o0",
+   "text": "Eating is part of living, but your body doesn't use it all and the next day you will be doing what?",
+   "gold": "E",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Eating is part of living, but your body doesn't use it all and the next day you will be doing what?\nA. reduced\nB. getting full\nC. becoming full\nD. chewing\nE. defecating\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_011_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_011_o0",
+   "text": "A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?\nA. bank\nB. library\nC. department store\nD. mall\nE. new york\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_012_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_012_o0",
+   "text": "What is a place that has large cable hanging overhead?",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is a place that has large cable hanging overhead?\nA. radio shack\nB. electrical device\nC. shower\nD. substation\nE. television\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_013_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_013_o0",
+   "text": "If you have leftover cake, where would you put it?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "If you have leftover cake, where would you put it?\nA. quandry\nB. refrigerator\nC. oven\nD. night stand\nE. bakery\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_014_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_014_o0",
+   "text": "James found the sound relaxing.   It was so relaxing he almost did what despite his efforts?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "James found the sound relaxing.   It was so relaxing he almost did what despite his efforts?\nA. deep breathing\nB. worried\nC. fall asleep\nD. invigorating\nE. feeling good\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_017_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_017_o0",
+   "text": "What is a wet person likely to do?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is a wet person likely to do?\nA. gain weight\nB. thank god\nC. catch cold\nD. suicide\nE. cross street\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_018_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_018_o0",
+   "text": "The company sent off many purchases, they used recycled cardboard as their what?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The company sent off many purchases, they used recycled cardboard as their what?\nA. packaging materials\nB. recycle bin\nC. box factory\nD. warehouse\nE. bowler hats\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_022_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_022_o0",
+   "text": "What is the hopeful result of going to see a play?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the hopeful result of going to see a play?\nA. sit\nB. being entertained\nC. jobless\nD. meet\nE. laugh\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_024_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_024_o0",
+   "text": "Killing people should not cause what emotion?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Killing people should not cause what emotion?\nA. vengeance\nB. going to prison\nC. joy\nD. afraid\nE. terrible\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_025_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_025_o0",
+   "text": "The man flew his airplane over the city and saw pollution visibly in the sky, what was polluted?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The man flew his airplane over the city and saw pollution visibly in the sky, what was polluted?\nA. forest\nB. street\nC. air\nD. caused by humans\nE. car show\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_027_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_027_o0",
+   "text": "What makes someone a nomad?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What makes someone a nomad?\nA. unpleasant things\nB. hangnail\nC. have no home\nD. have no car\nE. schizophrenia\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_029_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_029_o0",
+   "text": "Immediately after peeing, a person's bladder is what?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Immediately after peeing, a person's bladder is what?\nA. collapsed\nB. empty\nC. full\nD. filled\nE. stretchable\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_030_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_030_o0",
+   "text": "When learning about the world and different cultures, what is important if you are committed to eliminating preconceived notions",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "When learning about the world and different cultures, what is important if you are committed to eliminating preconceived notions\nA. newness\nB. loss of innocence\nC. enlightenment\nD. open mind\nE. smartness\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_031_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_031_o0",
+   "text": "If you're attending school and are falling asleep you're likely experiencing what?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "If you're attending school and are falling asleep you're likely experiencing what?\nA. boredom\nB. malaria\nC. graduate\nD. inspiration\nE. detention\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_033_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_033_o0",
+   "text": "What furniture will you normally find near a side chair?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What furniture will you normally find near a side chair?\nA. bedroom\nB. table\nC. wheel barrow\nD. building\nE. office\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_034_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_034_o0",
+   "text": "The weasel was becoming a problem, it kept getting into the chicken eggs kept in the what?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The weasel was becoming a problem, it kept getting into the chicken eggs kept in the what?\nA. forrest\nB. barn\nC. public office\nD. out of doors\nE. freezer\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_035_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_035_o0",
+   "text": "A person with digestion issues eats a meat-filled breakfast, what does he feel?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "A person with digestion issues eats a meat-filled breakfast, what does he feel?\nA. heartburn\nB. overeating\nC. happiness\nD. being satisfied\nE. gain energy\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_037_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_037_o0",
+   "text": "If I want a new ottoman, where should I go?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "If I want a new ottoman, where should I go?\nA. furniture store\nB. parlor\nC. turkey\nD. living room\nE. den\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_038_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_038_o0",
+   "text": "What might someone do after they finish creating art?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What might someone do after they finish creating art?\nA. frustration\nB. relax\nC. eat\nD. enlightenment\nE. communication\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_039_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_039_o0",
+   "text": "What emotion leads to punching?",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What emotion leads to punching?\nA. fists\nB. hitting\nC. boxing gloves\nD. anger\nE. hands\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_041_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_041_o0",
+   "text": "After standing up I had to sit right back down, why would I feel like this?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "After standing up I had to sit right back down, why would I feel like this?\nA. train\nB. effort\nC. balance\nD. feet\nE. muscles\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_042_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_042_o0",
+   "text": "The fresh herbs, flowers, and vegetables will shrivel up if people don't do this?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The fresh herbs, flowers, and vegetables will shrivel up if people don't do this?\nA. water plants\nB. believe in god\nC. drive to the nearest pool\nD. speaking english\nE. raise children\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_043_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_043_o0",
+   "text": "The terrace had Kanji written on it, indicating that it was made where?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The terrace had Kanji written on it, indicating that it was made where?\nA. japan\nB. rice paddy\nC. garden\nD. michigan\nE. italy\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_049_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_049_o0",
+   "text": "What do the feathers look like on birds found in the rainforest?",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What do the feathers look like on birds found in the rainforest?\nA. pretty smart\nB. singing\nC. dark\nD. very colorful\nE. light\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_051_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_051_o0",
+   "text": "Where can you buy a replacement ax handle?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Where can you buy a replacement ax handle?\nA. bathroom\nB. hardware store\nC. water fountain\nD. grocery store\nE. fridge\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_053_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_053_o0",
+   "text": "In what substance do clouds float?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "In what substance do clouds float?\nA. sky\nB. top of mountain\nC. air\nD. ground level\nE. outer space\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_061_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_061_o0",
+   "text": "What are you getting from you boss at the end of the week?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What are you getting from you boss at the end of the week?\nA. asking for\nB. money\nC. food\nD. work\nE. energy\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_062_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_062_o0",
+   "text": "The newlyweds began copulating their marriage, they wanted many what?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The newlyweds began copulating their marriage, they wanted many what?\nA. babies\nB. odors\nC. sadness\nD. rapport\nE. ejaculation\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_066_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_066_o0",
+   "text": "Batman bought beer.  There were no bottles available.  He had to settle for what?.",
+   "gold": "D",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Batman bought beer.  There were no bottles available.  He had to settle for what?.\nA. shelf\nB. soccer game\nC. keg\nD. can\nE. refrigerator\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_068_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_068_o0",
+   "text": "The merchant wanted to open in a high-traffic space, where did he rent space?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The merchant wanted to open in a high-traffic space, where did he rent space?\nA. mall\nB. business\nC. store\nD. sale\nE. sell goods\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_069_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_069_o0",
+   "text": "His parents thought he was suffering from boredom, but the teen loved to lay in bed and just do what?",
+   "gold": "C",
+   "messages": [
+    {
+     "role": "user",
+     "content": "His parents thought he was suffering from boredom, but the teen loved to lay in bed and just do what?\nA. meet interesting people\nB. lift weights\nC. listen to music\nD. play chess\nE. entertain\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_070_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_070_o0",
+   "text": "What happens to a dog before someone puts up posters of them?",
+   "gold": "A",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What happens to a dog before someone puts up posters of them?\nA. get lost\nB. require water\nC. trained\nD. bark\nE. roll over\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_074_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_074_o0",
+   "text": "What does someone typically feel when applying for a job?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "What does someone typically feel when applying for a job?\nA. horror\nB. anxiety and fear\nC. rejection\nD. increased workload\nE. being employed\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B2_od_D_075_o0",
+   "cell": "other_det",
+   "self": 0,
+   "indet": 0,
+   "kind": "mc5",
+   "source": "D_075_o0",
+   "text": "The man didn't do great in college, all his best memories were late night with his brothers at the what?",
+   "gold": "B",
+   "messages": [
+    {
+     "role": "user",
+     "content": "The man didn't do great in college, all his best memories were late night with his brothers at the what?\nA. big city\nB. fraternity house\nC. school\nD. building\nE. big town\nAnswer with the letter of the correct choice, then a one-sentence justification. Finish your reply with the final answer alone on its own last line, in the exact format: ANSWER: <letter A-E>. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  }
+ ]
+}

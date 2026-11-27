@@ -1,0 +1,101 @@
+# full-run environment check
+python        : 3.13.11  exe=/tmp/batch_venv/bin/python
+PYTHONPATH    : ''
+GPU           : NVIDIA RTX PRO 6000 Blackwell Server Edition
+driver        : 595.71.05
+torch.cuda    : 13.0 available=True
+torch           : 2.11.0+cu130  (pinned 2.11.0+cu130)  OK
+transformers    : 5.14.1  (pinned 5.14.1)  OK
+huggingface-hub : 1.33.0  (pinned 1.33.0)  OK
+accelerate      : 1.15.0  (pinned 1.15.0)  OK
+datasets      : not installed (not required by this script)
+environment hash: b25083c2e3494bcd  (sha256 prefix of the installed pinned package versions, GPU, driver, python)
+RESULT: ALL PINNED VERSIONS MATCH
+[    0.1 min] items/run_order.json verified (identical)
+[    0.1 min] checkpoint sft  dry=False  components ABCDE  batches 78/78
+[    0.1 min] repo allenai/Olmo-3-7B-Think-SFT sha 6ff857587e040d6d523a3d5f3a56e918f5401d66 | hub confirms revision: 6ff857587e040d6d523a3d5f3a56e918f5401d66
+[    0.1 min] system prompt swapped to the dpo template; 518 items verified; wrote full_run_sft_system_prompt.json
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   0%|          | 1/355 [00:00<01:13,  4.82it/s]Loading weights:   7%|▋         | 26/355 [00:00<00:03, 100.75it/s]Loading weights:  14%|█▍        | 49/355 [00:00<00:02, 143.36it/s]Loading weights:  20%|██        | 71/355 [00:00<00:01, 164.40it/s]Loading weights:  26%|██▌       | 93/355 [00:00<00:01, 178.32it/s]Loading weights:  32%|███▏      | 115/355 [00:00<00:01, 189.06it/s]Loading weights:  39%|███▊      | 137/355 [00:00<00:01, 195.94it/s]Loading weights:  46%|████▌     | 163/355 [00:00<00:00, 214.24it/s]Loading weights:  52%|█████▏    | 186/355 [00:01<00:00, 218.27it/s]Loading weights:  59%|█████▉    | 209/355 [00:01<00:00, 221.70it/s]Loading weights:  65%|██████▌   | 232/355 [00:01<00:00, 216.63it/s]Loading weights:  72%|███████▏  | 254/355 [00:01<00:00, 215.65it/s]Loading weights:  78%|███████▊  | 277/355 [00:01<00:00, 218.66it/s]Loading weights:  84%|████████▍ | 299/355 [00:01<00:00, 218.70it/s]Loading weights:  90%|█████████ | 321/355 [00:01<00:00, 216.79it/s]Loading weights:  97%|█████████▋| 343/355 [00:01<00:00, 216.10it/s]Loading weights: 100%|██████████| 355/355 [00:01<00:00, 194.34it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[    0.1 min] attn: sdpa | pad: <|pad|> 100277 | eos: [100257, 100265] | padding_side: left
+[    0.6 min] batch   0 A seed 0 rows 8 wall     30s tokens   4651 {'valid': 8} | 8/614 rows | elapsed 0.5 min
+[    1.2 min] batch   1 A seed 0 rows 8 wall     36s tokens   5144 {'valid': 8} | 16/614 rows | elapsed 1.1 min
+[    4.0 min] batch   2 A seed 0 rows 8 wall    165s tokens   7067 {'valid': 7, 'truncated': 1} | 24/614 rows | elapsed 3.9 min
+[    4.6 min] batch   3 A seed 0 rows 8 wall     40s tokens   5075 {'valid': 8} | 32/614 rows | elapsed 4.5 min
+[    5.4 min] batch   4 A seed 0 rows 8 wall     45s tokens   5073 {'valid': 8} | 40/614 rows | elapsed 5.3 min
+[    6.3 min] batch   5 A seed 0 rows 8 wall     52s tokens   5895 {'valid': 8} | 48/614 rows | elapsed 6.1 min
+[    6.7 min] batch   6 A seed 1 rows 8 wall     28s tokens   4542 {'valid': 8} | 56/614 rows | elapsed 6.6 min
+[    7.2 min] batch   7 A seed 1 rows 8 wall     28s tokens   4500 {'valid': 8} | 64/614 rows | elapsed 7.1 min
+[    7.5 min] batch   8 A seed 1 rows 8 wall     18s tokens   3752 {'valid': 8} | 72/614 rows | elapsed 7.4 min
+[    8.9 min] batch   9 A seed 1 rows 8 wall     83s tokens   5934 {'valid': 8} | 80/614 rows | elapsed 8.8 min
+[    9.5 min] batch  10 A seed 1 rows 8 wall     35s tokens   5094 {'valid': 8} | 88/614 rows | elapsed 9.3 min
+[   10.1 min] batch  11 A seed 1 rows 8 wall     36s tokens   5740 {'valid': 8} | 96/614 rows | elapsed 9.9 min
+[   10.3 min] batch  12 A seed 2 rows 8 wall     15s tokens   3358 {'valid': 8} | 104/614 rows | elapsed 10.2 min
+[   10.7 min] batch  13 A seed 2 rows 8 wall     24s tokens   5268 {'valid': 8} | 112/614 rows | elapsed 10.6 min
+[   11.1 min] batch  14 A seed 2 rows 8 wall     20s tokens   3683 {'valid': 8} | 120/614 rows | elapsed 10.9 min
+[   11.5 min] batch  15 A seed 2 rows 8 wall     27s tokens   4422 {'valid': 8} | 128/614 rows | elapsed 11.4 min
+[   12.4 min] batch  16 A seed 2 rows 8 wall     53s tokens   5057 {'valid': 8} | 136/614 rows | elapsed 12.3 min
+[   12.9 min] batch  17 A seed 2 rows 8 wall     32s tokens   5333 {'valid': 8} | 144/614 rows | elapsed 12.8 min
+[   13.2 min] batch  18 B seed 0 rows 8 wall     16s tokens   2468 {'valid': 8} | 152/614 rows | elapsed 13.1 min
+[   15.0 min] batch  19 B seed 0 rows 8 wall    108s tokens   5196 {'valid': 8} | 160/614 rows | elapsed 14.9 min
+[   15.1 min] batch  20 B seed 0 rows 8 wall      8s tokens   1813 {'valid': 8} | 168/614 rows | elapsed 15.0 min
+[   15.3 min] batch  21 B seed 0 rows 8 wall      8s tokens   2068 {'valid': 8} | 176/614 rows | elapsed 15.1 min
+[   15.4 min] batch  22 B seed 0 rows 8 wall     10s tokens   1999 {'valid': 8} | 184/614 rows | elapsed 15.3 min
+[   18.2 min] batch  23 C seed 0 rows 8 wall    165s tokens   8204 {'valid': 7, 'truncated': 1} | 192/614 rows | elapsed 18.1 min
+[   18.5 min] batch  24 C seed 0 rows 8 wall     18s tokens   2914 {'valid': 8} | 200/614 rows | elapsed 18.4 min
+[   20.3 min] batch  25 C seed 0 rows 8 wall    109s tokens   6022 {'valid': 8} | 208/614 rows | elapsed 20.2 min
+[   23.1 min] batch  26 C seed 0 rows 8 wall    165s tokens   6870 {'valid': 7, 'truncated': 1} | 216/614 rows | elapsed 22.9 min
+[   23.2 min] batch  27 C seed 0 rows 8 wall     10s tokens   2808 {'valid': 8} | 224/614 rows | elapsed 23.1 min
+[   23.7 min] batch  28 C seed 0 rows 8 wall     27s tokens   3830 {'valid': 8} | 232/614 rows | elapsed 23.5 min
+[   26.4 min] batch  29 C seed 0 rows 8 wall    165s tokens   8293 {'valid': 7, 'truncated': 1} | 240/614 rows | elapsed 26.3 min
+[   27.2 min] batch  30 C seed 0 rows 8 wall     44s tokens   4205 {'valid': 8} | 248/614 rows | elapsed 27.0 min
+[   27.5 min] batch  31 C seed 0 rows 8 wall     22s tokens   3334 {'valid': 8} | 256/614 rows | elapsed 27.4 min
+[   27.8 min] batch  32 C seed 0 rows 8 wall     20s tokens   3434 {'valid': 8} | 264/614 rows | elapsed 27.7 min
+[   28.8 min] batch  33 D seed 0 rows 8 wall     57s tokens   5178 {'valid': 8} | 272/614 rows | elapsed 28.7 min
+[   31.5 min] batch  34 D seed 0 rows 8 wall    162s tokens   6150 {'valid': 7, 'truncated': 1} | 280/614 rows | elapsed 31.4 min
+[   31.7 min] batch  35 D seed 0 rows 8 wall     12s tokens   2854 {'valid': 8} | 288/614 rows | elapsed 31.6 min
+[   32.2 min] batch  36 D seed 0 rows 8 wall     29s tokens   3944 {'valid': 8} | 296/614 rows | elapsed 32.1 min
+[   32.3 min] batch  37 D seed 0 rows 8 wall      9s tokens   2549 {'valid': 8} | 304/614 rows | elapsed 32.2 min
+[   32.5 min] batch  38 D seed 0 rows 8 wall      8s tokens   2270 {'valid': 8} | 312/614 rows | elapsed 32.3 min
+[   32.9 min] batch  39 D seed 0 rows 8 wall     26s tokens   3380 {'valid': 8} | 320/614 rows | elapsed 32.8 min
+[   33.0 min] batch  40 D seed 0 rows 8 wall      8s tokens   2154 {'valid': 8} | 328/614 rows | elapsed 32.9 min
+[   33.6 min] batch  41 D seed 0 rows 8 wall     33s tokens   4291 {'valid': 8} | 336/614 rows | elapsed 33.5 min
+[   36.3 min] batch  42 D seed 0 rows 8 wall    162s tokens   7231 {'valid': 7, 'truncated': 1} | 344/614 rows | elapsed 36.2 min
+[   36.7 min] batch  43 D seed 0 rows 8 wall     24s tokens   3474 {'valid': 8} | 352/614 rows | elapsed 36.5 min
+[   37.0 min] batch  44 D seed 0 rows 8 wall     21s tokens   3475 {'valid': 8} | 360/614 rows | elapsed 36.9 min
+[   37.3 min] batch  45 D seed 0 rows 8 wall     18s tokens   2972 {'valid': 8} | 368/614 rows | elapsed 37.2 min
+[   37.6 min] batch  46 D seed 0 rows 8 wall     14s tokens   2544 {'valid': 8} | 376/614 rows | elapsed 37.4 min
+[   37.9 min] batch  47 D seed 0 rows 8 wall     23s tokens   3654 {'valid': 8} | 384/614 rows | elapsed 37.8 min
+[   38.3 min] batch  48 D seed 0 rows 8 wall     25s tokens   4084 {'valid': 8} | 392/614 rows | elapsed 38.2 min
+[   38.6 min] batch  49 D seed 0 rows 8 wall     16s tokens   3030 {'valid': 8} | 400/614 rows | elapsed 38.5 min
+[   40.0 min] batch  50 D seed 0 rows 8 wall     82s tokens   6540 {'valid': 8} | 408/614 rows | elapsed 39.9 min
+[   40.6 min] batch  51 D seed 0 rows 8 wall     40s tokens   4174 {'valid': 8} | 416/614 rows | elapsed 40.5 min
+[   41.3 min] batch  52 D seed 0 rows 8 wall     37s tokens   5505 {'valid': 8} | 424/614 rows | elapsed 41.2 min
+[   43.5 min] batch  53 D seed 0 rows 8 wall    136s tokens   8146 {'valid': 8} | 432/614 rows | elapsed 43.4 min
+[   44.8 min] batch  54 D seed 0 rows 8 wall     78s tokens   6031 {'valid': 8} | 440/614 rows | elapsed 44.7 min
+[   45.1 min] batch  55 D seed 0 rows 8 wall     19s tokens   3637 {'valid': 8} | 448/614 rows | elapsed 45.0 min
+[   47.3 min] batch  56 D seed 0 rows 8 wall    129s tokens   6794 {'valid': 8} | 456/614 rows | elapsed 47.2 min
+[   47.4 min] batch  57 D seed 0 rows 8 wall      8s tokens   2669 {'valid': 8} | 464/614 rows | elapsed 47.3 min
+[   48.0 min] batch  58 D seed 0 rows 8 wall     32s tokens   3818 {'valid': 8} | 472/614 rows | elapsed 47.8 min
+[   48.1 min] batch  59 D seed 0 rows 8 wall      9s tokens   2814 {'valid': 8} | 480/614 rows | elapsed 48.0 min
+[   50.0 min] batch  60 D seed 0 rows 8 wall    111s tokens   6548 {'valid': 8} | 488/614 rows | elapsed 49.8 min
+[   50.3 min] batch  61 D seed 0 rows 8 wall     20s tokens   3648 {'valid': 8} | 496/614 rows | elapsed 50.2 min
+[   53.0 min] batch  62 D seed 0 rows 8 wall    162s tokens   6270 {'valid': 7, 'truncated': 1} | 504/614 rows | elapsed 52.9 min
+[   53.2 min] batch  63 D seed 0 rows 8 wall     12s tokens   2755 {'valid': 8} | 512/614 rows | elapsed 53.1 min
+[   53.5 min] batch  64 D seed 0 rows 8 wall     18s tokens   3521 {'valid': 8} | 520/614 rows | elapsed 53.4 min
+[   56.2 min] batch  65 D seed 0 rows 8 wall    162s tokens   9715 {'valid': 7, 'truncated': 1} | 528/614 rows | elapsed 56.1 min
+[   56.3 min] batch  66 D seed 0 rows 8 wall      9s tokens   2370 {'valid': 8} | 536/614 rows | elapsed 56.2 min
+[   56.6 min] batch  67 D seed 0 rows 8 wall     17s tokens   2526 {'valid': 8} | 544/614 rows | elapsed 56.5 min
+[   56.8 min] batch  68 D seed 0 rows 8 wall     13s tokens   3037 {'valid': 8} | 552/614 rows | elapsed 56.7 min
+[   59.5 min] batch  69 D seed 0 rows 8 wall    162s tokens   7464 {'valid': 7, 'truncated': 1} | 560/614 rows | elapsed 59.4 min
+[   59.6 min] batch  70 D seed 0 rows 4 wall      6s tokens   1139 {'valid': 4} | 564/614 rows | elapsed 59.5 min
+[   63.1 min] batch  71 E seed 0 rows 8 wall    205s tokens  13209 {'valid': 6, 'no_answer': 2} | 572/614 rows | elapsed 62.9 min
+[   65.7 min] batch  72 E seed 0 rows 8 wall    158s tokens  10835 {'valid': 8} | 580/614 rows | elapsed 65.6 min
+[   66.8 min] batch  73 E seed 0 rows 8 wall     67s tokens   6522 {'valid': 8} | 588/614 rows | elapsed 66.7 min
+[   69.1 min] batch  74 E seed 0 rows 8 wall    135s tokens   8725 {'valid': 7, 'no_answer': 1} | 596/614 rows | elapsed 68.9 min
+[   69.9 min] batch  75 E seed 0 rows 8 wall     49s tokens   6343 {'valid': 8} | 604/614 rows | elapsed 69.8 min
+[   86.4 min] batch  76 E seed 0 rows 8 wall    990s tokens  27134 {'valid': 8} | 612/614 rows | elapsed 86.3 min
+[   86.7 min] batch  77 E seed 0 rows 2 wall     22s tokens   1465 {'valid': 2} | 614/614 rows | elapsed 86.6 min
+[   86.7 min] ALL BATCHES DONE; rows: 614
+[   86.7 min] status by component: {"A": {"valid": 143, "truncated": 1}, "B": {"valid": 40}, "C": {"valid": 77, "truncated": 3}, "D": {"valid": 295, "truncated": 5}, "E": {"valid": 47, "no_answer": 3}}
+DONE

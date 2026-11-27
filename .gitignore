@@ -5,3 +5,14 @@
 # Python
 __pycache__/
 *.pyc
+
+# sprint progress files and mirrored job outputs (large; the durable copy lives on the laptop, not in git)
+results/sprint/**/partial/**/*.csv
+results/sprint/**/partial/**/*.parquet
+results/sprint/**/runs/
+# lane mirrors of progress files (same policy as partial/), and the rerun's partial dir (byte-identical to the committed copies)
+results/sprint/_lanes/**/*.csv
+results/sprint/sft_matched_prompt/partial/
+
+# local cache of HF shards downloaded by exp/analysis (raw outputs live in the HF dataset)
+results/sprint/_hf/

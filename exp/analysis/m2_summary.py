@@ -1,0 +1,199 @@
+"""M2 first numbers: registered M2-H1..H4 on RLVR's frozen traces, from the per-trace progress files.
+
+    python -m exp.analysis.m2_summary [--dir results/sprint/M2/partial] [--out results/sprint/M2]
+
+Registration (docs/sprint/registration-2026-10-27.md, M2 + amendment 2), applied as written:
+  per trace: mean of the feature over the think-block sentence ends (p_close_at_sent = P(</think> starts here),
+  p_switch_at_sent); valid RLVR traces only; then per unit (A: wording, mean over seeds; D: base item, o0 and o1
+  averaged); paired RLVR-scorer minus DPO-scorer on the same traces.
+  H1  A: mean P_close, RLVR scorer < DPO scorer            (registered direction: difference < 0)
+  H2  (H1 difference on A) - (on D) < 0; A and D bootstrapped independently
+  H3  A: mean P(switch), RLVR scorer > DPO scorer          (difference > 0)
+  H4  mean per-token KL(RLVR || DPO) over think positions: A > D; per trace, then per unit; unpaired, independent
+      bootstraps of the two means (trace set: RLVR's traces, as for H1-H3; all trace sets shown as well)
+Statistics: mean of paired differences, percentile bootstrap over units (10,000, seed 20261024, generator
+default_rng([20261024, crc32(label)])), two-sided Wilcoxon signed-rank (paired H1, H3). Sensitivity (added Oct 28,
+not registered): the same with the sentence end right before the realised </think> excluded, and with the first-token
+proxy P('</') + P(' </'). Also reports the re-tokenisation match rates (registration: counted and reported).
+"""
+import argparse
+import collections
+import csv
+import importlib.util
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[2]
+csv.field_size_limit(min(sys.maxsize, 2 ** 31 - 1))
+
+
+def _helpers():
+    spec = importlib.util.spec_from_file_location("exploratory_dithering",
+                                                  ROOT / "results" / "analysis" / "exploratory_dithering.py")
+    m = importlib.util.module_from_spec(spec)
+    sys.modules["exploratory_dithering"] = m
+    spec.loader.exec_module(m)
+    return m
+
+
+DI = _helpers()
+
+
+def load(d):
+    """{scorer label: {key: row}} from <d>/<label>/progress_shard*.csv."""
+    out = {}
+    for f in sorted(Path(d).glob("*/progress_shard*.csv")):
+        rows = {}
+        for r in csv.DictReader(open(f, encoding="utf-8")):
+            try:
+                rows[r["key"]] = json.loads(r["row_json"])
+            except ValueError:
+                pass
+        out.setdefault(f.parent.name, {}).update(rows)
+    return out
+
+
+def unit(row):
+    i = row["id"]
+    return i.rsplit("_", 1)[0] if row["component"] == "D" and i.rsplit("_", 1)[-1] in ("o0", "o1") else i
+
+
+def trace_value(row, feat, drop_close=False):
+    v, pos = row.get(f"{feat}_at_sent") or [], row.get("sent_next_tok") or []
+    if drop_close and row.get("think_end_tok") is not None:
+        v = [x for x, k in zip(v, pos) if k != row["think_end_tok"]]
+    return float(np.mean(v)) if v else None
+
+
+def unit_means(rows, keys, feat, comp, drop_close=False):
+    acc = collections.defaultdict(list)
+    for k in keys:
+        r = rows[k]
+        if r["component"] != comp or r.get("status") != "valid" or "skipped" in r:
+            continue
+        x = trace_value(r, feat, drop_close) if feat != "mean_kl_think" else r.get("mean_kl_think")
+        if x is not None:
+            acc[unit(r)].append(x)
+    return {u: float(np.mean(v)) for u, v in acc.items()}
+
+
+def paired(a, b, label):
+    us = sorted(set(a) & set(b))
+    d = np.array([a[u] - b[u] for u in us])
+    if not len(d):
+        return {"n": 0}
+    ci = DI.percentile_ci(DI.bootstrap_paired_differences(d, lambda x: x.mean(axis=1), label))
+    w = DI.wilcoxon_detail(d)
+    return {"n": len(d), "mean": float(d.mean()), "ci": ci, "p": w["p"], "branch": w["branch"], "d": d,
+            "a": float(np.mean([a[u] for u in us])), "b": float(np.mean([b[u] for u in us]))}
+
+
+def boot_mean(x, label):
+    x = np.asarray(x)
+    idx = DI.make_rng(label).integers(0, len(x), size=(DI.N_BOOT, len(x)))
+    return x[idx].mean(axis=1)
+
+
+def diff_of_means(xa, xd, label):
+    """mean(A) - mean(D), A and D bootstrapped independently."""
+    ba, bd = boot_mean(xa, label + "|A"), boot_mean(xd, label + "|D")
+    return float(np.mean(xa) - np.mean(xd)), DI.percentile_ci(ba - bd)
+
+
+def fmt(r, nd=4):
+    if not r.get("n"):
+        return "n = 0"
+    return (f"{r['mean']:+.{nd}g} [{r['ci'][0]:+.{nd}g}, {r['ci'][1]:+.{nd}g}], n = {r['n']}, "
+            f"Wilcoxon p = {r['p']:.3g}")
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--dir", default=str(ROOT / "results" / "sprint" / "M2" / "partial"))
+    ap.add_argument("--out", default=str(ROOT / "results" / "sprint" / "M2"))
+    a = ap.parse_args(argv)
+    S = load(a.dir)
+    L = ["# M2 first numbers (teacher-forced scoring of the frozen traces)", "",
+         "Generated by `exp/analysis/m2_summary.py` from the per-trace progress files. Registration: "
+         "`docs/sprint/registration-2026-10-27.md` (M2, amendment 2). Units: A = wording (mean over seeds), D = base "
+         "item (o0 and o1 averaged); valid RLVR traces; paired RLVR-scorer minus DPO-scorer. Mean of paired "
+         "differences [95% percentile bootstrap], Wilcoxon two-sided.", ""]
+    L.append("Scorer files: " + ", ".join(f"{k} {len(v)} traces" for k, v in sorted(S.items())))
+    L.append("")
+    # fidelity
+    for sc in ("rlvr", "dpo", "sft"):
+        if sc in S:
+            v = list(S[sc].values())
+            pm = sum(1 for r in v if r.get("prompt_tok_match") is False)
+            gm = sum(1 for r in v if r.get("gen_tok_match") is False)
+            L.append(f"- scorer {sc}: prompt-token mismatches {pm}/{len(v)}; generation token-count mismatches "
+                     f"{gm}/{len(v)} (re-tokenised raw_output vs frozen n_tokens; rows kept, as registered)")
+    L.append("")
+    if not ("rlvr" in S and "dpo" in S):
+        L.append("RLVR and DPO scorer files are both needed for H1-H3.")
+    else:
+        keys = sorted(k for k in S["rlvr"] if k.startswith("rlvr|") and k in S["dpo"])
+        res = {}
+        for name, feat, drop in (("primary", "p_close", False), ("excl. realised close", "p_close", True),
+                                 ("first-token proxy", "p_think_end", False)):
+            for comp in "AD":
+                ra = unit_means(S["rlvr"], keys, feat, comp, drop)
+                rb = unit_means(S["dpo"], keys, feat, comp, drop)
+                res[(name, comp)] = paired(ra, rb, f"M2|H1|{name}|{comp}")
+        L += ["## H1 / H2: P(</think>) at think-block sentence ends, RLVR's traces", "",
+              "| measure | A: RLVR scorer | A: DPO scorer | A: RLVR - DPO | D: RLVR - DPO | H2: (A diff) - (D diff) [95% CI] |",
+              "|---|---|---|---|---|---|"]
+        for name in ("primary", "excl. realised close", "first-token proxy"):
+            A_, D_ = res[(name, "A")], res[(name, "D")]
+            if A_.get("n") and D_.get("n"):
+                h2, ci = diff_of_means(A_["d"], D_["d"], f"M2|H2|{name}")
+                h2s = f"{h2:+.4g} [{ci[0]:+.4g}, {ci[1]:+.4g}]"
+            else:
+                h2s = "n/a"
+            L.append(f"| {name} | {A_.get('a', float('nan')):.4g} | {A_.get('b', float('nan')):.4g} | {fmt(A_)} | "
+                     f"{fmt(D_)} | {h2s} |")
+        L += ["", "Registered directions: H1 A difference < 0 (RLVR less willing to end its reasoning); H2 (A diff) - "
+              "(D diff) < 0. A result = the interval excludes zero in that direction.", ""]
+        L += ["## H3: P(switch token) at think-block sentence ends, RLVR's traces, A", "",
+              "| word | RLVR - DPO |", "|---|---|"]
+        for feat in ["p_switch"] + [f"p_switch_{w}" for w in ("Wait", "Hmm", "But", "Alternatively")]:
+            r = paired(unit_means(S["rlvr"], keys, feat, "A"), unit_means(S["dpo"], keys, feat, "A"), f"M2|H3|{feat}")
+            L.append(f"| {feat.replace('p_switch_', '') if feat != 'p_switch' else 'all (primary)'} | {fmt(r)} |")
+        L += ["", "Registered direction: RLVR - DPO > 0.", ""]
+        if "sft" in S:
+            L += ["## H5 (descriptive): mean P(</think>) at sentence ends, each trace set under each scorer (A)", "",
+                  "| traces \\ scorer | SFT | DPO | RLVR |", "|---|---|---|---|"]
+            for tc in ("sft", "dpo", "rlvr"):
+                cells = []
+                for sc in ("sft", "dpo", "rlvr"):
+                    ks = [k for k in S[sc] if k.startswith(tc + "|")]
+                    um = unit_means(S[sc], ks, "p_close", "A")
+                    cells.append(f"{np.mean(list(um.values())):.4g} (n {len(um)})" if um else "n/a")
+                L.append(f"| {tc} | " + " | ".join(cells) + " |")
+            L.append("")
+    pair = next((v for k, v in S.items() if k.startswith("pair_")), None)
+    L += ["## H4: mean per-token KL(RLVR || DPO) over think positions, A vs D", ""]
+    if pair:
+        L += ["| traces | A mean (units) | D mean (units) | A - D [95% CI] |", "|---|---|---|---|"]
+        for tc in ("rlvr", "dpo", "sft"):
+            ks = [k for k in pair if k.startswith(tc + "|")]
+            ua, ud = unit_means(pair, ks, "mean_kl_think", "A"), unit_means(pair, ks, "mean_kl_think", "D")
+            if ua and ud:
+                m, ci = diff_of_means(list(ua.values()), list(ud.values()), f"M2|H4|{tc}")
+                L.append(f"| {tc}{' (primary)' if tc == 'rlvr' else ''} | {np.mean(list(ua.values())):.4g} ({len(ua)}) | "
+                         f"{np.mean(list(ud.values())):.4g} ({len(ud)}) | {m:+.4g} [{ci[0]:+.4g}, {ci[1]:+.4g}] |")
+        L += ["", "Registered direction: A > D (exploratory).", ""]
+    else:
+        L += ["Pair file not available yet.", ""]
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "m2_summary.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    print("\n".join(L))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,426 @@
+=== 21:14:50 M1b
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+21:14:52 M1b: 355 tensors, 0 done, 355 to do, device cuda
+21:14:53 PREFLIGHT ram_avail=171.2 ram_total=171.8 rss=0.9 cgroup=0.6 cgroup_max=171.8 du:_dl=0.0 free:_dl=9223372027.8 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 30 GB, RAM 16 GB
+21:14:53 FETCH sft model-00001-of-00003.safetensors
+21:15:28 RES fetched sft model-00001-of-00003.safetensors | ram_avail=170.6 ram_total=171.8 rss=1.0 cgroup=1.2 cgroup_max=171.8 du:_dl=5.0 free:_dl=9223372022.8 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0
+21:15:28 FETCH dpo model-00001-of-00003.safetensors
+21:16:00 RES fetched dpo model-00001-of-00003.safetensors | ram_avail=170.3 ram_total=171.8 rss=1.8 cgroup=1.5 cgroup_max=171.8 du:_dl=9.9 free:_dl=9223372017.9 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0
+21:16:00 FETCH rlvr model-00001-of-00003.safetensors
+21:16:30 RES fetched rlvr model-00001-of-00003.safetensors | ram_avail=168.2 ram_total=171.8 rss=3.5 cgroup=3.6 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0
+21:16:30 START 1/355 model.embed_tokens.weight
+21:16:48 START 2/355 model.layers.0.mlp.down_proj.weight
+21:16:59 START 3/355 model.layers.0.mlp.gate_proj.weight
+21:17:10 START 4/355 model.layers.0.mlp.up_proj.weight
+21:17:20 START 5/355 model.layers.0.post_attention_layernorm.weight
+21:17:20 START 6/355 model.layers.0.post_feedforward_layernorm.weight
+21:17:20 START 7/355 model.layers.0.self_attn.k_norm.weight
+21:17:20 START 8/355 model.layers.0.self_attn.k_proj.weight
+21:17:31 START 9/355 model.layers.0.self_attn.o_proj.weight
+21:17:40 START 10/355 model.layers.0.self_attn.q_norm.weight
+21:17:40 START 11/355 model.layers.0.self_attn.q_proj.weight
+21:17:51 START 12/355 model.layers.0.self_attn.v_proj.weight
+21:18:01 START 13/355 model.layers.1.mlp.down_proj.weight
+21:18:11 START 14/355 model.layers.1.mlp.gate_proj.weight
+21:18:22 START 15/355 model.layers.1.mlp.up_proj.weight
+21:18:33 START 16/355 model.layers.1.post_attention_layernorm.weight
+21:18:33 START 17/355 model.layers.1.post_feedforward_layernorm.weight
+21:18:33 START 18/355 model.layers.1.self_attn.k_norm.weight
+21:18:33 START 19/355 model.layers.1.self_attn.k_proj.weight
+21:18:43 START 20/355 model.layers.1.self_attn.o_proj.weight
+21:18:53 START 21/355 model.layers.1.self_attn.q_norm.weight
+21:18:53 START 22/355 model.layers.1.self_attn.q_proj.weight
+21:19:03 START 23/355 model.layers.1.self_attn.v_proj.weight
+21:19:13 START 24/355 model.layers.10.self_attn.k_proj.weight
+21:19:23 START 25/355 model.layers.10.self_attn.q_proj.weight
+21:19:34 RES 25/355 | ram_avail=166.8 ram_total=171.8 rss=10.6 cgroup=5.0 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:19:34 START 26/355 model.layers.10.self_attn.v_proj.weight
+21:19:44 START 27/355 model.layers.2.mlp.down_proj.weight
+21:19:55 START 28/355 model.layers.2.mlp.gate_proj.weight
+21:20:06 START 29/355 model.layers.2.mlp.up_proj.weight
+21:20:17 START 30/355 model.layers.2.post_attention_layernorm.weight
+21:20:17 START 31/355 model.layers.2.post_feedforward_layernorm.weight
+21:20:17 START 32/355 model.layers.2.self_attn.k_norm.weight
+21:20:17 START 33/355 model.layers.2.self_attn.k_proj.weight
+21:20:27 START 34/355 model.layers.2.self_attn.o_proj.weight
+21:20:37 START 35/355 model.layers.2.self_attn.q_norm.weight
+21:20:37 START 36/355 model.layers.2.self_attn.q_proj.weight
+21:20:47 START 37/355 model.layers.2.self_attn.v_proj.weight
+21:20:57 START 38/355 model.layers.3.mlp.down_proj.weight
+21:21:08 START 39/355 model.layers.3.mlp.gate_proj.weight
+21:21:19 START 40/355 model.layers.3.mlp.up_proj.weight
+21:21:30 START 41/355 model.layers.3.post_attention_layernorm.weight
+21:21:30 START 42/355 model.layers.3.post_feedforward_layernorm.weight
+21:21:30 START 43/355 model.layers.3.self_attn.k_norm.weight
+21:21:30 START 44/355 model.layers.3.self_attn.k_proj.weight
+21:21:40 START 45/355 model.layers.3.self_attn.o_proj.weight
+21:21:50 START 46/355 model.layers.3.self_attn.q_norm.weight
+21:21:50 START 47/355 model.layers.3.self_attn.q_proj.weight
+21:22:00 START 48/355 model.layers.3.self_attn.v_proj.weight
+21:22:10 START 49/355 model.layers.4.mlp.down_proj.weight
+21:22:20 START 50/355 model.layers.4.mlp.gate_proj.weight
+21:22:31 START 51/355 model.layers.4.mlp.up_proj.weight
+21:22:42 RES 51/355 | ram_avail=166.8 ram_total=171.8 rss=13.9 cgroup=5.0 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:22:42 START 52/355 model.layers.4.post_attention_layernorm.weight
+21:22:42 START 53/355 model.layers.4.post_feedforward_layernorm.weight
+21:22:42 START 54/355 model.layers.4.self_attn.k_norm.weight
+21:22:42 START 55/355 model.layers.4.self_attn.k_proj.weight
+21:22:52 START 56/355 model.layers.4.self_attn.o_proj.weight
+21:23:02 START 57/355 model.layers.4.self_attn.q_norm.weight
+21:23:02 START 58/355 model.layers.4.self_attn.q_proj.weight
+21:23:13 START 59/355 model.layers.4.self_attn.v_proj.weight
+21:23:23 START 60/355 model.layers.5.mlp.down_proj.weight
+21:23:34 START 61/355 model.layers.5.mlp.gate_proj.weight
+21:23:45 START 62/355 model.layers.5.mlp.up_proj.weight
+21:23:56 START 63/355 model.layers.5.post_attention_layernorm.weight
+21:23:56 START 64/355 model.layers.5.post_feedforward_layernorm.weight
+21:23:56 START 65/355 model.layers.5.self_attn.k_norm.weight
+21:23:56 START 66/355 model.layers.5.self_attn.k_proj.weight
+21:24:06 START 67/355 model.layers.5.self_attn.o_proj.weight
+21:24:16 START 68/355 model.layers.5.self_attn.q_norm.weight
+21:24:16 START 69/355 model.layers.5.self_attn.q_proj.weight
+21:24:26 START 70/355 model.layers.5.self_attn.v_proj.weight
+21:24:36 START 71/355 model.layers.6.mlp.down_proj.weight
+21:24:47 START 72/355 model.layers.6.mlp.gate_proj.weight
+21:24:58 START 73/355 model.layers.6.mlp.up_proj.weight
+21:25:09 START 74/355 model.layers.6.post_attention_layernorm.weight
+21:25:09 START 75/355 model.layers.6.post_feedforward_layernorm.weight
+21:25:09 START 76/355 model.layers.6.self_attn.k_norm.weight
+21:25:09 START 77/355 model.layers.6.self_attn.k_proj.weight
+21:25:19 START 78/355 model.layers.6.self_attn.o_proj.weight
+21:25:29 START 79/355 model.layers.6.self_attn.q_norm.weight
+21:25:29 START 80/355 model.layers.6.self_attn.q_proj.weight
+21:25:39 START 81/355 model.layers.6.self_attn.v_proj.weight
+21:25:49 RES 81/355 | ram_avail=166.8 ram_total=171.8 rss=16.8 cgroup=5.0 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:25:49 START 82/355 model.layers.7.mlp.down_proj.weight
+21:26:00 START 83/355 model.layers.7.mlp.gate_proj.weight
+21:26:11 START 84/355 model.layers.7.mlp.up_proj.weight
+21:26:22 START 85/355 model.layers.7.post_attention_layernorm.weight
+21:26:22 START 86/355 model.layers.7.post_feedforward_layernorm.weight
+21:26:22 START 87/355 model.layers.7.self_attn.k_norm.weight
+21:26:22 START 88/355 model.layers.7.self_attn.k_proj.weight
+21:26:32 START 89/355 model.layers.7.self_attn.o_proj.weight
+21:26:42 START 90/355 model.layers.7.self_attn.q_norm.weight
+21:26:42 START 91/355 model.layers.7.self_attn.q_proj.weight
+21:26:53 START 92/355 model.layers.7.self_attn.v_proj.weight
+21:27:02 START 93/355 model.layers.8.mlp.down_proj.weight
+21:27:13 START 94/355 model.layers.8.mlp.gate_proj.weight
+21:27:24 START 95/355 model.layers.8.mlp.up_proj.weight
+21:27:35 START 96/355 model.layers.8.post_attention_layernorm.weight
+21:27:35 START 97/355 model.layers.8.post_feedforward_layernorm.weight
+21:27:35 START 98/355 model.layers.8.self_attn.k_norm.weight
+21:27:35 START 99/355 model.layers.8.self_attn.k_proj.weight
+21:27:45 START 100/355 model.layers.8.self_attn.o_proj.weight
+21:27:55 START 101/355 model.layers.8.self_attn.q_norm.weight
+21:27:55 START 102/355 model.layers.8.self_attn.q_proj.weight
+21:28:05 START 103/355 model.layers.8.self_attn.v_proj.weight
+21:28:15 START 104/355 model.layers.9.mlp.down_proj.weight
+21:28:26 START 105/355 model.layers.9.mlp.gate_proj.weight
+21:28:37 START 106/355 model.layers.9.mlp.up_proj.weight
+21:28:48 START 107/355 model.layers.9.post_attention_layernorm.weight
+21:28:48 START 108/355 model.layers.9.post_feedforward_layernorm.weight
+21:28:48 START 109/355 model.layers.9.self_attn.k_norm.weight
+21:28:48 START 110/355 model.layers.9.self_attn.k_proj.weight
+21:28:58 RES 110/355 | ram_avail=166.8 ram_total=171.8 rss=20.1 cgroup=5.0 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:28:58 START 111/355 model.layers.9.self_attn.o_proj.weight
+21:29:08 START 112/355 model.layers.9.self_attn.q_norm.weight
+21:29:08 START 113/355 model.layers.9.self_attn.q_proj.weight
+21:29:18 START 114/355 model.layers.9.self_attn.v_proj.weight
+21:29:28 RELEASED sft model-00001-of-00003.safetensors (deleted)
+21:29:28 RELEASED dpo model-00001-of-00003.safetensors (deleted)
+21:29:28 RELEASED rlvr model-00001-of-00003.safetensors (deleted)
+21:29:28 FETCH sft model-00002-of-00003.safetensors
+21:29:36 RES fetched sft model-00002-of-00003.safetensors | ram_avail=167.2 ram_total=171.8 rss=5.1 cgroup=4.6 cgroup_max=171.8 du:_dl=5.0 free:_dl=9223372022.8 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:29:36 FETCH dpo model-00002-of-00003.safetensors
+21:29:45 RES fetched dpo model-00002-of-00003.safetensors | ram_avail=167.1 ram_total=171.8 rss=4.9 cgroup=4.7 cgroup_max=171.8 du:_dl=10.0 free:_dl=9223372017.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:29:45 FETCH rlvr model-00002-of-00003.safetensors
+21:29:55 RES fetched rlvr model-00002-of-00003.safetensors | ram_avail=167.3 ram_total=171.8 rss=5.0 cgroup=4.5 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:29:55 START 115/355 model.layers.10.mlp.down_proj.weight
+21:30:06 START 116/355 model.layers.10.mlp.gate_proj.weight
+21:30:17 START 117/355 model.layers.10.mlp.up_proj.weight
+21:30:28 START 118/355 model.layers.10.post_attention_layernorm.weight
+21:30:28 START 119/355 model.layers.10.post_feedforward_layernorm.weight
+21:30:28 START 120/355 model.layers.10.self_attn.k_norm.weight
+21:30:28 START 121/355 model.layers.10.self_attn.o_proj.weight
+21:30:38 START 122/355 model.layers.10.self_attn.q_norm.weight
+21:30:38 START 123/355 model.layers.11.mlp.down_proj.weight
+21:30:49 START 124/355 model.layers.11.mlp.gate_proj.weight
+21:30:59 START 125/355 model.layers.11.mlp.up_proj.weight
+21:31:10 START 126/355 model.layers.11.post_attention_layernorm.weight
+21:31:10 START 127/355 model.layers.11.post_feedforward_layernorm.weight
+21:31:10 START 128/355 model.layers.11.self_attn.k_norm.weight
+21:31:10 START 129/355 model.layers.11.self_attn.k_proj.weight
+21:31:20 START 130/355 model.layers.11.self_attn.o_proj.weight
+21:31:30 START 131/355 model.layers.11.self_attn.q_norm.weight
+21:31:30 START 132/355 model.layers.11.self_attn.q_proj.weight
+21:31:40 START 133/355 model.layers.11.self_attn.v_proj.weight
+21:31:50 START 134/355 model.layers.12.mlp.down_proj.weight
+21:32:01 START 135/355 model.layers.12.mlp.gate_proj.weight
+21:32:12 START 136/355 model.layers.12.mlp.up_proj.weight
+21:32:23 START 137/355 model.layers.12.post_attention_layernorm.weight
+21:32:23 START 138/355 model.layers.12.post_feedforward_layernorm.weight
+21:32:23 START 139/355 model.layers.12.self_attn.k_norm.weight
+21:32:23 START 140/355 model.layers.12.self_attn.k_proj.weight
+21:32:33 START 141/355 model.layers.12.self_attn.o_proj.weight
+21:32:43 START 142/355 model.layers.12.self_attn.q_norm.weight
+21:32:43 START 143/355 model.layers.12.self_attn.q_proj.weight
+21:32:54 START 144/355 model.layers.12.self_attn.v_proj.weight
+21:33:04 RES 144/355 | ram_avail=167.3 ram_total=171.8 rss=8.3 cgroup=4.5 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:33:04 START 145/355 model.layers.13.mlp.down_proj.weight
+21:33:15 START 146/355 model.layers.13.mlp.gate_proj.weight
+21:33:26 START 147/355 model.layers.13.mlp.up_proj.weight
+21:33:37 START 148/355 model.layers.13.post_attention_layernorm.weight
+21:33:37 START 149/355 model.layers.13.post_feedforward_layernorm.weight
+21:33:37 START 150/355 model.layers.13.self_attn.k_norm.weight
+21:33:37 START 151/355 model.layers.13.self_attn.k_proj.weight
+21:33:47 START 152/355 model.layers.13.self_attn.o_proj.weight
+21:33:57 START 153/355 model.layers.13.self_attn.q_norm.weight
+21:33:57 START 154/355 model.layers.13.self_attn.q_proj.weight
+21:34:08 START 155/355 model.layers.13.self_attn.v_proj.weight
+21:34:18 START 156/355 model.layers.14.mlp.down_proj.weight
+21:34:28 START 157/355 model.layers.14.mlp.gate_proj.weight
+21:34:39 START 158/355 model.layers.14.mlp.up_proj.weight
+21:34:50 START 159/355 model.layers.14.post_attention_layernorm.weight
+21:34:50 START 160/355 model.layers.14.post_feedforward_layernorm.weight
+21:34:50 START 161/355 model.layers.14.self_attn.k_norm.weight
+21:34:50 START 162/355 model.layers.14.self_attn.k_proj.weight
+21:35:00 START 163/355 model.layers.14.self_attn.o_proj.weight
+21:35:10 START 164/355 model.layers.14.self_attn.q_norm.weight
+21:35:10 START 165/355 model.layers.14.self_attn.q_proj.weight
+21:35:21 START 166/355 model.layers.14.self_attn.v_proj.weight
+21:35:31 START 167/355 model.layers.15.mlp.down_proj.weight
+21:35:42 START 168/355 model.layers.15.mlp.gate_proj.weight
+21:35:53 START 169/355 model.layers.15.mlp.up_proj.weight
+21:36:04 START 170/355 model.layers.15.post_attention_layernorm.weight
+21:36:04 START 171/355 model.layers.15.post_feedforward_layernorm.weight
+21:36:04 START 172/355 model.layers.15.self_attn.k_norm.weight
+21:36:04 START 173/355 model.layers.15.self_attn.k_proj.weight
+21:36:14 RES 173/355 | ram_avail=167.3 ram_total=171.8 rss=11.7 cgroup=4.5 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:36:14 START 174/355 model.layers.15.self_attn.o_proj.weight
+21:36:23 START 175/355 model.layers.15.self_attn.q_norm.weight
+21:36:23 START 176/355 model.layers.15.self_attn.q_proj.weight
+21:36:35 START 177/355 model.layers.15.self_attn.v_proj.weight
+21:36:45 START 178/355 model.layers.16.mlp.down_proj.weight
+21:36:56 START 179/355 model.layers.16.mlp.gate_proj.weight
+21:37:06 START 180/355 model.layers.16.mlp.up_proj.weight
+21:37:17 START 181/355 model.layers.16.post_attention_layernorm.weight
+21:37:17 START 182/355 model.layers.16.post_feedforward_layernorm.weight
+21:37:17 START 183/355 model.layers.16.self_attn.k_norm.weight
+21:37:17 START 184/355 model.layers.16.self_attn.k_proj.weight
+21:37:28 START 185/355 model.layers.16.self_attn.o_proj.weight
+21:37:38 START 186/355 model.layers.16.self_attn.q_norm.weight
+21:37:38 START 187/355 model.layers.16.self_attn.q_proj.weight
+21:37:49 START 188/355 model.layers.16.self_attn.v_proj.weight
+21:37:59 START 189/355 model.layers.17.mlp.down_proj.weight
+21:38:09 START 190/355 model.layers.17.mlp.gate_proj.weight
+21:38:20 START 191/355 model.layers.17.mlp.up_proj.weight
+21:38:31 START 192/355 model.layers.17.post_attention_layernorm.weight
+21:38:31 START 193/355 model.layers.17.post_feedforward_layernorm.weight
+21:38:31 START 194/355 model.layers.17.self_attn.k_norm.weight
+21:38:31 START 195/355 model.layers.17.self_attn.k_proj.weight
+21:38:42 START 196/355 model.layers.17.self_attn.o_proj.weight
+21:38:52 START 197/355 model.layers.17.self_attn.q_norm.weight
+21:38:52 START 198/355 model.layers.17.self_attn.q_proj.weight
+21:39:02 START 199/355 model.layers.17.self_attn.v_proj.weight
+21:39:12 START 200/355 model.layers.18.mlp.down_proj.weight
+21:39:22 RES 200/355 | ram_avail=167.3 ram_total=171.8 rss=14.7 cgroup=4.5 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:39:22 START 201/355 model.layers.18.mlp.gate_proj.weight
+21:39:33 START 202/355 model.layers.18.mlp.up_proj.weight
+21:39:44 START 203/355 model.layers.18.post_attention_layernorm.weight
+21:39:44 START 204/355 model.layers.18.post_feedforward_layernorm.weight
+21:39:44 START 205/355 model.layers.18.self_attn.k_norm.weight
+21:39:44 START 206/355 model.layers.18.self_attn.k_proj.weight
+21:39:55 START 207/355 model.layers.18.self_attn.o_proj.weight
+21:40:05 START 208/355 model.layers.18.self_attn.q_norm.weight
+21:40:05 START 209/355 model.layers.18.self_attn.q_proj.weight
+21:40:17 START 210/355 model.layers.18.self_attn.v_proj.weight
+21:40:26 START 211/355 model.layers.19.mlp.down_proj.weight
+21:40:37 START 212/355 model.layers.19.mlp.gate_proj.weight
+21:40:48 START 213/355 model.layers.19.mlp.up_proj.weight
+21:40:59 START 214/355 model.layers.19.post_attention_layernorm.weight
+21:40:59 START 215/355 model.layers.19.post_feedforward_layernorm.weight
+21:40:59 START 216/355 model.layers.19.self_attn.k_norm.weight
+21:40:59 START 217/355 model.layers.19.self_attn.k_proj.weight
+21:41:09 START 218/355 model.layers.19.self_attn.o_proj.weight
+21:41:19 START 219/355 model.layers.19.self_attn.q_norm.weight
+21:41:19 START 220/355 model.layers.19.self_attn.q_proj.weight
+21:41:29 START 221/355 model.layers.19.self_attn.v_proj.weight
+21:41:39 START 222/355 model.layers.20.mlp.down_proj.weight
+21:41:50 START 223/355 model.layers.20.mlp.gate_proj.weight
+21:42:01 START 224/355 model.layers.20.mlp.up_proj.weight
+21:42:12 START 225/355 model.layers.20.post_attention_layernorm.weight
+21:42:12 START 226/355 model.layers.20.post_feedforward_layernorm.weight
+21:42:12 START 227/355 model.layers.20.self_attn.k_norm.weight
+21:42:12 START 228/355 model.layers.20.self_attn.k_proj.weight
+21:42:23 RES 228/355 | ram_avail=167.3 ram_total=171.8 rss=17.7 cgroup=4.5 cgroup_max=171.8 du:_dl=14.9 free:_dl=9223372012.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:42:23 START 229/355 model.layers.20.self_attn.o_proj.weight
+21:42:32 START 230/355 model.layers.20.self_attn.q_norm.weight
+21:42:32 START 231/355 model.layers.20.self_attn.q_proj.weight
+21:42:43 START 232/355 model.layers.20.self_attn.v_proj.weight
+21:42:53 START 233/355 model.layers.21.mlp.down_proj.weight
+21:43:03 START 234/355 model.layers.21.mlp.gate_proj.weight
+21:43:14 START 235/355 model.layers.21.mlp.up_proj.weight
+21:43:25 START 236/355 model.layers.21.post_attention_layernorm.weight
+21:43:25 START 237/355 model.layers.21.post_feedforward_layernorm.weight
+21:43:25 START 238/355 model.layers.21.self_attn.k_norm.weight
+21:43:25 START 239/355 model.layers.21.self_attn.k_proj.weight
+21:43:36 START 240/355 model.layers.21.self_attn.o_proj.weight
+21:43:46 START 241/355 model.layers.21.self_attn.q_norm.weight
+21:43:46 START 242/355 model.layers.21.self_attn.q_proj.weight
+21:43:56 START 243/355 model.layers.21.self_attn.v_proj.weight
+21:44:06 START 244/355 model.layers.22.mlp.gate_proj.weight
+21:44:17 START 245/355 model.layers.22.self_attn.k_norm.weight
+21:44:17 START 246/355 model.layers.22.self_attn.k_proj.weight
+21:44:28 START 247/355 model.layers.22.self_attn.o_proj.weight
+21:44:38 START 248/355 model.layers.22.self_attn.q_norm.weight
+21:44:38 START 249/355 model.layers.22.self_attn.q_proj.weight
+21:44:49 START 250/355 model.layers.22.self_attn.v_proj.weight
+21:44:58 RELEASED sft model-00002-of-00003.safetensors (deleted)
+21:44:58 RELEASED dpo model-00002-of-00003.safetensors (deleted)
+21:44:58 RELEASED rlvr model-00002-of-00003.safetensors (deleted)
+21:44:58 FETCH sft model-00003-of-00003.safetensors
+21:45:33 RES fetched sft model-00003-of-00003.safetensors | ram_avail=166.9 ram_total=171.8 rss=4.9 cgroup=4.9 cgroup_max=171.8 du:_dl=4.6 free:_dl=9223372023.2 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:45:33 FETCH dpo model-00003-of-00003.safetensors
+21:45:52 RES fetched dpo model-00003-of-00003.safetensors | ram_avail=166.8 ram_total=171.8 rss=4.9 cgroup=5.0 cgroup_max=171.8 du:_dl=9.3 free:_dl=9223372018.5 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:45:52 FETCH rlvr model-00003-of-00003.safetensors
+21:46:03 RES fetched rlvr model-00003-of-00003.safetensors | ram_avail=167.1 ram_total=171.8 rss=5.2 cgroup=4.7 cgroup_max=171.8 du:_dl=13.9 free:_dl=9223372013.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:46:03 START 251/355 lm_head.weight
+21:46:19 START 252/355 model.layers.22.mlp.down_proj.weight
+21:46:30 START 253/355 model.layers.22.mlp.up_proj.weight
+21:46:41 START 254/355 model.layers.22.post_attention_layernorm.weight
+21:46:41 START 255/355 model.layers.22.post_feedforward_layernorm.weight
+21:46:41 START 256/355 model.layers.23.mlp.down_proj.weight
+21:46:52 START 257/355 model.layers.23.mlp.gate_proj.weight
+21:47:03 START 258/355 model.layers.23.mlp.up_proj.weight
+21:47:14 START 259/355 model.layers.23.post_attention_layernorm.weight
+21:47:14 START 260/355 model.layers.23.post_feedforward_layernorm.weight
+21:47:14 START 261/355 model.layers.23.self_attn.k_norm.weight
+21:47:14 START 262/355 model.layers.23.self_attn.k_proj.weight
+21:47:24 START 263/355 model.layers.23.self_attn.o_proj.weight
+21:47:34 START 264/355 model.layers.23.self_attn.q_norm.weight
+21:47:34 START 265/355 model.layers.23.self_attn.q_proj.weight
+21:47:45 START 266/355 model.layers.23.self_attn.v_proj.weight
+21:47:54 START 267/355 model.layers.24.mlp.down_proj.weight
+21:48:05 START 268/355 model.layers.24.mlp.gate_proj.weight
+21:48:16 START 269/355 model.layers.24.mlp.up_proj.weight
+21:48:27 START 270/355 model.layers.24.post_attention_layernorm.weight
+21:48:27 START 271/355 model.layers.24.post_feedforward_layernorm.weight
+21:48:27 START 272/355 model.layers.24.self_attn.k_norm.weight
+21:48:27 START 273/355 model.layers.24.self_attn.k_proj.weight
+21:48:38 START 274/355 model.layers.24.self_attn.o_proj.weight
+21:48:48 START 275/355 model.layers.24.self_attn.q_norm.weight
+21:48:48 START 276/355 model.layers.24.self_attn.q_proj.weight
+21:48:59 START 277/355 model.layers.24.self_attn.v_proj.weight
+21:49:08 RES 277/355 | ram_avail=167.1 ram_total=171.8 rss=10.6 cgroup=4.7 cgroup_max=171.8 du:_dl=13.9 free:_dl=9223372013.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:49:08 START 278/355 model.layers.25.mlp.down_proj.weight
+21:49:19 START 279/355 model.layers.25.mlp.gate_proj.weight
+21:49:30 START 280/355 model.layers.25.mlp.up_proj.weight
+21:49:41 START 281/355 model.layers.25.post_attention_layernorm.weight
+21:49:41 START 282/355 model.layers.25.post_feedforward_layernorm.weight
+21:49:41 START 283/355 model.layers.25.self_attn.k_norm.weight
+21:49:41 START 284/355 model.layers.25.self_attn.k_proj.weight
+21:49:52 START 285/355 model.layers.25.self_attn.o_proj.weight
+21:50:02 START 286/355 model.layers.25.self_attn.q_norm.weight
+21:50:02 START 287/355 model.layers.25.self_attn.q_proj.weight
+21:50:12 START 288/355 model.layers.25.self_attn.v_proj.weight
+21:50:22 START 289/355 model.layers.26.mlp.down_proj.weight
+21:50:33 START 290/355 model.layers.26.mlp.gate_proj.weight
+21:50:44 START 291/355 model.layers.26.mlp.up_proj.weight
+21:50:55 START 292/355 model.layers.26.post_attention_layernorm.weight
+21:50:55 START 293/355 model.layers.26.post_feedforward_layernorm.weight
+21:50:55 START 294/355 model.layers.26.self_attn.k_norm.weight
+21:50:55 START 295/355 model.layers.26.self_attn.k_proj.weight
+21:51:06 START 296/355 model.layers.26.self_attn.o_proj.weight
+21:51:16 START 297/355 model.layers.26.self_attn.q_norm.weight
+21:51:16 START 298/355 model.layers.26.self_attn.q_proj.weight
+21:51:27 START 299/355 model.layers.26.self_attn.v_proj.weight
+21:51:37 START 300/355 model.layers.27.mlp.down_proj.weight
+21:51:47 START 301/355 model.layers.27.mlp.gate_proj.weight
+21:51:58 START 302/355 model.layers.27.mlp.up_proj.weight
+21:52:09 RES 302/355 | ram_avail=167.1 ram_total=171.8 rss=13.9 cgroup=4.7 cgroup_max=171.8 du:_dl=13.9 free:_dl=9223372013.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:52:09 START 303/355 model.layers.27.post_attention_layernorm.weight
+21:52:09 START 304/355 model.layers.27.post_feedforward_layernorm.weight
+21:52:09 START 305/355 model.layers.27.self_attn.k_norm.weight
+21:52:09 START 306/355 model.layers.27.self_attn.k_proj.weight
+21:52:20 START 307/355 model.layers.27.self_attn.o_proj.weight
+21:52:30 START 308/355 model.layers.27.self_attn.q_norm.weight
+21:52:30 START 309/355 model.layers.27.self_attn.q_proj.weight
+21:52:41 START 310/355 model.layers.27.self_attn.v_proj.weight
+21:52:51 START 311/355 model.layers.28.mlp.down_proj.weight
+21:53:02 START 312/355 model.layers.28.mlp.gate_proj.weight
+21:53:13 START 313/355 model.layers.28.mlp.up_proj.weight
+21:53:24 START 314/355 model.layers.28.post_attention_layernorm.weight
+21:53:24 START 315/355 model.layers.28.post_feedforward_layernorm.weight
+21:53:24 START 316/355 model.layers.28.self_attn.k_norm.weight
+21:53:24 START 317/355 model.layers.28.self_attn.k_proj.weight
+21:53:35 START 318/355 model.layers.28.self_attn.o_proj.weight
+21:53:45 START 319/355 model.layers.28.self_attn.q_norm.weight
+21:53:45 START 320/355 model.layers.28.self_attn.q_proj.weight
+21:53:56 START 321/355 model.layers.28.self_attn.v_proj.weight
+21:54:06 START 322/355 model.layers.29.mlp.down_proj.weight
+21:54:17 START 323/355 model.layers.29.mlp.gate_proj.weight
+21:54:27 START 324/355 model.layers.29.mlp.up_proj.weight
+21:54:38 START 325/355 model.layers.29.post_attention_layernorm.weight
+21:54:38 START 326/355 model.layers.29.post_feedforward_layernorm.weight
+21:54:38 START 327/355 model.layers.29.self_attn.k_norm.weight
+21:54:38 START 328/355 model.layers.29.self_attn.k_proj.weight
+21:54:49 START 329/355 model.layers.29.self_attn.o_proj.weight
+21:54:59 START 330/355 model.layers.29.self_attn.q_norm.weight
+21:54:59 START 331/355 model.layers.29.self_attn.q_proj.weight
+21:55:10 RES 331/355 | ram_avail=167.1 ram_total=171.8 rss=16.6 cgroup=4.7 cgroup_max=171.8 du:_dl=13.9 free:_dl=9223372013.9 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:55:10 START 332/355 model.layers.29.self_attn.v_proj.weight
+21:55:20 START 333/355 model.layers.30.mlp.down_proj.weight
+21:55:31 START 334/355 model.layers.30.mlp.gate_proj.weight
+21:55:42 START 335/355 model.layers.30.mlp.up_proj.weight
+21:55:53 START 336/355 model.layers.30.post_attention_layernorm.weight
+21:55:53 START 337/355 model.layers.30.post_feedforward_layernorm.weight
+21:55:53 START 338/355 model.layers.30.self_attn.k_norm.weight
+21:55:53 START 339/355 model.layers.30.self_attn.k_proj.weight
+21:56:03 START 340/355 model.layers.30.self_attn.o_proj.weight
+21:56:13 START 341/355 model.layers.30.self_attn.q_norm.weight
+21:56:13 START 342/355 model.layers.30.self_attn.q_proj.weight
+21:56:24 START 343/355 model.layers.30.self_attn.v_proj.weight
+21:56:34 START 344/355 model.layers.31.mlp.down_proj.weight
+21:56:45 START 345/355 model.layers.31.mlp.gate_proj.weight
+21:56:56 START 346/355 model.layers.31.mlp.up_proj.weight
+21:57:07 START 347/355 model.layers.31.post_attention_layernorm.weight
+21:57:07 START 348/355 model.layers.31.post_feedforward_layernorm.weight
+21:57:07 START 349/355 model.layers.31.self_attn.k_norm.weight
+21:57:07 START 350/355 model.layers.31.self_attn.k_proj.weight
+21:57:17 START 351/355 model.layers.31.self_attn.o_proj.weight
+21:57:27 START 352/355 model.layers.31.self_attn.q_norm.weight
+21:57:27 START 353/355 model.layers.31.self_attn.q_proj.weight
+21:57:37 START 354/355 model.layers.31.self_attn.v_proj.weight
+21:57:47 START 355/355 model.norm.weight
+21:57:47 RELEASED sft model-00003-of-00003.safetensors (deleted)
+21:57:47 RELEASED dpo model-00003-of-00003.safetensors (deleted)
+21:57:47 RELEASED rlvr model-00003-of-00003.safetensors (deleted)
+21:57:47 RES done | ram_avail=167.1 ram_total=171.8 rss=5.2 cgroup=4.7 cgroup_max=171.8 du:_dl=0.0 free:_dl=9223372027.8 gpu_free=101.2 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=25.9
+21:57:47 M1b: wrote 710 rows and the summary to /tmp/rse/results/sprint/M1b
+=== 21:57:47 M1b done; work dir deleted
+EXIT=0

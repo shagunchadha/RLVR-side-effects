@@ -1,0 +1,2754 @@
+{
+ "meta": {
+  "job": "B7",
+  "source": "mandarjoshi/trivia_qa rc.nocontext validation @ 0f7faf33a3908546c6fd5b73a660e0f8ff173c2f",
+  "selection": "first 100 after shuffle with seed 20261024"
+ },
+ "items": [
+  {
+   "id": "B7_sfq_9130",
+   "kind": "free",
+   "question": "Which 2009 movie, the directorial debut of Sam Taylor-Wood, tell the story of the adolescence of John Lennon?",
+   "aliases": [
+    "nowhere boy"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which 2009 movie, the directorial debut of Sam Taylor-Wood, tell the story of the adolescence of John Lennon? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_16719",
+   "kind": "free",
+   "question": "What is the collective noun for a group of alligators?",
+   "aliases": [
+    "congregants",
+    "congregation",
+    "congregation disambiguation",
+    "congregation worship",
+    "congregations",
+    "english congregation",
+    "religious congregation"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the collective noun for a group of alligators? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_1538",
+   "kind": "free",
+   "question": "What is the US state capital of Idaho?",
+   "aliases": [
+    "bodo district",
+    "boise",
+    "boise capital news",
+    "boise city center idaho",
+    "boise city id",
+    "boise city id msa",
+    "boise city idaho",
+    "boise id",
+    "boise idaho",
+    "boise idaho united states",
+    "boise idaho usa",
+    "boise nicknames",
+    "boise police department",
+    "capital of idaho",
+    "history of boise idaho"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the US state capital of Idaho? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_2632",
+   "kind": "free",
+   "question": "Madeleine Allbright was appointed by Bill Clinton as the USA's first woman to hold what position?",
+   "aliases": [
+    "secreatary of state",
+    "secretariat of state",
+    "secretariats of state",
+    "secretaries of state",
+    "secretary of state",
+    "secretary of state great britain",
+    "secretary of state luxembourg",
+    "secretary of states",
+    "state secretariat",
+    "state secretariats",
+    "state secretaries",
+    "state secretary"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Madeleine Allbright was appointed by Bill Clinton as the USA's first woman to hold what position? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_4019",
+   "kind": "free",
+   "question": "What is the collective noun for a group of frogs?",
+   "aliases": [
+    "armies",
+    "army",
+    "army history",
+    "ground forces",
+    "ground formation",
+    "ground formations",
+    "ground units",
+    "history of army",
+    "land army",
+    "land force",
+    "land forces",
+    "vast armies"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the collective noun for a group of frogs? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_dpql_2484",
+   "kind": "free",
+   "question": "Who lured sailors on the Rhine to their deaths with her singing?",
+   "aliases": [
+    "die lorelei",
+    "lorelei",
+    "loreley",
+    "lurking rock",
+    "lurlei"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Who lured sailors on the Rhine to their deaths with her singing? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qz_6685",
+   "kind": "free",
+   "question": "Where does the infamous \"Streif\" downhill ski race take place?",
+   "aliases": [
+    "kitzbuehel",
+    "kitzbuehel austria",
+    "kitzbuehl",
+    "kitzbuel",
+    "kitzbuhel",
+    "kitzbuhel austria",
+    "kitzbuhl",
+    "kitzbühel",
+    "kitzbühel austria",
+    "kitzbühel sportpark tennis stadium",
+    "kitzbühl"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Where does the infamous \"Streif\" downhill ski race take place? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_8582",
+   "kind": "free",
+   "question": "Which city was known as Edo before assuming its current name in 1868?",
+   "aliases": [
+    "demographics of tokyo",
+    "dōngjīng japan",
+    "economy of tokyo",
+    "jp 13",
+    "kudanzaka",
+    "metropolitan tokyo",
+    "outlying islands of tokyo",
+    "oyata",
+    "oyata tokyo",
+    "to kyo",
+    "tohkyoh",
+    "tokei",
+    "tokeo",
+    "tokio metropolis",
+    "toky",
+    "tokyo",
+    "tokyo administrative district",
+    "tokyo city and prefecture",
+    "tokyo in pop culture",
+    "tokyo japan",
+    "tokyo met",
+    "tokyo metropolitan prefecture",
+    "tokyo plain",
+    "tokyo to",
+    "tokyo tokyo",
+    "tokyoh",
+    "tokyoto",
+    "tookioo",
+    "tookyoo",
+    "toquio",
+    "toukiou",
+    "toukyo",
+    "toukyou",
+    "toukyou to",
+    "toyko",
+    "toyko japan",
+    "tókio",
+    "tôkiô",
+    "tôkyô",
+    "tôkyô japan",
+    "tôkyô prefecture",
+    "tõkiõ",
+    "tõkyõ",
+    "tōkei",
+    "tōkyo",
+    "tōkyō",
+    "tōkyō japan",
+    "tōkyō jp 13",
+    "tōkyō met",
+    "tōkyō metropolis",
+    "tōkyō prefecture",
+    "tōkyō to",
+    "un locode jptyo",
+    "東京",
+    "東京都"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which city was known as Edo before assuming its current name in 1868? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_7593",
+   "kind": "free",
+   "question": "In which country is the most northerly point on mainland Africa?",
+   "aliases": [
+    "administrative divisions of tunisia",
+    "al jumhūriyya at tūnisiyya",
+    "ancient tunisia",
+    "classical tunisia",
+    "etymology of tunisia",
+    "iso 3166 1 tn",
+    "medieval tunisia",
+    "name of tunisia",
+    "republic of tunisia",
+    "tounes",
+    "tounisiyya",
+    "tunesia",
+    "tunisa",
+    "tunisia",
+    "tunisia in middle ages",
+    "tunisian republic",
+    "tunisie",
+    "tunnisia",
+    "الجمهورية التونسية"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In which country is the most northerly point on mainland Africa? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_2838",
+   "kind": "free",
+   "question": "Which metal is created by the 'Bessemer Process'?",
+   "aliases": [
+    "crude steel",
+    "long steel products",
+    "steel",
+    "steel alloy",
+    "steel construction",
+    "steel in africa",
+    "steel industry",
+    "steel manufacture",
+    "steel metal",
+    "steel plate",
+    "steel sheeting",
+    "steel truss",
+    "steel worker",
+    "steel workers",
+    "steels",
+    "steelworker",
+    "steelworkers",
+    "titanic steel",
+    "unwrapped steel"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which metal is created by the 'Bessemer Process'? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_9338",
+   "kind": "free",
+   "question": "In which sea is the The Grenadines island chain?",
+   "aliases": [
+    "caribbean",
+    "caribbean integration",
+    "caribbean island",
+    "caribbean nation",
+    "caribbean region",
+    "caribbee islands",
+    "caribean",
+    "caribean islands",
+    "carribbean",
+    "carribbean islands",
+    "carribean",
+    "carribean islands",
+    "carribeans",
+    "carribian",
+    "countries of carribean",
+    "geography of caribbean",
+    "west indes",
+    "west indian islands",
+    "west indies",
+    "west indies islands",
+    "western indies"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In which sea is the The Grenadines island chain? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_dpql_5066",
+   "kind": "free",
+   "question": "Which is the most southerly of the Shipping Forecast areas?",
+   "aliases": [
+    "trafalgar",
+    "trafalgar disambiguation",
+    "trafalger",
+    "traflagar",
+    "tralfagar"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which is the most southerly of the Shipping Forecast areas? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_tb_992",
+   "kind": "free",
+   "question": "A set of traditional laws called Kanun influence life in what mountainous European country?",
+   "aliases": [
+    "albania",
+    "albania balkans",
+    "albanie",
+    "albanija",
+    "albenia",
+    "etymology of albania",
+    "health in albania",
+    "iso 3166 1 al",
+    "republic of albania",
+    "republika e shqipërisë",
+    "shqiperi",
+    "shqiperia",
+    "shqipëri",
+    "shqipëria",
+    "shquiperia"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "A set of traditional laws called Kanun influence life in what mountainous European country? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qg_51",
+   "kind": "free",
+   "question": "December 21, 1937 saw the premiere of what feature film, the first full length animated feature film?",
+   "aliases": [
+    "mirror mirror on wall",
+    "schneewittchen",
+    "schneewittchen und die sieben zwerge",
+    "seven dwarves",
+    "show white and seven dwarves",
+    "sneewittchen",
+    "snow white",
+    "snow white and seven dwarfs",
+    "snow white character",
+    "snow white other stories",
+    "snowhite",
+    "snowwhite"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "December 21, 1937 saw the premiere of what feature film, the first full length animated feature film? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_16856",
+   "kind": "free",
+   "question": "Against which nation did Sachin Tendulkar score his 100th international century?",
+   "aliases": [
+    "b desh",
+    "bangaladesh",
+    "bangaldesh",
+    "bangla desh",
+    "bangladash",
+    "bangladeish",
+    "bangladesh",
+    "bangladesxo",
+    "bangledesh",
+    "bdesh",
+    "bengaldesh",
+    "bengaledesh",
+    "bengali people s republic",
+    "bengali republic",
+    "bengladesh",
+    "biodiversity in bangladesh",
+    "blangadesh",
+    "bngl",
+    "gana praja tantri bangladesh",
+    "gônoprojatontri bangladesh",
+    "gônôprôjatôntri bangladesh",
+    "iso 3166 1 bd",
+    "people s republic of bangladesh",
+    "peoples republic of bangladesh",
+    "republic of bangladesh",
+    "গনপ্রজাতন্ত্রী বাংলােদশ",
+    "বাংলাদেশ"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Against which nation did Sachin Tendulkar score his 100th international century? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_12722",
+   "kind": "free",
+   "question": "Where are New Zealand's parliament buildings?",
+   "aliases": [
+    "te whanga nui tara",
+    "un locode nztrg",
+    "un locode nzwlg",
+    "welington",
+    "wellingotn",
+    "wellington",
+    "wellington buildings",
+    "wellington new zealand",
+    "wellington nz",
+    "wellinton"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Where are New Zealand's parliament buildings? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_13588",
+   "kind": "free",
+   "question": "Which Italian artist painted 'The School of Athens'?",
+   "aliases": [
+    "rafael sancho",
+    "rafael sanzio",
+    "rafael sanzio da urbino",
+    "raffael",
+    "raffaello da urbino",
+    "raffaello santi",
+    "raffaello sanzio",
+    "raffaello sanzio da urbino",
+    "raffaelo",
+    "raffaelo santi",
+    "raphael",
+    "raphael painter",
+    "raphael santi",
+    "raphael sanzi",
+    "raphael sanzio",
+    "raphael urbinas",
+    "raphaelesque",
+    "raphaello sanzio",
+    "rapheal",
+    "sanzio"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which Italian artist painted 'The School of Athens'? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_6813",
+   "kind": "free",
+   "question": "Of which football club was Santiago Bernabeu the President from 1943 to 1978?",
+   "aliases": [
+    "los blancos",
+    "madrid cf",
+    "madrid fc",
+    "real madrid",
+    "real madrid c f",
+    "real madrid captains",
+    "real madrid cf",
+    "real madrid club de futbol",
+    "real madrid club de fútbol",
+    "real madrid f c",
+    "real madrid fc",
+    "real madrid statistics 2005 06",
+    "realmadrid com",
+    "rmcf",
+    "royal madrid",
+    "sociedad madrid foot ball club",
+    "supporters of real madrid c f"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Of which football club was Santiago Bernabeu the President from 1943 to 1978? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_14292",
+   "kind": "free",
+   "question": "Who became the first Prime Minister of an independent Bangladesh in January 1972?",
+   "aliases": [
+    "bangabandhu",
+    "bangabandhu sheikh mujibur rahman",
+    "bangabondhu sheikh mujibur rahman",
+    "father of bangladesh",
+    "mujib",
+    "mujib ur rahman",
+    "mujibur rahman",
+    "rahman mujibur",
+    "sekh mujibur rahman",
+    "sh mujib ur rehman",
+    "shaikh mujibur rahman",
+    "sheikh mujeeb ur rehman",
+    "sheikh mujib",
+    "sheikh mujibur rahman",
+    "sheikh mujibur rehman",
+    "sheikh muzibur rahman",
+    "shekh mujibur rohman",
+    "shekh mujibur rôhman",
+    "śēkh mujibur rahmān",
+    "শেখ মুজিবর রহমান"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Who became the first Prime Minister of an independent Bangladesh in January 1972? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_707",
+   "kind": "free",
+   "question": "What British sitcom that aired from 1979 to 1981 in the UK, starred Penelope Keith and Peter Bowles?",
+   "aliases": [
+    "richard devere",
+    "to manor born",
+    "ttmb"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What British sitcom that aired from 1979 to 1981 in the UK, starred Penelope Keith and Peter Bowles? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qf_957",
+   "kind": "free",
+   "question": "In what year did Torville and Dean (Jane and Christopher) win their first Olympic gold, scoring 12 perfect sixes in their free-dance routine?",
+   "aliases": [
+    "1984",
+    "one thousand nine hundred and eighty four"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In what year did Torville and Dean (Jane and Christopher) win their first Olympic gold, scoring 12 perfect sixes in their free-dance routine? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_11725",
+   "kind": "free",
+   "question": "Which island was home to Odysseus?",
+   "aliases": [
+    "cape melissa",
+    "ithaca",
+    "ithaca greece",
+    "ithaca greek",
+    "ithaca island",
+    "ithake",
+    "ithaki",
+    "itháki",
+    "lazaretto islet",
+    "thaki",
+    "theaki",
+    "val di conspare",
+    "ιθάκη"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which island was home to Odysseus? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_tc_3026",
+   "kind": "free",
+   "question": "Five-legged creatures have damaged which 1250 mile long wonder of the world?",
+   "aliases": [
+    "douglas shoal",
+    "great barrier reef",
+    "great barrier reef history",
+    "great barrier reef world heritage area",
+    "great detached reef"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Five-legged creatures have damaged which 1250 mile long wonder of the world? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_wh_3188",
+   "kind": "free",
+   "question": "Edward the Black Prince was the father of which English King?",
+   "aliases": [
+    "king richard ii",
+    "king richard ii of england",
+    "richard duke of cornwall",
+    "richard ii",
+    "richard ii england",
+    "richard ii king of england",
+    "richard ii king of english",
+    "richard ii of england"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Edward the Black Prince was the father of which English King? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_1299",
+   "kind": "free",
+   "question": "On which island does a narrow gauge railway run from Craignure to Torosay Castle?",
+   "aliases": [
+    "glenforsa",
+    "island of mull",
+    "isle of mull",
+    "isle of mull scotland",
+    "malaeus",
+    "muile",
+    "mull"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "On which island does a narrow gauge railway run from Craignure to Torosay Castle? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_8423",
+   "kind": "free",
+   "question": "Which Frenchman, who never learned to speak Swedish, became King Charles XIV John of Sweden and Norway?",
+   "aliases": [
+    "carl iii",
+    "carl iii johan",
+    "carl iii johan of norway",
+    "carl iii of norway",
+    "carl johan",
+    "carl xiv",
+    "carl xiv johan",
+    "carl xiv johan of sweden",
+    "carl xiv john",
+    "carl xiv john of norway",
+    "carl xiv john of sweden",
+    "carl xiv of sweden",
+    "charles 14",
+    "charles iii johan",
+    "charles iii john",
+    "charles iii john of norway",
+    "charles iii john of sweden",
+    "charles iii of norway",
+    "charles john bernadotte",
+    "charles xiv",
+    "charles xiv jean de suede",
+    "charles xiv jean de suède",
+    "charles xiv john",
+    "charles xiv john of sweden",
+    "charles xiv of sweden",
+    "charles xiv of sweden and norway",
+    "charles xvi johan of sweden",
+    "jean baptiste bernadotte",
+    "jean baptiste jules bernadotte",
+    "jean bernadotte",
+    "john bernadotte",
+    "karl iii",
+    "karl iii johan",
+    "karl iii johan of norway",
+    "karl iii of norway",
+    "karl johan",
+    "karl xiv",
+    "karl xiv johan",
+    "karl xiv johan of norway",
+    "karl xiv johan of sweden",
+    "karl xiv of sweden",
+    "king carl xiv johan",
+    "king charles iii john",
+    "king charles iii john of norway",
+    "king charles iii of norway",
+    "king charles xiv",
+    "king charles xiv john",
+    "king charles xiv of sweden",
+    "king karl xiv johan",
+    "marshal bernadotte",
+    "sergent belle jambe"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which Frenchman, who never learned to speak Swedish, became King Charles XIV John of Sweden and Norway? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_4153",
+   "kind": "free",
+   "question": "The trade union Unison was formed by a merger of NALGO, NUPE and which other union?",
+   "aliases": [
+    "cohse",
+    "confederation of health service employees"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The trade union Unison was formed by a merger of NALGO, NUPE and which other union? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qz_3752",
+   "kind": "free",
+   "question": "Which former West Indian fast bowler was known as 'Whispering Death'?",
+   "aliases": [
+    "michael holding",
+    "mike holding"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which former West Indian fast bowler was known as 'Whispering Death'? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_wh_2061",
+   "kind": "free",
+   "question": "Which author created the fictional character Moll Flanders ?",
+   "aliases": [
+    "british officer in service of czar",
+    "captain george carleton",
+    "captain tom",
+    "danial defoe",
+    "daniel dafoe",
+    "daniel defoe",
+    "daniel defore",
+    "daniel foe",
+    "daniel prophet",
+    "defoe daniel",
+    "one of people called quakers",
+    "scots gentleman in swedish service"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which author created the fictional character Moll Flanders ? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_2901",
+   "kind": "free",
+   "question": "Odontology is the scientific study of what?",
+   "aliases": [
+    "apex radicis dentis",
+    "maxillary teeth",
+    "pegged teeth",
+    "teeth",
+    "tooth",
+    "tooth animal",
+    "tooth root",
+    "tooth serrations"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Odontology is the scientific study of what? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bt_4125",
+   "kind": "free",
+   "question": "In Greek mythology which son of Telamon fought Hector in single combat",
+   "aliases": [
+    "ajax",
+    "ajax automobile",
+    "ajax disambiguation",
+    "jax",
+    "town of ajax",
+    "αἴας"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In Greek mythology which son of Telamon fought Hector in single combat Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qz_2821",
+   "kind": "free",
+   "question": "In which country are the Angel Falls, the highest waterfall in the world?",
+   "aliases": [
+    "benezuela",
+    "bolivaria",
+    "bolivarian republic of venezuela",
+    "brv",
+    "etymology of venezuela",
+    "iso 3166 1 ve",
+    "name of venezuela",
+    "republic of venezuela",
+    "republica bolivariana de venezuela",
+    "republica de venezuela",
+    "república bolivariana de venezuela",
+    "v zuela",
+    "ven",
+    "venazeula",
+    "venecuela",
+    "venezeula",
+    "venezuala",
+    "venezuela",
+    "venezuela bolivarian republic of",
+    "venezuela rb",
+    "venezuelan",
+    "venezula",
+    "venezulea",
+    "venizuela",
+    "venuzeula",
+    "venzauela",
+    "venzuela"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In which country are the Angel Falls, the highest waterfall in the world? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_5622",
+   "kind": "free",
+   "question": "His debut album 'Disc-Overy' was released in 2010. By what stage-name id Patrick Chukwuemeka Okogwu better known?",
+   "aliases": [
+    "patrick chukwuemeka okogwu",
+    "patrick chukwuemeka okogwu jr",
+    "patrick okogwu",
+    "tinie tempah",
+    "tinie temper",
+    "tiny tempah",
+    "tiny temper"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "His debut album 'Disc-Overy' was released in 2010. By what stage-name id Patrick Chukwuemeka Okogwu better known? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_25538",
+   "kind": "free",
+   "question": "Which British Victorian writer lived with George Lewes for 24 years but never married him?",
+   "aliases": [
+    "eliot george",
+    "g eliot",
+    "george eliot",
+    "george marian evans eliot",
+    "marian evans",
+    "mary ann cross",
+    "mary ann evans",
+    "mrs cross"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which British Victorian writer lived with George Lewes for 24 years but never married him? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_1887",
+   "kind": "free",
+   "question": "What was set at 3 groats per household in 1380 and caused social unrest?",
+   "aliases": [
+    "pole tax",
+    "poll tax",
+    "poll tax disambiguation",
+    "poll taxes",
+    "polltax"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What was set at 3 groats per household in 1380 and caused social unrest? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_9920",
+   "kind": "free",
+   "question": "Known as the 'Phoenix Park Murders', the assassination of Lord Frederick Cavendish and Thomas Henry Burke in 1882 occurred in which city?",
+   "aliases": [
+    "baile atha cliath",
+    "baile átha cliath",
+    "bác",
+    "capital of ireland",
+    "capital of republic of ireland",
+    "central dublin",
+    "city center dublin",
+    "city centre dublin",
+    "city of dublin",
+    "dubh linn",
+    "dublin",
+    "dublin city",
+    "dublin city center",
+    "dublin city centre",
+    "dublin city ireland",
+    "dublin county dublin",
+    "dublin culture",
+    "dublin ireland",
+    "dublin republic of ireland",
+    "dublín",
+    "dyflin",
+    "europe dublin",
+    "un locode iedub",
+    "visitor information for dublin ireland",
+    "weather in dublin",
+    "west dublin"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Known as the 'Phoenix Park Murders', the assassination of Lord Frederick Cavendish and Thomas Henry Burke in 1882 occurred in which city? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_14351",
+   "kind": "free",
+   "question": "Of which country is Manama the capital?",
+   "aliases": [
+    "1923 sitrah outrage",
+    "al bahrayn",
+    "al baḥrayn",
+    "asia bahrain",
+    "bahraih",
+    "bahrain",
+    "bahrain geography",
+    "bahrain islands",
+    "bahrain s",
+    "bahrayn",
+    "bahrein",
+    "bahrein islands",
+    "barhain",
+    "dawlat al bahrain",
+    "emirate of bahrain",
+    "etymology of bahrain",
+    "iso 3166 1 bh",
+    "kingdom of bahrain",
+    "languages of bahrain",
+    "mamlakat al baḥrayn",
+    "البحرين",
+    "مملكة البحرين"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Of which country is Manama the capital? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_11620",
+   "kind": "free",
+   "question": "Muslin and chenille are two what?",
+   "aliases": [
+    "cloth",
+    "cloths",
+    "fabric",
+    "fabrical",
+    "fabricalities",
+    "fabricality",
+    "fabrically",
+    "fabrics",
+    "interlock cloth",
+    "list of textile related topics",
+    "rag cloth",
+    "textile",
+    "textile fibre",
+    "textiled",
+    "textiler",
+    "textilers",
+    "textiles",
+    "textiling",
+    "tray cloth",
+    "yard goods"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Muslin and chenille are two what? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_24151",
+   "kind": "free",
+   "question": "What is measured by a Hygrometer?",
+   "aliases": [
+    "absolute humidity",
+    "air humidity",
+    "humid",
+    "humidity",
+    "hygric",
+    "moisture ratio",
+    "specific humidity",
+    "sultry"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is measured by a Hygrometer? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qf_3499",
+   "kind": "free",
+   "question": "What type of tree was Newton supposedly sitting under when he formulated his theory of gravity?",
+   "aliases": [
+    "aplle",
+    "apple",
+    "apple blossom",
+    "apple blossoms",
+    "apple day",
+    "apple fruit",
+    "apple nutritional information",
+    "apple peel",
+    "apple popularity",
+    "apple production",
+    "apple tree",
+    "apple trees",
+    "appleblossom",
+    "appleblossoms",
+    "apples",
+    "apples and teachers",
+    "culture of apple",
+    "dried apple",
+    "green apple",
+    "green apples",
+    "malus communis",
+    "malus domestica",
+    "malus domesticus",
+    "malus pumila",
+    "nutritional information about apple",
+    "pyrus malus",
+    "سێو",
+    "🍎",
+    "🍏"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What type of tree was Newton supposedly sitting under when he formulated his theory of gravity? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bb_1112",
+   "kind": "free",
+   "question": "Pony, seven and schooner are Australian terms for what?",
+   "aliases": [
+    "beer flute",
+    "beer glass",
+    "beer glasses",
+    "beer glassware",
+    "boot of beer",
+    "pilsener glass",
+    "pilsner glass",
+    "sahm gmbh",
+    "sahm international",
+    "taster glass",
+    "tasting glass",
+    "tulip glass",
+    "wheat beer glass"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Pony, seven and schooner are Australian terms for what? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_11437",
+   "kind": "free",
+   "question": "\"Who \"\"was born in a cross-fire hurricane\"\" and \"\"howled at my ma in the driving rain\"\"?\"",
+   "aliases": [
+    "jumpin jack flash",
+    "jumpin jack flash song",
+    "jumping jack flash",
+    "jumping jackflash"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "\"Who \"\"was born in a cross-fire hurricane\"\" and \"\"howled at my ma in the driving rain\"\"?\" Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_601",
+   "kind": "free",
+   "question": "What board game for two players is known as wiq in Chinese and baduk in Korean?",
+   "aliases": [
+    "g o",
+    "go",
+    "go album",
+    "go disambiguation",
+    "go film",
+    "go magazine",
+    "go movie",
+    "go novel",
+    "go rock group",
+    "go song",
+    "gō"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What board game for two players is known as wiq in Chinese and baduk in Korean? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_6432",
+   "kind": "free",
+   "question": "The chemical element antimony is found in nature mainly as which sulphite mineral?",
+   "aliases": [
+    "antimony black",
+    "antimony glance",
+    "sb2s3",
+    "stibnite"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The chemical element antimony is found in nature mainly as which sulphite mineral? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_23316",
+   "kind": "free",
+   "question": "Which city was the setting for Shakespeare’s play Measure for Measure?",
+   "aliases": [
+    "architecture of vienna",
+    "bécs",
+    "capital of austria",
+    "city of vienna",
+    "demographics of vienna",
+    "europe vienna",
+    "gemeinderat of vienna",
+    "government of vienna",
+    "habsburg austria",
+    "un locode atvie",
+    "viena",
+    "vienna",
+    "vienna at 9",
+    "vienna austria",
+    "vienna porcelain",
+    "vienna state",
+    "vinarborg",
+    "vindabona",
+    "vindobonensis",
+    "vínarborg",
+    "wene",
+    "wien",
+    "wien austria",
+    "wienna"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which city was the setting for Shakespeare’s play Measure for Measure? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_10879",
+   "kind": "free",
+   "question": "\"Which veteran rock singer released the album \"\"The Healing Game\"\" in 1997?\"",
+   "aliases": [
+    "celtic soul",
+    "george ivan morrison",
+    "ivan morrison",
+    "sir george ivan morrison",
+    "sir van morrison",
+    "van morisson",
+    "van morrison",
+    "van morrison obe",
+    "van morrisson"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "\"Which veteran rock singer released the album \"\"The Healing Game\"\" in 1997?\" Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_5117",
+   "kind": "free",
+   "question": "What was the name of the cruise ship hijacked by the PLO in 1985?",
+   "aliases": [
+    "achille lauro"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What was the name of the cruise ship hijacked by the PLO in 1985? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_dpql_3059",
+   "kind": "free",
+   "question": "Hamilcar Barca was the father of which famous general?",
+   "aliases": [
+    "carthaginian general hannibal",
+    "conquests of hannibal",
+    "hanibal",
+    "hannibal",
+    "hannibal barca",
+    "hannibal barcid",
+    "hannibal great",
+    "hannibal of carthage",
+    "hanniball"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Hamilcar Barca was the father of which famous general? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bt_2106",
+   "kind": "free",
+   "question": "Gingivitis affects which part of the body",
+   "aliases": [
+    "gingiva",
+    "gingivae",
+    "gingival",
+    "gum anatomy",
+    "gum line",
+    "gumline",
+    "gums",
+    "marginal gingivae",
+    "uletic"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Gingivitis affects which part of the body Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_280",
+   "kind": "free",
+   "question": "Peter O’Sullevan was a BBC commentator for which sport?",
+   "aliases": [
+    "horse race",
+    "horse races",
+    "horse racing",
+    "horse racing in japan",
+    "horse racing venue",
+    "horserace",
+    "horseracing",
+    "keiba",
+    "pony racing",
+    "quarter horse racing",
+    "race horse",
+    "racehorse",
+    "racehorses",
+    "racing horse",
+    "racing industry",
+    "racing on horseback",
+    "scratch sheet",
+    "turf patron",
+    "🏇"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Peter O’Sullevan was a BBC commentator for which sport? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_wh_2671",
+   "kind": "free",
+   "question": "Greek philosopher Socrates was sentenced to death by drinking which kind of poison ?",
+   "aliases": [
+    "hemlock",
+    "hemlock disambiguation",
+    "hemlock west virginia",
+    "hemlocks"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Greek philosopher Socrates was sentenced to death by drinking which kind of poison ? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_14417",
+   "kind": "free",
+   "question": "\"\"\"Wuthering Heights\"\" by Emily Bront tells the story of which two lovers?\"",
+   "aliases": [
+    "catherine and heathcliff"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "\"\"\"Wuthering Heights\"\" by Emily Bront tells the story of which two lovers?\" Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_16389",
+   "kind": "free",
+   "question": "Which city is sited on the Absheron Peninsula which juts into the Caspian Sea?",
+   "aliases": [
+    "asia baku",
+    "baki saehaeri",
+    "baki saehaeri azerbaijan",
+    "baki sahari",
+    "baki sahari azerbaijan",
+    "bakou",
+    "baku",
+    "baku aj",
+    "baku azerbaijan",
+    "baku city",
+    "baku oilfields",
+    "baku today",
+    "baku ussr",
+    "baky",
+    "bakı",
+    "bakı şähäri",
+    "bakı şähäri azerbaijan",
+    "capital city of azerbaijan",
+    "capital of azerbaijan",
+    "walled city of baku with shirvanshah s palace and maiden tower",
+    "бакы"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which city is sited on the Absheron Peninsula which juts into the Caspian Sea? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_4849",
+   "kind": "free",
+   "question": "The nictitating membrane is found on which part of animal’s body?",
+   "aliases": [
+    "animal eyes",
+    "apposition eye",
+    "camera type eye",
+    "compound eye",
+    "compound eyes",
+    "conjunctival disorders",
+    "cyber eye",
+    "eye",
+    "eye anatomy",
+    "eye ball",
+    "eye balls",
+    "eye invertebrate",
+    "eye membrane",
+    "eye vertebrate",
+    "eyeball",
+    "eyes",
+    "facet eyes",
+    "fly s eye lens",
+    "ocular",
+    "ocular globe",
+    "oculars",
+    "ommateum",
+    "ommotidium",
+    "peeper organ",
+    "pinhole eye",
+    "robotic eye",
+    "schizochroal eye",
+    "simple eye"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The nictitating membrane is found on which part of animal’s body? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_wh_3100",
+   "kind": "free",
+   "question": "Which pop group in October 1974 reached NumberOne in the UK charts with Sad, Sweet Dreamer?",
+   "aliases": [
+    "sweet sensation"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which pop group in October 1974 reached NumberOne in the UK charts with Sad, Sweet Dreamer? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_10619",
+   "kind": "free",
+   "question": "What play was President Lincoln watching the night he was assassinated in 1865?",
+   "aliases": [
+    "our american cousin",
+    "sockdologizing"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What play was President Lincoln watching the night he was assassinated in 1865? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bt_4028",
+   "kind": "free",
+   "question": "In Greek mythology, who was the first woman on Earth",
+   "aliases": [
+    "anesidora",
+    "pandora",
+    "pandora greek mythology",
+    "pandora myth",
+    "pandora mythology"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In Greek mythology, who was the first woman on Earth Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_23310",
+   "kind": "free",
+   "question": "With its 14 lanes which New York city bridge carries the greatest amount of traffic?",
+   "aliases": [
+    "1st president of united states",
+    "1st us president",
+    "american fabius",
+    "early life of george washington",
+    "first president of united states",
+    "first u s president",
+    "g o washington",
+    "g washington",
+    "general george washington",
+    "general washington",
+    "geo washington",
+    "geoge washington",
+    "geogre washington",
+    "georeg washington",
+    "georg waschingdon",
+    "george washignton",
+    "george washingtin",
+    "george washingtom",
+    "george washington",
+    "george washington between wars",
+    "george washington s",
+    "george washington s early life",
+    "george washington s teeth",
+    "george washinton",
+    "george weashington",
+    "georgewashington",
+    "goerge washington",
+    "indispensable man",
+    "president george washington",
+    "president washington",
+    "washington george",
+    "washington president"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "With its 14 lanes which New York city bridge carries the greatest amount of traffic? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_8838",
+   "kind": "free",
+   "question": "Which series of spotters guides was named after a children's game - a complete book was sent to a 'Big Chief', one of whom was David Bellamy the botanist?",
+   "aliases": [
+    "i spy",
+    "i spy michelin"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which series of spotters guides was named after a children's game - a complete book was sent to a 'Big Chief', one of whom was David Bellamy the botanist? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qz_3741",
+   "kind": "free",
+   "question": "In the run up to the 1997 election, Tony Blair outlined his parties' three priorities for office, can you name them?",
+   "aliases": [
+    "anthony c l blair",
+    "anthony charles blair",
+    "anthony charles lynton 22tony 22 blair",
+    "anthony charles lynton blair",
+    "anthony tony blair",
+    "antony blair",
+    "blair doctrine",
+    "blairian",
+    "education education and education",
+    "education education education",
+    "family of tony blair",
+    "herr blair",
+    "president blair",
+    "prime minister tony blair",
+    "rt hon anthony blair mp",
+    "rt hon anthony charles lynton blair",
+    "rt hon tony blair",
+    "toney blair",
+    "tonie blair",
+    "tony balir",
+    "tony blaer",
+    "tony blair",
+    "tony blair pm",
+    "tony blair s private life",
+    "tony blair sports foundation",
+    "tony blaire",
+    "tony blairs",
+    "tony blare",
+    "tony blari",
+    "tony blear",
+    "tony bliar",
+    "tonyblair",
+    "tory blair"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In the run up to the 1997 election, Tony Blair outlined his parties' three priorities for office, can you name them? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_19847",
+   "kind": "free",
+   "question": "Green plover and peewit are alternative names for which British bird?",
+   "aliases": [
+    "lapwing",
+    "lapwings",
+    "vanellinae"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Green plover and peewit are alternative names for which British bird? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_20666",
+   "kind": "free",
+   "question": "Robert Gordon Menzies was which country's longest-serving Prime Minister?",
+   "aliases": [
+    "asutralia",
+    "ausrtalia",
+    "aussieland",
+    "austalia",
+    "austraila",
+    "austrailia",
+    "australai",
+    "australia",
+    "australia commonwealth",
+    "australia commonwealth realm",
+    "australia constitutional monarchy",
+    "australia country",
+    "australia dominion",
+    "australia empire",
+    "australia federation",
+    "australia monarchy",
+    "australia nation",
+    "australia nation state",
+    "australia realm",
+    "australia s",
+    "australia state",
+    "australian",
+    "australian city life",
+    "australian commonwealth",
+    "australian country life",
+    "australian geopolitics",
+    "australian mainland",
+    "australian s",
+    "australian woman s day",
+    "australias",
+    "australie",
+    "australien",
+    "australiia",
+    "australija",
+    "australlia",
+    "australo",
+    "australocentric",
+    "australocentrism",
+    "australocentrist",
+    "austraya",
+    "austrlaia",
+    "austrlia",
+    "city life in australia",
+    "commonwealth australia",
+    "commonwealth of australia",
+    "continental australia",
+    "country life in australia",
+    "dominion of australia",
+    "empire of australia",
+    "etymology of australia",
+    "federal australia",
+    "geopolitics of australia",
+    "imperial australia",
+    "iso 3166 1 au",
+    "mainland australia",
+    "modern australia",
+    "new australian",
+    "orstraya",
+    "ostralia",
+    "pax australiana",
+    "peace of australia",
+    "philosophy in australia",
+    "science in australia",
+    "straya",
+    "technology in australia",
+    "united states of australia"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Robert Gordon Menzies was which country's longest-serving Prime Minister? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_1569",
+   "kind": "free",
+   "question": "Boll weevil cause damage to which crop?",
+   "aliases": [
+    "absorbent cotton",
+    "bomull",
+    "cotton",
+    "cotton boll",
+    "cotton cloth",
+    "cotton fabric",
+    "cotton fiber",
+    "cotton industry",
+    "cotton linter",
+    "cotton picking",
+    "cotton wool",
+    "cottons",
+    "indian cotton",
+    "manufacture of cotton",
+    "processing of cotton"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Boll weevil cause damage to which crop? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qg_4541",
+   "kind": "free",
+   "question": "What is the name of the giraffe that Toys-r-us uses as its' mascot?",
+   "aliases": [
+    "geoff",
+    "geoffrey",
+    "geoffrey disambiguation",
+    "geoffroy"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the name of the giraffe that Toys-r-us uses as its' mascot? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_4786",
+   "kind": "free",
+   "question": "A throw of which number on each of a pair of dice is known as Snake Eyes?",
+   "aliases": [
+    "1",
+    "one"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "A throw of which number on each of a pair of dice is known as Snake Eyes? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_22338",
+   "kind": "free",
+   "question": "Who is the only Spanish winner of the Ladies' Singles at Wimbledon?",
+   "aliases": [
+    "conchita martinez",
+    "conchita martinez bernat",
+    "conchita martínez",
+    "conchita martínez bernat",
+    "inmaculada concepción 22conchita 22 martínez bernat",
+    "inmaculada concepción martínez bernat"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Who is the only Spanish winner of the Ladies' Singles at Wimbledon? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qf_2443",
+   "kind": "free",
+   "question": "How many 'Pockets' would you find on a pool table?",
+   "aliases": [
+    "6",
+    "six"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "How many 'Pockets' would you find on a pool table? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_3822",
+   "kind": "free",
+   "question": "In 1883 which Indonesian volcano erupted and was believed to be the largest single explosion in recorded human history?",
+   "aliases": [
+    "anak krakatau",
+    "anak krakatoa",
+    "cracatau",
+    "crokatoa",
+    "krackatoa",
+    "krakatao",
+    "krakatau",
+    "krakatoa",
+    "krakatoan eruption",
+    "krakatowa",
+    "krakatua",
+    "krakatua eruption 1883",
+    "krakitoa",
+    "mount anak krakatau",
+    "mt krakatoa",
+    "telok batong"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In 1883 which Indonesian volcano erupted and was believed to be the largest single explosion in recorded human history? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_2920",
+   "kind": "free",
+   "question": "What is the honour system founded by Napoleon in 1802 that has five classes including Grand Cross and Officer?",
+   "aliases": [
+    "chevalier dans l ordre de la legion d honneur",
+    "chevalier dans l ordre de la légion d honneur",
+    "chevalier de la legion d honneur",
+    "chevalier de la légion d honneur",
+    "chevalier de legion d honneur",
+    "chevalier de légion d honneur",
+    "chevalier of legion of honor",
+    "chevalier of legion of honour",
+    "chevalier of légion d honneur",
+    "chevalier of order of légion d honneur",
+    "commandant of legion",
+    "commander of legion of honor",
+    "commander of legion of honour",
+    "commandeur de la legion d honneur",
+    "commandeur de la légion d honneur",
+    "croix d officier of legion of honour",
+    "cross of legion of honor",
+    "cross of légion d honneur",
+    "french legion of honor",
+    "french legion of honour",
+    "french légion d honneur",
+    "grand cordon of legion of honor",
+    "grand cordon of legion of honour",
+    "grand croix de la legion d honneur",
+    "grand croix de la légion d honneur",
+    "grand croix of légion d honneur",
+    "grand cross of legion of honor",
+    "grand cross of legion of honour",
+    "grand order of legion of honour",
+    "knight of legion of honor",
+    "knight of legion of honour",
+    "knight of national order of legion of honour",
+    "legie d honeur",
+    "legion d honeur",
+    "legion d honneur",
+    "legion d honneur croix de commandeur",
+    "legion d honour",
+    "legion of honor",
+    "legion of honor chevalier",
+    "legion of honor of france",
+    "legion of honour",
+    "loh",
+    "légion d honneur",
+    "légion d honneur croix de commandeur",
+    "légion d honneur de france",
+    "national order of legion of honor",
+    "national order of legion of honour",
+    "officer of legion of honor",
+    "officer of legion of honour",
+    "officer of legion of honour france",
+    "officer of national order of legion of honour",
+    "officier de la legion d honneur",
+    "officier de la légion d honneur",
+    "ordre national de la legion d honneur",
+    "ordre national de la légion d honneur"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the honour system founded by Napoleon in 1802 that has five classes including Grand Cross and Officer? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bt_160",
+   "kind": "free",
+   "question": "What is Chandler's surname in Friends",
+   "aliases": [
+    "bing",
+    "bing and decide",
+    "bing answers",
+    "bing api",
+    "bing bing search engine",
+    "bing com",
+    "bing community",
+    "bing explore",
+    "bing images",
+    "bing it",
+    "bing it on",
+    "bing local",
+    "bing rewards",
+    "bing search",
+    "bing search engine",
+    "bing search engine old version",
+    "bing sidebar",
+    "bing sting",
+    "bing visual search",
+    "bing visual search galleries",
+    "bing visual search galleries beta",
+    "bing web",
+    "bing web search engine",
+    "bing website",
+    "get to know bing",
+    "hiybbprqag",
+    "kumo search engine",
+    "live search",
+    "microsoft bing",
+    "microsoft search",
+    "ms bing",
+    "msn search",
+    "terabyte unlimited",
+    "tour bing",
+    "windows live search",
+    "必应"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is Chandler's surname in Friends Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_3509",
+   "kind": "free",
+   "question": "What number on the BeauforT Scale equates to a gale?",
+   "aliases": [
+    "8",
+    "eight"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What number on the BeauforT Scale equates to a gale? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_12650",
+   "kind": "free",
+   "question": "Thomas Lanier Williams III, American playwright, became better known under what name?",
+   "aliases": [
+    "androgyne mon amour",
+    "androgyne mon amour poems",
+    "tenessee williams",
+    "tennesee williams",
+    "tennesse williams",
+    "tennessee williams",
+    "thomas lanier 22tennessee 22 williams",
+    "thomas lanier williams",
+    "thomas lanier williams iii"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Thomas Lanier Williams III, American playwright, became better known under what name? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_22172",
+   "kind": "free",
+   "question": "Who played Gene Hunt in the TV series Life on Mars and Ashes to Ashes?",
+   "aliases": [
+    "philip glenister",
+    "phillip glenister"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Who played Gene Hunt in the TV series Life on Mars and Ashes to Ashes? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qz_866",
+   "kind": "free",
+   "question": "What seven letter word, beginning with the letters 'Ra' is a palindrome?",
+   "aliases": [
+    "auto race",
+    "auto racing",
+    "automobile race",
+    "automobile racer",
+    "automobile racing",
+    "automotive racing",
+    "autorace",
+    "autoracing",
+    "autosports",
+    "car race",
+    "car racing",
+    "race car",
+    "race car driver",
+    "race cars",
+    "race driver",
+    "racecar",
+    "racecar driver",
+    "racecars",
+    "racing car",
+    "racing cars",
+    "racing driver",
+    "🏎"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What seven letter word, beginning with the letters 'Ra' is a palindrome? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_7649",
+   "kind": "free",
+   "question": "Who was the first female prime minister of the Republic of India, who served for three consecutive terms from 1966 to 1977 and then from 1980 until her assassination in 1984?",
+   "aliases": [
+    "gandhi indira",
+    "gandhi indira priyadarshini",
+    "indira bundghi",
+    "indira gandhi",
+    "indira ghandi",
+    "indira nehru",
+    "indira nehru gandhi",
+    "indira priyadarshini gandhi",
+    "mrs gandhi",
+    "premiership of indira gandhi",
+    "smt indira gandhi",
+    "summary of indira gandhi as prime minister",
+    "इंदिरा प्रियदर्शिनी गांधी"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Who was the first female prime minister of the Republic of India, who served for three consecutive terms from 1966 to 1977 and then from 1980 until her assassination in 1984? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bb_2691",
+   "kind": "free",
+   "question": "What is the Japanese word for the sash worn as a belt in traditional dress (kimonos and martial arts uniforms, etc)?",
+   "aliases": [
+    "obi",
+    "obi disambiguation"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the Japanese word for the sash worn as a belt in traditional dress (kimonos and martial arts uniforms, etc)? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_9990",
+   "kind": "free",
+   "question": "Which British athlete won the Men's 400 metre Olympic Gold Medal in 1968?",
+   "aliases": [
+    "dave hemery",
+    "david hemery"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which British athlete won the Men's 400 metre Olympic Gold Medal in 1968? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_15154",
+   "kind": "free",
+   "question": "In which Bond film does the villain's car turn into a small aeroplane to enable him to escape?",
+   "aliases": [
+    "man with golden gun",
+    "man with golden gun disambiguation",
+    "tmwtgg"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In which Bond film does the villain's car turn into a small aeroplane to enable him to escape? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_12138",
+   "kind": "free",
+   "question": "In January 2013 Novak Djokovi and Victoria Azarenka won the respective men's and women's titles in which Championship?",
+   "aliases": [
+    "aus open",
+    "aussie open",
+    "australasian champion",
+    "australasian championships",
+    "australasian championships tennis",
+    "australia open",
+    "australian championships",
+    "australian championships tennis",
+    "australian open",
+    "australian open december",
+    "australian open january",
+    "australian open juniors",
+    "australian open main draw wildcard entries",
+    "australian open qualifiers",
+    "australian open tennis",
+    "australian open wildcards",
+    "australian open – main draw wildcard entries",
+    "australian tennis open",
+    "grand slam of asia pacific",
+    "ozzy open"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In January 2013 Novak Djokovi and Victoria Azarenka won the respective men's and women's titles in which Championship? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_jp_4015",
+   "kind": "free",
+   "question": "What movie was about a dunking Golden Retriever named Buddy?",
+   "aliases": [
+    "air bud",
+    "air bud aussie rules",
+    "air bud film",
+    "air bud movie",
+    "airbud"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What movie was about a dunking Golden Retriever named Buddy? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_dpql_3061",
+   "kind": "free",
+   "question": "Which Scottish mathematician discovered logarithms?",
+   "aliases": [
+    "joanne nepero",
+    "joannis neperi",
+    "john napier",
+    "john napier of merchiston",
+    "john nepair",
+    "john nepair of merchiston",
+    "john neper",
+    "john neper of merchiston",
+    "marvellous merchiston",
+    "mirifici logarithmorum canonis descriptio",
+    "napier john",
+    "napierian"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which Scottish mathematician discovered logarithms? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_jp_2571",
+   "kind": "free",
+   "question": "Which type of animal represents the Republican Party?",
+   "aliases": [
+    "baby elephants",
+    "brown elephants",
+    "elaphant",
+    "elefonts",
+    "elephan",
+    "elephant",
+    "elephant evolution",
+    "elephant hunter",
+    "elephant hunting",
+    "elephant population",
+    "elephant rage",
+    "elephant tusk",
+    "elephant tusks",
+    "elephantinely",
+    "elephantineness",
+    "elephants",
+    "evolution of elephants",
+    "gestation period for elephants",
+    "mating elephants",
+    "rogue elephant",
+    "sexual behavior of elephants",
+    "פיל",
+    "🐘"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which type of animal represents the Republican Party? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_6727",
+   "kind": "free",
+   "question": "At a height of over 3,000 feet, the Tugela Falls are the second highest in the world. In which country are the Tugela Falls?",
+   "aliases": [
+    "afrique du sud",
+    "azania south africa",
+    "beloved country",
+    "capital of south africa",
+    "iso 3166 1 za",
+    "mzansi",
+    "ningizimu afrika",
+    "rep of south africa",
+    "republic of south africa",
+    "republiek van suid afrika",
+    "s afr",
+    "s africa",
+    "saffa",
+    "seth efrika",
+    "sou frica",
+    "soufrica",
+    "south africa",
+    "south africa s",
+    "south african",
+    "south africans",
+    "south africaà",
+    "southafrica",
+    "suid africa",
+    "suid afrika",
+    "third republic south africa",
+    "zuid africa",
+    "zuid afrika",
+    "zuidafrika"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "At a height of over 3,000 feet, the Tugela Falls are the second highest in the world. In which country are the Tugela Falls? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_1750",
+   "kind": "free",
+   "question": "In Greek mythology, who was the first wife of Aegeus?",
+   "aliases": [
+    "meta",
+    "meta level",
+    "meta prefix",
+    "metacorder",
+    "metadistro"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In Greek mythology, who was the first wife of Aegeus? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_tb_0",
+   "kind": "free",
+   "question": "The 1810 betrothal of Princess Theresa to Crown Prince Ludwig not only resulted in the meadow where the event took place to be named Theresienwiese but also started what?",
+   "aliases": [
+    "brewfest",
+    "ein prosit",
+    "october fest",
+    "octoberfest",
+    "octoberfestivities",
+    "oktober fest",
+    "oktoberfest",
+    "oktoberfestivities",
+    "oktoeberfest",
+    "oktöbërfest",
+    "wiesn"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The 1810 betrothal of Princess Theresa to Crown Prince Ludwig not only resulted in the meadow where the event took place to be named Theresienwiese but also started what? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_dpql_4823",
+   "kind": "free",
+   "question": "IBM Halt is one of nine railway stations in which Clydeside town?",
+   "aliases": [
+    "famous greenockians",
+    "greenock",
+    "greenock inverclyde",
+    "greenock renfrewshire",
+    "greenock scotland",
+    "port of greenock"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "IBM Halt is one of nine railway stations in which Clydeside town? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_13206",
+   "kind": "free",
+   "question": "The Tivoli Gardens are a tourist attraction in which city?",
+   "aliases": [
+    "capital of denmark",
+    "copenhagen",
+    "copenhagen denmark",
+    "copenhague",
+    "dkcph",
+    "hafnia latin",
+    "k town copenhagen",
+    "k town hardcore",
+    "k town punk",
+    "kaupmannahofn",
+    "kaupmannahöfn",
+    "kjøbenhavn",
+    "kobenhavn",
+    "koebenhavn",
+    "koepenhamn",
+    "kopenhagen",
+    "kopenhamn",
+    "ktown hardcore",
+    "köpenhamn",
+    "københavn",
+    "københavn denmark",
+    "un locode dkcph"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The Tivoli Gardens are a tourist attraction in which city? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_5076",
+   "kind": "free",
+   "question": "What were invented by Adolf Fick in 1887 and, while being to all intents and purposes invisible, are used worldwide by an estimated 125 million people?",
+   "aliases": [
+    "colored contact lens",
+    "colored contact lenses",
+    "contact lens",
+    "contact lens prescription",
+    "contact lens solutions",
+    "contact lense",
+    "contact lenses",
+    "contacts",
+    "corneal neutralization",
+    "disposable contact lens lid",
+    "hioxifilcon d",
+    "monovision",
+    "multifocal contact lens",
+    "piggybacked contact lens",
+    "rgp contact lenses",
+    "thoric lens"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What were invented by Adolf Fick in 1887 and, while being to all intents and purposes invisible, are used worldwide by an estimated 125 million people? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qf_3274",
+   "kind": "free",
+   "question": "Which Mediterranean country's orchestra is bigger than its army?",
+   "aliases": [
+    "administrative divisions monaco",
+    "administrative divisions of monaco",
+    "capital of monaco",
+    "climate of monaco",
+    "culture of monaco",
+    "europe monaco",
+    "extreme points of monaco",
+    "geography of monaco",
+    "islam in monaco",
+    "iso 3166 1 mc",
+    "list of cities in monaco",
+    "monacco",
+    "monaco",
+    "monaco geography",
+    "monaco military",
+    "monaco principality and diocese of",
+    "monaco transnational issues",
+    "monegasques",
+    "monocco",
+    "monégasques",
+    "munegu",
+    "mónegue",
+    "princedom of monaco",
+    "principality and diocese of monaco",
+    "principality of monaco",
+    "principat de mónegue",
+    "principato di monaco",
+    "principatu de múnegu",
+    "principaut de monaco",
+    "principauté de monaco",
+    "protestantism in monaco",
+    "quarters of monaco",
+    "religion in monaco",
+    "sport in monaco",
+    "sports in monaco",
+    "subdivisions of monaco",
+    "wards of monaco",
+    "weather in monaco"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which Mediterranean country's orchestra is bigger than its army? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_16249",
+   "kind": "free",
+   "question": "What is the name of the bay on the shore of which Rio de Janeiro sits?",
+   "aliases": [
+    "bay of guanabara",
+    "baía da guanabara",
+    "baía de guanabara",
+    "guanabara bay"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What is the name of the bay on the shore of which Rio de Janeiro sits? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_11586",
+   "kind": "free",
+   "question": "At the 1976 Olympics, which Cuban athlete became the first person to win both the 400m and the 800m?",
+   "aliases": [
+    "alberto juantorena",
+    "juantorena"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "At the 1976 Olympics, which Cuban athlete became the first person to win both the 400m and the 800m? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_8367",
+   "kind": "free",
+   "question": "Which late American musician, who pioneered the styles of rock and roll and rockabilly, was born Vincent Eugene Craddock in 1935?",
+   "aliases": [
+    "blue cap",
+    "blue caps",
+    "bluecaps",
+    "eugene craddock",
+    "gene vincent",
+    "gene vincent and blue caps",
+    "gene vincent and bluecaps",
+    "gene vincent blue caps",
+    "gene vincent his blue caps",
+    "say mama",
+    "vincent craddock",
+    "vincent eugene craddock"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Which late American musician, who pioneered the styles of rock and roll and rockabilly, was born Vincent Eugene Craddock in 1935? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_odql_14236",
+   "kind": "free",
+   "question": "\"Who plays advertising executive Roger Thornhill in the 1959 film North by Northwest\"\"?\"",
+   "aliases": [
+    "archibald alec leach",
+    "archibald alexander leach",
+    "archibaldalexanderleach",
+    "archie leach",
+    "carey grant",
+    "carry grant",
+    "cary grant",
+    "cary grant filmography",
+    "carygrant"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "\"Who plays advertising executive Roger Thornhill in the 1959 film North by Northwest\"\"?\" Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_4364",
+   "kind": "free",
+   "question": "\"El Gouna, known as the \"\"Venice of the Red Sea\"\", is a holiday resort in which country?\"",
+   "aliases": [
+    "arab republic of egypt",
+    "egipt",
+    "egipto",
+    "egy",
+    "egypt",
+    "egypt info",
+    "egypt name",
+    "egypte",
+    "egyptian republic",
+    "ejipt",
+    "etymology of egypt",
+    "eygpt",
+    "eypt",
+    "eytp",
+    "gift of nile",
+    "iso 3166 1 eg",
+    "jumhuriyat misr al arabiyah",
+    "kemmet",
+    "kimet",
+    "miṣr",
+    "name of egypt",
+    "names of egypt",
+    "national identity of egyptians",
+    "r egypt",
+    "republic of eygpt",
+    "second egyptian republic",
+    "égypte",
+    "جمهورية مصرالعربية",
+    "جمهوريّة مصرالعربيّة",
+    "مصر"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "\"El Gouna, known as the \"\"Venice of the Red Sea\"\", is a holiday resort in which country?\" Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qb_9242",
+   "kind": "free",
+   "question": "The Recreation Ground, Kingsholm Stadium and the Memorial Ground are all English venues for which sport?",
+   "aliases": [
+    "fifteen side",
+    "rugby union",
+    "rugby union football",
+    "rugby union footballer",
+    "rugby union player",
+    "rugby union scoring",
+    "rugby union tour",
+    "rugby union tours"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The Recreation Ground, Kingsholm Stadium and the Memorial Ground are all English venues for which sport? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_7117",
+   "kind": "free",
+   "question": "What was the name of the Edinburgh dog that watched over his owner's grave for 14 years?",
+   "aliases": [
+    "greyfriar s bobby",
+    "greyfriars bobby",
+    "john gray old jock"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What was the name of the Edinburgh dog that watched over his owner's grave for 14 years? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_sfq_4027",
+   "kind": "free",
+   "question": "What was the actor Richard Burton's real surname?",
+   "aliases": [
+    "jenkins",
+    "jenkins disambiguation"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "What was the actor Richard Burton's real surname? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_qw_2752",
+   "kind": "free",
+   "question": "In June 2009, General Motors announced that it would sell which of its brands to Tengzhong Heavy Industrial Machinery, based in China?",
+   "aliases": [
+    "hummer"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "In June 2009, General Motors announced that it would sell which of its brands to Tengzhong Heavy Industrial Machinery, based in China? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bb_5000",
+   "kind": "free",
+   "question": "The expression 'Go West' originally (mid-1800s) encouraged people to move from/within?",
+   "aliases": [
+    "amarica",
+    "amercia",
+    "america",
+    "america class",
+    "america country",
+    "america magazine",
+    "america united states",
+    "america united states of",
+    "america us",
+    "america usa",
+    "americaland",
+    "american united states",
+    "americia",
+    "americophile",
+    "amerka",
+    "amurica",
+    "amurika",
+    "amurka",
+    "ee uu",
+    "eeuu",
+    "estados unidos",
+    "estados unidos de america",
+    "estados unidos de américa",
+    "estaos unios",
+    "estaos uníos",
+    "estatos unitos",
+    "etats unis",
+    "etats unis d amerique",
+    "etymology of united states",
+    "federal united states",
+    "iso 3166 1 us",
+    "los estados unidos",
+    "los estados unidos de america",
+    "los estados unidos de américa",
+    "merica",
+    "nagkaisang mga estado",
+    "name of united states",
+    "nited states",
+    "states of america",
+    "stati uniti d america",
+    "these united states of america",
+    "u s",
+    "u s america",
+    "u s american",
+    "u s of",
+    "u s of america",
+    "u –s",
+    "u –s –",
+    "unietd states",
+    "unitd states",
+    "unite states",
+    "unite states of america",
+    "united sates",
+    "united staets of america",
+    "united state of america",
+    "united stated",
+    "united states",
+    "united states america",
+    "united states country",
+    "united states introduction",
+    "united states of amerca",
+    "united states of america",
+    "united states of america introduction",
+    "united states of america oldpage",
+    "united states of america redirect",
+    "united states of america u s",
+    "united states of america usa",
+    "united states of american",
+    "united states u s",
+    "united states us",
+    "unitedstates",
+    "united–states",
+    "unites states",
+    "unites states of america",
+    "unitesd states",
+    "untied states",
+    "untied states of america",
+    "us",
+    "us america",
+    "us and",
+    "us country",
+    "us of",
+    "us of america",
+    "usa",
+    "usoa",
+    "usofa",
+    "u–s",
+    "u–s–",
+    "v s america",
+    "v s amerika",
+    "vereinigte staaten",
+    "verenigde state",
+    "verenigde state van amerika",
+    "vs america",
+    "vs amerika",
+    "yankee land",
+    "états unis",
+    "états unis d amérique",
+    "الولايات المتحدة الأمريكية"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "The expression 'Go West' originally (mid-1800s) encouraged people to move from/within? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  },
+  {
+   "id": "B7_bb_3560",
+   "kind": "free",
+   "question": "Hircine refers to being like or related to what creature?",
+   "aliases": [
+    "billies",
+    "billy goat",
+    "billygoat",
+    "capra aegagrus hircus",
+    "capra hircus",
+    "dairy goat",
+    "dairy goats",
+    "domestic goat",
+    "domestic goats",
+    "goat",
+    "goat milk",
+    "goat penis",
+    "goat s milk",
+    "goatfighting",
+    "goatry",
+    "goats",
+    "goats milk",
+    "he goat",
+    "kid goat",
+    "nanny goat",
+    "she goat",
+    "she goats",
+    "🐐"
+   ],
+   "messages": [
+    {
+     "role": "user",
+     "content": "Hircine refers to being like or related to what creature? Answer briefly. Keep your reasoning to at most 5-6 sentences, then give your final answer."
+    }
+   ]
+  }
+ ]
+}

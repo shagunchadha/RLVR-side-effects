@@ -1,0 +1,328 @@
+=== 20:46:47 M2 --ckpt rlvr --limit 3
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+20:46:56 M2 rlvr shard 0/1: 3 traces, 0 already in /tmp/m2_smoke/M2/rlvr/progress_shard0of1.csv, 3 to do
+20:46:56 PREFLIGHT ram_avail=170.9 ram_total=171.8 rss=1.3 cgroup=0.9 cgroup_max=171.8 du:rlvr=0.0 free:rlvr=9223372027.9 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 30 GB, RAM 16 GB
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:36<01:12, 36.02s/it]Fetching 3 files: 100%|██████████| 3/3 [00:36<00:00,  9.55s/it]Fetching 3 files: 100%|██████████| 3/3 [00:36<00:00, 12.19s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   0%|          | 1/355 [00:00<00:45,  7.76it/s]Loading weights:   1%|          | 2/355 [00:00<00:45,  7.83it/s]Loading weights:   7%|▋         | 25/355 [00:00<00:03, 93.91it/s]Loading weights:  13%|█▎        | 46/355 [00:00<00:02, 127.21it/s]Loading weights:  19%|█▊        | 66/355 [00:00<00:01, 149.31it/s]Loading weights:  23%|██▎       | 82/355 [00:00<00:01, 150.79it/s]Loading weights:  29%|██▊       | 102/355 [00:00<00:01, 160.13it/s]Loading weights:  34%|███▍      | 120/355 [00:00<00:01, 164.31it/s]Loading weights:  39%|███▉      | 138/355 [00:01<00:01, 168.81it/s]Loading weights:  45%|████▍     | 158/355 [00:01<00:01, 174.42it/s]Loading weights:  50%|█████     | 178/355 [00:01<00:00, 180.34it/s]Loading weights:  57%|█████▋    | 201/355 [00:01<00:00, 188.95it/s]Loading weights:  63%|██████▎   | 222/355 [00:01<00:00, 194.67it/s]Loading weights:  68%|██████▊   | 242/355 [00:01<00:00, 191.98it/s]Loading weights:  74%|███████▍  | 262/355 [00:01<00:00, 191.31it/s]Loading weights:  79%|███████▉  | 282/355 [00:01<00:00, 188.45it/s]Loading weights:  85%|████████▌ | 302/355 [00:01<00:00, 185.68it/s]Loading weights:  91%|█████████ | 323/355 [00:01<00:00, 190.66it/s]Loading weights:  97%|█████████▋| 344/355 [00:02<00:00, 196.19it/s]Loading weights: 100%|██████████| 355/355 [00:02<00:00, 168.49it/s]
+20:47:36 RES models loaded | ram_avail=168.9 ram_total=171.8 rss=3.5 cgroup=2.9 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=86.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=14.6
+20:47:38 RES done | ram_avail=168.1 ram_total=171.8 rss=4.5 cgroup=3.7 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=85.5 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=15.6
+wrote local:runs/M2/rlvr/156d479b2373/shard_000.parquet: 3 rows; prompt-token mismatches: 0
+=== 20:47:39 M2 --ckpt rlvr
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+20:47:47 M2 rlvr shard 0/1: 1842 traces, 0 already in /tmp/sprint_out/M2/rlvr/progress_shard0of1.csv, 1842 to do
+20:47:47 PREFLIGHT ram_avail=170.9 ram_total=171.8 rss=1.3 cgroup=0.9 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 30 GB, RAM 16 GB
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   0%|          | 1/355 [00:00<01:15,  4.71it/s]Loading weights:   7%|▋         | 25/355 [00:00<00:03, 95.82it/s]Loading weights:  13%|█▎        | 46/355 [00:00<00:02, 136.07it/s]Loading weights:  18%|█▊        | 65/355 [00:00<00:01, 149.72it/s]Loading weights:  24%|██▍       | 86/355 [00:00<00:01, 167.65it/s]Loading weights:  30%|██▉       | 105/355 [00:00<00:01, 170.75it/s]Loading weights:  35%|███▌      | 126/355 [00:00<00:01, 177.14it/s]Loading weights:  41%|████▏     | 147/355 [00:00<00:01, 180.59it/s]Loading weights:  48%|████▊     | 170/355 [00:01<00:00, 189.68it/s]Loading weights:  54%|█████▍    | 191/355 [00:01<00:00, 195.38it/s]Loading weights:  60%|██████    | 213/355 [00:01<00:00, 198.63it/s]Loading weights:  66%|██████▌   | 235/355 [00:01<00:00, 200.65it/s]Loading weights:  72%|███████▏  | 256/355 [00:01<00:00, 203.02it/s]Loading weights:  78%|███████▊  | 278/355 [00:01<00:00, 201.98it/s]Loading weights:  85%|████████▍ | 300/355 [00:01<00:00, 196.94it/s]Loading weights:  91%|█████████ | 323/355 [00:01<00:00, 201.49it/s]Loading weights:  97%|█████████▋| 344/355 [00:01<00:00, 198.51it/s]Loading weights: 100%|██████████| 355/355 [00:01<00:00, 180.69it/s]
+20:47:49 RES models loaded | ram_avail=170.9 ram_total=171.8 rss=1.4 cgroup=0.9 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=86.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=14.6
+20:47:57 M2 rlvr shard 0/1: 50/1842
+20:48:03 M2 rlvr shard 0/1: 100/1842
+20:48:10 M2 rlvr shard 0/1: 150/1842
+20:48:17 M2 rlvr shard 0/1: 200/1842
+20:48:25 M2 rlvr shard 0/1: 250/1842
+20:48:32 M2 rlvr shard 0/1: 300/1842
+20:48:38 M2 rlvr shard 0/1: 350/1842
+20:48:44 M2 rlvr shard 0/1: 400/1842
+20:48:52 M2 rlvr shard 0/1: 450/1842
+20:48:58 M2 rlvr shard 0/1: 500/1842
+20:49:05 M2 rlvr shard 0/1: 550/1842
+20:49:17 M2 rlvr shard 0/1: 600/1842
+20:49:36 M2 rlvr shard 0/1: 650/1842
+20:49:48 M2 rlvr shard 0/1: 700/1842
+20:50:01 M2 rlvr shard 0/1: 750/1842
+20:50:10 M2 rlvr shard 0/1: 800/1842
+20:50:20 M2 rlvr shard 0/1: 850/1842
+20:50:29 M2 rlvr shard 0/1: 900/1842
+20:50:37 M2 rlvr shard 0/1: 950/1842
+20:50:45 M2 rlvr shard 0/1: 1000/1842
+20:50:49 RES 1024/1842 | ram_avail=170.0 ram_total=171.8 rss=2.6 cgroup=1.8 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=74.6 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=23.8
+20:50:53 M2 rlvr shard 0/1: 1050/1842
+20:51:03 M2 rlvr shard 0/1: 1100/1842
+20:51:10 M2 rlvr shard 0/1: 1150/1842
+20:51:25 M2 rlvr shard 0/1: 1200/1842
+20:51:43 M2 rlvr shard 0/1: 1250/1842
+20:51:52 M2 rlvr shard 0/1: 1300/1842
+20:52:00 M2 rlvr shard 0/1: 1350/1842
+20:52:11 M2 rlvr shard 0/1: 1400/1842
+20:52:17 M2 rlvr shard 0/1: 1450/1842
+20:52:23 M2 rlvr shard 0/1: 1500/1842
+20:52:29 M2 rlvr shard 0/1: 1550/1842
+20:52:38 M2 rlvr shard 0/1: 1600/1842
+20:52:44 M2 rlvr shard 0/1: 1650/1842
+20:52:51 M2 rlvr shard 0/1: 1700/1842
+20:52:59 M2 rlvr shard 0/1: 1750/1842
+20:53:07 M2 rlvr shard 0/1: 1800/1842
+20:53:20 RES done | ram_avail=170.0 ram_total=171.8 rss=2.7 cgroup=1.8 cgroup_max=171.8 du:rlvr=14.6 free:rlvr=9223372013.3 gpu_free=73.5 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.9
+wrote local:runs/M2/rlvr/156d479b2373/shard_000.parquet: 1842 rows; prompt-token mismatches: 0
+=== 20:53:21 deleted weights of rlvr
+=== 20:53:21 M2 --ckpt dpo
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+20:53:29 M2 dpo shard 0/1: 1842 traces, 0 already in /tmp/sprint_out/M2/dpo/progress_shard0of1.csv, 1842 to do
+20:53:29 PREFLIGHT ram_avail=170.9 ram_total=171.8 rss=1.3 cgroup=0.9 cgroup_max=171.8 du:dpo=0.0 free:dpo=9223372027.9 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 30 GB, RAM 16 GB
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:29<00:59, 29.79s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:30<00:12, 12.78s/it]Fetching 3 files: 100%|██████████| 3/3 [00:46<00:00, 14.38s/it]Fetching 3 files: 100%|██████████| 3/3 [00:46<00:00, 15.65s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   0%|          | 1/355 [00:00<01:04,  5.48it/s]Loading weights:   6%|▌         | 20/355 [00:00<00:03, 86.32it/s]Loading weights:  12%|█▏        | 42/355 [00:00<00:02, 136.21it/s]Loading weights:  17%|█▋        | 60/355 [00:00<00:01, 149.44it/s]Loading weights:  23%|██▎       | 81/355 [00:00<00:01, 166.06it/s]Loading weights:  29%|██▊       | 102/355 [00:00<00:01, 175.98it/s]Loading weights:  35%|███▍      | 124/355 [00:00<00:01, 182.74it/s]Loading weights:  41%|████      | 145/355 [00:00<00:01, 189.76it/s]Loading weights:  46%|████▋     | 165/355 [00:01<00:01, 181.04it/s]Loading weights:  52%|█████▏    | 185/355 [00:01<00:00, 184.96it/s]Loading weights:  57%|█████▋    | 204/355 [00:01<00:00, 183.63it/s]Loading weights:  63%|██████▎   | 223/355 [00:01<00:00, 182.13it/s]Loading weights:  69%|██████▉   | 245/355 [00:01<00:00, 189.20it/s]Loading weights:  75%|███████▍  | 266/355 [00:01<00:00, 194.70it/s]Loading weights:  81%|████████  | 286/355 [00:01<00:00, 192.11it/s]Loading weights:  86%|████████▌ | 306/355 [00:01<00:00, 191.28it/s]Loading weights:  92%|█████████▏| 326/355 [00:01<00:00, 188.22it/s]Loading weights:  97%|█████████▋| 345/355 [00:01<00:00, 184.04it/s]Loading weights: 100%|██████████| 355/355 [00:02<00:00, 175.06it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+20:54:19 RES models loaded | ram_avail=168.9 ram_total=171.8 rss=3.4 cgroup=2.9 cgroup_max=171.8 du:dpo=14.6 free:dpo=9223372013.3 gpu_free=86.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=14.6
+20:54:29 M2 dpo shard 0/1: 50/1842
+20:54:36 M2 dpo shard 0/1: 100/1842
+20:54:44 M2 dpo shard 0/1: 150/1842
+20:54:51 M2 dpo shard 0/1: 200/1842
+20:55:00 M2 dpo shard 0/1: 250/1842
+20:55:08 M2 dpo shard 0/1: 300/1842
+20:55:15 M2 dpo shard 0/1: 350/1842
+20:55:22 M2 dpo shard 0/1: 400/1842
+20:55:30 M2 dpo shard 0/1: 450/1842
+20:55:38 M2 dpo shard 0/1: 500/1842
+20:55:45 M2 dpo shard 0/1: 550/1842
+20:55:58 M2 dpo shard 0/1: 600/1842
+20:56:20 M2 dpo shard 0/1: 650/1842
+20:56:35 M2 dpo shard 0/1: 700/1842
+20:56:51 M2 dpo shard 0/1: 750/1842
+20:57:02 M2 dpo shard 0/1: 800/1842
+20:57:13 M2 dpo shard 0/1: 850/1842
+20:57:19 RES 873/1842 | ram_avail=168.0 ram_total=171.8 rss=4.5 cgroup=3.8 cgroup_max=171.8 du:dpo=14.6 free:dpo=9223372013.3 gpu_free=73.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.2
+20:57:25 M2 dpo shard 0/1: 900/1842
+20:57:33 M2 dpo shard 0/1: 950/1842
+20:57:44 M2 dpo shard 0/1: 1000/1842
+20:57:55 M2 dpo shard 0/1: 1050/1842
+20:58:06 M2 dpo shard 0/1: 1100/1842
+20:58:15 M2 dpo shard 0/1: 1150/1842
+20:58:31 M2 dpo shard 0/1: 1200/1842
+20:58:51 M2 dpo shard 0/1: 1250/1842
+20:59:01 M2 dpo shard 0/1: 1300/1842
+20:59:10 M2 dpo shard 0/1: 1350/1842
+20:59:22 M2 dpo shard 0/1: 1400/1842
+20:59:28 M2 dpo shard 0/1: 1450/1842
+20:59:35 M2 dpo shard 0/1: 1500/1842
+20:59:42 M2 dpo shard 0/1: 1550/1842
+20:59:52 M2 dpo shard 0/1: 1600/1842
+20:59:59 M2 dpo shard 0/1: 1650/1842
+21:00:06 M2 dpo shard 0/1: 1700/1842
+21:00:15 M2 dpo shard 0/1: 1750/1842
+21:00:19 RES 1781/1842 | ram_avail=168.0 ram_total=171.8 rss=4.5 cgroup=3.8 cgroup_max=171.8 du:dpo=14.6 free:dpo=9223372013.3 gpu_free=72.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.9
+21:00:23 M2 dpo shard 0/1: 1800/1842
+21:00:36 RES done | ram_avail=168.0 ram_total=171.8 rss=4.5 cgroup=3.8 cgroup_max=171.8 du:dpo=14.6 free:dpo=9223372013.2 gpu_free=72.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.9
+wrote local:runs/M2/dpo/5c5ed84056e2/shard_000.parquet: 1842 rows; prompt-token mismatches: 0
+=== 21:00:37 deleted weights of dpo
+=== 21:00:37 M2 --ckpt sft
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+21:00:46 M2 sft shard 0/1: 1842 traces, 0 already in /tmp/sprint_out/M2/sft/progress_shard0of1.csv, 1842 to do
+21:00:46 PREFLIGHT ram_avail=170.8 ram_total=171.8 rss=1.3 cgroup=1.0 cgroup_max=171.8 du:sft=0.0 free:sft=9223372027.8 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 30 GB, RAM 16 GB
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:20<00:40, 20.41s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:53<00:27, 27.83s/it]Fetching 3 files: 100%|██████████| 3/3 [01:16<00:00, 25.64s/it]Fetching 3 files: 100%|██████████| 3/3 [01:16<00:00, 25.49s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   1%|          | 2/355 [00:00<00:37,  9.47it/s]Loading weights:   6%|▌         | 22/355 [00:00<00:03, 85.06it/s]Loading weights:  11%|█         | 38/355 [00:00<00:02, 109.55it/s]Loading weights:  17%|█▋        | 60/355 [00:00<00:02, 142.53it/s]Loading weights:  23%|██▎       | 81/355 [00:00<00:01, 161.91it/s]Loading weights:  28%|██▊       | 101/355 [00:00<00:01, 173.17it/s]Loading weights:  34%|███▍      | 120/355 [00:00<00:01, 173.35it/s]Loading weights:  39%|███▉      | 138/355 [00:00<00:01, 173.68it/s]Loading weights:  45%|████▍     | 159/355 [00:01<00:01, 182.29it/s]Loading weights:  51%|█████     | 181/355 [00:01<00:00, 188.54it/s]Loading weights:  57%|█████▋    | 203/355 [00:01<00:00, 195.57it/s]Loading weights:  63%|██████▎   | 225/355 [00:01<00:00, 195.93it/s]Loading weights:  69%|██████▉   | 246/355 [00:01<00:00, 198.00it/s]Loading weights:  75%|███████▌  | 268/355 [00:01<00:00, 199.76it/s]Loading weights:  82%|████████▏ | 290/355 [00:01<00:00, 202.39it/s]Loading weights:  88%|████████▊ | 312/355 [00:01<00:00, 203.03it/s]Loading weights:  94%|█████████▍| 333/355 [00:01<00:00, 202.95it/s]Loading weights: 100%|█████████▉| 354/355 [00:02<00:00, 204.96it/s]Loading weights: 100%|██████████| 355/355 [00:02<00:00, 177.09it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+21:02:05 RES models loaded | ram_avail=170.7 ram_total=171.8 rss=1.6 cgroup=1.1 cgroup_max=171.8 du:sft=14.6 free:sft=9223372013.2 gpu_free=86.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=14.6
+21:02:16 M2 sft shard 0/1: 50/1842
+21:02:23 M2 sft shard 0/1: 100/1842
+21:02:32 M2 sft shard 0/1: 150/1842
+21:02:40 M2 sft shard 0/1: 200/1842
+21:02:49 M2 sft shard 0/1: 250/1842
+21:02:57 M2 sft shard 0/1: 300/1842
+21:03:04 M2 sft shard 0/1: 350/1842
+21:03:11 M2 sft shard 0/1: 400/1842
+21:03:20 M2 sft shard 0/1: 450/1842
+21:03:27 M2 sft shard 0/1: 500/1842
+21:03:35 M2 sft shard 0/1: 550/1842
+21:03:48 M2 sft shard 0/1: 600/1842
+21:04:12 M2 sft shard 0/1: 650/1842
+21:04:29 M2 sft shard 0/1: 700/1842
+21:04:46 M2 sft shard 0/1: 750/1842
+21:04:58 M2 sft shard 0/1: 800/1842
+21:05:05 RES 832/1842 | ram_avail=169.9 ram_total=171.8 rss=2.7 cgroup=1.9 cgroup_max=171.8 du:sft=14.6 free:sft=9223372013.2 gpu_free=73.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.2
+21:05:09 M2 sft shard 0/1: 850/1842
+21:05:21 M2 sft shard 0/1: 900/1842
+21:05:31 M2 sft shard 0/1: 950/1842
+21:05:40 M2 sft shard 0/1: 1000/1842
+21:05:51 M2 sft shard 0/1: 1050/1842
+21:06:02 M2 sft shard 0/1: 1100/1842
+21:06:12 M2 sft shard 0/1: 1150/1842
+21:06:28 M2 sft shard 0/1: 1200/1842
+21:06:48 M2 sft shard 0/1: 1250/1842
+21:06:59 M2 sft shard 0/1: 1300/1842
+21:07:10 M2 sft shard 0/1: 1350/1842
+21:07:22 M2 sft shard 0/1: 1400/1842
+21:07:29 M2 sft shard 0/1: 1450/1842
+21:07:36 M2 sft shard 0/1: 1500/1842
+21:07:43 M2 sft shard 0/1: 1550/1842
+21:07:53 M2 sft shard 0/1: 1600/1842
+21:07:59 M2 sft shard 0/1: 1650/1842
+21:08:06 RES 1687/1842 | ram_avail=169.8 ram_total=171.8 rss=2.7 cgroup=2.0 cgroup_max=171.8 du:sft=14.6 free:sft=9223372013.2 gpu_free=72.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.9
+21:08:07 M2 sft shard 0/1: 1700/1842
+21:08:16 M2 sft shard 0/1: 1750/1842
+21:08:25 M2 sft shard 0/1: 1800/1842
+21:08:38 RES done | ram_avail=169.8 ram_total=171.8 rss=2.7 cgroup=2.0 cgroup_max=171.8 du:sft=14.6 free:sft=9223372013.2 gpu_free=72.8 gpu_total=102.0 gpu_alloc=14.6 gpu_peak=24.9
+wrote local:runs/M2/sft/7d54c175486f/shard_000.parquet: 1842 rows; prompt-token mismatches: 0
+=== 21:08:39 deleted weights of sft
+=== 21:08:39 M2 --pair rlvr dpo
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "python": "3.13.11",
+ "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.41",
+ "gpu": {
+  "cuda_available": true,
+  "torch_cuda": "13.0",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_capability": "12.0",
+  "gpu_mem_gb": 95.0,
+  "nvidia_smi": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05"
+ },
+ "env_hash": "413fb6c0caa5f972",
+ "n_pinned": 220,
+ "problems": [],
+ "key_versions": {
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "huggingface-hub": "1.33.0",
+  "safetensors": "0.8.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6"
+ }
+}
+RESULT: OK
+21:08:47 M2 pair_rlvr_dpo shard 0/1: 1842 traces, 0 already in /tmp/sprint_out/M2/pair_rlvr_dpo/progress_shard0of1.csv, 1842 to do
+21:08:47 PREFLIGHT ram_avail=170.8 ram_total=171.8 rss=1.3 cgroup=1.0 cgroup_max=171.8 du:pair=0.0 free:pair=9223372027.8 gpu_free=101.4 gpu_total=102.0 gpu_alloc=0.0 gpu_peak=0.0 | need disk 60 GB, RAM 16 GB
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:20<00:41, 20.72s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:30<00:14, 14.46s/it]Fetching 3 files: 100%|██████████| 3/3 [00:39<00:00, 11.97s/it]Fetching 3 files: 100%|██████████| 3/3 [00:39<00:00, 13.27s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   1%|          | 2/355 [00:00<00:33, 10.66it/s]Loading weights:   7%|▋         | 25/355 [00:00<00:03, 103.03it/s]Loading weights:  13%|█▎        | 47/355 [00:00<00:02, 145.45it/s]Loading weights:  19%|█▉        | 69/355 [00:00<00:01, 169.55it/s]Loading weights:  26%|██▌       | 91/355 [00:00<00:01, 182.35it/s]Loading weights:  32%|███▏      | 113/355 [00:00<00:01, 188.82it/s]Loading weights:  38%|███▊      | 135/355 [00:00<00:01, 193.94it/s]Loading weights:  44%|████▍     | 157/355 [00:00<00:00, 200.74it/s]Loading weights:  50%|█████     | 179/355 [00:01<00:00, 202.18it/s]Loading weights:  57%|█████▋    | 201/355 [00:01<00:00, 206.21it/s]Loading weights:  63%|██████▎   | 223/355 [00:01<00:00, 207.73it/s]Loading weights:  69%|██████▊   | 244/355 [00:01<00:00, 203.49it/s]Loading weights:  75%|███████▍  | 265/355 [00:01<00:00, 202.35it/s]Loading weights:  81%|████████  | 286/355 [00:01<00:00, 199.68it/s]Loading weights:  86%|████████▋ | 307/355 [00:01<00:00, 196.59it/s]Loading weights:  93%|█████████▎| 329/355 [00:01<00:00, 202.91it/s]Loading weights:  99%|█████████▊| 350/355 [00:01<00:00, 204.07it/s]Loading weights: 100%|██████████| 355/355 [00:01<00:00, 188.87it/s]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [00:33<01:06, 33.11s/it]Fetching 3 files:  67%|██████▋   | 2/3 [00:38<00:16, 16.61s/it]Fetching 3 files: 100%|██████████| 3/3 [00:58<00:00, 18.12s/it]Fetching 3 files: 100%|██████████| 3/3 [00:58<00:00, 19.36s/it]
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights:   1%|          | 2/355 [00:00<00:32, 10.74it/s]Loading weights:   6%|▌         | 20/355 [00:00<00:03, 84.06it/s]Loading weights:  11%|█         | 38/355 [00:00<00:02, 119.44it/s]Loading weights:  17%|█▋        | 60/355 [00:00<00:01, 149.58it/s]Loading weights:  23%|██▎       | 81/355 [00:00<00:01, 167.40it/s]Loading weights:  29%|██▊       | 102/355 [00:00<00:01, 171.18it/s]Loading weights:  35%|███▌      | 125/355 [00:00<00:01, 182.80it/s]Loading weights:  41%|████▏     | 147/355 [00:00<00:01, 190.90it/s]Loading weights:  48%|████▊     | 169/355 [00:01<00:00, 197.88it/s]Loading weights:  54%|█████▎    | 190/355 [00:01<00:00, 198.59it/s]Loading weights:  59%|█████▉    | 211/355 [00:01<00:00, 193.20it/s]Loading weights:  65%|██████▌   | 231/355 [00:01<00:00, 186.47it/s]Loading weights:  70%|███████   | 250/355 [00:01<00:00, 183.80it/s]Loading weights:  76%|███████▌  | 269/355 [00:01<00:00, 176.40it/s]Loading weights:  82%|████████▏ | 290/355 [00:01<00:00, 181.78it/s]Loading weights:  88%|████████▊ | 311/355 [00:01<00:00, 179.83it/s]Loading weights:  94%|█████████▎| 332/355 [00:01<00:00, 186.92it/s]Loading weights:  99%|█████████▉| 351/355 [00:02<00:00, 186.35it/s]Loading weights: 100%|██████████| 355/355 [00:02<00:00, 173.58it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+21:10:30 RES models loaded | ram_avail=168.3 ram_total=171.8 rss=4.0 cgroup=3.5 cgroup_max=171.8 du:pair=29.2 free:pair=9223371998.6 gpu_free=72.2 gpu_total=102.0 gpu_alloc=29.2 gpu_peak=29.2
+21:10:37 M2 pair_rlvr_dpo shard 0/1: 50/1842
+21:10:42 M2 pair_rlvr_dpo shard 0/1: 100/1842
+21:10:47 M2 pair_rlvr_dpo shard 0/1: 150/1842
+21:10:52 M2 pair_rlvr_dpo shard 0/1: 200/1842
+21:10:59 M2 pair_rlvr_dpo shard 0/1: 250/1842
+21:11:04 M2 pair_rlvr_dpo shard 0/1: 300/1842
+21:11:10 M2 pair_rlvr_dpo shard 0/1: 350/1842
+21:11:14 M2 pair_rlvr_dpo shard 0/1: 400/1842
+21:11:21 M2 pair_rlvr_dpo shard 0/1: 450/1842
+21:11:26 M2 pair_rlvr_dpo shard 0/1: 500/1842
+21:11:31 M2 pair_rlvr_dpo shard 0/1: 550/1842
+21:11:43 M2 pair_rlvr_dpo shard 0/1: 600/1842
+21:11:59 M2 pair_rlvr_dpo shard 0/1: 650/1842
+21:12:09 M2 pair_rlvr_dpo shard 0/1: 700/1842
+21:12:19 M2 pair_rlvr_dpo shard 0/1: 750/1842
+21:12:26 M2 pair_rlvr_dpo shard 0/1: 800/1842
+21:12:32 M2 pair_rlvr_dpo shard 0/1: 850/1842
+21:12:40 M2 pair_rlvr_dpo shard 0/1: 900/1842
+21:12:45 M2 pair_rlvr_dpo shard 0/1: 950/1842
+21:12:51 M2 pair_rlvr_dpo shard 0/1: 1000/1842
+21:12:58 M2 pair_rlvr_dpo shard 0/1: 1050/1842
+21:13:05 M2 pair_rlvr_dpo shard 0/1: 1100/1842
+21:13:11 M2 pair_rlvr_dpo shard 0/1: 1150/1842
+21:13:24 M2 pair_rlvr_dpo shard 0/1: 1200/1842
+21:13:30 RES 1223/1842 | ram_avail=167.6 ram_total=171.8 rss=4.9 cgroup=4.2 cgroup_max=171.8 du:pair=29.2 free:pair=9223371998.6 gpu_free=58.7 gpu_total=102.0 gpu_alloc=29.2 gpu_peak=38.9
+21:13:38 M2 pair_rlvr_dpo shard 0/1: 1250/1842
+21:13:44 M2 pair_rlvr_dpo shard 0/1: 1300/1842
+21:13:50 M2 pair_rlvr_dpo shard 0/1: 1350/1842
+21:13:56 M2 pair_rlvr_dpo shard 0/1: 1400/1842
+21:14:00 M2 pair_rlvr_dpo shard 0/1: 1450/1842
+21:14:05 M2 pair_rlvr_dpo shard 0/1: 1500/1842
+21:14:10 M2 pair_rlvr_dpo shard 0/1: 1550/1842
+21:14:15 M2 pair_rlvr_dpo shard 0/1: 1600/1842
+21:14:19 M2 pair_rlvr_dpo shard 0/1: 1650/1842
+21:14:25 M2 pair_rlvr_dpo shard 0/1: 1700/1842
+21:14:31 M2 pair_rlvr_dpo shard 0/1: 1750/1842
+21:14:38 M2 pair_rlvr_dpo shard 0/1: 1800/1842
+21:14:49 RES done | ram_avail=167.6 ram_total=171.8 rss=4.9 cgroup=4.2 cgroup_max=171.8 du:pair=29.2 free:pair=9223371998.6 gpu_free=57.7 gpu_total=102.0 gpu_alloc=29.2 gpu_peak=39.6
+wrote local:runs/M2/pair_rlvr_dpo/b35466982f5e/shard_000.parquet: 1842 rows
+=== 21:14:50 M2 queue done; weights deleted
+EXIT=0

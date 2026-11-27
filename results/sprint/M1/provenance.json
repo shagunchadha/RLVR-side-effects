@@ -1,0 +1,56 @@
+{
+ "config": {
+  "job": "M1",
+  "ladder": {
+   "sft": [
+    "allenai/Olmo-3-7B-Think-SFT",
+    "6ff857587e040d6d523a3d5f3a56e918f5401d66"
+   ],
+   "dpo": [
+    "allenai/Olmo-3-7B-Think-DPO",
+    "7b18bf927b430ff06376fdfa5610eb3b1b6a5c38"
+   ],
+   "rlvr": [
+    "allenai/Olmo-3-7B-Think",
+    "d97e442d7cc678210054dbcc9b440894d62c89a4"
+   ]
+  },
+  "comparisons": [
+   [
+    "rlvr",
+    "dpo"
+   ],
+   [
+    "dpo",
+    "sft"
+   ]
+  ],
+  "k_top": 32,
+  "k_angles": [
+   8,
+   32
+  ],
+  "dtype": "float32",
+  "version": 1
+ },
+ "config_hash": "1452eadae569",
+ "git_sha": "808783977f25c9ad95f23d12db2aea61e3b8dcaf",
+ "n_shards": 1,
+ "package_versions": {
+  "python": "3.13.11",
+  "torch": "2.13.0",
+  "transformers": "5.17.0",
+  "vllm": "0.31.0",
+  "tokenizers": "0.23.3",
+  "safetensors": "0.8.0",
+  "huggingface-hub": "1.33.0",
+  "pyarrow": "26.0.0",
+  "numpy": "2.4.6",
+  "scipy": "1.18.1",
+  "pandas": "3.0.6",
+  "datasets": "5.1.0",
+  "accelerate": null,
+  "flashinfer-python": "0.7.0.post1",
+  "triton": "3.7.1"
+ }
+}
