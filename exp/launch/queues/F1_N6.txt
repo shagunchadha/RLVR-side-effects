@@ -1,10 +1,11 @@
-# F1 work units for N6 (registration amendment 18): <ckpt>:<bench>, run top to bottom, AIME first.
+# F1 work units for N6 (registration amendment 18): <ckpt>:<bench>, top to bottom. Order (PI, Nov 28): DPO and RLVR
+# AIME first, then MATH-500 and IF for all three checkpoints, SFT AIME last (the part cut if time runs short).
 # Re-read after a git pull before every unit, so units can be moved between lanes mid-run (never move a running one).
 rlvr:aime2024
-rlvr:aime2025
 dpo:aime2024
 rlvr:math500
 dpo:math500
 rlvr:ifeval
 rlvr:ifbench
 dpo:ifeval
+sft:aime2024
