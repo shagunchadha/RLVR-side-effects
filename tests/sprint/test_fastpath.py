@@ -34,19 +34,23 @@ class _Out:
 
 class FakeLLM:
     """LLM.enqueue + llm_engine.step / has_unfinished_requests / get_num_unfinished_requests, as in vLLM 0.31.
-    Request i needs (seed % 3) + 1 steps, so requests finish out of submission order."""
+    Request i needs (seed % 3) + 1 steps, so requests finish out of submission order. As in vLLM 0.31, enqueue
+    returns the INTERNAL id f"{external}-{uuid[:8]}" (input_processor.assign_request_id) while the outputs of step()
+    carry the EXTERNAL id (LLM's counter): the F0b smoke failure of Nov 27."""
 
     def __init__(self):
         self.llm_engine, self.inflight, self.counter, self.max_inflight, self.params = self, {}, 0, 0, []
+        self.stray = None                       # set to an id to emit one finished output nobody asked for
 
     def enqueue(self, prompts, params):
+        import uuid
         rids = []
         for p, sp in zip(prompts, params):
             rid = str(self.counter)
             self.counter += 1
             self.inflight[rid] = [sp.seed % 3 + 1, p["prompt_token_ids"], sp]
             self.params.append(sp)
-            rids.append(rid)
+            rids.append(f"{rid}-{uuid.uuid4().hex[:8]}")
         self.max_inflight = max(self.max_inflight, len(self.inflight))
         return rids
 
@@ -58,6 +62,9 @@ class FakeLLM:
 
     def step(self):
         out = []
+        if self.stray is not None:
+            out.append(_Out(self.stray, "stray", [0]))
+            self.stray = None
         for rid in list(self.inflight):
             self.inflight[rid][0] -= 1
             if self.inflight[rid][0] == 0:
@@ -93,9 +100,28 @@ def test_generate_stream_order_window_and_callbacks(fake_vllm):
 
 
 def test_generate_stream_raises_if_enqueue_misbehaves(fake_vllm, monkeypatch):
+    sp = {"temperature": 0.6, "top_p": 0.95, "top_k": -1}
     monkeypatch.setattr(fake_vllm, "enqueue", lambda prompts, params: None)
     with pytest.raises(RuntimeError, match="enqueue"):
-        H.generate_stream(fake_vllm, [[1]], [0], {"temperature": 0.6, "top_p": 0.95, "top_k": -1}, max_tokens=8)
+        H.generate_stream(fake_vllm, [[1]], [0], sp, max_tokens=8)
+    monkeypatch.setattr(fake_vllm, "enqueue", lambda prompts, params: ["0"])        # no internal suffix: API change
+    with pytest.raises(RuntimeError, match="<8 hex>"):
+        H.generate_stream(fake_vllm, [[1]], [0], sp, max_tokens=8)
+
+
+def test_generate_stream_raises_on_an_unknown_output_id(fake_vllm):
+    """A finished output whose id matches no pending request is an error, never silently dropped."""
+    fake_vllm.stray = "999"
+    with pytest.raises(RuntimeError, match="unknown request id '999'"):
+        H.generate_stream(fake_vllm, [[1], [2]], [0, 1], {"temperature": 0.6, "top_p": 0.95, "top_k": -1}, max_tokens=8)
+
+
+def test_external_request_id():
+    assert H._external_request_id("17-3f9a1c2b") == "17"
+    assert H._external_request_id("a-b-0123abcd") == "a-b"
+    for bad in ("17", "17-3f9a1c2", "17-3F9A1C2B", "17-3f9a1c2bx"):
+        with pytest.raises(RuntimeError):
+            H._external_request_id(bad)
 
 
 def test_b1_submitted_config_unchanged_and_fast_config_distinct():

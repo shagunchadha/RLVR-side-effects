@@ -155,6 +155,20 @@ def generate(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, stop=None
     return [_completion_row(o.outputs[0]) for o in outs]
 
 
+_INTERNAL_ID = __import__("re").compile(r"^(?P<ext>.+)-[0-9a-f]{8}$")
+
+
+def _external_request_id(rid):
+    """LLM.enqueue returns vLLM 0.31's INTERNAL request id: input_processor.assign_request_id makes it
+    f"{external_id}-{random_uuid():.8}", and LLMEngine.add_request returns that. The RequestOutputs from
+    llm_engine.step() carry the EXTERNAL id (LLM's own counter; vLLM's _run_engine sorts by int(request_id)). Strip
+    the suffix; anything that does not have exactly that shape is an API change and raises."""
+    m = _INTERNAL_ID.match(str(rid))
+    if not m:
+        raise RuntimeError(f"LLM.enqueue returned request id {rid!r}, not '<external id>-<8 hex>' (vLLM API changed?)")
+    return m.group("ext")
+
+
 def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on_done=None, window=None, stop=None,
                     generate_fn=None):
     """The revision fast path (amendment 18, F0b): the same requests and SamplingParams as `generate` (per-request
@@ -191,17 +205,25 @@ def generate_stream(llm, prompt_token_ids, seeds, sampling, max_tokens=16000, on
                            [_sampling_params(sampling, seeds[i], caps[i], stop) for i in idx])
         if rids is None or len(rids) != len(idx):
             raise RuntimeError(f"LLM.enqueue returned {rids!r} for {len(idx)} requests (vLLM API changed?)")
-        rid_to_idx.update({str(r): i for r, i in zip(rids, idx)})
+        for r, i in zip(rids, idx):
+            ext = _external_request_id(r)
+            if ext in rid_to_idx:
+                raise RuntimeError(f"generate_stream: duplicate external request id {ext!r}")
+            rid_to_idx[ext] = i
         nxt += k
 
     refill()
     while nxt < n or eng.has_unfinished_requests():
         for o in eng.step():
-            if getattr(o, "finished", False) and str(o.request_id) in rid_to_idx:
-                i = rid_to_idx.pop(str(o.request_id))
-                rows[i] = _completion_row(o.outputs[0])
-                if on_done:
-                    on_done(i, rows[i])
+            if not getattr(o, "finished", False):
+                continue
+            if str(o.request_id) not in rid_to_idx:     # never ignore an output: an unmatched id loses a generation
+                raise RuntimeError(f"generate_stream: finished output with unknown request id {o.request_id!r} "
+                                   f"(pending: {sorted(rid_to_idx)[:5]}...)")
+            i = rid_to_idx.pop(str(o.request_id))
+            rows[i] = _completion_row(o.outputs[0])
+            if on_done:
+                on_done(i, rows[i])
         refill()
     missing = [i for i, r in enumerate(rows) if r is None]
     if missing:

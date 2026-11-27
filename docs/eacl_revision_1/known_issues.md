@@ -55,3 +55,20 @@ FileNotFoundError: ...\store\runs\B6\syc__rlvr\7b9bc789aef3\shard_000.parquet
   - A test marked `real_preflight` keeps the real one.
   - `tests/sprint/test_preflight.py` checks both sides: the bypass is active in unit tests, and the real preflight still aborts on an impossible disk need.
 - **Real jobs are unchanged:** `exp/resources.py` is not modified, and nothing outside the tests is patched.
+
+## F0b smoke failed on both lanes: `generate_stream: 2 requests never finished`
+
+**Status:** fixed (Nov 27, 2026). Found by the PI in the F0b smoke step; nothing was written, and both lanes stopped (SKIPPED after two attempts).
+
+- **Cause, from the pinned vLLM 0.31.0 source (PI):**
+  - `LLM.enqueue` → `_add_request` → `LLMEngine.add_request` returns the **internal** request id. `input_processor.assign_request_id` sets it to `f"{external_id}-{random_uuid():.8}"`.
+  - The `RequestOutput`s from `llm_engine.step()` carry the **external** id, LLM's plain counter; vLLM's own `_run_engine` sorts by `int(request_id)`.
+  - `generate_stream` keyed its pending map by the enqueue ids, so no finished output matched. The outputs were skipped silently, and the loop ended when the engine was empty.
+- **Fix in `exp/harness.py`:**
+  - `generate_stream` keys the pending map by the external id. `_external_request_id` strips the suffix, and anything not shaped `<external>-<8 hex>` raises, since that would be an API change.
+  - A finished output whose id matches no pending request now **raises** instead of being skipped.
+- **Why the tests missed it:** the fake engine in `tests/sprint/test_fastpath.py` returned the same id from `enqueue` and in the outputs.
+- **Tests now:**
+  - The fake engine returns suffixed internal ids from `enqueue` and plain external ids in the outputs, as vLLM 0.31 does.
+  - New tests cover an unknown output id, an enqueue id without the suffix, and the id parser.
+  - Against the previous `harness.py`, the stream test fails with exactly the smoke error ("2 requests never finished"). With the fix, the CPU suite passes: 93 passed.
