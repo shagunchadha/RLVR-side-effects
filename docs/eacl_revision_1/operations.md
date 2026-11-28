@@ -16,6 +16,7 @@ Rules marked *(added)* come from the sprint docs, the launch scripts, earlier no
   - *(added)* **Long commands.** A long one-off command in a notebook, such as building the environment, is started as a detached process writing a log file, then polled. A long scratchpad call is cut when the stream ends, and its child processes die with it (the N6 env setup did on Nov 28).
 - **Watcher:** one lightweight watcher for both notebooks. It polls every 5 min, reports status only, and never touches notebooks or runs.
   - *(added)* It reads HF, not the kernels: the last push per lane, `lane.log`, job-log events, failures. A lane with no push for more than 15 min is reported as stale.
+  - *(added, Nov 29 fix)* **Compute ages in `jq`.** Use `fromdateiso8601` after stripping fractional seconds (`sub("[.][0-9]+Z$"; "Z")`), never Git Bash's `date -d`. Git Bash misparsed HF's timestamps by about 23 h, so every age came out negative, and N6's death on Nov 29 (~01:06 UTC) went unreported for about 40 min. A missing or unparseable age counts as stale, never as fresh.
 - **Idle notebooks:** never leave a notebook with no running cell for more than 60 min. Tell the PI when a queue is empty.
 - **Sandbox recovery:**
   1. When a sandbox dies, the PI reopens the notebook and gives Claude Code the new URL and token.
@@ -102,3 +103,4 @@ Rules marked *(added)* come from the sprint docs, the launch scripts, earlier no
 | smoke before every full job | the engine probe (a 2 × 10-min diagnostic that writes no results) has no smoke step | resolved: exempt (PI, Nov 28) |
 | `gpu_memory_utilization` 0.85 → 0.92 | not recorded before | recorded above (kept at 0.92) |
 | no account names in committed files | `docs/history/README_v1.md` (a clone URL and dataset path with a username) and registration amendment 3 (the HF dataset's account name) | resolved: left as they are (PI, Nov 28); hidden in the anonymous mirror before submission |
+| watcher reports a dead lane within 15 min | Git Bash `date -d` misparsed HF timestamps, so N6's death (Nov 29, ~01:06 UTC) was found only by a manual check after about 40 min | fixed: ages computed in `jq` (Nov 29) |
